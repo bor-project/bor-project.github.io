@@ -217,7 +217,7 @@
   <tbody>
     <tr>
       <td>Name or address</td>
-      <td>a name, an address or a link whose host is taken; the name is asked through the way out of the resolver, and with the resolver off through the host</td>
+      <td>a name, an address or a link whose host is taken; the name is asked through the way out of the DNS server, and with the DNS server off through the host</td>
     </tr>
     <tr>
       <td>Port</td>
@@ -238,7 +238,7 @@
   </tbody>
 </table>
 
-<p>“Test” reads the rules the way the set on the host reads them. First comes the guard of the resolver, while at least one rule on the host compares by name and no names are read out of the connections: a client of such a rule gets port 853 and port 443 of known name servers reset; the test does not know a client let go for a day and shows the reset for it too. Then the resolver itself: while it answers, it takes every question to port 53 from the interface of a client, and the rules are not read. Then the rules in order: a rule not on the host is skipped with its reason, a rule whose interface, client, protocol, port or source port did not match is missed, and a rule whose targets the traffic falls under matches by range, by name or by an address the resolver put into its set.</p>
+<p>“Test” reads the rules the way the set on the host reads them. First comes the guard of the DNS server, while at least one rule on the host compares by name and no names are read out of the connections: a client of such a rule gets port 853 and port 443 of known name servers reset; the test does not know a client let go for a day and shows the reset for it too. Then the DNS server itself: while it answers, it takes every question to port 53 from the interface of a client, and the rules are not read. Then the rules in order: a rule not on the host is skipped with its reason, a rule whose interface, client, protocol, port or source port did not match is missed, and a rule whose targets the traffic falls under matches by range, by name or by an address the DNS server put into its set.</p>
 
 <h2 id="outcome">Outcome</h2>
 
@@ -267,12 +267,12 @@
       <td>the rule matched, but its channel carries nothing, and the rule holds the traffic</td>
     </tr>
     <tr>
-      <td>Dropped by the resolver guard (dot or doh)</td>
-      <td>a connection to a name server past the resolver</td>
+      <td>Dropped by the DNS server guard (dot or doh)</td>
+      <td>a connection to a name server past the DNS server</td>
     </tr>
     <tr>
-      <td>Answered by the resolver of the panel</td>
-      <td>a DNS question the resolver intercepts</td>
+      <td>Answered by the DNS server of the panel</td>
+      <td>a DNS question the DNS server intercepts</td>
     </tr>
   </tbody>
 </table>

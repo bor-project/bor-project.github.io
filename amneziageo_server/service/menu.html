@@ -231,7 +231,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DNS</code></td>
-      <td>the resolver for the clients: off, on, and whether it encrypts the queries going out</td>
+      <td>the DNS server for the clients: off, on, and whether it encrypts the queries going out</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Services</code></td>
@@ -319,7 +319,7 @@
     </tr>
     <tr>
       <td>14 <code class="language-plaintext highlighter-rouge">View Current Settings</code></td>
-      <td>the panel without secrets: how it is installed, its state and version, the address, the <code class="language-plaintext highlighter-rouge">panel show</code> settings, interfaces with their ports, the resolver, the module, forwarding, BBR, ufw</td>
+      <td>the panel without secrets: how it is installed, its state and version, the address, the <code class="language-plaintext highlighter-rouge">panel show</code> settings, interfaces with their ports, the DNS server, the module, forwarding, BBR, ufw</td>
     </tr>
   </tbody>
 </table>
@@ -371,7 +371,7 @@
   <tbody>
     <tr>
       <td>1</td>
-      <td>the state of ufw, the nftables tables of the panel and the ports it needs: ssh, the panel, subscriptions, interfaces, 80 for renewing the certificate; the interfaces whose clients ufw keeps from the resolver</td>
+      <td>the state of ufw, the nftables tables of the panel and the ports it needs: ssh, the panel, subscriptions, interfaces, 80 for renewing the certificate; the interfaces whose clients ufw keeps from the DNS server</td>
     </tr>
     <tr>
       <td>2, 3</td>
@@ -403,7 +403,7 @@
     </tr>
     <tr>
       <td>13</td>
-      <td><code class="language-plaintext highlighter-rouge">Let the clients reach the resolver</code>: let the clients of the interfaces ufw keeps from the resolver of the panel (port 53) reach it, with the rule <code class="language-plaintext highlighter-rouge">allow in on &lt;interface&gt; to any port 53</code>; with the resolver off it says that item 29 turns it on. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, see <a href="panel/dns.html#how-it-works">DNS</a></td>
+      <td><code class="language-plaintext highlighter-rouge">Let the clients reach the resolver</code>: let the clients of the interfaces ufw keeps from the DNS server of the panel (port 53) reach it, with the rule <code class="language-plaintext highlighter-rouge">allow in on &lt;interface&gt; to any port 53</code>; with the DNS server off it says that item 29 turns it on. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, see <a href="panel/dns.html#how-it-works">DNS</a></td>
     </tr>
   </tbody>
 </table>
@@ -424,7 +424,7 @@
 
 <p><strong>28 <code class="language-plaintext highlighter-rouge">Update Geo Files</code>.</strong> Downloads the enabled geo sources of the panel now, like “Update all” on the <a href="panel/geo.html">Geo lists</a> page.</p>
 
-<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Prints the settings of the resolver (<code class="language-plaintext highlighter-rouge">dns show</code>) and offers to turn it on or off; if the upstream servers are asked in plain DNS, it offers to replace them with those a fresh panel starts with, over HTTPS. When the resolver is on and ufw keeps the clients of some interfaces from it, the item offers to let them in, as sub-item 13 of item 23 does. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> with a question, <code class="language-plaintext highlighter-rouge">dns open</code>. More in <a href="panel/dns.html">DNS</a>.</p>
+<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Prints the settings of the DNS server (<code class="language-plaintext highlighter-rouge">dns show</code>) and offers to turn it on or off; if the upstream servers are asked in plain DNS, it offers to replace them with those a fresh panel starts with, over HTTPS. When the DNS server is on and ufw keeps the clients of some interfaces from it, the item offers to let them in, as sub-item 13 of item 23 does. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> with a question, <code class="language-plaintext highlighter-rouge">dns open</code>. More in <a href="panel/dns.html">DNS</a>.</p>
 
 <h2 id="commands">Commands</h2>
 
@@ -478,11 +478,11 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code></td>
-      <td>the resolver for the clients</td>
+      <td>the DNS server for the clients</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns open</code></td>
-      <td>let the clients of the interfaces ufw keeps from the resolver reach it</td>
+      <td>let the clients of the interfaces ufw keeps from the DNS server reach it</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">&lt;utility command&gt;</code></td>

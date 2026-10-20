@@ -254,9 +254,9 @@
   </tbody>
 </table>
 
-<p>A network, address or name typed without a prefix gets one as it is added; a link keeps its host. The names are asked in both families through the upstream servers of the resolver of the panel; from a geosite category only domains and exact names are asked, since keywords and expressions have no address. One pass asks up to 4000 names and ends after a minute; a name without an answer counts as not found. Addresses a packet through the tunnel would not go to (loopback, zero, link-local, multicast, broadcast) are dropped; a private address stays, because a name of an internal resolver may lead to a host behind the server.</p>
+<p>A network, address or name typed without a prefix gets one as it is added; a link keeps its host. The names are asked in both families through the upstream servers of the DNS server of the panel; from a geosite category only domains and exact names are asked, since keywords and expressions have no address. One pass asks up to 4000 names and ends after a minute; a name without an answer counts as not found. Addresses a packet through the tunnel would not go to (loopback, zero, link-local, multicast, broadcast) are dropped; a private address stays, because a name of an internal DNS server may lead to a host behind the server.</p>
 
-<p>What the entries gave is folded into the fewest ranges and kept with the template, together with the entries that gave nothing and the time of the pass: “Refreshed <time>", "Nothing found for: <list>". This is what goes into `AllowedIPs` of every client of the template; an empty list gives `0.0.0.0/0`, and a client with an IPv6 address also gets `::/0`. A name server of the file inside the network of the interface, the resolver of the panel among them, answers only through the tunnel: when the ranges leave it out, it is added to `AllowedIPs` as a single address. The list is computed again on save, with the "Refresh" button, on its own once a day and right after the geo databases change: names move and the geo databases update, and the files of the clients change only after a new pass. When the name servers give no answer, the panel keeps the list it had and tries again in an hour.</list></time></p>
+<p>What the entries gave is folded into the fewest ranges and kept with the template, together with the entries that gave nothing and the time of the pass: “Refreshed <time>", "Nothing found for: <list>". This is what goes into `AllowedIPs` of every client of the template; an empty list gives `0.0.0.0/0`, and a client with an IPv6 address also gets `::/0`. A name server of the file inside the network of the interface, the DNS server of the panel among them, answers only through the tunnel: when the ranges leave it out, it is added to `AllowedIPs` as a single address. The list is computed again on save, with the "Refresh" button, on its own once a day and right after the geo databases change: names move and the geo databases update, and the files of the clients change only after a new pass. When the name servers give no answer, the panel keeps the list it had and tries again in an hour.</list></time></p>
 
 <p>While a template is being edited, the panel counts what each entry gives: “Addresses: N” on the entry and on the whole template, “Show what it holds” unfolds the first addresses or names of a category (“No entries: the category is absent from the downloaded databases”). Over 12000 ranges means “the speed may drop”, over 16000 “too many addresses to save”. A template holds no more than 256 entries.</p>
 
@@ -264,13 +264,13 @@
 
 <h2 id="route-by-name">Route by name</h2>
 
-<p>A client with nothing but <code class="language-plaintext highlighter-rouge">AllowedIPs</code> cannot follow a name. A service behind a CDN answers with the cache nearest to whoever asks; the caches stand in the networks of providers and change, and neither the addresses a pass found nor the geo ranges of the service cover them. With the “Route by name” switch in the “Routing” part, the names of the template (<code class="language-plaintext highlighter-rouge">geosite:</code> and <code class="language-plaintext highlighter-rouge">domain:</code>) are not unfolded into addresses, and such entries show “by name” instead of a number of addresses. The resolver of the panel answers a client of the template about these names with a stand-in address out of <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>: one address per name, the same for as long as the name is asked about, and the same on every server as long as two names do not land on one address. The host leads a connection to the stand-in to the real address the resolver got for the name and decides it by the real one, so the rules of the server see such a connection as any other, see <a href="dns.html#stand-in-addresses">Stand-in addresses</a>.</p>
+<p>A client with nothing but <code class="language-plaintext highlighter-rouge">AllowedIPs</code> cannot follow a name. A service behind a CDN answers with the cache nearest to whoever asks; the caches stand in the networks of providers and change, and neither the addresses a pass found nor the geo ranges of the service cover them. With the “Route by name” switch in the “Routing” part, the names of the template (<code class="language-plaintext highlighter-rouge">geosite:</code> and <code class="language-plaintext highlighter-rouge">domain:</code>) are not unfolded into addresses, and such entries show “by name” instead of a number of addresses. The DNS server of the panel answers a client of the template about these names with a stand-in address out of <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>: one address per name, the same for as long as the name is asked about, and the same on every server as long as two names do not land on one address. The host leads a connection to the stand-in to the real address the DNS server got for the name and decides it by the real one, so the rules of the server see such a connection as any other, see <a href="dns.html#stand-in-addresses">Stand-in addresses</a>.</p>
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/template-form.png" alt="Form of a template: geosite entries marked by name and the Route by name switch on" width="1440" height="900" loading="lazy" /><figcaption>A template with routing by name.</figcaption></figure>
 
-<p>The file of such a client carries the resolver of the panel as its only name server (the “DNS” field of the “Network” part shows its addresses and cannot be edited), and in <code class="language-plaintext highlighter-rouge">AllowedIPs</code> the networks and addresses of the template, <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> and the address of the resolver. A geo key of addresses (<code class="language-plaintext highlighter-rouge">geoip:</code>) stays a range: it serves the applications that go to addresses without asking a name, Telegram and calls among them.</p>
+<p>The file of such a client carries the DNS server of the panel as its only name server (the “DNS” field of the “Network” part shows its addresses and cannot be edited), and in <code class="language-plaintext highlighter-rouge">AllowedIPs</code> the networks and addresses of the template, <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> and the address of the DNS server. A geo key of addresses (<code class="language-plaintext highlighter-rouge">geoip:</code>) stays a range: it serves the applications that go to addresses without asking a name, Telegram and calls among them.</p>
 
-<p>The switch works while the resolver of the panel answers the clients on port 53 and the firewall of the host lets them reach it. The template is saved with the switch on in any case, and the form under it names what keeps it from working, with the command that mends it:</p>
+<p>The switch works while the DNS server of the panel answers the clients on port 53 and the firewall of the host lets them reach it. The template is saved with the switch on in any case, and the form under it names what keeps it from working, with the command that mends it:</p>
 
 <table>
   <thead>
@@ -281,21 +281,21 @@
   </thead>
   <tbody>
     <tr>
-      <td>Will not work: the panel resolver is off</td>
-      <td>turn the resolver on on the <a href="dns.html">DNS</a> page, with <code class="language-plaintext highlighter-rouge">sudo amneziageo-server dns on</code> or with menu item 29</td>
+      <td>Will not work: the panel DNS server is off</td>
+      <td>turn the DNS server on on the <a href="dns.html">DNS</a> page, with <code class="language-plaintext highlighter-rouge">sudo amneziageo-server dns on</code> or with menu item 29</td>
     </tr>
     <tr>
-      <td>Will not work: the panel resolver answers on port N, while the clients ask on 53</td>
+      <td>Will not work: the panel DNS server answers on port N, while the clients ask on 53</td>
       <td>set port 53 on the DNS page</td>
     </tr>
     <tr>
-      <td>Will not work: the server firewall (ufw) keeps the clients of <interfaces> from the panel resolver (port 53)</interfaces></td>
+      <td>Will not work: the server firewall (ufw) keeps the clients of <interfaces> from the panel DNS server (port 53)</interfaces></td>
       <td>on the server <code class="language-plaintext highlighter-rouge">sudo amneziageo-server dns open</code>, menu item 23, sub-item 13, or <code class="language-plaintext highlighter-rouge">sudo ufw allow in on &lt;interface&gt; to any port 53</code> for each interface</td>
     </tr>
   </tbody>
 </table>
 
-<p>An application with name servers of its own goes past the stand-ins; the guard of the resolver resets the known public servers of DoT and DoH for the clients, see <a href="dns.html#questions-of-the-clients">Questions of the clients</a>. A name with a stand-in gets no IPv6 answer and no <code class="language-plaintext highlighter-rouge">HTTPS</code> record, so the client goes to it over IPv4. A stand-in that leads nowhere, after a client came over from another server or for a name nobody asked about for a week, is refused at once, and the client asks for the name again.</p>
+<p>An application with name servers of its own goes past the stand-ins; the guard of the DNS server resets the known public servers of DoT and DoH for the clients, see <a href="dns.html#questions-of-the-clients">Questions of the clients</a>. A name with a stand-in gets no IPv6 answer and no <code class="language-plaintext highlighter-rouge">HTTPS</code> record, so the client goes to it over IPv4. A stand-in that leads nowhere, after a client came over from another server or for a name nobody asked about for a week, is refused at once, and the client asks for the name again.</p>
 
 <h2 id="network">Network</h2>
 
@@ -309,7 +309,7 @@
   <tbody>
     <tr>
       <td>DNS</td>
-      <td>the name servers of the client; empty means the resolver of the panel when it answers inside the tunnel, otherwise <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>; with routing by name, the addresses of the resolver of the panel, and the field cannot be edited</td>
+      <td>the name servers of the client; empty means the DNS server of the panel when it answers inside the tunnel, otherwise <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>; with routing by name, the addresses of the DNS server of the panel, and the field cannot be edited</td>
     </tr>
     <tr>
       <td>MTU</td>

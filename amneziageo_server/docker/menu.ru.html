@@ -224,7 +224,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DNS</code></td>
-      <td>резолвер для клиентов: выключен, включён и шифрует ли запросы наружу</td>
+      <td>DNS-сервер для клиентов: выключен, включён и шифрует ли запросы наружу</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Services</code></td>
@@ -312,7 +312,7 @@
     </tr>
     <tr>
       <td>14 <code class="language-plaintext highlighter-rouge">View Current Settings</code></td>
-      <td>панель без секретов: как поставлена, состояние и версия, адрес, настройки <code class="language-plaintext highlighter-rouge">panel show</code>, интерфейсы с портами, резолвер, модуль, пересылка, BBR, ufw</td>
+      <td>панель без секретов: как поставлена, состояние и версия, адрес, настройки <code class="language-plaintext highlighter-rouge">panel show</code>, интерфейсы с портами, DNS-сервер, модуль, пересылка, BBR, ufw</td>
     </tr>
   </tbody>
 </table>
@@ -364,7 +364,7 @@
   <tbody>
     <tr>
       <td>1</td>
-      <td>состояние ufw, таблицы nftables панели и порты, которые ей нужны: ssh, панель, подписки, интерфейсы, 80 для продления сертификата; интерфейсы, чьих клиентов ufw не пускает к резолверу</td>
+      <td>состояние ufw, таблицы nftables панели и порты, которые ей нужны: ssh, панель, подписки, интерфейсы, 80 для продления сертификата; интерфейсы, чьих клиентов ufw не пускает к DNS-серверу</td>
     </tr>
     <tr>
       <td>2, 3</td>
@@ -396,7 +396,7 @@
     </tr>
     <tr>
       <td>13</td>
-      <td><code class="language-plaintext highlighter-rouge">Let the clients reach the resolver</code>: пустить к резолверу панели (порт 53) клиентов интерфейсов, которых ufw к нему не пускает, правилом <code class="language-plaintext highlighter-rouge">allow in on &lt;интерфейс&gt; to any port 53</code>; при выключенном резолвере говорит, что его включает пункт 29; из контейнера печатает команды для хоста. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, см. <a href="panel/dns.ru.html#как-это-работает">DNS</a></td>
+      <td><code class="language-plaintext highlighter-rouge">Let the clients reach the resolver</code>: пустить к DNS-серверу панели (порт 53) клиентов интерфейсов, которых ufw к нему не пускает, правилом <code class="language-plaintext highlighter-rouge">allow in on &lt;интерфейс&gt; to any port 53</code>; при выключенном DNS-сервере говорит, что его включает пункт 29; из контейнера печатает команды для хоста. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, см. <a href="panel/dns.ru.html#как-это-работает">DNS</a></td>
     </tr>
   </tbody>
 </table>
@@ -417,7 +417,7 @@
 
 <p><strong>28 <code class="language-plaintext highlighter-rouge">Update Geo Files</code>.</strong> Скачивает включённые гео-источники панели сейчас, как «Обновить все» на странице <a href="panel/geo.ru.html">Списки Geo</a>.</p>
 
-<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Печатает настройки резолвера (<code class="language-plaintext highlighter-rouge">dns show</code>) и предлагает включить или выключить его; если внешние серверы спрашиваются открытым DNS, предлагает заменить их на те, с которых начинает свежая панель, по HTTPS. Включённый резолвер, к которому ufw не пускает клиентов каких-то интерфейсов, пункт предлагает открыть им, как подпункт 13 пункта 23. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> с вопросом, <code class="language-plaintext highlighter-rouge">dns open</code>. Подробнее - <a href="panel/dns.ru.html">DNS</a>.</p>
+<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Печатает настройки DNS-сервера (<code class="language-plaintext highlighter-rouge">dns show</code>) и предлагает включить или выключить его; если внешние серверы спрашиваются открытым DNS, предлагает заменить их на те, с которых начинает свежая панель, по HTTPS. Включённый DNS-сервер, к которому ufw не пускает клиентов каких-то интерфейсов, пункт предлагает открыть им, как подпункт 13 пункта 23. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> с вопросом, <code class="language-plaintext highlighter-rouge">dns open</code>. Подробнее - <a href="panel/dns.ru.html">DNS</a>.</p>
 
 <h2 id="команды">Команды</h2>
 
@@ -471,11 +471,11 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code></td>
-      <td>резолвер для клиентов</td>
+      <td>DNS-сервер для клиентов</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns open</code></td>
-      <td>пустить к резолверу клиентов интерфейсов, которых ufw к нему не пускает</td>
+      <td>пустить к DNS-серверу клиентов интерфейсов, которых ufw к нему не пускает</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">&lt;команда утилиты&gt;</code></td>

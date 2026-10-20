@@ -321,7 +321,7 @@
 
 <p>The server at the other end of a tunnel is trusted with what the host sent into it, and nothing more: from the tunnel only answers to connections the host opened or let through are taken, and a new connection from the tunnel is dropped. “Close private networks” also refuses a client a new connection through the tunnel into private ranges; with the box cleared, a rule that sends such a range into the tunnel brings the client there under the address of the tunnel.</p>
 
-<p>Adding, changing, turning on, turning off and removing go on the host at once. A channel a rule, a group or the resolver leaves through is not removed: “A rule, a group or the resolver leaves through the channel”. The panel watches the interfaces of channels as it watches interfaces: one taken down it raises, one that vanished it puts again with its keys, addresses, route and carrying WebSocket; <code class="language-plaintext highlighter-rouge">ip rule</code> rules dropped by a restart of a network manager (<code class="language-plaintext highlighter-rouge">systemd-networkd</code> with <code class="language-plaintext highlighter-rouge">ManageForeignRoutingPolicyRules=yes</code>) it puts back and writes so in the log. Raising an interface and routing rules need <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>; without it the panel answers with a channel with a reason, not with a failed request.</p>
+<p>Adding, changing, turning on, turning off and removing go on the host at once. A channel a rule, a group or the DNS server leaves through is not removed: “A rule, a group or the DNS server leaves through the channel”. The panel watches the interfaces of channels as it watches interfaces: one taken down it raises, one that vanished it puts again with its keys, addresses, route and carrying WebSocket; <code class="language-plaintext highlighter-rouge">ip rule</code> rules dropped by a restart of a network manager (<code class="language-plaintext highlighter-rouge">systemd-networkd</code> with <code class="language-plaintext highlighter-rouge">ManageForeignRoutingPolicyRules=yes</code>) it puts back and writes so in the log. Raising an interface and routing rules need <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>; without it the panel answers with a channel with a reason, not with a failed request.</p>
 
 <h2 id="groups">Groups</h2>
 
@@ -354,7 +354,7 @@
   </tbody>
 </table>
 
-<p>Live members are marked “on the host”. A group reads the live ones every fifteen seconds and, when the set changes, puts the whole rule set again, so a channel that fell silent is replaced without anyone’s help; a change in the panel does not wait for this round. A rule through a group without live members holds its traffic, with the reason “No channel of the group answers”, and through a group that is off, “The group is off”: the traffic of the rule is dropped until a channel carries again. A group a rule or the resolver leaves through is not removed: “A rule or the resolver leaves through the group”. The scenario: <a href="../recipes/channel-group.html">Channel group with a fallback</a>.</p>
+<p>Live members are marked “on the host”. A group reads the live ones every fifteen seconds and, when the set changes, puts the whole rule set again, so a channel that fell silent is replaced without anyone’s help; a change in the panel does not wait for this round. A rule through a group without live members holds its traffic, with the reason “No channel of the group answers”, and through a group that is off, “The group is off”: the traffic of the rule is dropped until a channel carries again. A group a rule or the DNS server leaves through is not removed: “A rule or the DNS server leaves through the group”. The scenario: <a href="../recipes/channel-group.html">Channel group with a fallback</a>.</p>
 
 <h2 id="refusals">Refusals</h2>
 
@@ -391,11 +391,11 @@
       <td>marks and tables</td>
     </tr>
     <tr>
-      <td>A rule, a group or the resolver leaves through the channel</td>
+      <td>A rule, a group or the DNS server leaves through the channel</td>
       <td>the channel is not removed</td>
     </tr>
     <tr>
-      <td>The name of the group does not hold; There is no such strategy; No channel is picked; More channels than a group takes; One channel is named twice; A rule or the resolver leaves through the group</td>
+      <td>The name of the group does not hold; There is no such strategy; No channel is picked; More channels than a group takes; One channel is named twice; A rule or the DNS server leaves through the group</td>
       <td>the group</td>
     </tr>
     <tr>

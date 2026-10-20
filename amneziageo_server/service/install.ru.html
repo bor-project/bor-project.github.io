@@ -318,7 +318,7 @@ amneziageo-server install
       <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ufw keeps the clients of &lt;интерфейсы&gt; from the resolver of the panel: let them reach it?</code>, в конце, если ufw не пускает клиентов интерфейсов к резолверу</td>
+      <td><code class="language-plaintext highlighter-rouge">ufw keeps the clients of &lt;интерфейсы&gt; from the resolver of the panel: let them reach it?</code>, в конце, если ufw не пускает клиентов интерфейсов к DNS-серверу</td>
       <td>да</td>
       <td><code class="language-plaintext highlighter-rouge">resolver_ufw</code></td>
     </tr>
@@ -347,9 +347,9 @@ amneziageo-server install
   <li>заводит первого администратора; временный пароль печатает один раз в конце;</li>
   <li>выпускает сертификат Let’s Encrypt на имя сервера (<code class="language-plaintext highlighter-rouge">certbot</code> с ключом RSA, проверка HTTP-01 на TCP 80, продление таймером <code class="language-plaintext highlighter-rouge">certbot.timer</code>, см. <a href="/amneziageo_server/service/panel/certificates.ru.html#lets-encrypt">Сертификаты</a>) или берёт тот, что у хоста уже есть, и открывает панель на всех адресах хоста;</li>
   <li>заводит первый интерфейс и клиента через API панели: конфигурация клиента ложится в <code class="language-plaintext highlighter-rouge">/root</code>, по желанию печатается QR-кодом; на хосте с глобальным адресом IPv6 интерфейс получает диапазон уникальных локальных адресов IPv6, и клиенты ходят по IPv6 через сервер;</li>
-  <li>включает резолвер для клиентов, если согласились;</li>
+  <li>включает DNS-сервер для клиентов, если согласились;</li>
   <li>открывает порты в ufw или включает ufw, оставив открытыми ssh и то, что уже слушало;</li>
-  <li>если ufw не пускает клиентов какого-то интерфейса к резолверу панели, предлагает пустить их правилом <code class="language-plaintext highlighter-rouge">allow in on &lt;интерфейс&gt; to any port 53</code>, см. <a href="/amneziageo_server/service/panel/dns.ru.html#как-это-работает">DNS</a>;</li>
+  <li>если ufw не пускает клиентов какого-то интерфейса к DNS-серверу панели, предлагает пустить их правилом <code class="language-plaintext highlighter-rouge">allow in on &lt;интерфейс&gt; to any port 53</code>, см. <a href="/amneziageo_server/service/panel/dns.ru.html#как-это-работает">DNS</a>;</li>
   <li>ставит короткую команду меню, если согласились: ссылку <code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code> на <code class="language-plaintext highlighter-rouge">amneziageo-server</code> или с именем, которое назвали; имя, которое уже занято другой командой, не берёт и спрашивает другое;</li>
   <li>проверяет службу, панель, сертификат и интерфейс и печатает адрес панели, логин и пароль, порты панели и интерфейса, адрес IPv6 хоста и команду меню с короткой командой.</li>
 </ul>
@@ -415,11 +415,11 @@ amneziageo-server install
       <td>остаются на хосте и кладутся заново одним шагом при старте</td>
     </tr>
     <tr>
-      <td>адреса, которые резолвер положил в наборы</td>
+      <td>адреса, которые DNS-сервер положил в наборы</td>
       <td>читаются с хоста при старте и кладутся снова с правилами</td>
     </tr>
     <tr>
-      <td>резолвер</td>
+      <td>DNS-сервер</td>
       <td>не отвечает те секунды, пока сервер стартует; клиенты спрашивают снова</td>
     </tr>
     <tr>

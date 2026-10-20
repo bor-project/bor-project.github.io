@@ -260,7 +260,7 @@
   <li>«Панель» - TCP-порт, на котором отвечает панель;</li>
   <li>«Подписки» - на своём порту или «на портах интерфейсов», пока подписки включены;</li>
   <li>«Интерфейс <имя>» для каждого включённого интерфейса, с частями, которые отдаёт его TCP-порт: hello, скорость, WebSocket, подписка;</имя></li>
-  <li>«DNS» - резолвер, пока он включён;</li>
+  <li>«DNS» - DNS-сервер, пока он включён;</li>
   <li>«Сертификат <имя>» для каждого файла сертификата, под которым отвечают панель и подписки, с «до <дата>».</дата></имя></li>
 </ul>
 
@@ -301,8 +301,8 @@
       <td>подписки на портах интерфейсов, а ни один порт не отвечает</td>
     </tr>
     <tr>
-      <td>резолвер не запущен, выход резолвера не работает</td>
-      <td>резолвер не поднялся или ни один внешний сервер не отвечает</td>
+      <td>DNS-сервер не запущен, выход DNS-сервера не работает</td>
+      <td>DNS-сервер не поднялся или ни один внешний сервер не отвечает</td>
     </tr>
     <tr>
       <td>Файл не читается, Истёк <дата></дата></td>
@@ -358,7 +358,7 @@
   </tbody>
 </table>
 
-<p>Канал релизов - отметка «Получать предварительные версии» на вкладке <a href="server.ru.html">Сервер</a>; переменная <code class="language-plaintext highlighter-rouge">Update__Channel=test</code> в окружении панели берёт предварительные выпуски независимо от отметки. Прочие переменные: <code class="language-plaintext highlighter-rouge">Update__CheckHours</code> - как часто смотреть релизы (12, <code class="language-plaintext highlighter-rouge">0</code> оставляет проверку кнопке), <code class="language-plaintext highlighter-rouge">Update__Repository</code> - чьи релизы читать, <code class="language-plaintext highlighter-rouge">Update__Manifest</code> - адрес манифеста вместо релизов, <code class="language-plaintext highlighter-rouge">Update__Key</code> - файл с другим открытым ключом, <code class="language-plaintext highlighter-rouge">Update__Directory</code> - каталог загрузок и журналов, <code class="language-plaintext highlighter-rouge">Update__Docker</code> - сокет демона. Что происходит с интерфейсами, каналами и резолвером во время перезапуска, см. <a href="../install.ru.html#обновление">Установка</a>.</p>
+<p>Канал релизов - отметка «Получать предварительные версии» на вкладке <a href="server.ru.html">Сервер</a>; переменная <code class="language-plaintext highlighter-rouge">Update__Channel=test</code> в окружении панели берёт предварительные выпуски независимо от отметки. Прочие переменные: <code class="language-plaintext highlighter-rouge">Update__CheckHours</code> - как часто смотреть релизы (12, <code class="language-plaintext highlighter-rouge">0</code> оставляет проверку кнопке), <code class="language-plaintext highlighter-rouge">Update__Repository</code> - чьи релизы читать, <code class="language-plaintext highlighter-rouge">Update__Manifest</code> - адрес манифеста вместо релизов, <code class="language-plaintext highlighter-rouge">Update__Key</code> - файл с другим открытым ключом, <code class="language-plaintext highlighter-rouge">Update__Directory</code> - каталог загрузок и журналов, <code class="language-plaintext highlighter-rouge">Update__Docker</code> - сокет демона. Что происходит с интерфейсами, каналами и DNS-сервером во время перезапуска, см. <a href="../install.ru.html#обновление">Установка</a>.</p>
 
 <h2 id="резервная-копия">Резервная копия</h2>
 

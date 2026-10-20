@@ -219,7 +219,7 @@
 
 <h2 id="connection-log">Connection log</h2>
 
-<p>The connection log keeps a record of each new connection of a client: when it was decided, the client and the address it came from, the interface, the protocol, the destination address and port, the name the resolver of the panel answered for that address, how the connection was carried, whether it left the host by itself or was handed to another server, and what came back. It is off until turned on.</p>
+<p>The connection log keeps a record of each new connection of a client: when it was decided, the client and the address it came from, the interface, the protocol, the destination address and port, the name the DNS server of the panel answered for that address, how the connection was carried, whether it left the host by itself or was handed to another server, and what came back. It is off until turned on.</p>
 
 <p>“Record connections to the log” turns recording on, “Keep” sets how many days to keep the records (7 by default, 1 to 90); the log holds no more than a million records, and the old ones go first. The status line says how many records there are, since when, how many bytes, and “N lost” if records did not fit into the queue. “Clear” removes all the records. The records live in <code class="language-plaintext highlighter-rouge">access.db</code> next to the database of the panel and are not part of the backup.</p>
 
@@ -255,7 +255,7 @@
     </tr>
     <tr>
       <td>guard</td>
-      <td>reset by the guard of the resolver, DNS over TLS or HTTPS</td>
+      <td>reset by the guard of the DNS server, DNS over TLS or HTTPS</td>
     </tr>
     <tr>
       <td>locally, relayed</td>
@@ -299,7 +299,7 @@
 
 <h3 id="how-the-records-are-taken">How the records are taken</h3>
 
-<p>The kernel decides a connection once, on its first packet, in the <code class="language-plaintext highlighter-rouge">decide</code> chain of the rule table. While the log runs, each line of the chain hands the packet to the NFLOG group 7317 before the verdict, under a prefix with the rule and the verdict, and the last line hands over what no rule took; the panel reads the group over netlink with the first 96 bytes of the packet. The log also watches the answer: the <code class="language-plaintext highlighter-rouge">answer</code> chain hands over the first packet that came back to the connection, and over TCP the first one with data, a reset or a close. Nothing waits for the log: NFLOG does not hold the packet, and what did not fit into the queue of the panel is dropped and counted in “lost”. A repeated SYN and a repeated UDP packet fold into one record of the connection. Questions to the resolver of the panel do not go into the log: the names from them stand on the records of the connections that follow them. Connections the panel led itself to read a name, see <a href="dns.html#names-from-connections">Names from connections</a>, are written with the name the connection gave and the outcome the panel saw.</p>
+<p>The kernel decides a connection once, on its first packet, in the <code class="language-plaintext highlighter-rouge">decide</code> chain of the rule table. While the log runs, each line of the chain hands the packet to the NFLOG group 7317 before the verdict, under a prefix with the rule and the verdict, and the last line hands over what no rule took; the panel reads the group over netlink with the first 96 bytes of the packet. The log also watches the answer: the <code class="language-plaintext highlighter-rouge">answer</code> chain hands over the first packet that came back to the connection, and over TCP the first one with data, a reset or a close. Nothing waits for the log: NFLOG does not hold the packet, and what did not fit into the queue of the panel is dropped and counted in “lost”. A repeated SYN and a repeated UDP packet fold into one record of the connection. Questions to the DNS server of the panel do not go into the log: the names from them stand on the records of the connections that follow them. Connections the panel led itself to read a name, see <a href="dns.html#names-from-connections">Names from connections</a>, are written with the name the connection gave and the outcome the panel saw.</p>
 
 <p>A host that does not take the rule set with the log lines gets it without them, and the log says why. The kernel loads the <code class="language-plaintext highlighter-rouge">nfnetlink_log</code> and <code class="language-plaintext highlighter-rouge">nft_log</code> modules by itself.</p>
 

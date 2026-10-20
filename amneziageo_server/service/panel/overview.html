@@ -269,7 +269,7 @@
   <li>“Panel”: the TCP port the panel answers on;</li>
   <li>“Subscriptions”: on their own port or “on the ports of the interfaces”, while subscriptions are on;</li>
   <li>“Interface <name>" for each enabled interface, with the parts its TCP port serves: hello, speed, WebSocket, subscription;</name></li>
-  <li>“DNS”: the resolver, while it is on;</li>
+  <li>“DNS”: the DNS server, while it is on;</li>
   <li>“Certificate <name>" for each certificate file the panel and subscriptions answer under, with "until <date>".</date></name></li>
 </ul>
 
@@ -310,8 +310,8 @@
       <td>subscriptions are on the ports of the interfaces, and no port answers</td>
     </tr>
     <tr>
-      <td>the resolver does not run, the way out of the resolver is broken</td>
-      <td>the resolver did not come up or no upstream server answers</td>
+      <td>the DNS server does not run, the way out of the DNS server is broken</td>
+      <td>the DNS server did not come up or no upstream server answers</td>
     </tr>
     <tr>
       <td>The file does not read, Ran out on <date></date></td>
@@ -367,7 +367,7 @@
   </tbody>
 </table>
 
-<p>The release channel is the “Receive prerelease versions” box on the <a href="server.html">Server</a> tab; the variable <code class="language-plaintext highlighter-rouge">Update__Channel=test</code> in the environment of the panel takes pre-releases whatever the box says. Other variables: <code class="language-plaintext highlighter-rouge">Update__CheckHours</code>, how often to look at the releases (12; <code class="language-plaintext highlighter-rouge">0</code> leaves the check to the button), <code class="language-plaintext highlighter-rouge">Update__Repository</code>, whose releases to read, <code class="language-plaintext highlighter-rouge">Update__Manifest</code>, the address of a manifest instead of the releases, <code class="language-plaintext highlighter-rouge">Update__Key</code>, a file with another public key, <code class="language-plaintext highlighter-rouge">Update__Directory</code>, the directory of downloads and logs, <code class="language-plaintext highlighter-rouge">Update__Docker</code>, the socket of the daemon. What happens to interfaces, channels and the resolver during the restart: see <a href="../install.html#updates">Installation</a>.</p>
+<p>The release channel is the “Receive prerelease versions” box on the <a href="server.html">Server</a> tab; the variable <code class="language-plaintext highlighter-rouge">Update__Channel=test</code> in the environment of the panel takes pre-releases whatever the box says. Other variables: <code class="language-plaintext highlighter-rouge">Update__CheckHours</code>, how often to look at the releases (12; <code class="language-plaintext highlighter-rouge">0</code> leaves the check to the button), <code class="language-plaintext highlighter-rouge">Update__Repository</code>, whose releases to read, <code class="language-plaintext highlighter-rouge">Update__Manifest</code>, the address of a manifest instead of the releases, <code class="language-plaintext highlighter-rouge">Update__Key</code>, a file with another public key, <code class="language-plaintext highlighter-rouge">Update__Directory</code>, the directory of downloads and logs, <code class="language-plaintext highlighter-rouge">Update__Docker</code>, the socket of the daemon. What happens to interfaces, channels and the DNS server during the restart: see <a href="../install.html#updates">Installation</a>.</p>
 
 <h2 id="backup">Backup</h2>
 

@@ -235,7 +235,7 @@
 
 <p>The group reads its live members every fifteen seconds, and when the set changes, the rule set goes on the host again: the traffic of the rule moves to the next channel without anyone’s help. A connection opened through the failed channel does not move: the decision was made on its first packet, and the client opens a new one. When no member carries, the rule shows “traffic held” with “No channel of the group answers”. A change in the panel does not wait for the round: a channel turned off or taken out of the group leaves the set at once.</p>
 
-<p>The resolver can ask through a group too: “Ask through the channel” on the DNS page takes the first live member of a “Priority” group and hands out the questions in turn for a “Round” group.</p>
+<p>The DNS server can ask through a group too: on the DNS page “Queries to them” set to “Through a channel” with a group in the “Channel” field; a “Priority” group gives the questions to its first live member, a “Round” group hands them out in turn.</p>
 
 <h2 id="check">Check</h2>
 

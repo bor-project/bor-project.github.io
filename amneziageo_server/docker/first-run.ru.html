@@ -249,11 +249,11 @@ docker compose exec panel amneziageo-server init --user admin
 
 <h2 id="dns-для-клиентов">DNS для клиентов</h2>
 
-<p>Свежая панель держит резолвер выключенным: клиенты получают в конфигурации серверы имён и спрашивают их через туннель открытым DNS. Пункт 29 меню <code class="language-plaintext highlighter-rouge">DNS for Clients</code>, команда <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> или отметка «Отвечать клиентам» на странице <a href="panel/dns.ru.html">DNS</a> включают резолвер панели: клиенты спрашивают имена у сервера, сервер спрашивает внешние серверы по HTTPS, и правила маршрутизации по доменам начинают работать.</p>
+<p>Свежая панель держит DNS-сервер выключенным: клиенты получают в конфигурации серверы имён и спрашивают их через туннель открытым DNS. Пункт 29 меню <code class="language-plaintext highlighter-rouge">DNS for Clients</code>, команда <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> или переключатель «Включён» на странице <a href="panel/dns.ru.html">DNS</a> включают DNS-сервер панели: клиенты спрашивают имена у сервера, сервер спрашивает внешние серверы по HTTPS, и правила маршрутизации по доменам начинают работать.</p>
 
 <h2 id="проверка">Проверка</h2>
 
-<p><code class="language-plaintext highlighter-rouge">docker compose ps</code> показывает контейнер <code class="language-plaintext highlighter-rouge">healthy</code>; <code class="language-plaintext highlighter-rouge">amneziageo-server status</code> (пункт 18 меню) печатает службу, ответ панели и версию, модуль, пересылку и строку служб. В панели карточка «Службы» на <a href="panel/overview.ru.html#службы">Обзоре</a> перечисляет подписки, каждый интерфейс, резолвер и сертификаты с тем, что мешает им работать. Интерфейс на хосте: <code class="language-plaintext highlighter-rouge">ip -d link show type amneziawg</code> и <code class="language-plaintext highlighter-rouge">amneziageo-server device list</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">docker compose ps</code> показывает контейнер <code class="language-plaintext highlighter-rouge">healthy</code>; <code class="language-plaintext highlighter-rouge">amneziageo-server status</code> (пункт 18 меню) печатает службу, ответ панели и версию, модуль, пересылку и строку служб. В панели карточка «Службы» на <a href="panel/overview.ru.html#службы">Обзоре</a> перечисляет подписки, каждый интерфейс, DNS-сервер и сертификаты с тем, что мешает им работать. Интерфейс на хосте: <code class="language-plaintext highlighter-rouge">ip -d link show type amneziawg</code> и <code class="language-plaintext highlighter-rouge">amneziageo-server device list</code>.</p>
 
 
         <footer class="article-footer">

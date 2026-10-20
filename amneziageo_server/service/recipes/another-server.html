@@ -225,9 +225,9 @@
 
 <p>If the network to that server lets only web traffic through, use the “WebSocket” type and the “Websocket proxy” field: for an AmneziaGeo server it is <code class="language-plaintext highlighter-rouge">wss://&lt;its host&gt;:&lt;services port&gt;/&lt;WebSocket path of the interface&gt;</code>, and the path is seen in the form of its interface.</p>
 
-<h2 id="3-resolver">3. Resolver</h2>
+<h2 id="3-dns-server">3. DNS server</h2>
 
-<p>A rule by domains works through the resolver of the panel: “Routing” &gt; “DNS”, “Answer the clients” on, “Ask through the channel” set to <code class="language-plaintext highlighter-rouge">awg-de</code>, so that the addresses come from where the traffic will go, then “Save” and “Restart” in the header. If the resolver has not been turned on yet, item 29 of the console menu turns it on as well.</p>
+<p>A rule by domains works through the DNS server of the panel: “Routing” &gt; “DNS”, “DNS server for clients” enabled, “Queries to them” set to “Through a channel” with the channel <code class="language-plaintext highlighter-rouge">awg-de</code>, so that the addresses come from where the traffic will go, then “Save” and “Restart” in the header. If the DNS server has not been turned on yet, item 29 of the console menu turns it on as well.</p>
 
 <h2 id="4-rule">4. Rule</h2>
 
@@ -251,8 +251,8 @@
 
 <ul>
   <li>The rule shows “traffic held”: the channel carries nothing, see its status. While the reachability check does not get through, the groups and the rules count the channel as dead.</li>
-  <li>The site opens through the host: a rule higher in the list took the traffic first, or the name did not get into the sets. “Test” names the rule and what it matched by; “Addresses in the sets” on the DNS page grows with the answers of the resolver.</li>
-  <li>Another AmneziaGeo server with its own rules by name resets DNS over HTTPS from this one until it lets this one go after three tries: for the questions to go at once, name the upstream server here as plain DNS (<code class="language-plaintext highlighter-rouge">1.1.1.1</code>) and ask through the channel, and that server takes the question with its resolver, see <a href="../panel/dns.html#questions-of-the-clients">DNS</a>.</li>
+  <li>The site opens through the host: a rule higher in the list took the traffic first, or the name did not get into the sets. “Test” names the rule and what it matched by; “Addresses in the sets” on the DNS page grows with the answers of the DNS server.</li>
+  <li>Another AmneziaGeo server with its own rules by name resets DNS over HTTPS from this one until it lets this one go after three tries: for the questions to go at once, name the upstream server here as plain DNS (<code class="language-plaintext highlighter-rouge">1.1.1.1</code>) and ask through the channel, and that server takes the question with its DNS server, see <a href="../panel/dns.html#questions-of-the-clients">DNS</a>.</li>
 </ul>
 
 

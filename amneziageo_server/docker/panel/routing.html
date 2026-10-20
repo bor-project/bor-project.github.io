@@ -202,7 +202,7 @@
 
         <h1 id="routing">Routing</h1>
 
-<p>Routing decides where the traffic of the clients goes after the server: through a channel (a tunnel to another server), directly through the host, or into a block. The kernel decides, by nftables rules the panel assembles from its settings; the resolver of the panel turns domain names into addresses.</p>
+<p>Routing decides where the traffic of the clients goes after the server: through a channel (a tunnel to another server), directly through the host, or into a block. The kernel decides, by nftables rules the panel assembles from its settings; the DNS server of the panel turns domain names into addresses.</p>
 
 <ul class="topic-list">
   <li>
@@ -227,7 +227,7 @@
   </li>
   <li>
     <a href="/amneziageo_server/docker/panel/dns.html">DNS</a>
-    <span>The resolver for the clients: upstream servers, query channel, cache, interception, stand-in addresses.</span>
+    <span>The DNS server for the clients: upstream servers, query channel, cache, interception, stand-in addresses.</span>
   </li>
 </ul>
 
@@ -238,13 +238,13 @@
   <li><strong>Basic lists</strong> stand before the rules: “Block” drops, “Direct” lets out through the host without a mark.</li>
   <li><strong>Channels</strong> are the ways out: the host itself, an AmneziaWG tunnel to another server or the same tunnel inside WebSocket; each channel carries its own mark and routing table. A group of channels under one name hands out the traffic by priority, round robin or per client, and a rule names a group the same way as a channel.</li>
   <li><strong>Geo lists</strong> are the <code class="language-plaintext highlighter-rouge">geoip.dat</code> and <code class="language-plaintext highlighter-rouge">geosite.dat</code> databases from which rules and templates take the ranges of countries and the domains of categories.</li>
-  <li><strong>DNS</strong>: the resolver of the panel answers the clients for names, asks upstream servers over HTTPS and puts the addresses it sees into the sets of the rules that compare by name; without it a rule by domain works only by the addresses the resolver asked for itself.</li>
+  <li><strong>DNS</strong>: the DNS server of the panel answers the clients for names, asks upstream servers over HTTPS and puts the addresses it sees into the sets of the rules that compare by name; without it a rule by domain works only by the addresses the DNS server asked for itself.</li>
   <li><strong>Test</strong> tells what the rules will do with a connection to a name or an address from a given client.</li>
 </ul>
 
 <p>Traffic that fits no rule goes the way the host itself would send it. An answer that comes back through a channel carries no mark, and the host finds the client in its own tables. Rules need interfaces: without an interface the traffic comes to, there is nothing to mark.</p>
 
-<p>Routing rules, channels, groups, geo sources and the resolver are changed by a role with the “Manage routing” permission; any role reads them. The rule set as the host holds it is printed by item 23 of the console menu, sub-item 12.</p>
+<p>Routing rules, channels, groups, geo sources and the DNS server are changed by a role with the “Manage routing” permission; any role reads them. The rule set as the host holds it is printed by item 23 of the console menu, sub-item 12.</p>
 
 
         <footer class="article-footer">

@@ -327,7 +327,7 @@ amneziageo-server install
       <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ufw keeps the clients of &lt;interfaces&gt; from the resolver of the panel: let them reach it?</code>, at the end, when ufw keeps the clients of interfaces from the resolver</td>
+      <td><code class="language-plaintext highlighter-rouge">ufw keeps the clients of &lt;interfaces&gt; from the resolver of the panel: let them reach it?</code>, at the end, when ufw keeps the clients of interfaces from the DNS server</td>
       <td>yes</td>
       <td><code class="language-plaintext highlighter-rouge">resolver_ufw</code></td>
     </tr>
@@ -356,9 +356,9 @@ amneziageo-server install
   <li>makes the first administrator; the temporary password is printed once at the end;</li>
   <li>gets a Let’s Encrypt certificate for the name of the server (<code class="language-plaintext highlighter-rouge">certbot</code> with an RSA key, an HTTP-01 check on TCP 80, renewal by the <code class="language-plaintext highlighter-rouge">certbot.timer</code> timer, see <a href="/amneziageo_server/service/panel/certificates.html#lets-encrypt">Certificates</a>) or takes the one the host already holds, and opens the panel on every address of the host;</li>
   <li>makes the first interface and client through the API of the panel: the configuration of the client goes to <code class="language-plaintext highlighter-rouge">/root</code> and, when asked, is printed as a QR code; on a host with a global IPv6 address the interface gets a range of unique local IPv6 addresses, and the clients go over IPv6 through the server;</li>
-  <li>turns the resolver for the clients on, if you agreed;</li>
+  <li>turns the DNS server for the clients on, if you agreed;</li>
   <li>opens the ports in ufw or turns ufw on, keeping ssh and what already listened open;</li>
-  <li>if ufw keeps the clients of some interface from the resolver of the panel, offers to let them in with the rule <code class="language-plaintext highlighter-rouge">allow in on &lt;interface&gt; to any port 53</code>, see <a href="/amneziageo_server/service/panel/dns.html#how-it-works">DNS</a>;</li>
+  <li>if ufw keeps the clients of some interface from the DNS server of the panel, offers to let them in with the rule <code class="language-plaintext highlighter-rouge">allow in on &lt;interface&gt; to any port 53</code>, see <a href="/amneziageo_server/service/panel/dns.html#how-it-works">DNS</a>;</li>
   <li>puts the short command of the menu on, if you agreed: a link <code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code> to <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, or with the name you gave; a name another command already holds is not taken, and the script asks for another one;</li>
   <li>checks the service, the panel, the certificate and the interface and prints the address of the panel, the login and the password, the ports of the panel and the interface, the IPv6 address of the host and the command of the menu with its short command.</li>
 </ul>
@@ -424,11 +424,11 @@ amneziageo-server install
       <td>stay on the host and are put again in one step at the start</td>
     </tr>
     <tr>
-      <td>addresses the resolver put into the sets</td>
+      <td>addresses the DNS server put into the sets</td>
       <td>are read from the host at the start and put again with the rules</td>
     </tr>
     <tr>
-      <td>resolver</td>
+      <td>DNS server</td>
       <td>does not answer for the seconds the server is starting; the clients ask again</td>
     </tr>
     <tr>
