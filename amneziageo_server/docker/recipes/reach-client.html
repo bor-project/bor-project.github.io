@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reaching a device behind a client · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Reaching a client from the tunnel: from the server alone or from the whole network.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/recipes/reach-client.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/recipes/reach-client.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/recipes/reach-client.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/recipes/reach-client.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/recipes/reach-client.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/recipes/reach-client.html">Service</a>
+  <a href="/amneziageo_server/docker/recipes/reach-client.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html" aria-current="page">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="reaching-a-device-behind-a-client">Reaching a device behind a client</h1>
+
+<p>The task: behind one of the clients stands a device that must be reached through the tunnel: a home computer, a NAS, a camera. By default the clients of an interface are not reached from the tunnel: only the client itself starts a connection.</p>
+
+<h2 id="1-access-on-the-server">1. Access on the server</h2>
+
+<p>“Clients” &gt; the client <code class="language-plaintext highlighter-rouge">home-nas</code> &gt; “Settings” &gt; “Access”: “Access to the client”:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Who reaches the client</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Closed</td>
+      <td>nobody in the tunnel</td>
+    </tr>
+    <tr>
+      <td>The server alone</td>
+      <td>the panel and the host of the server: for the disconnect signal, checks and services on the server</td>
+    </tr>
+    <tr>
+      <td>The whole tunnel network</td>
+      <td>all the clients of the interface: another client reaches <code class="language-plaintext highlighter-rouge">home-nas</code> at its address in the tunnel</td>
+    </tr>
+    <tr>
+      <td>As the interface says</td>
+      <td>what stands in “Access to the clients” of the interface</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For access from other devices, “The whole tunnel network”. To have it so for all the clients of the interface at once, the same is set in “Access to the clients” of the interface, and a single client is left with “As the interface says”. The panel puts this as firewall rules of the interface, see <a href="../panel/interfaces.html#what-goes-on-the-host">Interfaces</a>.</p>
+
+<h2 id="2-access-on-the-device">2. Access on the device</h2>
+
+<p>The device itself must also let connections from the tunnel in. In the AmneziaGeo client this is “Allow incoming connections from the VPN network” in the settings of the configuration, or from the console <code class="language-plaintext highlighter-rouge">amneziageo config inbound &lt;name&gt; network</code> (<code class="language-plaintext highlighter-rouge">host</code> for the server alone). The configuration file and the <code class="language-plaintext highlighter-rouge">vpn://</code> link do not carry this: hello passes the app what the server allowed, but the decision stays with the device. The firewall of the device itself must let the needed port in as well.</p>
+
+<h2 id="3-check">3. Check</h2>
+
+<p>From another client of the same interface open the address of <code class="language-plaintext highlighter-rouge">home-nas</code> in the tunnel, for example <code class="language-plaintext highlighter-rouge">10.8.0.7</code>, on the needed port. The address is seen in the list of clients. Clients with “Closed” and “The server alone” do not answer this request; the packets to them are dropped on the server.</p>
+
+<h2 id="what-else">What else</h2>
+
+<ul>
+  <li>Two clients of one interface reach each other only through the server and its rules; clients of different interfaces do not see each other.</li>
+  <li>“The server alone” is needed for the panel to deliver the disconnect signal to a disabled client: the signal goes from the address of the interface to the port of the app inside the tunnel, see <a href="../panel/clients.html#disabling-a-client">Disabling a client</a>.</li>
+  <li>The network behind the device (other machines at home) is not reached by this recipe: it needs routes on both sides, which the panel does not set.</li>
+</ul>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

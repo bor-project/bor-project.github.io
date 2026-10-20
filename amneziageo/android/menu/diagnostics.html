@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diagnostics · Android · AmneziaGeo</title>
+    <meta name="description" content="Log and current configuration">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/android/menu/diagnostics.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/android/menu/diagnostics.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/android/menu/diagnostics.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/android/menu/diagnostics.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/android/menu/diagnostics.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/menu/diagnostics.html">Windows</a>
+  <a href="/amneziageo/linux/menu/diagnostics.html">Linux</a>
+  <a href="/amneziageo/android/menu/diagnostics.html" aria-current="page">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/android/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/android/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/diagnostics.html" aria-current="page">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/android/">Android</a></li>
+    <li><a href="/amneziageo/android/menu/">Menu</a></li>
+  </ol>
+</nav>
+
+        <h1 id="diagnostics">Diagnostics</h1>
+
+<h2 id="log">Log</h2>
+
+<p>“Log” picks what to show: the agent log, the routing log, active connections and the current configuration. The agent log have a “Level” of recording: none, error, warning, info, debug, trace; it is also <code class="language-plaintext highlighter-rouge">amneziageo settings set log-level</code>. The routing log has the “Log connections” switch: routes and the addresses found for domains reach the log only with it on. “Refresh” pulls new entries in; while Ctrl is held, refreshing pauses. The search finds lines by their text, and “Load earlier” pages back. “Clear” wipes the log, “Copy what is shown” puts the lines on screen on the clipboard, “Export” saves the log to a file. A log line: time · [level] · component · message.</p>
+
+<p>The tunnel process writes a <code class="language-plaintext highlighter-rouge">memory:</code> line to the routing log once a minute: its size as the system counts it, the managed heap, and what the engine holds in use, free and has given back. After a session comes up it collects in both runtimes and gives the freed memory back to the system, and a stream the relay carries holds a buffer only while it carries bytes.</p>
+
+<p>Active connections show every address the tunnel decides on, and why: the tunnel, direct or blocked - by a range, by a name, by an application, “all UDP”, the address of a domain, from the configuration, a service one or in no rule. “Where” filters by the decision, and the summary counts the addresses: tunnelled, direct, blocked, in no rule. From the console <code class="language-plaintext highlighter-rouge">amneziageo sessions</code> shows the same.</p>
+
+<p>“Collect archive” puts the logs, the settings and the state of the tunnel into one zip archive for support; keys and passwords in it are hidden. From the console: <code class="language-plaintext highlighter-rouge">amneziageo diag collect</code>.</p>
+
+<h2 id="route-and-speed-check">Route and speed check</h2>
+
+<p>The probe answers the question of where a connection actually went. Give it a domain or an address and a path: <strong>auto</strong> - as the rules decide, <strong>tunnel</strong> or <strong>bypass</strong> - forced.</p>
+
+<p>The report shows the path the traffic took and the rule behind it (<code class="language-plaintext highlighter-rouge">tunnel by rule</code>, <code class="language-plaintext highlighter-rouge">direct by default</code>, <code class="language-plaintext highlighter-rouge">blocked by rule</code>), latency, jitter, loss, the size of packets that get through, and download and upload speed. Speed is measured against a speed service, by default <code class="language-plaintext highlighter-rouge">https://speed.cloudflare.com/__up</code>; the address is set in the probe settings.</p>
+
+<p>An AmneziaGeo server measures the speed itself. Where it offers that, the probe and the channel check measure against it, inside the tunnel or beside it, and the probe settings say so under the field. An address typed into the field comes first.</p>
+
+<h3 id="probe-settings">Probe settings</h3>
+
+<p>“Data transfer speed test service” - the address the speed is measured against. An empty field means the default: <code class="language-plaintext highlighter-rouge">https://speed.cloudflare.com/__up</code>, or the AmneziaGeo server of the selected configuration when it offers a measurement.</p>
+
+<h2 id="current-configuration">Current configuration</h2>
+
+<p>The text of the configuration the next connect will take, as the agent put it together: the addresses, the MTU, the resolvers and <code class="language-plaintext highlighter-rouge">AllowedIPs</code>. It is for reading, not an editor; the tab has no history and refreshes itself.</p>
+
+<p>From the console <code class="language-plaintext highlighter-rouge">amneziageo runtime</code> shows the same, see <a href="../cli.html">Command line</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

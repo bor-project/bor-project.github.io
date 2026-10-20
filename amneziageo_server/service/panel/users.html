@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Users and roles · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Accounts, roles with permissions and tokens for scripts.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/users.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/users.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/users.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/users.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/users.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/users.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/users.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html" aria-current="page">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/service/panel/settings.html">Settings</a></li>
+  </ol>
+</nav>
+
+        <h1 id="users-and-roles">Users and roles</h1>
+
+<p>The “Users and roles” tab carries three tables: “Users”, “Roles” and “Tokens”. People sign in to the panel with an account of the panel and a password; scripts with a long-lived token that acts on behalf of a role.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/users.png" alt="Users and roles: the users admin and root, the built-in Administrator role, a token" width="1440" height="900" loading="lazy" /><figcaption>An administrator, the system user and a token for scripts.</figcaption></figure>
+
+<h2 id="users">Users</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>What it shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>the name for signing in</td>
+    </tr>
+    <tr>
+      <td>Display name</td>
+      <td>how the account is signed</td>
+    </tr>
+    <tr>
+      <td>Account type</td>
+      <td>“Panel”, or “System”: an account that also stands behind a user of the host</td>
+    </tr>
+    <tr>
+      <td>Role</td>
+      <td>the role or “no role”</td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td>“enabled” or “disabled”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>“Add” opens a new account: the name (lower case letters, digits, dot, dash and underscore, starting with a letter), the display name, the role, the password with the “Generate” button, “Require a password change” (the new user changes the issued password at the first sign-in), “User of the system” with the “Public ssh key” field, see below. The page of an account changes the role and the state, “Password” in the row menu sets a new password, “Remove” removes the account with its sessions. Everyone changes their own password in the account menu in the header. A password shorter than eight characters is not accepted (<code class="language-plaintext highlighter-rouge">AMNEZIAGEO_MIN_PASSWORD</code> in the environment sets another threshold); ten misses lock the account for fifteen minutes. The last enabled account with the “Manage access” permission cannot be demoted, disabled or removed, and none of this can be done to your own account.</p>
+
+<p>A name a user of the host carries is not given to an account of the panel: “The host carries a user with this name, that name is left to it”.</p>
+
+<h3 id="system-users">System users</h3>
+
+<p>An account with “User of the system” checked also stands behind a user of the host: the panel makes the user (<code class="language-plaintext highlighter-rouge">useradd</code> with a home directory and <code class="language-plaintext highlighter-rouge">/bin/bash</code>, or completes an existing one), puts it into the groups <code class="language-plaintext highlighter-rouge">amneziageo</code>, which reaches the files of the panel, and <code class="language-plaintext highlighter-rouge">amneziageo-&lt;role&gt;</code>, which carries the role, and puts the public key from the field into its <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code>; it sets no host password, and the user signs in to the host by key. The files of the panel are given to the <code class="language-plaintext highlighter-rouge">amneziageo</code> group with <code class="language-plaintext highlighter-rouge">0660</code> permissions, so a member of the group runs <code class="language-plaintext highlighter-rouge">AmneziaGeo.Server.Cli</code> without <code class="language-plaintext highlighter-rouge">sudo</code>; raising interfaces still needs root. Disabling closes the sign-in to the host and takes the user out of the groups, enabling brings it back; removing takes the user out of the groups and leaves the user of the host with its home. Changing the role moves it between the role groups.</p>
+
+<p>A user of the host signs in to the panel only with the password of the panel: a request from a browser does not carry the account it runs under; in the console <code class="language-plaintext highlighter-rouge">whoami</code> shows what the panel thinks of the account of the host the utility runs as. The <code class="language-plaintext highlighter-rouge">amneziageo-admin</code> group gives the <code class="language-plaintext highlighter-rouge">admin</code> role at a sign-in from the host (<code class="language-plaintext highlighter-rouge">Auth__HostGroups</code>), and root counts as an administrator. In the console menu, item 7 offers to make a user of the host an administrator of the panel, and so does the installation when the login of the first administrator is a user of the host.</p>
+
+<h2 id="roles">Roles</h2>
+
+<p>A permission is what a role opens; a role carries a set of permissions, and an account carries a role.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Permission</th>
+      <th>What it opens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Read the state</td>
+      <td>reading everything: “Overview”, the lists, the route test</td>
+    </tr>
+    <tr>
+      <td>Manage clients</td>
+      <td>clients, templates, routing presets</td>
+    </tr>
+    <tr>
+      <td>Manage interfaces</td>
+      <td>interfaces and their ports</td>
+    </tr>
+    <tr>
+      <td>Manage routing</td>
+      <td>rules, basic lists, channels, geo, DNS</td>
+    </tr>
+    <tr>
+      <td>Manage access</td>
+      <td>“Settings”: server, certificates, subscriptions, users, roles, tokens, diagnostics, restoring from a backup</td>
+    </tr>
+    <tr>
+      <td>Update the panel</td>
+      <td>“Update” on “Overview”</td>
+    </tr>
+    <tr>
+      <td>Download backups</td>
+      <td>“Download a copy” on “Overview”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The “Roles” table shows the code, the name, the rights and the number of accounts. The built-in <code class="language-plaintext highlighter-rouge">admin</code> role carries all the permissions and is neither removed nor cut down: at every start its permissions are lined up with those of the release, so a new permission reaches the administrator by itself. Roles of your own are made with “Add”: a code (like the name of an account), a name and the checked permissions. A role given to accounts (“The role is given to accounts”) or carrying tokens (“Tokens act by this role”) is not removed.</p>
+
+<h2 id="tokens">Tokens</h2>
+
+<p>A token for scripts and other services is issued under a role and acts with its permissions at the moment of the call, so a change to the permissions of the role reaches the tokens at once. A token does not belong to an account: disabling and removing accounts does not touch it, and it can be stopped only by revoking it or by its lifetime. It starts with <code class="language-plaintext highlighter-rouge">agt_</code>, goes in the same <code class="language-plaintext highlighter-rouge">Authorization: Bearer</code> header as a session token, and is kept only as a hash: the secret is shown once, when it is issued (“The token is shown once”).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>What it shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>up to 64 characters, one of a kind in the panel</td>
+    </tr>
+    <tr>
+      <td>Role</td>
+      <td>the role on behalf of which the token acts</td>
+    </tr>
+    <tr>
+      <td>Created, Valid until</td>
+      <td>the lifetime: 1 to 3650 days or “no end”</td>
+    </tr>
+    <tr>
+      <td>Last used</td>
+      <td>when and from which address the token was last used, “never”</td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td>“active” or “expired”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>“Add” asks for the name, the role and the lifetime in days, and “Revoke” in the row menu revokes it. From the console the same is done by <code class="language-plaintext highlighter-rouge">amneziageo-server token list</code>, <code class="language-plaintext highlighter-rouge">token add &lt;name&gt; --role &lt;role&gt; [--days &lt;n&gt;]</code> and <code class="language-plaintext highlighter-rouge">token revoke &lt;id&gt;</code>. How a token goes into the API: <a href="../../api.html">HTTP API</a>.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The name takes lower case letters, digits, dot, dash and underscore, and starts with a letter; The name is already taken; The host carries a user with this name, that name is left to it</td>
+      <td>the name of an account or a role</td>
+    </tr>
+    <tr>
+      <td>The password is shorter than eight characters</td>
+      <td>the password</td>
+    </tr>
+    <tr>
+      <td>There is no such role; There is no such right; The server keeps this role as it is; The role is given to accounts; Tokens act by this role</td>
+      <td>roles</td>
+    </tr>
+    <tr>
+      <td>This is the last administrator; An account does not do this to itself</td>
+      <td>protection against losing access</td>
+    </tr>
+    <tr>
+      <td>The public key is not one the host takes</td>
+      <td>the ssh key of a system user</td>
+    </tr>
+    <tr>
+      <td>A token name takes 1 to 64 characters; A token with this name is already there; The lifetime is a whole number of days from 1 to 3650; There is no such token</td>
+      <td>tokens</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

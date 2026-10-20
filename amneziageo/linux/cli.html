@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Command line · Linux · AmneziaGeo</title>
+    <meta name="description" content="Agent commands from the console and scripts">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/cli.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/cli.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/cli.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/linux/cli.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/linux/cli.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/cli.html">Windows</a>
+  <a href="/amneziageo/linux/cli.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/cli.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.html" aria-current="page">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/">Linux</a></li>
+  </ol>
+</nav>
+
+        <h1 id="command-line">Command line</h1>
+
+<p>The core command set is shared across all three platforms: the <code class="language-plaintext highlighter-rouge">AmneziaGeo.Cli</code> assembly with a thin host per system. Platform-specific commands, such as the Windows multiple-VPN mode, extend it. Everything goes through the agent over the <code class="language-plaintext highlighter-rouge">IpcContract</code> protocol; the console never touches the database, so the agent and the UI see its edits at once.</p>
+
+<h2 id="how-to-run-it">How to run it</h2>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo &lt;command&gt;</code></p>
+
+<h2 id="day-to-day">Day to day</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo status                   <span class="c"># what runs, and what the next connect would use</span>
+amneziageo doctor                   <span class="c"># the checks an install usually trips over</span>
+amneziageo runtime                  <span class="c"># the configuration the next connect would use</span>
+amneziageo <span class="nt">--json</span> config list       <span class="c"># script-friendly output</span>
+amneziageo sessions <span class="nt">--filter</span> youtube <span class="c"># every address the tunnel decides for, and why</span>
+amneziageo log <span class="nb">tail</span> <span class="nt">--level</span> info
+amneziageo tui                      <span class="c"># full-screen console over SSH</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo help</code> lists every command.</p>
+
+<h2 id="full-screen-console">Full-screen console</h2>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo tui</code> is the full-screen interface of the console client, over SSH too. Its import box takes a wg-quick configuration, a <code class="language-plaintext highlighter-rouge">vpn://</code> link or an <code class="language-plaintext highlighter-rouge">http(s)</code> address.</p>
+
+<p class="todo"><span>Coming soon</span> screens and keys: arrows or Tab move between panels, F10 exits</p>
+
+<h2 id="debugging">Debugging</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo log say <span class="s2">"run starts"</span>     <span class="c"># mark the agent log from a test script</span>
+amneziageo ops                      <span class="c"># protocol operations and the commands that call them</span>
+amneziageo ops <span class="nt">--probe</span>              <span class="c"># which operations this platform's agent implements</span>
+amneziageo ipc &lt;operation&gt; <span class="o">[</span>arg...] <span class="c"># call any operation directly</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ops --probe</code> sends every operation with no arguments: a refusal from its handler means the operation is there, a refusal from the dispatcher means it is not. Operations that would do their work for real with no arguments - connect, download, remove - are marked <code class="language-plaintext highlighter-rouge">-</code> and never sent.</p>
+
+<h2 id="exit-codes">Exit codes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>done</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>the agent refused</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>wrong usage</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>agent unreachable</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>not implemented by this platform’s agent</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

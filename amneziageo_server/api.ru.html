@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTTP API · AmneziaGeo Server</title>
+    <meta name="description" content="Маршруты панели под /api, токены для скриптов, вид ответов и описание OpenAPI.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/api.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/api.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/api.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/api.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-nav" aria-label="Способ установки">
+  <p class="sidebar-label">Способ установки</p>
+  <a href="/amneziageo_server/service/index.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/index.ru.html">Docker</a></nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html" aria-current="page">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="http-api">HTTP API</h1>
+
+<p>Панель делает всё через HTTP API под <code class="language-plaintext highlighter-rouge">/api</code>, и скрипт зовёт те же маршруты. Каждый маршрут, кроме <code class="language-plaintext highlighter-rouge">POST /api/auth/login</code>, <code class="language-plaintext highlighter-rouge">POST /api/auth/refresh</code> и <code class="language-plaintext highlighter-rouge">GET /api/health</code>, требует токен в заголовке <code class="language-plaintext highlighter-rouge">Authorization: Bearer</code>.</p>
+
+<h2 id="токены">Токены</h2>
+
+<ul>
+  <li><strong>Токен сессии.</strong> <code class="language-plaintext highlighter-rouge">POST /api/auth/login</code> с телом <code class="language-plaintext highlighter-rouge">{ "user": "...", "password": "..." }</code> отдаёт пару: токен доступа на десять минут и токен обновления, который <code class="language-plaintext highlighter-rouge">POST /api/auth/refresh</code> меняет на новую пару. На этих токенах работает сама панель, с правами роли учётной записи.</li>
+  <li><strong>Токен для скриптов.</strong> Долгоживущий токен начинается с <code class="language-plaintext highlighter-rouge">agt_</code>, действует от имени роли и показывается один раз: выпускается в таблице «Токены» раздела «Настройки» &gt; «Пользователи и роли» или командой <code class="language-plaintext highlighter-rouge">amneziageo-server token add &lt;название&gt; --role &lt;роль&gt; [--days &lt;n&gt;]</code>. Смена прав роли сразу действует на её токены; отключение и удаление учётных записей токена не касаются. Отзывается там же или командой <code class="language-plaintext highlighter-rouge">token revoke</code>.</li>
+</ul>
+
+<p>Оба токена идут в одном заголовке:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -H "Authorization: Bearer agt_..." https://panel.example.com:8443/api/clients
+</code></pre></div></div>
+
+<p>Если панель стоит под своим путём, он идёт перед <code class="language-plaintext highlighter-rouge">/api</code>: <code class="language-plaintext highlighter-rouge">https://panel.example.com:8443/&lt;путь&gt;/api/clients</code>.</p>
+
+<h2 id="ответы">Ответы</h2>
+
+<p>Отказ приходит как <code class="language-plaintext highlighter-rouge">{ "error": "&lt;код&gt;", "message": "&lt;слова&gt;" }</code> со статусом по смыслу: 400 на запрос, который не прошёл проверку, 401 без токена или с истёкшим (<code class="language-plaintext highlighter-rouge">unauthorized</code>), 403 на право, которого у роли нет (<code class="language-plaintext highlighter-rouge">forbidden</code>), 404 на то, чего нет, 409 на столкновение. Неизвестный маршрут отвечает 404 с <code class="language-plaintext highlighter-rouge">unknown-route</code>. Коды отказов каждого раздела перечислены на страницах панели, там же их перевод, который показывает панель.</p>
+
+<p>Каждый <code class="language-plaintext highlighter-rouge">POST /api/&lt;раздел&gt;/{id}/switch</code> принимает <code class="language-plaintext highlighter-rouge">{ "on": true }</code> или <code class="language-plaintext highlighter-rouge">{ "on": false }</code>; тело без <code class="language-plaintext highlighter-rouge">on</code> отвечает 400 и <code class="language-plaintext highlighter-rouge">incomplete</code>.</p>
+
+<h2 id="описание-openapi">Описание OpenAPI</h2>
+
+<p><code class="language-plaintext highlighter-rouge">GET /api/openapi.json</code> отдаёт документ OpenAPI 3.1 со всеми маршрутами: путь, метод, параметры и форма тела запроса. Требование безопасности маршрута называет право, которое он просит. Документ запрашивается с токеном, как любой маршрут. Форм ответов в нём нет: их описывают страницы ниже.</p>
+
+<h2 id="маршруты-по-разделам">Маршруты по разделам</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Раздел</th>
+      <th>Страница сайта</th>
+      <th>Справка репозитория с маршрутами</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>учётные записи, роли, токены</td>
+      <td><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/auth.md">auth.md</a></td>
+    </tr>
+    <tr>
+      <td>интерфейсы</td>
+      <td><a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/configs.md">configs.md</a></td>
+    </tr>
+    <tr>
+      <td>клиенты</td>
+      <td><a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/clients.md">clients.md</a>, <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/devices.md">devices.md</a></td>
+    </tr>
+    <tr>
+      <td>шаблоны и пресеты маршрутизации</td>
+      <td><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a>, <a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/templates.md">templates.md</a></td>
+    </tr>
+    <tr>
+      <td>подписки</td>
+      <td><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/subscriptions.md">subscriptions.md</a></td>
+    </tr>
+    <tr>
+      <td>каналы и группы</td>
+      <td><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/outbounds.md">outbounds.md</a>, <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/balancers.md">balancers.md</a></td>
+    </tr>
+    <tr>
+      <td>правила, базовые списки, проверка</td>
+      <td><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a>, <a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a>, <a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/rules.md">rules.md</a></td>
+    </tr>
+    <tr>
+      <td>резолвер</td>
+      <td><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/dns.md">dns.md</a></td>
+    </tr>
+    <tr>
+      <td>списки Geo</td>
+      <td><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/geo.md">geo.md</a></td>
+    </tr>
+    <tr>
+      <td>сервисы интерфейса: hello, скорость, WebSocket, сигнал</td>
+      <td><a href="/amneziageo_server/service/panel/interfaces.ru.html#сервисы-на-tcp-порту">Интерфейсы</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/services.md">services.md</a></td>
+    </tr>
+    <tr>
+      <td>где отвечает панель, сертификат</td>
+      <td><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a>, <a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/serving.md">serving.md</a></td>
+    </tr>
+    <tr>
+      <td>порты в брандмауэре хоста</td>
+      <td><a href="/amneziageo_server/service/panel/interfaces.ru.html#порты-в-брандмауэре">Интерфейсы</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/firewall.md">firewall.md</a></td>
+    </tr>
+    <tr>
+      <td>резервные копии базы</td>
+      <td><a href="/amneziageo_server/service/panel/overview.ru.html#резервная-копия">Обзор</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/install.md#moving-to-another-server">install.md</a></td>
+    </tr>
+    <tr>
+      <td>диагностика, журнал подключений</td>
+      <td><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/diagnostics.md">diagnostics.md</a></td>
+    </tr>
+    <tr>
+      <td>обзор хоста и службы</td>
+      <td><a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/overview.md">overview.md</a></td>
+    </tr>
+    <tr>
+      <td>обновления панели</td>
+      <td><a href="/amneziageo_server/service/panel/overview.ru.html#обновление">Обзор</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/updates.md">updates.md</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Страницы панели одинаковы для службы и Docker, ссылки ведут на вариант службы.</p>
+
+<h2 id="что-остаётся-в-консоли">Что остаётся в консоли</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">init</code> - первый администратор, до него в панель никто не входит.</li>
+  <li><code class="language-plaintext highlighter-rouge">device</code> и <code class="language-plaintext highlighter-rouge">family</code> - ядро как есть, для отладки.</li>
+</ul>
+
+<p>Импорт есть и там, и там: консоль читает файлы хоста, API принимает их текст (<code class="language-plaintext highlighter-rouge">POST /api/configs/import</code>, <code class="language-plaintext highlighter-rouge">POST /api/clients/import</code>).</p>
+
+<h2 id="пример">Пример</h2>
+
+<p>Токен на день под роль <code class="language-plaintext highlighter-rouge">admin</code>, новый клиент на интерфейсе 1 и его файл:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server token add nightly --role admin --days 1
+</code></pre></div></div>
+
+<p>Последняя строка вывода - сам токен, он печатается один раз.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>API=https://panel.example.com:8443/api
+curl -s -H "Authorization: Bearer agt_..." -H "Content-Type: application/json" \
+  -d '{ "name": "anna-phone", "configId": 1 }' "$API/clients"
+curl -s -H "Authorization: Bearer agt_..." "$API/clients/7/config"
+</code></pre></div></div>
+
+<p>Телу <code class="language-plaintext highlighter-rouge">POST /api/clients</code> хватает имени: без <code class="language-plaintext highlighter-rouge">configId</code> клиент встаёт на интерфейс по умолчанию, ключи и адрес панель подберёт сама, клиент будет включён. Ответ <code class="language-plaintext highlighter-rouge">GET /api/clients/{id}/config</code> несёт текст файла, ссылку <code class="language-plaintext highlighter-rouge">vpn://</code> и адрес подписки.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

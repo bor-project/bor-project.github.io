@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Обзор · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Состояние хоста, службы, обновление и резервная копия.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/overview.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/overview.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/overview.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/overview.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/overview.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/overview.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html" aria-current="page">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+  </ol>
+</nav>
+
+        <h1 id="обзор">Обзор</h1>
+
+<p>«Обзор» - первая страница панели. Она читает хост каждые две секунды и показывает его состояние, службы сервера, обновление панели и резервную копию.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/overview.png" alt="Страница «Обзор»: модуль AmneziaWG, службы с портами и ссылками «Изменить», карточки процессора, памяти, подкачки и диска, скорость и соединения" width="1440" height="900" loading="lazy" /><figcaption>Обзор работающего сервера.</figcaption></figure>
+
+<h2 id="шапка-страницы">Шапка страницы</h2>
+
+<p>Под заголовком стоят <code class="language-plaintext highlighter-rouge">панель &lt;версия&gt;</code>, модуль AmneziaWG (<code class="language-plaintext highlighter-rouge">загружен &lt;версия&gt;</code> или <code class="language-plaintext highlighter-rouge">не загружен</code>) и <code class="language-plaintext highlighter-rouge">интерфейсов N</code> - сколько интерфейсов типа <code class="language-plaintext highlighter-rouge">amneziawg</code> поднято на хосте. Когда вышел релиз новее панели, рядом появляются <code class="language-plaintext highlighter-rouge">доступна &lt;версия&gt;</code> со ссылкой на его страницу и кнопка «Обновить», см. <a href="#обновление">Обновление</a>; «Проверить обновления» спрашивает релизы сейчас.</p>
+
+<h2 id="карточки">Карточки</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Карточка</th>
+      <th>Что показывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Процессор</td>
+      <td>загрузка, модель, <code class="language-plaintext highlighter-rouge">ядер N / потоков N · частота</code>; под графиком «СРЕДНЕЕ» и «ПИК» за окно</td>
+    </tr>
+    <tr>
+      <td>Память</td>
+      <td>занятая память, под ней среднее и пик</td>
+    </tr>
+    <tr>
+      <td>Подкачка</td>
+      <td>занятая подкачка</td>
+    </tr>
+    <tr>
+      <td>Диск</td>
+      <td>занятое на диске, где лежит корень, «СВОБОДНО»</td>
+    </tr>
+    <tr>
+      <td>Общая скорость</td>
+      <td>приём и отправка по всем интерфейсам хоста, кроме петли, пик за окно, всего отправлено и получено, среднее за окно</td>
+    </tr>
+    <tr>
+      <td>Соединения</td>
+      <td>открытых сокетов TCP и UDP</td>
+    </tr>
+    <tr>
+      <td>Время работы</td>
+      <td>системы и панели</td>
+    </tr>
+    <tr>
+      <td>Процесс</td>
+      <td>память и потоки панели</td>
+    </tr>
+    <tr>
+      <td>Адреса</td>
+      <td>адреса всех поднятых интерфейсов хоста</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Числа берутся из <code class="language-plaintext highlighter-rouge">/proc</code> хоста без привилегий ядра. Окно графиков - последние 120 отсчётов, четыре минуты; счётчики ядра обнуляются с перезагрузкой хоста, поэтому первый отсчёт после неё скорости не даёт.</p>
+
+<h2 id="службы">Службы</h2>
+
+<p>Карточка «Службы» перечисляет, что сервер держит для клиентов, и порты каждой службы, с отметкой «проверено <время>»:</время></p>
+
+<ul>
+  <li>«Панель» - TCP-порт, на котором отвечает панель;</li>
+  <li>«Подписки» - на своём порту или «на портах интерфейсов», пока подписки включены;</li>
+  <li>«Интерфейс <имя>» для каждого включённого интерфейса, с частями, которые отдаёт его TCP-порт: hello, скорость, WebSocket, подписка;</имя></li>
+  <li>«DNS» - резолвер, пока он включён;</li>
+  <li>«Сертификат <имя>» для каждого файла сертификата, под которым отвечают панель и подписки, с «до <дата>».</дата></имя></li>
+</ul>
+
+<p>Ссылка «Изменить» в строке ведёт туда, где меняются порт и настройки службы: панель - <a href="server.ru.html">Сервер</a>, подписки - <a href="subscriptions.ru.html">Подписки</a>, интерфейс - <a href="interfaces.ru.html">его страница</a>, DNS - <a href="dns.ru.html">DNS</a>, сертификат - <a href="certificates.ru.html">Сертификаты</a>. Её видит пользователь, которому эти настройки можно менять.</p>
+
+<p>У неработающей службы стоит «Не работает с <время>: <причина>»:</причина></время></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Причина</th>
+      <th>Что значит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>не задан хост</td>
+      <td>у интерфейса нет хоста, и файлы его клиентов не несут <code class="language-plaintext highlighter-rouge">Endpoint</code></td>
+    </tr>
+    <tr>
+      <td>интерфейса нет на хосте</td>
+      <td>интерфейс не поднят; с «модуль AmneziaWG не загружен», когда причина в модуле</td>
+    </tr>
+    <tr>
+      <td>хост не дал порт</td>
+      <td>TCP-порт сервисов не открылся, его держит другая программа</td>
+    </tr>
+    <tr>
+      <td>файрвол хоста держит <code class="language-plaintext highlighter-rouge">&lt;порт&gt;</code> закрытым</td>
+      <td>брандмауэр не пускает UDP- или TCP-порт, см. <a href="interfaces.ru.html#порты-в-брандмауэре">Порты в брандмауэре</a></td>
+    </tr>
+    <tr>
+      <td>фронт WebSocket не запущен, падал, не слушает</td>
+      <td>WebSocket-прокси интерфейса не работает, падал с прошлой проверки или не слушает свой порт на петле</td>
+    </tr>
+    <tr>
+      <td>их не отдаёт ни один интерфейс</td>
+      <td>подписки на портах интерфейсов, а ни один порт не отвечает</td>
+    </tr>
+    <tr>
+      <td>резолвер не запущен, выход резолвера не работает</td>
+      <td>резолвер не поднялся или ни один внешний сервер не отвечает</td>
+    </tr>
+    <tr>
+      <td>Файл не читается, Истёк <дата></дата></td>
+      <td>файл сертификата не читается или сертификат кончился</td>
+    </tr>
+    <tr>
+      <td>Истекает через N дн.</td>
+      <td>сертификат кончается раньше чем через 14 дней; служба работает, это предупреждение</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Проверка идёт через пять секунд после старта сервера и дальше каждые 30 секунд; брандмауэр читается не чаще раза в пять минут и сразу для нового порта. Брандмауэр вне хоста, у хостера, панели не виден. Пока хоть одна служба не работает, шапка каждой страницы пишет «Не работают службы: N» и ведёт сюда. Журнал панели получает строки <code class="language-plaintext highlighter-rouge">the service &lt;имя&gt; is down: &lt;причины&gt;</code> и <code class="language-plaintext highlighter-rouge">the service &lt;имя&gt; works again</code>, а строка для консольного меню, вроде <code class="language-plaintext highlighter-rouge">all 3 work</code>, лежит в файле <code class="language-plaintext highlighter-rouge">services</code> рядом с базой и видна в состоянии под <a href="../menu.ru.html">меню</a>.</p>
+
+<h2 id="обновление">Обновление</h2>
+
+<p>Через минуту после старта и каждые 12 часов панель спрашивает GitHub о релизах <code class="language-plaintext highlighter-rouge">bor-project/amneziageo_server</code>: последний релиз, а с предварительными выпусками - пять новейших. Она берёт новейший своего канала, у которого есть манифест <code class="language-plaintext highlighter-rouge">update.json</code> и подпись <code class="language-plaintext highlighter-rouge">update.json.sig</code>, проверяет подпись ключом, который несёт в себе, и предлагает релиз, если он новее её. Манифест с плохой подписью не предлагается, и панель называет причину. Запрос без ответа повторяется до пяти раз в течение минуты, после чего шапка пишет «обновления не проверены», и следующая проверка начинается заново.</p>
+
+<p>Кнопка «Обновить» для роли с правом «Обновление панели» ведёт по шагам «Загрузка», «Установка», «Перезапуск», «Готово» с пояснениями: «качается выпуск», «ставится выпуск», «панель перезапускается, ждём ответа», «панель <версия>, страница обновится сама». Страница ждёт ответа новой панели и загружает её; если ответа долго нет, пишет «панель не отвечает N мин». Неудачное обновление - скрипт кончился ошибкой или панель осталась на прежней версии - остаётся в шапке как «обновление до <версия> не удалось» с журналом, пока не пройдёт следующее обновление или роль с правом «Обновление панели» не скроет его крестиком «Скрыть» рядом; скрытое не видно ни одной учётной записи. Обновление, ни одну из двух версий которого панель уже не запускает (её поставили другим путём: меню, `install.sh`, другой тег образа), в шапке не показывается. В каталоге `update` остаются журналы и коды выхода пяти последних обновлений, старые убираются при следующей проверке релизов.</версия></версия></p>
+
+<p>Служба обновляется через <code class="language-plaintext highlighter-rouge">install.sh</code> нового релиза: панель собирает архив для архитектуры хоста в <code class="language-plaintext highlighter-rouge">update/stage-&lt;версия&gt;</code> рядом с базой, беря файлы, которые у неё уже есть, из рабочего релиза и докачивая остальные из релиза по частям, каждый сверяет с дайджестом из списка файлов релиза; между двумя релизами это обычно мегабайт-другой из примерно 55. Если список не сходится, файлы не отдаются по частям или изменилось больше трёх четвертей архива, панель качает архив целиком. Затем она запускает <code class="language-plaintext highlighter-rouge">install.sh</code> отдельно от себя, через <code class="language-plaintext highlighter-rouge">systemd-run</code>, как службу <code class="language-plaintext highlighter-rouge">amneziageo-server-update-&lt;версия&gt;</code>: тот останавливает сервер, копирует базу, переводит <code class="language-plaintext highlighter-rouge">current</code> на новый релиз и возвращает прежний, если новый не поднялся. Вывод скрипта идёт в <code class="language-plaintext highlighter-rouge">update/&lt;версия&gt;.log</code>, итог - в <code class="language-plaintext highlighter-rouge">update/&lt;версия&gt;.rc</code>.</p>
+
+<p>Почему панель не может обновиться сама, шапка называет словами:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Причина</th>
+      <th>Что значит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>панель запущена не из пакета и не в контейнере</td>
+      <td>обновление только руками</td>
+    </tr>
+    <tr>
+      <td>пакет работает не от root</td>
+      <td>служба запущена под другим пользователем</td>
+    </tr>
+    <tr>
+      <td>на хосте нет systemd-run</td>
+      <td>скрипт обновления нечем запустить отдельно от панели</td>
+    </tr>
+    <tr>
+      <td>контейнеру не выдан сокет Docker</td>
+      <td>в <code class="language-plaintext highlighter-rouge">compose.yaml</code> нет <code class="language-plaintext highlighter-rouge">/var/run/docker.sock</code></td>
+    </tr>
+    <tr>
+      <td>панель не нашла свой контейнер; контейнер запущен не через compose; файл compose лежит вне каталога проекта; каталог данных не смонтирован в контейнер</td>
+      <td>контейнер устроен не так, как ждёт обновление</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Канал релизов - отметка «Получать предварительные версии» на вкладке <a href="server.ru.html">Сервер</a>; переменная <code class="language-plaintext highlighter-rouge">Update__Channel=test</code> в окружении панели берёт предварительные выпуски независимо от отметки. Прочие переменные: <code class="language-plaintext highlighter-rouge">Update__CheckHours</code> - как часто смотреть релизы (12, <code class="language-plaintext highlighter-rouge">0</code> оставляет проверку кнопке), <code class="language-plaintext highlighter-rouge">Update__Repository</code> - чьи релизы читать, <code class="language-plaintext highlighter-rouge">Update__Manifest</code> - адрес манифеста вместо релизов, <code class="language-plaintext highlighter-rouge">Update__Key</code> - файл с другим открытым ключом, <code class="language-plaintext highlighter-rouge">Update__Directory</code> - каталог загрузок и журналов, <code class="language-plaintext highlighter-rouge">Update__Docker</code> - сокет демона. Что происходит с интерфейсами, каналами и резолвером во время перезапуска, см. <a href="../install.ru.html#обновление">Установка</a>.</p>
+
+<h2 id="резервная-копия">Резервная копия</h2>
+
+<p>Карточка «Резервная копия»: «Копия базы данных панели: интерфейсы, клиенты, шаблоны, маршрутизация, учётные записи и настройки.»</p>
+
+<p>«Скачать копию» для роли с правом «Скачивание бэкапа» сохраняет базу как она есть в этот момент файлом <code class="language-plaintext highlighter-rouge">amneziageo-&lt;имя сервера&gt;-&lt;время&gt;.db</code>: учётные записи и токены, интерфейсы с ключами, клиенты, правила и настройки панели. В копию не входят сертификат панели, ключ подписи токенов, файлы гео-баз, журнал событий и журнал подключений.</p>
+
+<p>«Восстановить из файла» для роли с правом «Управление доступом» после вопроса «Восстановить панель из резервной копии?» отправляет файл (до 1 ГиБ, со счётчиком «Отправка файла: N%»), и панель проверяет его: что это целая база панели, не новее её самой и что с её настройками панель поднимется на этом хосте - адреса, на которых она слушает, и сертификат с ключом. Принятый файл ждёт рядом с базой, панель пишет «Панель перезапускается с резервной копии» и стартует заново: прежняя база с журналом уходит в <code class="language-plaintext highlighter-rouge">backup/&lt;время&gt;-before-restore</code> каталога данных, копия встаёт на её место, копия старого выпуска доводится до текущего при старте, и страница ждёт, пока панель ответит снова.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Отказ</th>
+      <th>Что значит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Файл пустой; Файл не является базой данных; Это база данных не от панели; База данных повреждена</td>
+      <td>файл не копия панели</td>
+    </tr>
+    <tr>
+      <td>Копия сделана более новой версией панели, сначала обновите панель</td>
+      <td>обновите панель и повторите</td>
+    </tr>
+    <tr>
+      <td>С этой копией панель не запустится на этом сервере</td>
+      <td>в копии адрес, которого у хоста нет, или сертификат, которого нет на диске; <code class="language-plaintext highlighter-rouge">amneziageo-server restore &lt;файл&gt;</code> в консоли подгоняет такую копию под хост</td>
+    </tr>
+    <tr>
+      <td>Файл больше 1 ГиБ</td>
+      <td>файл слишком большой</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Копия переносит панель на другой сервер: <code class="language-plaintext highlighter-rouge">amneziageo-server install --restore &lt;файл&gt;</code> на новом хосте, см. <a href="../recipes/move.ru.html">Перенос на другой сервер</a>. Копии, снятые перед обновлениями, лежат в <code class="language-plaintext highlighter-rouge">backup</code> каталога данных и возвращаются пунктом 5 меню.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

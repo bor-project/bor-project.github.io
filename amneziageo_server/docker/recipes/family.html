@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>One subscription for several devices · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="One subscription for all the devices of one person.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/recipes/family.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/recipes/family.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/recipes/family.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/recipes/family.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/recipes/family.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/recipes/family.html">Service</a>
+  <a href="/amneziageo_server/docker/recipes/family.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html" aria-current="page">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="one-subscription-for-several-devices">One subscription for several devices</h1>
+
+<p>The task: one person has a phone, a laptop and a tablet, and should get the configurations of all three at one address and then get their changes by themselves. Each device is a client of its own (one configuration on two devices does not work), and one subscription gathers them.</p>
+
+<h2 id="1-subscriptions">1. Subscriptions</h2>
+
+<p>“Settings” &gt; “Subscriptions”: “Enabled”. “Separate port” cleared: the subscriptions answer on the port of the panel under its certificate; or checked with a port like 2096, which is then opened in the firewall with the button under the field. “Profile title”: the name the app will see, for example <code class="language-plaintext highlighter-rouge">Family</code>. “Save” takes effect at once.</p>
+
+<h2 id="2-clients">2. Clients</h2>
+
+<p>“Clients” &gt; “Add”: <code class="language-plaintext highlighter-rouge">anna-phone</code>, an interface, the address is filled in. In the “Subscription” field press the button next to it to get a new name, or type your own: Latin letters, digits, dash and underscore, up to 64 characters, case-sensitive. Copy the name. “Save”.</p>
+
+<p>The second and third clients, <code class="language-plaintext highlighter-rouge">anna-laptop</code> and <code class="language-plaintext highlighter-rouge">anna-tablet</code>: the same name in the “Subscription” field. One name on several clients is one subscription.</p>
+
+<h2 id="3-handing-over-the-subscription">3. Handing over the subscription</h2>
+
+<p>On the “Export” tab of any of the clients the “QR: subscription” card carries the subscription address. The person adds it to the AmneziaGeo app as a subscription address or scans the QR code, and the app takes the configurations of all three clients and then reads the subscription again at the interval from the settings (12 hours by default). The subscription address is a secret: whoever knows it gets the private keys of the clients.</p>
+
+<p>The same address in a browser opens a page with the QR codes of the subscription and of each configuration, the file and the link: handy when the app goes on a device without a camera.</p>
+
+<h2 id="further">Further</h2>
+
+<ul>
+  <li>A new device: a new client with the same subscription name, and the app picks it up at the next update.</li>
+  <li>A disabled client drops out of the subscription, and the app marks its configuration as gone; a subscription all of whose clients are disabled answers empty.</li>
+  <li>The traffic limit is counted per client; the <code class="language-plaintext highlighter-rouge">Subscription-Userinfo</code> header adds up the limits of the clients of the subscription and shows the traffic of today in the app.</li>
+  <li>The template of the clients changes <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, DNS and presets for all of them at once: the subscription assembles the file at every request, see <a href="../panel/templates.html">Templates</a>.</li>
+</ul>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

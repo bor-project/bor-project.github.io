@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Code signing policy · AmneziaGeo</title>
+    <meta name="description" content="Cross-platform AmneziaWG VPN client with split tunneling and traffic routing for Windows, Linux and Android. Multiple simultaneous VPN connections on Windows.">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/index.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Devices">
+  <p class="sidebar-label">Devices</p>
+  <a href="/amneziageo/windows/">Windows</a>
+  <a href="/amneziageo/linux/">Linux</a>
+  <a href="/amneziageo/android/">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="code-signing-policy">Code signing policy</h1>
+
+<blockquote>
+  <p><strong>Status, October 2026:</strong> signing is not in place yet. The code signing certificate is being issued;
+until then Windows releases are unsigned and SmartScreen warns about an unknown publisher. The policy
+below describes how signing will work once the certificate is issued.</p>
+</blockquote>
+
+<p>Windows binaries and installers of AmneziaGeo are code signed through SignPath.io. Signing happens inside
+the release pipeline; no signing key ever exists on a developer machine. Releases up to 1.5.x are unsigned.</p>
+
+<p>Free code signing provided by <a href="https://signpath.io/">SignPath.io</a>, certificate by
+<a href="https://signpath.org/">SignPath Foundation</a>.</p>
+
+<h2 id="what-is-signed">What is signed</h2>
+
+<p>Everything the Windows part of <a href="https://github.com/bor-project/amneziageo/blob/master/.github/workflows/release.yml"><code class="language-plaintext highlighter-rouge">.github/workflows/release.yml</code></a> produces:</p>
+
+<ul>
+  <li>the installer bundle <code class="language-plaintext highlighter-rouge">AmneziaGeo-&lt;version&gt;-win-&lt;arch&gt;[-fdd].exe</code> and its Burn engine;</li>
+  <li>the MSI the bundle carries;</li>
+  <li>the AmneziaGeo binaries inside that MSI - the agent service, the tray and the UI.</li>
+</ul>
+
+<p>Third-party components shipped inside the installer keep the signature their own vendor gave them.</p>
+
+<p>Linux packages and the Android APK are outside this policy: the APK carries its own upload key, the deb
+packages are unsigned.</p>
+
+<h2 id="roles">Roles</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Who</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Author - may change the source</td>
+      <td>bor, repository owner</td>
+    </tr>
+    <tr>
+      <td>Reviewer - reviews outside contributions</td>
+      <td>bor</td>
+    </tr>
+    <tr>
+      <td>Approver - may authorize a signing request</td>
+      <td>bor</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The GitHub account and the SignPath account are both protected with multi-factor authentication.</p>
+
+<h2 id="what-may-be-signed">What may be signed</h2>
+
+<p>A signing request is accepted only when all of this holds:</p>
+
+<ul>
+  <li>it comes from <code class="language-plaintext highlighter-rouge">.github/workflows/release.yml</code> in this repository;</li>
+  <li>the workflow runs on a <code class="language-plaintext highlighter-rouge">refs/tags/v*</code> tag;</li>
+  <li>the artifact was built by that same workflow run, on GitHub-hosted runners.</li>
+</ul>
+
+<p>Origin verification on the SignPath side enforces these conditions; nothing else can submit an artifact.</p>
+
+<h2 id="reporting-a-problem">Reporting a problem</h2>
+
+<p>A signed build that behaves unexpectedly, or a signature that cannot be explained: open an issue at
+https://github.com/bor-project/amneziageo/issues.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

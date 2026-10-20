@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overview · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="The state of the host, services, updates and backups.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/overview.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/overview.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/overview.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/panel/overview.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/panel/overview.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/overview.html">Service</a>
+  <a href="/amneziageo_server/docker/panel/overview.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html" aria-current="page">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/">Panel</a></li>
+  </ol>
+</nav>
+
+        <h1 id="overview">Overview</h1>
+
+<p>“Overview” is the first page of the panel. It reads the host every two seconds and shows its state, the services of the server, the update of the panel and the backup.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/overview.png" alt="Overview page: the AmneziaWG module, services with their ports and Change links, CPU, memory, swap and disk cards, speed and connections" width="1440" height="900" loading="lazy" /><figcaption>The overview of a working server.</figcaption></figure>
+
+<h2 id="page-header">Page header</h2>
+
+<p>Under the title stand <code class="language-plaintext highlighter-rouge">panel &lt;version&gt;</code>, the AmneziaWG module (<code class="language-plaintext highlighter-rouge">loaded &lt;version&gt;</code> or <code class="language-plaintext highlighter-rouge">not loaded</code>) and <code class="language-plaintext highlighter-rouge">interfaces N</code>: how many interfaces of the <code class="language-plaintext highlighter-rouge">amneziawg</code> type are up on the host. When a release newer than the panel is out, <code class="language-plaintext highlighter-rouge">&lt;version&gt; available</code> appears next to them with a link to its page, and the “Update” button, see <a href="#updates">Updates</a>; “Check for updates” asks for the releases now.</p>
+
+<h2 id="cards">Cards</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Card</th>
+      <th>What it shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CPU</td>
+      <td>the load, the model, <code class="language-plaintext highlighter-rouge">N cores / NT · clock</code>; under the chart “AVG” and “PEAK” over the window</td>
+    </tr>
+    <tr>
+      <td>RAM</td>
+      <td>the memory in use, under it the average and the peak</td>
+    </tr>
+    <tr>
+      <td>Swap</td>
+      <td>the swap in use</td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td>what is taken on the disk where the root lies, “FREE”</td>
+    </tr>
+    <tr>
+      <td>Overall speed</td>
+      <td>receiving and sending over all the interfaces of the host except the loopback, the peak over the window, the total sent and received, the average over the window</td>
+    </tr>
+    <tr>
+      <td>Connections</td>
+      <td>open TCP and UDP sockets</td>
+    </tr>
+    <tr>
+      <td>Uptime</td>
+      <td>of the system and of the panel</td>
+    </tr>
+    <tr>
+      <td>Process</td>
+      <td>the memory and threads of the panel</td>
+    </tr>
+    <tr>
+      <td>Addresses</td>
+      <td>the addresses of all the interfaces up on the host</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The numbers come from <code class="language-plaintext highlighter-rouge">/proc</code> of the host without kernel privileges. The window of the charts is the last 120 samples, four minutes; the kernel counters reset with a reboot of the host, so the first sample after it gives no speed.</p>
+
+<h2 id="services">Services</h2>
+
+<p>The “Services” card lists what the server keeps for the clients and the ports of each service, with the mark “checked <time>":</time></p>
+
+<ul>
+  <li>“Panel”: the TCP port the panel answers on;</li>
+  <li>“Subscriptions”: on their own port or “on the ports of the interfaces”, while subscriptions are on;</li>
+  <li>“Interface <name>" for each enabled interface, with the parts its TCP port serves: hello, speed, WebSocket, subscription;</name></li>
+  <li>“DNS”: the resolver, while it is on;</li>
+  <li>“Certificate <name>" for each certificate file the panel and subscriptions answer under, with "until <date>".</date></name></li>
+</ul>
+
+<p>The “Change” link in a row leads to where the port and the settings of the service change: the panel - <a href="server.html">Server</a>, the subscriptions - <a href="subscriptions.html">Subscriptions</a>, an interface - <a href="interfaces.html">its page</a>, DNS - <a href="dns.html">DNS</a>, a certificate - <a href="certificates.html">Certificates</a>. A user who may change those settings sees it.</p>
+
+<p>A service that is down carries “Down since <time>: <reason>":</reason></time></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reason</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>no host is set</td>
+      <td>the interface has no host, and the files of its clients carry no <code class="language-plaintext highlighter-rouge">Endpoint</code></td>
+    </tr>
+    <tr>
+      <td>the interface is not on the host</td>
+      <td>the interface is not up; with “the AmneziaWG module is not loaded” when the module is the reason</td>
+    </tr>
+    <tr>
+      <td>the host did not give the port</td>
+      <td>the TCP services port did not open, another program holds it</td>
+    </tr>
+    <tr>
+      <td>the firewall of the host keeps <code class="language-plaintext highlighter-rouge">&lt;port&gt;</code> closed</td>
+      <td>the firewall does not let in the UDP or TCP port, see <a href="interfaces.html#ports-in-the-firewall">Ports in the firewall</a></td>
+    </tr>
+    <tr>
+      <td>the WebSocket front does not run, fell over, does not listen</td>
+      <td>the WebSocket proxy of the interface does not work, fell over since the last check or does not listen on its port on the loopback</td>
+    </tr>
+    <tr>
+      <td>no interface hands them out</td>
+      <td>subscriptions are on the ports of the interfaces, and no port answers</td>
+    </tr>
+    <tr>
+      <td>the resolver does not run, the way out of the resolver is broken</td>
+      <td>the resolver did not come up or no upstream server answers</td>
+    </tr>
+    <tr>
+      <td>The file does not read, Ran out on <date></date></td>
+      <td>the certificate file does not read or the certificate has run out</td>
+    </tr>
+    <tr>
+      <td>Runs out in N d.</td>
+      <td>the certificate runs out in less than 14 days; the service works, this is a warning</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The check runs five seconds after the server starts and every 30 seconds after that; the firewall is read no more often than once in five minutes, and at once for a new port. A firewall outside the host, at the hoster, is not visible to the panel. While at least one service is down, the header of every page says “Services down: N” and leads here. The log of the panel gets the lines <code class="language-plaintext highlighter-rouge">the service &lt;name&gt; is down: &lt;reasons&gt;</code> and <code class="language-plaintext highlighter-rouge">the service &lt;name&gt; works again</code>, and a line for the console menu, like <code class="language-plaintext highlighter-rouge">all 3 work</code>, lies in the <code class="language-plaintext highlighter-rouge">services</code> file next to the database and shows in the status under the <a href="../menu.html">menu</a>.</p>
+
+<h2 id="updates">Updates</h2>
+
+<p>A minute after the start and every 12 hours the panel asks GitHub about the releases of <code class="language-plaintext highlighter-rouge">bor-project/amneziageo_server</code>: the latest release, and with pre-releases the five newest. It takes the newest of its channel that has an <code class="language-plaintext highlighter-rouge">update.json</code> manifest and an <code class="language-plaintext highlighter-rouge">update.json.sig</code> signature, checks the signature with the key it carries inside and offers the release if it is newer than itself. A manifest with a bad signature is not offered, and the panel names the reason. A request without an answer is repeated up to five times within a minute, after which the header says “updates not checked”, and the next check starts over.</p>
+
+<p>The “Update” button, for a role with the “Update the panel” permission, leads through the steps “Download”, “Install”, “Restart”, “Done” with notes: “downloading <version>", "putting the release on", "the panel restarts, waiting for it", "the panel runs <version>, the page reloads itself". The page waits for the new panel to answer and loads it; if there is no answer for long, it says "the panel has not answered for N min". A failed update, one whose script ended with an error or that left the panel on its former version, stays in the header as "the update to <version> failed" with its log until the next update goes through or a role with the "Update the panel" permission hides it with the "Hide" cross next to it; once hidden, it is hidden for every account. An update neither of whose two versions the panel runs any more (it was put on another way: the menu, `install.sh`, another image tag) is not shown in the header. The `update` directory keeps the logs and exit codes of the last five updates; older ones go at the next look at the releases.</version></version></version></p>
+
+<p>The container updates through the Docker socket its <code class="language-plaintext highlighter-rouge">compose.yaml</code> gives it: the panel pulls the image of the release by digest, copies the database to <code class="language-plaintext highlighter-rouge">backup</code> in the data directory, writes <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_TAG=&lt;version&gt;</code> into the <code class="language-plaintext highlighter-rouge">.env</code> of the project, stops itself and starts the helper container <code class="language-plaintext highlighter-rouge">amneziageo-server-update-&lt;version&gt;</code>, which recreates its container on the new image with the same settings. The old container waits under its own name: if the new one does not become healthy within three minutes, the database and <code class="language-plaintext highlighter-rouge">.env</code> come back, and the old one goes on working. The helper containers of finished updates are removed at the next check.</p>
+
+<p>Why the panel cannot update itself, the header says in words:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reason</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>the panel runs neither from the package nor in a container</td>
+      <td>updates by hand only</td>
+    </tr>
+    <tr>
+      <td>the package runs under a user other than root</td>
+      <td>the service runs as another user</td>
+    </tr>
+    <tr>
+      <td>the host carries no systemd-run</td>
+      <td>there is nothing to run the update script apart from the panel with</td>
+    </tr>
+    <tr>
+      <td>the container is not given the Docker socket</td>
+      <td><code class="language-plaintext highlighter-rouge">compose.yaml</code> has no <code class="language-plaintext highlighter-rouge">/var/run/docker.sock</code></td>
+    </tr>
+    <tr>
+      <td>the panel does not find its container; the container was not started by compose; a compose file lies outside the project directory; the data directory is not mounted into the container</td>
+      <td>the container is not set up the way the update expects</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The release channel is the “Receive prerelease versions” box on the <a href="server.html">Server</a> tab; the variable <code class="language-plaintext highlighter-rouge">Update__Channel=test</code> in the environment of the panel takes pre-releases whatever the box says. Other variables: <code class="language-plaintext highlighter-rouge">Update__CheckHours</code>, how often to look at the releases (12; <code class="language-plaintext highlighter-rouge">0</code> leaves the check to the button), <code class="language-plaintext highlighter-rouge">Update__Repository</code>, whose releases to read, <code class="language-plaintext highlighter-rouge">Update__Manifest</code>, the address of a manifest instead of the releases, <code class="language-plaintext highlighter-rouge">Update__Key</code>, a file with another public key, <code class="language-plaintext highlighter-rouge">Update__Directory</code>, the directory of downloads and logs, <code class="language-plaintext highlighter-rouge">Update__Docker</code>, the socket of the daemon. What happens to interfaces, channels and the resolver during the restart: see <a href="../install.html#updates">Installation</a>.</p>
+
+<h2 id="backup">Backup</h2>
+
+<p>The “Backup” card: “A copy of the database of the panel: interfaces, clients, templates, routing, accounts and settings.”</p>
+
+<p>“Download a copy”, for a role with the “Download backups” permission, saves the database as it is at that moment as a file <code class="language-plaintext highlighter-rouge">amneziageo-&lt;server name&gt;-&lt;time&gt;.db</code>: accounts and tokens, interfaces with their keys, clients, rules and the settings of the panel. The copy does not include the certificate of the panel, the token signing key, the geo database files, the event log and the connection log.</p>
+
+<p>“Restore from a file”, for a role with the “Manage access” permission, after the question “Restore the panel from a backup?” sends the file (up to 1 GiB, with the counter “Sending the file: N%”), and the panel checks it: that it is a whole database of the panel, not newer than the panel itself, and that with its settings the panel comes up on this host: the addresses it listens on, and the certificate with its key. The accepted file waits next to the database, the panel says “The panel starts over on the backup” and starts again: the former database with its journal goes to <code class="language-plaintext highlighter-rouge">backup/&lt;time&gt;-before-restore</code> in the data directory, the copy takes its place, a copy from an older release is brought up to the current one at the start, and the page waits until the panel answers again.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Refusal</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The file is empty; The file is not a database; The database is not one of the panel; The database is damaged</td>
+      <td>the file is not a copy of the panel</td>
+    </tr>
+    <tr>
+      <td>The backup comes from a newer release of the panel, update the panel first</td>
+      <td>update the panel and try again</td>
+    </tr>
+    <tr>
+      <td>The panel would not start on this server with this backup</td>
+      <td>the copy holds an address the host does not have or a certificate missing on the disk; <code class="language-plaintext highlighter-rouge">amneziageo-server restore &lt;file&gt;</code> in the console fits such a copy to the host</td>
+    </tr>
+    <tr>
+      <td>The file is larger than 1 GiB</td>
+      <td>the file is too large</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A backup moves the panel to another server: <code class="language-plaintext highlighter-rouge">amneziageo-server install --restore &lt;file&gt;</code> on the new host, see <a href="../recipes/move.html">Moving to another server</a>. The copies taken before updates lie in <code class="language-plaintext highlighter-rouge">backup</code> in the data directory and come back with menu item 5.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

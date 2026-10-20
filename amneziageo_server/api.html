@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTTP API · AmneziaGeo Server</title>
+    <meta name="description" content="The routes of the panel under /api, tokens for scripts, the shape of answers and the OpenAPI description.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/api.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/api.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/api.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/api.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/api.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-nav" aria-label="Installation">
+  <p class="sidebar-label">Installation</p>
+  <a href="/amneziageo_server/service/">Service</a>
+  <a href="/amneziageo_server/docker/">Docker</a></nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html" aria-current="page">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="http-api">HTTP API</h1>
+
+<p>The panel does everything through the HTTP API under <code class="language-plaintext highlighter-rouge">/api</code>, and a script calls the same routes. Every route except <code class="language-plaintext highlighter-rouge">POST /api/auth/login</code>, <code class="language-plaintext highlighter-rouge">POST /api/auth/refresh</code> and <code class="language-plaintext highlighter-rouge">GET /api/health</code> needs a token in the <code class="language-plaintext highlighter-rouge">Authorization: Bearer</code> header.</p>
+
+<h2 id="tokens">Tokens</h2>
+
+<ul>
+  <li><strong>Session token.</strong> <code class="language-plaintext highlighter-rouge">POST /api/auth/login</code> with the body <code class="language-plaintext highlighter-rouge">{ "user": "...", "password": "..." }</code> returns a pair: an access token for ten minutes and a refresh token, which <code class="language-plaintext highlighter-rouge">POST /api/auth/refresh</code> exchanges for a new pair. The panel itself runs on these tokens, with the permissions of the role of the account.</li>
+  <li><strong>Token for scripts.</strong> A long-lived token starts with <code class="language-plaintext highlighter-rouge">agt_</code>, acts on behalf of a role and is shown once: it is issued in the “Tokens” table of “Settings” &gt; “Users and roles” or with <code class="language-plaintext highlighter-rouge">amneziageo-server token add &lt;name&gt; --role &lt;role&gt; [--days &lt;n&gt;]</code>. A change to the permissions of the role takes effect on its tokens at once; disabling and removing accounts does not touch tokens. It is revoked in the same place or with <code class="language-plaintext highlighter-rouge">token revoke</code>.</li>
+</ul>
+
+<p>Both tokens go in the same header:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -H "Authorization: Bearer agt_..." https://panel.example.com:8443/api/clients
+</code></pre></div></div>
+
+<p>If the panel has a path of its own, the path goes before <code class="language-plaintext highlighter-rouge">/api</code>: <code class="language-plaintext highlighter-rouge">https://panel.example.com:8443/&lt;path&gt;/api/clients</code>.</p>
+
+<h2 id="answers">Answers</h2>
+
+<p>A refusal comes as <code class="language-plaintext highlighter-rouge">{ "error": "&lt;code&gt;", "message": "&lt;words&gt;" }</code> with a status that fits: 400 for a request that failed validation, 401 without a token or with an expired one (<code class="language-plaintext highlighter-rouge">unauthorized</code>), 403 for a permission the role does not have (<code class="language-plaintext highlighter-rouge">forbidden</code>), 404 for what does not exist, 409 for a conflict. An unknown route answers 404 with <code class="language-plaintext highlighter-rouge">unknown-route</code>. The refusal codes of each section are listed on the pages of the panel, together with the text the panel shows for them.</p>
+
+<p>Every <code class="language-plaintext highlighter-rouge">POST /api/&lt;section&gt;/{id}/switch</code> takes <code class="language-plaintext highlighter-rouge">{ "on": true }</code> or <code class="language-plaintext highlighter-rouge">{ "on": false }</code>; a body without <code class="language-plaintext highlighter-rouge">on</code> answers 400 and <code class="language-plaintext highlighter-rouge">incomplete</code>.</p>
+
+<h2 id="openapi-description">OpenAPI description</h2>
+
+<p><code class="language-plaintext highlighter-rouge">GET /api/openapi.json</code> returns an OpenAPI 3.1 document with all the routes: path, method, parameters and the shape of the request body. The security requirement of a route names the permission it asks for. The document is requested with a token, like any route. It has no response shapes: the pages below describe them.</p>
+
+<h2 id="routes-by-section">Routes by section</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Page of the site</th>
+      <th>Reference in the repository with the routes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>accounts, roles, tokens</td>
+      <td><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/auth.md">auth.md</a></td>
+    </tr>
+    <tr>
+      <td>interfaces</td>
+      <td><a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/configs.md">configs.md</a></td>
+    </tr>
+    <tr>
+      <td>clients</td>
+      <td><a href="/amneziageo_server/service/panel/clients.html">Clients</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/clients.md">clients.md</a>, <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/devices.md">devices.md</a></td>
+    </tr>
+    <tr>
+      <td>templates and routing presets</td>
+      <td><a href="/amneziageo_server/service/panel/templates.html">Templates</a>, <a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/templates.md">templates.md</a></td>
+    </tr>
+    <tr>
+      <td>subscriptions</td>
+      <td><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/subscriptions.md">subscriptions.md</a></td>
+    </tr>
+    <tr>
+      <td>channels and groups</td>
+      <td><a href="/amneziageo_server/service/panel/channels.html">Channels</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/outbounds.md">outbounds.md</a>, <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/balancers.md">balancers.md</a></td>
+    </tr>
+    <tr>
+      <td>rules, basic lists, test</td>
+      <td><a href="/amneziageo_server/service/panel/rules.html">Rules</a>, <a href="/amneziageo_server/service/panel/basic.html">Basic</a>, <a href="/amneziageo_server/service/panel/test.html">Test</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/rules.md">rules.md</a></td>
+    </tr>
+    <tr>
+      <td>resolver</td>
+      <td><a href="/amneziageo_server/service/panel/dns.html">DNS</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/dns.md">dns.md</a></td>
+    </tr>
+    <tr>
+      <td>geo lists</td>
+      <td><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/geo.md">geo.md</a></td>
+    </tr>
+    <tr>
+      <td>interface services: hello, speed, WebSocket, signal</td>
+      <td><a href="/amneziageo_server/service/panel/interfaces.html#services-on-the-tcp-port">Interfaces</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/services.md">services.md</a></td>
+    </tr>
+    <tr>
+      <td>where the panel answers, certificate</td>
+      <td><a href="/amneziageo_server/service/panel/server.html">Server</a>, <a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/serving.md">serving.md</a></td>
+    </tr>
+    <tr>
+      <td>ports in the firewall of the host</td>
+      <td><a href="/amneziageo_server/service/panel/interfaces.html#ports-in-the-firewall">Interfaces</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/firewall.md">firewall.md</a></td>
+    </tr>
+    <tr>
+      <td>database backups</td>
+      <td><a href="/amneziageo_server/service/panel/overview.html#backup">Overview</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/install.md#moving-to-another-server">install.md</a></td>
+    </tr>
+    <tr>
+      <td>diagnostics, connection log</td>
+      <td><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/diagnostics.md">diagnostics.md</a></td>
+    </tr>
+    <tr>
+      <td>host overview and services</td>
+      <td><a href="/amneziageo_server/service/panel/overview.html">Overview</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/overview.md">overview.md</a></td>
+    </tr>
+    <tr>
+      <td>panel updates</td>
+      <td><a href="/amneziageo_server/service/panel/overview.html#updates">Overview</a></td>
+      <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/updates.md">updates.md</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The pages of the panel are the same for the service and Docker; the links lead to the service version.</p>
+
+<h2 id="what-stays-in-the-console">What stays in the console</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">init</code>: the first administrator; before it nobody signs in to the panel.</li>
+  <li><code class="language-plaintext highlighter-rouge">device</code> and <code class="language-plaintext highlighter-rouge">family</code>: the kernel as it is, for debugging.</li>
+</ul>
+
+<p>Import exists in both: the console reads files of the host, the API takes their text (<code class="language-plaintext highlighter-rouge">POST /api/configs/import</code>, <code class="language-plaintext highlighter-rouge">POST /api/clients/import</code>).</p>
+
+<h2 id="example">Example</h2>
+
+<p>A token for a day under the <code class="language-plaintext highlighter-rouge">admin</code> role, a new client on interface 1 and its file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server token add nightly --role admin --days 1
+</code></pre></div></div>
+
+<p>The last line of the output is the token itself; it is printed once.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>API=https://panel.example.com:8443/api
+curl -s -H "Authorization: Bearer agt_..." -H "Content-Type: application/json" \
+  -d '{ "name": "anna-phone", "configId": 1 }' "$API/clients"
+curl -s -H "Authorization: Bearer agt_..." "$API/clients/7/config"
+</code></pre></div></div>
+
+<p>The body of <code class="language-plaintext highlighter-rouge">POST /api/clients</code> needs only a name: without <code class="language-plaintext highlighter-rouge">configId</code> the client goes on the default interface, the panel picks the keys and the address itself, and the client is on. The answer of <code class="language-plaintext highlighter-rouge">GET /api/clients/{id}/config</code> carries the text of the file, the <code class="language-plaintext highlighter-rouge">vpn://</code> link and the subscription address.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

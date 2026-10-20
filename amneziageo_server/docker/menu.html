@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Console menu · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="The amneziageo-server script: its status lines, menu items and commands.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/menu.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/menu.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/menu.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/menu.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/menu.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/menu.html">Service</a>
+  <a href="/amneziageo_server/docker/menu.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html" aria-current="page">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+  </ol>
+</nav>
+
+        <h1 id="console-menu">Console menu</h1>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo-server</code> is the script that puts the panel on the host and keeps it running afterwards. It comes with every release: on the host it lies in <code class="language-plaintext highlighter-rouge">/usr/local/bin</code> if you agreed to put the command on the host at the installation, and in the image, from where <code class="language-plaintext highlighter-rouge">docker compose exec panel amneziageo-server</code> opens it in the project directory. Without arguments it opens the menu, over ssh as well; every item works as a command too, and a command the menu does not know goes to the <a href="cli.html">utility</a>: <code class="language-plaintext highlighter-rouge">amneziageo-server user list</code>. <code class="language-plaintext highlighter-rouge">amneziageo-server help</code> prints the list. The short command the installation puts on (<code class="language-plaintext highlighter-rouge">ag-s</code> by default) is a link to the script in the same directory and opens the same menu.</p>
+
+<p>The menu on the host drives the container from outside with every item, including those that change the host itself; it finds the compose project in the directory named at the installation (<code class="language-plaintext highlighter-rouge">/opt/amneziageo-docker</code> by default) or by the labels of its container. As it opens, it compares itself with the menu of the release the container runs and, if the two differ, for example after an update with the button in the panel, takes the menu of the release and opens as that one. The menu inside the container does the same except for the items about the host: rollback to an old image, uninstalling and a Let’s Encrypt certificate answer that the container does not reach the host, while ufw rules, turning ufw on, BBR and forwarding print the command for the host. Stop, start and restart inside the container hold the panel or start it again without ending the container, so the menu session goes on and a new port or path takes effect without leaving it; autostart turns the restart policy of the container on and off; the log is the log of the container; an update moves the container to a new image and ends the session.</p>
+
+<p>Under the menu the script prints the status:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Line</th>
+      <th>What it shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Panel</code></td>
+      <td>whether the panel runs, how it is installed, its version and release channel</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Autostart</code></td>
+      <td>whether the panel starts with the host</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Kernel</code></td>
+      <td>whether the <code class="language-plaintext highlighter-rouge">amneziawg</code> module is loaded, whether forwarding is on</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Websocket</code></td>
+      <td>how many WebSocket fronts run, whether BBR is on</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DNS</code></td>
+      <td>the resolver for the clients: off, on, and whether it encrypts the queries going out</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Services</code></td>
+      <td>the line of the services of the panel, for example <code class="language-plaintext highlighter-rouge">all 3 work</code> or <code class="language-plaintext highlighter-rouge">2 of 3 down: subscriptions (port-refused), endpoint awg1 (port-closed udp 443)</code>, the same as in the “Services” card of the <a href="panel/overview.html#services">Overview</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>While the script gathers these lines, a <code class="language-plaintext highlighter-rouge">reading...</code> spinner turns in their place, and keys typed meanwhile neither show nor reach the question of the menu. The menu does the same while it reads the settings and lists of its items and submenus.</p>
+
+<h2 id="installation-and-releases">Installation and releases</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 <code class="language-plaintext highlighter-rouge">Install</code></td>
+      <td>looks the host over, asks for everything needed and installs the panel, see <a href="install.html">Installation</a>; on a host with a panel it answers that item 2 updates it</td>
+    </tr>
+    <tr>
+      <td>2 <code class="language-plaintext highlighter-rouge">Update</code></td>
+      <td>moves the panel to the newest release of its channel: asks the panel to update and waits up to five minutes for it to answer with the new version</td>
+    </tr>
+    <tr>
+      <td>3 <code class="language-plaintext highlighter-rouge">Update Beta</code></td>
+      <td>the same, with pre-releases</td>
+    </tr>
+    <tr>
+      <td>4 <code class="language-plaintext highlighter-rouge">Roll Back</code></td>
+      <td>brings back the previous release, see <a href="install.html#rollback">Rollback</a>, and offers to bring back the copy of the database made before the update</td>
+    </tr>
+    <tr>
+      <td>5 <code class="language-plaintext highlighter-rouge">Releases &amp; Backups</code></td>
+      <td>a submenu: releases on the host; database copies; bring a copy back (the panel stops, the former database is put aside next to it); restore a backup file from another panel; make a copy now (the panel stops for a moment); release channel; check for a new release; install a web interface archive (for the service only)</td>
+    </tr>
+    <tr>
+      <td>6 <code class="language-plaintext highlighter-rouge">Uninstall</code></td>
+      <td>takes the panel off the host, with its database and settings if asked, see <a href="install.html#uninstalling">Uninstalling</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="access-and-settings-of-the-panel">Access and settings of the panel</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7 <code class="language-plaintext highlighter-rouge">Reset Username &amp; Password</code></td>
+      <td>prints the accounts and sets a password for the one named, enabling it; for a login that does not exist it offers to make an administrator with it</td>
+    </tr>
+    <tr>
+      <td>8 <code class="language-plaintext highlighter-rouge">Users &amp; Roles</code></td>
+      <td>a submenu: users; add; password; role; enable; disable; remove; roles; add a role; permissions of a role; remove a role. These are the <code class="language-plaintext highlighter-rouge">user</code> and <code class="language-plaintext highlighter-rouge">role</code> commands of the <a href="cli.html">utility</a></td>
+    </tr>
+    <tr>
+      <td>9 <code class="language-plaintext highlighter-rouge">API Tokens</code></td>
+      <td>a submenu: tokens; add; revoke; sign in and print the session tokens; who am I: what the panel thinks of the account of the host</td>
+    </tr>
+    <tr>
+      <td>10 <code class="language-plaintext highlighter-rouge">Reset Web Base Path</code></td>
+      <td>the path of the panel: a new random one, the root or your own</td>
+    </tr>
+    <tr>
+      <td>11 <code class="language-plaintext highlighter-rouge">Reset Settings</code></td>
+      <td>the default address, port, path and certificate of the panel: <code class="language-plaintext highlighter-rouge">127.0.0.1</code>, 8443, a new random path, no certificate</td>
+    </tr>
+    <tr>
+      <td>12 <code class="language-plaintext highlighter-rouge">Change Port</code></td>
+      <td>another TCP port of the panel; a port that is taken is refused; with ufw on it offers to keep the new port open</td>
+    </tr>
+    <tr>
+      <td>13 <code class="language-plaintext highlighter-rouge">Listen Addresses &amp; Domains</code></td>
+      <td>listen on every address of the host, on chosen ones (it prints the addresses of the host), or limit the names the panel answers to</td>
+    </tr>
+    <tr>
+      <td>14 <code class="language-plaintext highlighter-rouge">View Current Settings</code></td>
+      <td>the panel without secrets: how it is installed, its state and version, the address, the <code class="language-plaintext highlighter-rouge">panel show</code> settings, interfaces with their ports, the resolver, the module, forwarding, BBR, ufw</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Every change of the address, port, path or certificate restarts the panel and prints its new address. The <a href="panel/server.html">Server</a> and <a href="panel/certificates.html">Certificates</a> tabs of the panel do the same.</p>
+
+<h2 id="service">Service</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15 <code class="language-plaintext highlighter-rouge">Start</code>, 16 <code class="language-plaintext highlighter-rouge">Stop</code>, 17 <code class="language-plaintext highlighter-rouge">Restart</code></td>
+      <td>hold the panel inside the container or start it again; from the host, the whole container</td>
+    </tr>
+    <tr>
+      <td>18 <code class="language-plaintext highlighter-rouge">Check Status</code></td>
+      <td>the container, the answer of the panel and its version, autostart; the module (not loaded: it offers to load it now and at boot), forwarding (prints the command for the host), Docker dropping forwarded packets (prints the <code class="language-plaintext highlighter-rouge">iptables -P FORWARD ACCEPT</code> that lets them through and the line <code class="language-plaintext highlighter-rouge">"ip-forward-no-drop": true</code> for <code class="language-plaintext highlighter-rouge">/etc/docker/daemon.json</code>), the fronts and BBR, the services line. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server status</code></td>
+    </tr>
+    <tr>
+      <td>19 <code class="language-plaintext highlighter-rouge">Logs Management</code></td>
+      <td>a submenu: follow the log of the panel; the last 200 lines; the log of the last update; the logs of the WebSocket fronts. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server log</code></td>
+    </tr>
+    <tr>
+      <td>20 <code class="language-plaintext highlighter-rouge">Enable Autostart</code>, 21 <code class="language-plaintext highlighter-rouge">Disable Autostart</code></td>
+      <td>the restart policy of the container, <code class="language-plaintext highlighter-rouge">unless-stopped</code> or <code class="language-plaintext highlighter-rouge">no</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="certificates-firewall-ssh">Certificates, firewall, SSH</h2>
+
+<p><strong>22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>.</strong> A submenu: get a Let’s Encrypt certificate; renew the certificates now; certificates; put certificate files on the panel; take the certificate off the panel. Getting one asks for the name of the host, checks that the name resolves and TCP 80 is free (<code class="language-plaintext highlighter-rouge">certbot</code> answers the Let’s Encrypt check on it), installs <code class="language-plaintext highlighter-rouge">certbot</code>, opens 80 in ufw, gets a certificate with an RSA key (a certificate of the same name with an ECDSA key is issued again) and enables the renewal timer <code class="language-plaintext highlighter-rouge">certbot.timer</code>, then puts the certificate on the panel and offers to listen on every address of the host. “Certificates” prints <code class="language-plaintext highlighter-rouge">certbot certificates</code> and what the panel answers with. Getting and renewing run from the host; the menu gives the container the <code class="language-plaintext highlighter-rouge">/etc/letsencrypt</code> directory through <code class="language-plaintext highlighter-rouge">compose.override.yaml</code> and restarts it. More in <a href="panel/certificates.html">Certificates</a>.</p>
+
+<p><strong>23 <code class="language-plaintext highlighter-rouge">Firewall Management</code>.</strong> A submenu:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sub-item</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>the state of ufw, the nftables tables of the panel and the ports it needs: ssh, the panel, subscriptions, interfaces, 80 for renewing the certificate; the interfaces whose clients ufw keeps from the resolver</td>
+    </tr>
+    <tr>
+      <td>2, 3</td>
+      <td>keep the port of the panel open or leave it to the host</td>
+    </tr>
+    <tr>
+      <td>4, 5</td>
+      <td>the same for the subscription port</td>
+    </tr>
+    <tr>
+      <td>6, 7</td>
+      <td>open or close the ports of an interface: the UDP port, the TCP services port and both directions of forwarding through the interface</td>
+    </tr>
+    <tr>
+      <td>8, 9</td>
+      <td>open or close any port in ufw, like <code class="language-plaintext highlighter-rouge">443/tcp</code></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>turn ufw on: installs it, lets the ssh port in, turns it on and restarts the panel so that it puts its rules</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>turn ufw off</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>the nftables tables of the panel as the host holds them: <code class="language-plaintext highlighter-rouge">amneziageo_in</code> (NAT and access to clients), <code class="language-plaintext highlighter-rouge">amneziageo_rt</code> (routing), <code class="language-plaintext highlighter-rouge">amneziageo_out</code> (channels), <code class="language-plaintext highlighter-rouge">amneziageo_open</code> (open ports without ufw), <code class="language-plaintext highlighter-rouge">amneziageo_guard</code> (a second device)</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><code class="language-plaintext highlighter-rouge">Let the clients reach the resolver</code>: let the clients of the interfaces ufw keeps from the resolver of the panel (port 53) reach it, with the rule <code class="language-plaintext highlighter-rouge">allow in on &lt;interface&gt; to any port 53</code>; with the resolver off it says that item 29 turns it on; from the container it prints the commands for the host. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, see <a href="panel/dns.html#how-it-works">DNS</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The panel itself never turns ufw on or off. How it keeps ports open: <a href="panel/interfaces.html#ports-in-the-firewall">Ports in the firewall</a>.</p>
+
+<p><strong>24 <code class="language-plaintext highlighter-rouge">SSH Port Forwarding Management</code>.</strong> Keep the panel on <code class="language-plaintext highlighter-rouge">127.0.0.1</code> (prints the ssh command for a tunnel), let it onto every address, show the ssh command.</p>
+
+<h2 id="interfaces-fronts-bbr">Interfaces, fronts, BBR</h2>
+
+<p><strong>25 <code class="language-plaintext highlighter-rouge">Endpoints &amp; Interfaces</code>.</strong> A submenu: the interfaces of the panel with their ports and who keeps each port open (<code class="language-plaintext highlighter-rouge">endpoint list</code>); open or close the ports of an interface; interfaces in the kernel (<code class="language-plaintext highlighter-rouge">device list</code>); an interface with its peers (<code class="language-plaintext highlighter-rouge">device show</code>); import an interface from an <code class="language-plaintext highlighter-rouge">awg-quick</code> file with an address for the clients; import the peers of an interface; import clients from a file of the host; make an interface the default one (<code class="language-plaintext highlighter-rouge">endpoint default</code>), the one a new client goes on. Moving over is described in <a href="panel/interfaces.html#moving-from-awg-quick">Interfaces</a>.</p>
+
+<p><strong>26 <code class="language-plaintext highlighter-rouge">Websocket Fronts</code>.</strong> Interfaces and the ports of their WebSocket, restarting the fronts, their logs.</p>
+
+<p><strong>27 <code class="language-plaintext highlighter-rouge">Enable BBR</code>.</strong> Prints the congestion algorithm and the queue discipline and offers to turn BBR with the <code class="language-plaintext highlighter-rouge">fq</code> queue on or off: now and at boot (<code class="language-plaintext highlighter-rouge">/etc/sysctl.d/91-amneziageo-bbr.conf</code>, <code class="language-plaintext highlighter-rouge">tcp_bbr</code> in <code class="language-plaintext highlighter-rouge">/etc/modules-load.d</code>). From the container it prints the commands for the host. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server bbr on</code> and <code class="language-plaintext highlighter-rouge">bbr off</code>.</p>
+
+<h2 id="geo-and-dns">Geo and DNS</h2>
+
+<p><strong>28 <code class="language-plaintext highlighter-rouge">Update Geo Files</code>.</strong> Downloads the enabled geo sources of the panel now, like “Update all” on the <a href="panel/geo.html">Geo lists</a> page.</p>
+
+<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Prints the settings of the resolver (<code class="language-plaintext highlighter-rouge">dns show</code>) and offers to turn it on or off; if the upstream servers are asked in plain DNS, it offers to replace them with those a fresh panel starts with, over HTTPS. When the resolver is on and ufw keeps the clients of some interfaces from it, the item offers to let them in, as sub-item 13 of item 23 does. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> with a question, <code class="language-plaintext highlighter-rouge">dns open</code>. More in <a href="panel/dns.html">DNS</a>.</p>
+
+<h2 id="commands">Commands</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server</code></td>
+      <td>open the menu</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">install [--restore &lt;file&gt;] [--answers &lt;file&gt;]</code></td>
+      <td>look the host over, ask for what is needed and install the panel; on a database backup from another panel; with answers from a file</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">restore &lt;file&gt;</code></td>
+      <td>put a database backup downloaded from a panel in place of the database</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">update</code>, <code class="language-plaintext highlighter-rouge">update beta</code></td>
+      <td>move the panel to the newest release of the channel, with pre-releases for <code class="language-plaintext highlighter-rouge">beta</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rollback</code></td>
+      <td>go back to the previous release</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">uninstall</code></td>
+      <td>take the panel off the host together with the short commands of the menu</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">settings</code></td>
+      <td>what the panel answers with, its interfaces and what the host carries</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">start</code>, <code class="language-plaintext highlighter-rouge">stop</code>, <code class="language-plaintext highlighter-rouge">restart</code>, <code class="language-plaintext highlighter-rouge">status</code>, <code class="language-plaintext highlighter-rouge">log</code></td>
+      <td>the service and its log</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">enable</code>, <code class="language-plaintext highlighter-rouge">disable</code></td>
+      <td>whether the panel starts with the host</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bbr on</code>, <code class="language-plaintext highlighter-rouge">bbr off</code></td>
+      <td>BBR with the <code class="language-plaintext highlighter-rouge">fq</code> queue, now and at boot</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code></td>
+      <td>the resolver for the clients</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns open</code></td>
+      <td>let the clients of the interfaces ufw keeps from the resolver reach it</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;utility command&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">user</code>, <code class="language-plaintext highlighter-rouge">role</code>, <code class="language-plaintext highlighter-rouge">token</code>, <code class="language-plaintext highlighter-rouge">panel</code>, <code class="language-plaintext highlighter-rouge">endpoint</code>, <code class="language-plaintext highlighter-rouge">subscriptions</code>, <code class="language-plaintext highlighter-rouge">import</code>, <code class="language-plaintext highlighter-rouge">device</code>, <code class="language-plaintext highlighter-rouge">family</code>, <code class="language-plaintext highlighter-rouge">geo</code>, <code class="language-plaintext highlighter-rouge">dns</code>, <code class="language-plaintext highlighter-rouge">init</code>, <code class="language-plaintext highlighter-rouge">login</code>, <code class="language-plaintext highlighter-rouge">whoami</code>, <code class="language-plaintext highlighter-rouge">update status</code>, see <a href="cli.html">Utility</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">help</code></td>
+      <td>the list of commands</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Certificates · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="The certificate of the panel: a Let&#39;s Encrypt domain or your own files.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/certificates.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/certificates.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/certificates.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/panel/certificates.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/panel/certificates.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/certificates.html">Service</a>
+  <a href="/amneziageo_server/docker/panel/certificates.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html" aria-current="page">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/docker/panel/settings.html">Settings</a></li>
+  </ol>
+</nav>
+
+        <h1 id="certificates">Certificates</h1>
+
+<p>The “Certificates” tab sets the certificate under which the panel answers over HTTPS. With it the TCP services ports of the interfaces and the subscriptions on the port of the panel answer over TLS too. Without a certificate the panel answers in plain HTTP, and the services ports under a certificate the panel makes itself at the start.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/certificates.png" alt="Certificates tab: the domain of the certificate and the paths of the certificate and its key" width="1440" height="900" loading="lazy" /><figcaption>The panel without a certificate of its own.</figcaption></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Certificate domain</td>
+      <td>a directory from <code class="language-plaintext highlighter-rouge">/etc/letsencrypt/live</code>: choosing a domain fills the two paths below with its <code class="language-plaintext highlighter-rouge">fullchain.pem</code> and <code class="language-plaintext highlighter-rouge">privkey.pem</code>; “No certificate” takes the certificate off; “A certificate of its own” opens the fields for your own files</td>
+    </tr>
+    <tr>
+      <td>Certificate path</td>
+      <td>the chain in PEM</td>
+    </tr>
+    <tr>
+      <td>Certificate key path</td>
+      <td>the private key of this chain, taken together with it</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Saving reads both files and refuses one that does not load, with a code that names the file; the certificate takes effect after “Restart”. The directory of the domains is set by <code class="language-plaintext highlighter-rouge">Web__CertificateRoot</code>, <code class="language-plaintext highlighter-rouge">/etc/letsencrypt/live</code> by default. The file is read again whenever it changes on the disk, so a renewed certificate is taken without a restart. A certificate missing from the disk at the start stops the server. The certificate is read inside the container, so its directory must be in <code class="language-plaintext highlighter-rouge">volumes</code>: <code class="language-plaintext highlighter-rouge">/etc/letsencrypt:/etc/letsencrypt:ro</code>; the menu adds this line itself.</p>
+
+<h2 id="lets-encrypt">Let’s Encrypt</h2>
+
+<p>A certificate for the name of the server is got by item 22 of the console <a href="../menu.html">menu</a> <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>: it checks that the name resolves and TCP 80 is free, installs <code class="language-plaintext highlighter-rouge">certbot</code>, opens 80 in ufw, gets a certificate with an RSA 2048 key by the HTTP-01 check, enables the renewal timer <code class="language-plaintext highlighter-rouge">certbot.timer</code>, puts the certificate on the panel and offers to open the panel on every address of the host. The question about the name of the server at the installation does the same. The files are taken by their paths in <code class="language-plaintext highlighter-rouge">live</code>, not as copies: at renewal <code class="language-plaintext highlighter-rouge">certbot</code> updates the links in <code class="language-plaintext highlighter-rouge">live</code>, and the panel reads the file again by itself. For renewal the name must point at the server and TCP 80 must stay reachable from outside: <code class="language-plaintext highlighter-rouge">certbot</code> listens on it only during the check.</p>
+
+<p>The RSA key is needed by Android before version 14: the chain of such a certificate goes up to the ISRG Root X1 root. <code class="language-plaintext highlighter-rouge">certbot</code> 2 issues an ECDSA key by default, with a chain up to ISRG Root X2, which older Android does not have, and the subscription does not download there. The menu issues a certificate of the same name with an ECDSA key again, with RSA (<code class="language-plaintext highlighter-rouge">--force-renewal</code>); a <code class="language-plaintext highlighter-rouge">certbot</code> older than 1.10 does not know the <code class="language-plaintext highlighter-rouge">--key-type</code> key and issues RSA by itself. By hand: <code class="language-plaintext highlighter-rouge">certbot certonly --standalone --preferred-challenges http --key-type rsa --rsa-key-size 2048 --cert-name &lt;name&gt; -d &lt;name&gt;</code>.</p>
+
+<p>The “Services” card on the <a href="overview.html#services">Overview</a> shows each certificate file with its end date and warns 14 days ahead: “Runs out in N d.”.</p>
+
+<p>The same settings in the environment of the panel: <code class="language-plaintext highlighter-rouge">Web__Certificate</code> and <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code>; they hold until the panel has written its own path, see <a href="server.html#first-start">First start</a>.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The certificate takes a chain and a key by their paths</td>
+      <td>one path of the two is set</td>
+    </tr>
+    <tr>
+      <td>The folder of the certificate file does not exist; The certificate file is not found; The certificate path names a folder, not a file; The panel has no access to the certificate file; The certificate file does not read; The certificate file is empty; The file named holds no valid certificate</td>
+      <td>the chain</td>
+    </tr>
+    <tr>
+      <td>The folder of the key file does not exist; The key file is not found; The key path names a folder, not a file; The panel has no access to the key file; The key file does not read; The key file is empty; The file named holds no valid private key; The private key is locked by a password; The private key does not match the certificate</td>
+      <td>the key</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

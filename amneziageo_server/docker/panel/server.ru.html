@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сервер · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Адрес, порт, путь и язык панели, шаблон имени конфигурации, предварительные версии.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/server.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/server.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/server.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/panel/server.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/server.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/panel/server.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html" aria-current="page">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a></li>
+  </ol>
+</nav>
+
+        <h1 id="сервер">Сервер</h1>
+
+<p>Вкладка «Сервер» задаёт, где отвечает панель, и несколько настроек панели целиком. Адрес, порт и путь вступают в силу после «Перезапустить», язык, шаблон имени и предварительные версии - сразу.</p>
+
+<h2 id="панель">Панель</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Слушать на адресах</td>
+      <td>адреса хоста, на которых отвечает панель; «Все адреса» - на каждом адресе хоста</td>
+    </tr>
+    <tr>
+      <td>Отвечать доменам</td>
+      <td>имена, на которые панель отвечает; «Любой домен» - на любое. Запрос с другим именем получает 404, с петли пропускается</td>
+    </tr>
+    <tr>
+      <td>Порт</td>
+      <td>TCP-порт панели, 8443, пока не задан другой. Закрытый брандмауэром порт назван под полем с кнопкой «Открыть» или «Открыть при сохранении»; новый порт, который брандмауэр закрывает, не сохраняется, пока его не открыли, см. <a href="interfaces.ru.html#порты-в-брандмауэре">Порты в брандмауэре</a></td>
+    </tr>
+    <tr>
+      <td>Путь</td>
+      <td>что идёт после порта: <code class="language-plaintext highlighter-rouge">/</code> - корень, <code class="language-plaintext highlighter-rouge">/panel/</code> - панель под этим путём, а всё вне его отвечает 404</td>
+    </tr>
+    <tr>
+      <td>Язык</td>
+      <td>язык, на котором открывается панель, пока браузер не выбрал свой</td>
+    </tr>
+    <tr>
+      <td>Шаблон имени конфигурации</td>
+      <td>имя, под которым конфигурация клиента идёт в файле, ссылке и подписке, см. ниже</td>
+    </tr>
+    <tr>
+      <td>Получать предварительные версии</td>
+      <td>предлагать ли предварительные выпуски панели; панель пересматривает релизы сразу после сохранения, см. <a href="overview.ru.html#обновление">Обновление</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/server.png" alt="Вкладка «Сервер»: адреса и домены, порт, путь, язык, шаблон имени конфигурации с примером, предварительные версии" width="1440" height="900" loading="lazy" /><figcaption>Вкладка «Сервер» настроек.</figcaption></figure>
+
+<p>После перезапуска, который перевёз панель, страница сама переходит на новый адрес: на новый путь на том же адресе, а на новый порт и схему тоже, если страница открыта на порту, который слушает панель.</p>
+
+<p>Панель может отвечать и на TCP-порту сервисов интерфейсов: достаточно назвать здесь тот же порт. Тогда hello, замер скорости, WebSocket туннеля и подписки отвечает она сама на этом порту, своего слушателя для него не поднимается, и сервер отвечает миру одним TCP-портом. Такой порт всегда отвечает по TLS: под сертификатом панели, когда он есть, иначе под сертификатом, который панель делает себе. Отказывается только путь, под которым на этом порту приходит WebSocket интерфейса: «Путь на этом порту занят WebSocket интерфейса».</p>
+
+<h2 id="первый-старт">Первый старт</h2>
+
+<p>Пока у панели нет своих настроек, что слушать, говорит список <code class="language-plaintext highlighter-rouge">Web__Listen__&lt;n&gt;</code> в окружении: <code class="language-plaintext highlighter-rouge">*:8443</code> - все адреса хоста, <code class="language-plaintext highlighter-rouge">127.0.0.1:8443</code> - один адрес, <code class="language-plaintext highlighter-rouge">[::1]:8443</code> - адрес IPv6, <code class="language-plaintext highlighter-rouge">lo:8443</code> - адреса интерфейса <code class="language-plaintext highlighter-rouge">lo</code>, <code class="language-plaintext highlighter-rouge">wgadmin:8443</code> - адреса туннеля, чтобы панель отвечала только внутри него. Образ и <code class="language-plaintext highlighter-rouge">compose.yaml</code> дают <code class="language-plaintext highlighter-rouge">127.0.0.1:8443</code>. На первом старте список становится настройками панели: порт первой записи и адреса записей с этим портом; дальше правит панель, и список читается снова, только если настройки убрать из базы (<code class="language-plaintext highlighter-rouge">amneziageo-server panel reset</code>).</p>
+
+<p>Путь приходит вместе с ними: панель без настроек берёт <code class="language-plaintext highlighter-rouge">/&lt;16 букв и цифр&gt;/</code>, придумывает его один раз и пишет в журнал строкой <code class="language-plaintext highlighter-rouge">the panel answers from *:8443 under /&lt;путь&gt;/</code>; <code class="language-plaintext highlighter-rouge">Web__Path=/</code> в окружении ставит её в корень. Команда <code class="language-plaintext highlighter-rouge">amneziageo-server panel set</code>, данная до первого старта, записывает те же настройки первой, из переменных, под которыми работает, и меняет только то, что названо. Панель, чей адрес держит другая программа, пишет одну строку <code class="language-plaintext highlighter-rouge">the panel did not start: ... address already in use; free the port or move the panel with 'amneziageo-server panel set --port &lt;порт&gt;'</code> и выходит с кодом 1; compose запускает её снова каждые три секунды, пока порт не освободится или панель не переедет.</p>
+
+<p>За обратным прокси панель читает <code class="language-plaintext highlighter-rouge">X-Forwarded-Host</code>, <code class="language-plaintext highlighter-rouge">X-Forwarded-Proto</code> и <code class="language-plaintext highlighter-rouge">X-Forwarded-For</code> только от адресов из <code class="language-plaintext highlighter-rouge">Web__Proxies__&lt;n&gt;</code>; так подписка клиента несёт имя, по которому клиенты достают сервер, а не внутренний адрес. Имя, названное в панели, сильнее: подписка берёт свой домен, потом домен панели и только потом хост запроса.</p>
+
+<h2 id="шаблон-имени-конфигурации">Шаблон имени конфигурации</h2>
+
+<p>Имя конфигурации в файле, ссылке <code class="language-plaintext highlighter-rouge">vpn://</code> и подписке собирается по шаблону, <code class="language-plaintext highlighter-rouge">{HOST}-{INTERFACE}-{CLIENT}</code>, пока не задан другой. Шаблон - текст с подстановками в фигурных скобках, в любом регистре:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Подстановка</th>
+      <th>Что даёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{HOST}</code></td>
+      <td>хост интерфейса или хост запроса, если интерфейс его не называет</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{INTERFACE}</code></td>
+      <td>имя интерфейса</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{CLIENT}</code></td>
+      <td>имя клиента</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{ID}</code></td>
+      <td>номер клиента</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{PORT}</code></td>
+      <td>порт интерфейса</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{NOTE}</code></td>
+      <td>заметка клиента</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{DATE}</code></td>
+      <td>день, когда клиент добавлен, по UTC</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Подстановка, которая вышла пустой, забирает с собой разделитель после неё (<code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">_</code>, <code class="language-plaintext highlighter-rouge">.</code>, <code class="language-plaintext highlighter-rouge">|</code> или пробел), имя теряет разделители по краям, а имя, от которого ничего не осталось, - момент добавления клиента до миллисекунды. В имени файла знаки <code class="language-plaintext highlighter-rouge">\ / : * ? " &lt; &gt; |</code> заменяются на <code class="language-plaintext highlighter-rouge">_</code>. Страница показывает имя по мере набора на примере первого клиента; шаблон с неизвестной подстановкой пишет «Неизвестная подстановка: <список>», длиннее 128 знаков - «Шаблон имени длиннее 128 символов».</список></p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Порт вне диапазона 1-65535; Порт занят другой программой; Порт занят: <имя></имя></td>
+      <td>порт</td>
+    </tr>
+    <tr>
+      <td>Адрес, на котором слушать, не разобран; Домен не разобран; Путь панели не разобран</td>
+      <td>адреса, домены, путь</td>
+    </tr>
+    <tr>
+      <td>Путь на этом порту занят WebSocket интерфейса</td>
+      <td>путь на общем порту</td>
+    </tr>
+    <tr>
+      <td>Такого языка в панели нет</td>
+      <td>язык</td>
+    </tr>
+    <tr>
+      <td>В шаблоне имени неизвестная подстановка; Шаблон имени длиннее 128 символов</td>
+      <td>шаблон имени</td>
+    </tr>
+    <tr>
+      <td>Сетевой экран сервера не принял порт</td>
+      <td>брандмауэр</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

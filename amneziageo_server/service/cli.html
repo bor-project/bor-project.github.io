@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Utility · Service · AmneziaGeo Server</title>
+    <meta name="description" content="amneziageo-server commands for the console and scripts.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/cli.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/cli.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/cli.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/cli.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/cli.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/cli.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/cli.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html" aria-current="page">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+  </ol>
+</nav>
+
+        <h1 id="utility">Utility</h1>
+
+<p>The utility is the console of the server: it works with the same database as the panel and does what cannot be done over HTTP before the first sign-in, and everything else from scripts as well. It lies in the release as <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/AmneziaGeo.Server.Cli</code>, and the <code class="language-plaintext highlighter-rouge">amneziageo-server</code> menu passes it the commands it does not know itself: <code class="language-plaintext highlighter-rouge">amneziageo-server user list</code>. A member of the <code class="language-plaintext highlighter-rouge">amneziageo</code> group runs it without <code class="language-plaintext highlighter-rouge">sudo</code>; reading the interfaces of the kernel needs root. <code class="language-plaintext highlighter-rouge">amneziageo-server help</code> prints the commands of the menu, the utility without a command prints its own.</p>
+
+<p>The utility asks for a password in the terminal; <code class="language-plaintext highlighter-rouge">--generate</code> makes one up and prints it once, <code class="language-plaintext highlighter-rouge">--permanent</code> does not require a change at the first sign-in. Commands that remove something ask for confirmation, <code class="language-plaintext highlighter-rouge">--yes</code> answers for you.</p>
+
+<h2 id="sign-in-and-accounts">Sign-in and accounts</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">init [--user &lt;login&gt;] [--generate] [--permanent]</code></td>
+      <td>the first administrator, while the panel has no enabled one; without <code class="language-plaintext highlighter-rouge">--user</code>, the account of the host the utility runs as. Its last line names the port and the path of the panel</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">login [--user &lt;login&gt;] [--json]</code></td>
+      <td>sign in and print the session tokens</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">refresh &lt;token&gt;</code></td>
+      <td>exchange a refresh token for a new pair</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whoami</code></td>
+      <td>what the panel thinks of the account of the host the utility runs as</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user list</code></td>
+      <td>accounts with their role and state</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user add &lt;login&gt; [--role &lt;role&gt;] [--host [--key &lt;public key&gt;]] [--generate] [--permanent]</code></td>
+      <td>an account of the panel; <code class="language-plaintext highlighter-rouge">--host</code> makes it a user of the host as well, with an ssh key</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user passwd &lt;login&gt; [--generate] [--permanent]</code></td>
+      <td>a new password</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user role &lt;login&gt; &lt;role&gt;</code></td>
+      <td>the role</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user enable</code>, <code class="language-plaintext highlighter-rouge">disable</code>, <code class="language-plaintext highlighter-rouge">remove &lt;login&gt;</code></td>
+      <td>enable, disable, remove</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">role list</code>, <code class="language-plaintext highlighter-rouge">role add &lt;code&gt; [--title &lt;title&gt;] &lt;permission&gt;...</code>, <code class="language-plaintext highlighter-rouge">role set &lt;code&gt; [--title &lt;title&gt;] [&lt;permission&gt;...]</code>, <code class="language-plaintext highlighter-rouge">role remove &lt;code&gt; [--yes]</code></td>
+      <td>roles; the permissions are <code class="language-plaintext highlighter-rouge">state:read</code>, <code class="language-plaintext highlighter-rouge">clients:write</code>, <code class="language-plaintext highlighter-rouge">interfaces:write</code>, <code class="language-plaintext highlighter-rouge">routing:write</code>, <code class="language-plaintext highlighter-rouge">access:write</code>, <code class="language-plaintext highlighter-rouge">updates:write</code>, <code class="language-plaintext highlighter-rouge">backup:read</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">token list</code>, <code class="language-plaintext highlighter-rouge">token add &lt;name&gt; --role &lt;role&gt; [--days &lt;n&gt;]</code>, <code class="language-plaintext highlighter-rouge">token revoke &lt;id&gt; [--yes]</code></td>
+      <td>tokens for scripts; the secret is printed once as the last line</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="panel">Panel</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel show</code></td>
+      <td>where the panel answers</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel get port</code>, <code class="language-plaintext highlighter-rouge">path</code>, <code class="language-plaintext highlighter-rouge">listen</code>, <code class="language-plaintext highlighter-rouge">domains</code>, <code class="language-plaintext highlighter-rouge">certificate</code>, <code class="language-plaintext highlighter-rouge">key</code>, <code class="language-plaintext highlighter-rouge">opened</code>, <code class="language-plaintext highlighter-rouge">channel</code></td>
+      <td>one value, for scripts</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel set [--port &lt;n&gt;] [--path &lt;path&gt; | random | /] [--listen &lt;addresses&gt; | all] [--domains &lt;names&gt; | none] [--certificate &lt;chain&gt; --key &lt;key&gt; | --certificate none] [--opened on | off] [--channel stable | test]</code></td>
+      <td>the settings of the “Server” and “Certificates” tabs; <code class="language-plaintext highlighter-rouge">--opened</code> keeps the port of the panel open in the firewall, <code class="language-plaintext highlighter-rouge">--channel</code> is the release channel. Given before the first start, it writes the settings first, see <a href="panel/server.html#first-start">First start</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel reset [--yes]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">127.0.0.1</code>, port 8443, a new random path, no certificate</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">subscriptions show</code>, <code class="language-plaintext highlighter-rouge">subscriptions get &lt;name&gt;</code>, <code class="language-plaintext highlighter-rouge">subscriptions set --opened on | off</code></td>
+      <td>subscriptions: show, one value, keep the port open</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">update status</code>, <code class="language-plaintext highlighter-rouge">update check</code>, <code class="language-plaintext highlighter-rouge">update apply [--beta]</code></td>
+      <td>updates: how the last one went, look at the releases now, install the newest; the menu calls <code class="language-plaintext highlighter-rouge">apply</code> in items 2 and 3</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">backup check &lt;file&gt;</code></td>
+      <td>check a database backup file</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The settings change in the database; the panel takes the address, port, path and certificate after a restart, and the menu restarts it by itself after every <code class="language-plaintext highlighter-rouge">panel set</code>.</p>
+
+<h2 id="interfaces-and-clients">Interfaces and clients</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">endpoint list</code></td>
+      <td>interfaces with their port and who keeps the port open: the panel or the host</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">endpoint open &lt;name&gt;</code>, <code class="language-plaintext highlighter-rouge">endpoint close &lt;name&gt;</code></td>
+      <td>keep the ports of an interface open in the firewall or leave them to the host</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">endpoint default &lt;name&gt;</code></td>
+      <td>make the interface the one a new client goes on; <code class="language-plaintext highlighter-rouge">endpoint list</code> marks it with <code class="language-plaintext highlighter-rouge">default</code> at the end of the line</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">import endpoint &lt;file.conf&gt; [--name &lt;name&gt;] [--host &lt;address&gt;] [--dns &lt;list&gt;] [--allowed &lt;list&gt;]</code></td>
+      <td>an interface from an <code class="language-plaintext highlighter-rouge">awg-quick</code> file, with its keys and obfuscation</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">import peers &lt;file.conf&gt; [--endpoint &lt;name&gt;]</code></td>
+      <td>the peers of an interface file as clients without private keys</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">import clients &lt;file.json&gt; [--endpoint &lt;name&gt;] [--v6 &lt;prefix&gt;]</code></td>
+      <td>clients from a file in which the host kept them with private keys</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device list</code></td>
+      <td>the <code class="language-plaintext highlighter-rouge">amneziawg</code> interfaces in the kernel</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device show [name] [--secrets]</code></td>
+      <td>an interface with its peers, as the kernel holds it</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device set &lt;name&gt; [--key &lt;base64&gt;] [--generate] [--port &lt;n&gt;] [--fwmark &lt;n&gt;] [--shape jc=4,jmin=40,...] [--i1 &lt;spec&gt;] [--hpk &lt;base64&gt;]</code></td>
+      <td>write the settings of an interface into the kernel directly, for debugging</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device peer &lt;name&gt; &lt;public key&gt; [--allowed &lt;a,b&gt;] [--endpoint &lt;host:port&gt;] [--preshared &lt;base64&gt;] [--keepalive &lt;s&gt;] [--replace-ips] [--update-only] [--remove]</code></td>
+      <td>a peer of an interface in the kernel, for debugging</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">family [name]</code></td>
+      <td>the number of the netlink family</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="language-plaintext highlighter-rouge">device</code> and <code class="language-plaintext highlighter-rouge">family</code> commands talk to the kernel past the database of the panel: whatever they changed, the panel puts back by its own settings the next time it applies them. Clients, rules, channels and templates are not edited from the console: that is the <a href="../api.html">HTTP API</a> with a token from <code class="language-plaintext highlighter-rouge">token add</code>.</p>
+
+<h2 id="geo-and-dns">Geo and DNS</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geo update</code></td>
+      <td>download the enabled geo sources now</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns show</code></td>
+      <td>the settings of the resolver</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns get enabled</code>, <code class="language-plaintext highlighter-rouge">port</code>, <code class="language-plaintext highlighter-rouge">upstreams</code>, <code class="language-plaintext highlighter-rouge">encrypted</code>, <code class="language-plaintext highlighter-rouge">outbound</code></td>
+      <td>one value; <code class="language-plaintext highlighter-rouge">encrypted</code> is <code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">none</code> or <code class="language-plaintext highlighter-rouge">partly</code>: whether the upstream servers are asked encrypted</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns set --enabled on | off [--upstreams &lt;servers&gt; | default]</code></td>
+      <td>turn the resolver on or off, set the upstream servers or bring back those a fresh panel starts with</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The menu commands <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> and <code class="language-plaintext highlighter-rouge">dns off</code> call the same with questions.</p>
+
+<h2 id="example">Example</h2>
+
+<p>A token for a day, the list of clients through the API and revoking the token:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server token add nightly --role admin --days 1
+curl -s -H "Authorization: Bearer agt_..." https://panel.example.com:8443/api/clients
+amneziageo-server token revoke &lt;id&gt; --yes
+</code></pre></div></div>
+
+<p>Every command takes <code class="language-plaintext highlighter-rouge">--db &lt;file&gt;</code> to work with another database, for example a copy.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пользователи и роли · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Учётные записи, роли с правами и токены для скриптов.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/users.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/users.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/users.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/users.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/users.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/users.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html" aria-current="page">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a></li>
+  </ol>
+</nav>
+
+        <h1 id="пользователи-и-роли">Пользователи и роли</h1>
+
+<p>Вкладка «Пользователи и роли» несёт три таблицы: «Пользователи», «Роли» и «Токены». В панель входят учётной записью панели по паролю; скрипты - долгоживущим токеном, который действует от имени роли.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/users.png" alt="«Пользователи и роли»: пользователи admin и root, встроенная роль Administrator, токен" width="1440" height="900" loading="lazy" /><figcaption>Администратор, пользователь системы и токен для скриптов.</figcaption></figure>
+
+<h2 id="пользователи">Пользователи</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Колонка</th>
+      <th>Что показывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя</td>
+      <td>имя для входа</td>
+    </tr>
+    <tr>
+      <td>Отображаемое имя</td>
+      <td>как учётная запись подписана</td>
+    </tr>
+    <tr>
+      <td>Тип учётной записи</td>
+      <td>«Панель» или «Системная» - учётная запись, которая стоит и за пользователем хоста</td>
+    </tr>
+    <tr>
+      <td>Роль</td>
+      <td>роль или «без роли»</td>
+    </tr>
+    <tr>
+      <td>Статус</td>
+      <td>«включена» или «выключена»</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>«Добавить» открывает новую учётную запись: имя (строчные буквы, цифры, точка, дефис и подчёркивание, с буквы), отображаемое имя, роль, пароль с кнопкой «Сгенерировать», «Потребовать смену пароля» (новый пользователь меняет выданный пароль при первом входе), «Пользователь системы» с полем «Открытый ключ ssh», см. ниже. Страница учётной записи меняет роль и состояние, «Пароль» в меню строки ставит новый пароль, «Удалить» убирает учётную запись с её сессиями. Свой пароль каждый меняет в меню учётной записи в шапке. Пароль короче восьми знаков не принимается (<code class="language-plaintext highlighter-rouge">AMNEZIAGEO_MIN_PASSWORD</code> в окружении задаёт другой порог); десять промахов закрывают учётную запись на пятнадцать минут. Последнюю включённую учётную запись с правом «Управление доступом» нельзя понизить, выключить или удалить, и с собственной учётной записью этого тоже не сделать.</p>
+
+<p>Имя, которое носит пользователь хоста, за учётной записью панели не закрепляется: «Такой пользователь есть на сервере, имя оставлено ему».</p>
+
+<h3 id="пользователи-системы">Пользователи системы</h3>
+
+<p>Учётная запись с отметкой «Пользователь системы» стоит и за пользователем хоста: панель заводит пользователя (<code class="language-plaintext highlighter-rouge">useradd</code> с домашним каталогом и <code class="language-plaintext highlighter-rouge">/bin/bash</code>, или дополняет существующего), вводит его в группы <code class="language-plaintext highlighter-rouge">amneziageo</code>, которая достаёт до файлов панели, и <code class="language-plaintext highlighter-rouge">amneziageo-&lt;роль&gt;</code>, которая несёт роль, кладёт открытый ключ из поля в его <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code>; пароля хоста не ставит, пользователь входит на хост по ключу. Файлы панели отдаются группе <code class="language-plaintext highlighter-rouge">amneziageo</code> с правами <code class="language-plaintext highlighter-rouge">0660</code>, так что член группы запускает <code class="language-plaintext highlighter-rouge">AmneziaGeo.Server.Cli</code> без <code class="language-plaintext highlighter-rouge">sudo</code>; поднятие интерфейсов всё равно требует root. Выключение закрывает вход на хост и выводит из групп, включение возвращает; удаление выводит из групп, а пользователя хоста с его домом оставляет. Смена роли переводит между группами ролей.</p>
+
+<p>Пользователь хоста входит в панель только паролем панели: запрос из браузера не несёт учётной записи, под которой он работает; в консоли <code class="language-plaintext highlighter-rouge">whoami</code> показывает, что панель думает об учётной записи хоста, от которой запущена утилита. Группа <code class="language-plaintext highlighter-rouge">amneziageo-admin</code> даёт роль <code class="language-plaintext highlighter-rouge">admin</code> при входе с хоста (<code class="language-plaintext highlighter-rouge">Auth__HostGroups</code>), root считается администратором. В консольном меню пункт 7 предлагает сделать пользователя хоста администратором панели, установка - при совпадении логина первого администратора с пользователем хоста.</p>
+
+<h2 id="роли">Роли</h2>
+
+<p>Право - то, что роль открывает; роль несёт набор прав, а учётная запись несёт роль.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Право</th>
+      <th>Что открывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Чтение состояния</td>
+      <td>чтение всего: «Обзор», списки, проверка маршрута</td>
+    </tr>
+    <tr>
+      <td>Управление клиентами</td>
+      <td>клиенты, шаблоны, пресеты маршрутизации</td>
+    </tr>
+    <tr>
+      <td>Управление интерфейсами</td>
+      <td>интерфейсы и их порты</td>
+    </tr>
+    <tr>
+      <td>Управление маршрутизацией</td>
+      <td>правила, базовые списки, каналы, гео, DNS</td>
+    </tr>
+    <tr>
+      <td>Управление доступом</td>
+      <td>«Настройки»: сервер, сертификаты, подписки, пользователи, роли, токены, диагностика, восстановление из копии</td>
+    </tr>
+    <tr>
+      <td>Обновление панели</td>
+      <td>«Обновить» на «Обзоре»</td>
+    </tr>
+    <tr>
+      <td>Скачивание бэкапа</td>
+      <td>«Скачать копию» на «Обзоре»</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Таблица «Роли» показывает код, название, права и число учётных записей. Встроенная роль <code class="language-plaintext highlighter-rouge">admin</code> несёт все права, не удаляется и не урезается: при каждом старте её права выравниваются с правами выпуска, так что новое право доходит до администратора само. Свои роли заводятся «Добавить»: код (как имя учётной записи), название и отметки прав. Роль, выданная учётным записям («Роль выдана учётным записям») или несущая токены («Под эту роль выпущены токены»), не удаляется.</p>
+
+<h2 id="токены">Токены</h2>
+
+<p>Токен для скриптов и других служб выпускается под роль и действует с её правами на момент вызова, так что смена прав роли доходит до токенов сразу. Токен не принадлежит учётной записи: выключение и удаление учётных записей его не трогают, остановить его можно только отзывом или сроком. Он начинается с <code class="language-plaintext highlighter-rouge">agt_</code>, идёт в том же заголовке <code class="language-plaintext highlighter-rouge">Authorization: Bearer</code>, что токен сессии, и хранится только хешем: секрет показывается один раз, при выпуске («Токен показывается один раз»).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Колонка</th>
+      <th>Что показывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Название</td>
+      <td>до 64 знаков, одно на панель</td>
+    </tr>
+    <tr>
+      <td>Роль</td>
+      <td>роль, от имени которой действует токен</td>
+    </tr>
+    <tr>
+      <td>Создан, Действует до</td>
+      <td>срок: 1-3650 дней или «без срока»</td>
+    </tr>
+    <tr>
+      <td>Использован</td>
+      <td>когда и с какого адреса токен применяли последний раз, «не использовался»</td>
+    </tr>
+    <tr>
+      <td>Статус</td>
+      <td>«действует» или «истёк»</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>«Добавить» спрашивает название, роль и срок в днях, «Отозвать» в меню строки отзывает. Из консоли то же делают <code class="language-plaintext highlighter-rouge">amneziageo-server token list</code>, <code class="language-plaintext highlighter-rouge">token add &lt;название&gt; --role &lt;роль&gt; [--days &lt;n&gt;]</code> и <code class="language-plaintext highlighter-rouge">token revoke &lt;id&gt;</code>. Как токен ходит в API - <a href="../../api.ru.html">HTTP API</a>.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя из строчных букв, цифр, точки, дефиса и подчёркивания, начинается с буквы; Такое имя уже занято; Такой пользователь есть на сервере, имя оставлено ему</td>
+      <td>имя учётной записи или роли</td>
+    </tr>
+    <tr>
+      <td>Пароль короче восьми символов</td>
+      <td>пароль</td>
+    </tr>
+    <tr>
+      <td>Такой роли нет; Такого права нет; Эту роль сервер держит неизменной; Роль выдана учётным записям; Под эту роль выпущены токены</td>
+      <td>роли</td>
+    </tr>
+    <tr>
+      <td>Это последний администратор; С собственной учётной записью так нельзя</td>
+      <td>защита от потери доступа</td>
+    </tr>
+    <tr>
+      <td>Открытый ключ не того вида, какой принимает хост</td>
+      <td>ключ ssh пользователя системы</td>
+    </tr>
+    <tr>
+      <td>Название токена: от 1 до 64 знаков; Токен с таким названием уже есть; Срок: целое число дней от 1 до 3650; Такого токена нет</td>
+      <td>токены</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

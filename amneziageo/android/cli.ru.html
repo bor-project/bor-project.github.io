@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Командная строка · Android · AmneziaGeo</title>
+    <meta name="description" content="Команды агента из консоли и скриптов">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/android/cli.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/android/cli.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/android/cli.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/android/cli.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/cli.ru.html">Windows</a>
+  <a href="/amneziageo/linux/cli.ru.html">Linux</a>
+  <a href="/amneziageo/android/cli.ru.html" aria-current="page">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/android/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/android/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/cli.ru.html" aria-current="page">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/android/index.ru.html">Android</a></li>
+  </ol>
+</nav>
+
+        <h1 id="командная-строка">Командная строка</h1>
+
+<p>Основной набор команд общий для всех трёх платформ: сборка <code class="language-plaintext highlighter-rouge">AmneziaGeo.Cli</code>, а поверх неё тонкий хост под каждую систему. Его дополняют команды отдельных платформ, например режим нескольких VPN на Windows. Всё идёт через агента по протоколу <code class="language-plaintext highlighter-rouge">IpcContract</code>, базу консоль не трогает - поэтому её правки сразу видят и агент, и интерфейс.</p>
+
+<h2 id="запуск">Запуск</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell am broadcast -a org.amneziageo.android.CLI -n org.amneziageo.android/.CliReceiver --es cmd "&lt;команда&gt;"
+</code></pre></div></div>
+
+<p>Ответ приходит в <code class="language-plaintext highlighter-rouge">data=</code> той же команды <code class="language-plaintext highlighter-rouge">adb</code>, целиком дублируется в logcat под тегом <code class="language-plaintext highlighter-rouge">AmneziaGeoCli</code>, а с <code class="language-plaintext highlighter-rouge">--es out &lt;путь&gt;</code> пишется в файл. Аргументы с дефисами передавайте массивом: <code class="language-plaintext highlighter-rouge">--esa args ops,--probe</code>. Приёмник закрыт разрешением <code class="language-plaintext highlighter-rouge">android.permission.DUMP</code>: оно есть у <code class="language-plaintext highlighter-rouge">adb shell</code> и его не получает обычное приложение. Интерфейс поднимать не нужно - приёмник запускает агента в своём процессе. Команде <code class="language-plaintext highlighter-rouge">up</code> нужно разрешение на VPN, которое система спрашивает один раз в окне приложения.</p>
+
+<h2 id="повседневное">Повседневное</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo status                   <span class="c"># что работает и что возьмёт следующее подключение</span>
+amneziageo doctor                   <span class="c"># проверки, на которых обычно спотыкается установка</span>
+amneziageo runtime                  <span class="c"># конфигурация, которую возьмёт следующее подключение</span>
+amneziageo <span class="nt">--json</span> config list       <span class="c"># вывод для скриптов</span>
+amneziageo sessions <span class="nt">--filter</span> youtube <span class="c"># каждый адрес, который решает туннель, и почему</span>
+amneziageo log <span class="nb">tail</span> <span class="nt">--level</span> info
+amneziageo tui                      <span class="c"># полноэкранная консоль по SSH</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo help</code> перечисляет все команды.</p>
+
+<h2 id="справочник-команд">Справочник команд</h2>
+
+<p>Глобальные ключи стоят перед командой: <code class="language-plaintext highlighter-rouge">--json</code> - JSON вместо таблиц, <code class="language-plaintext highlighter-rouge">--lang en|ru</code> - язык вывода (иначе <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_LANG</code>, иначе язык системы), <code class="language-plaintext highlighter-rouge">--timeout &lt;с&gt;</code> - сколько ждать ответа (загрузка баз требует больше), <code class="language-plaintext highlighter-rouge">--quiet</code> - только запрошенное, <code class="language-plaintext highlighter-rouge">--version</code> - версии клиента и агента, <code class="language-plaintext highlighter-rouge">--help</code>.</p>
+
+<h3 id="подключение">Подключение</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">status</code></td>
+      <td>что работает и что возьмёт следующее подключение</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">watch</code></td>
+      <td>следить за состоянием, пока не прервут</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">select &lt;конфиг&gt;</code></td>
+      <td>выбрать конфигурацию для следующего подключения</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">up [&lt;конфиг&gt;]</code></td>
+      <td>подключиться, при необходимости сначала выбрав</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">down</code></td>
+      <td>отключиться</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="конфигурации">Конфигурации</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config list</code></td>
+      <td>список; колонки INBOUND, SIGNAL и HOLD показывают переключатели конфигурации</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config show &lt;имя&gt;</code></td>
+      <td>текст wg-quick</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config link &lt;имя&gt;</code></td>
+      <td>ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> для передачи</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config import [&lt;имя&gt;] (--file &lt;путь&gt; \| --link &lt;url&gt; \| --text &lt;текст&gt; \| --stdin)</code></td>
+      <td>добавить; адрес <code class="language-plaintext highlighter-rouge">http(s)</code> читается как подписка</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config edit &lt;имя&gt; (--file &lt;путь&gt; \| --text &lt;текст&gt; \| --stdin)</code></td>
+      <td>заменить текст</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config rename &lt;имя&gt; &lt;новое&gt;</code></td>
+      <td>переименовать</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config copy &lt;имя&gt; &lt;новое&gt;</code></td>
+      <td>скопировать</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config remove &lt;имя&gt;</code></td>
+      <td>удалить</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config order &lt;имя&gt; [&lt;имя&gt;...]</code></td>
+      <td>порядок в каталоге</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config dns &lt;имя&gt; [&lt;серверы&gt;]</code></td>
+      <td>свои резолверы; без аргумента - сброс</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config exclusions &lt;имя&gt; (--file &lt;путь&gt; \| --stdin \| --list a,b,c \| --clear)</code></td>
+      <td>адреса и подсети мимо VPN</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config websocket &lt;имя&gt; on\|off [--host &lt;хост&gt;] [--port &lt;порт&gt;] [--mtu &lt;n&gt;] [--ipv6 on\|off] [--router on\|off]</code></td>
+      <td>транспорт WebSocket и соседние переключатели</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config mtu &lt;имя&gt; auto\|config\|&lt;число&gt;</code></td>
+      <td>размер пакета: подобранный, из текста или заданный</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config inbound &lt;имя&gt; off\|host\|network</code></td>
+      <td>входящие из VPN-сети: никто, сервер или вся сеть туннеля</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config routing &lt;имя&gt; on\|off</code></td>
+      <td>применять ли к конфигурации список маршрутизации</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config signal &lt;имя&gt; on\|off</code></td>
+      <td>разрешить ли серверу снимать туннель</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config hold &lt;имя&gt; on\|off</code></td>
+      <td>удерживать ли трафик, пока туннель переподключается</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config geo &lt;имя&gt; on\|off [правило...]</code></td>
+      <td>собственные правила раздельного туннеля конфигурации, без ролей</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="списки-маршрутизации">Списки маршрутизации</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing list</code></td>
+      <td>списки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing use &lt;id\|имя\|none&gt;</code></td>
+      <td>выбрать список; <code class="language-plaintext highlighter-rouge">none</code> оставляет решение за <code class="language-plaintext highlighter-rouge">AllowedIPs</code> конфигурации</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing show &lt;id\|имя&gt;</code></td>
+      <td>правила списка</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing create &lt;имя&gt; [правило...]</code></td>
+      <td>создать</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing set &lt;id\|имя&gt; [правило...]</code></td>
+      <td>заменить все правила</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing add &lt;id\|имя&gt; &lt;правило...&gt;</code></td>
+      <td>добавить; правило, которое уже есть, получает новую роль</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing delete-rule &lt;id\|имя&gt; &lt;правило...&gt;</code></td>
+      <td>удалить правила</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing remove &lt;id\|имя&gt;</code></td>
+      <td>удалить список</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing update &lt;id\|имя&gt;</code></td>
+      <td>взять новую версию списка, которую прислал его сервер</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing order &lt;имя&gt; [&lt;имя&gt;...]</code></td>
+      <td>порядок в разделе</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing settings &lt;id\|имя&gt;</code></td>
+      <td>настройки трафика</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">routing configure &lt;id\|имя&gt; [--exclusions &lt;a,b&gt;] [--exclusions-file &lt;путь&gt;] [--all-udp on\|off] [--global-proxy on\|off]</code></td>
+      <td>исключения, весь UDP через туннель, полный туннель</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Правило - <code class="language-plaintext highlighter-rouge">&lt;роль&gt;|&lt;запись&gt;</code>: роль <code class="language-plaintext highlighter-rouge">proxy</code>, <code class="language-plaintext highlighter-rouge">direct</code> или <code class="language-plaintext highlighter-rouge">block</code>, запись <code class="language-plaintext highlighter-rouge">geosite:&lt;категория&gt;</code>, <code class="language-plaintext highlighter-rouge">geoip:&lt;страна&gt;</code>, <code class="language-plaintext highlighter-rouge">domain:&lt;имя&gt;</code>, <code class="language-plaintext highlighter-rouge">app:&lt;id&gt;</code> либо адрес или диапазон CIDR. Запись без роли считается <code class="language-plaintext highlighter-rouge">proxy</code>.</p>
+
+<h3 id="гео-базы">Гео-базы</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geo list [--filter &lt;текст&gt;]</code></td>
+      <td>категории загруженных баз</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geo show &lt;правило&gt; [--limit &lt;n&gt;]</code></td>
+      <td>во что разворачивается категория</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geo update [&lt;источник&gt;]</code></td>
+      <td>скачать базы заново и пересобрать списки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geo check [&lt;источник&gt;]</code></td>
+      <td>есть ли новая версия, без скачивания</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geo download</code></td>
+      <td>добавить источники по умолчанию и скачать их</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">source list</code></td>
+      <td>источники</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">source add geosite\|geoip &lt;url&gt;</code></td>
+      <td>добавить источник</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">source edit &lt;имя&gt; geosite\|geoip &lt;url&gt;</code></td>
+      <td>изменить</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">source remove &lt;имя&gt;</code></td>
+      <td>удалить</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="подписки">Подписки</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sub list</code></td>
+      <td>подписки и что сообщает панель</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sub add &lt;url&gt; [&lt;имя&gt;]</code></td>
+      <td>прочитать подписку и добавить её конфигурации</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sub refresh [&lt;имя&gt;]</code></td>
+      <td>перечитать: новые появляются, изменённые перезаписываются</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sub remove &lt;имя&gt; [--configs]</code></td>
+      <td>удалить, с <code class="language-plaintext highlighter-rouge">--configs</code> вместе с её конфигурациями</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="настройки-агента">Настройки агента</h3>
+
+<p><code class="language-plaintext highlighter-rouge">settings show</code> печатает настройки, <code class="language-plaintext highlighter-rouge">settings set &lt;ключ&gt; &lt;значение&gt;</code> меняет одну.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ключ</th>
+      <th>Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log-level</code></td>
+      <td><code class="language-plaintext highlighter-rouge">error</code>, <code class="language-plaintext highlighter-rouge">warning</code>, <code class="language-plaintext highlighter-rouge">info</code>, <code class="language-plaintext highlighter-rouge">debug</code> или <code class="language-plaintext highlighter-rouge">trace</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">route-log</code></td>
+      <td><code class="language-plaintext highlighter-rouge">on</code> или <code class="language-plaintext highlighter-rouge">off</code>: писать в журнал маршруты и адреса доменов</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">survive-reboot</code></td>
+      <td><code class="language-plaintext highlighter-rouge">on</code> или <code class="language-plaintext highlighter-rouge">off</code>: подключаться заново после перезагрузки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">periodic-reconnect-enabled</code></td>
+      <td><code class="language-plaintext highlighter-rouge">on</code> или <code class="language-plaintext highlighter-rouge">off</code>: повторять подключение после обрыва</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">periodic-reconnect-interval-seconds</code></td>
+      <td>от 5 до 3600: наибольшая пауза между попытками</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">route-ttl-seconds</code></td>
+      <td>сколько секунд адрес держится на своём маршруте после последнего обращения</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns-transport</code></td>
+      <td><code class="language-plaintext highlighter-rouge">auto</code>, <code class="language-plaintext highlighter-rouge">plain</code> или <code class="language-plaintext highlighter-rouge">doh</code>: как спрашивается резолвер за туннелем</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">local-doh</code></td>
+      <td><code class="language-plaintext highlighter-rouge">auto</code>, <code class="language-plaintext highlighter-rouge">off</code> или <code class="language-plaintext highlighter-rouge">on</code>: как система доводится до резолвера клиента</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">subscription-auto-refresh-enabled</code></td>
+      <td><code class="language-plaintext highlighter-rouge">on</code> или <code class="language-plaintext highlighter-rouge">off</code>: перечитывать подписки по таймеру</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">subscription-refresh-interval-hours</code></td>
+      <td>от 1 до 168: как часто, если панель не задала свой интервал</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tunnel-notice</code></td>
+      <td><code class="language-plaintext highlighter-rouge">full</code> или <code class="language-plaintext highlighter-rouge">brief</code>: подробное или краткое уведомление туннеля</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="прокси-и-точка-доступа">Прокси и точка доступа</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">proxy show</code></td>
+      <td>где слушает прокси и что спрашивает</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">proxy on [--socks &lt;порт&gt;] [--http &lt;порт&gt;] [--anon on\|off] [--auth &lt;пользователь:пароль&gt;]... [--auth off]</code></td>
+      <td>включить</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">proxy off</code></td>
+      <td>выключить</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="журналы-и-диагностика">Журналы и диагностика</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log tail [--table ageo\|dns\|routes\|checks] [--limit &lt;n&gt;] [--level &lt;уровень&gt;] [--search &lt;текст&gt;]</code></td>
+      <td>хвост журнала: агента, резолвера, маршрутов или проверок</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log follow [--table ...] [--level ...] [--search ...] [--interval &lt;с&gt;]</code></td>
+      <td>следить за журналом</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log clear [--table ...]</code></td>
+      <td>очистить</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log export [--table ...] [--out &lt;путь&gt;]</code></td>
+      <td>сохранить в файл</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log say &lt;текст&gt;</code></td>
+      <td>отметка в журнале агента из скрипта</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">runtime</code></td>
+      <td>конфигурация, которую возьмёт следующее подключение</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sessions [--filter &lt;текст&gt;]</code></td>
+      <td>каждый адрес, который решает туннель, и почему</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">subnets</code></td>
+      <td>локальные подсети, готовые для исключений</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tunnel-subnets</code></td>
+      <td>приватные сети и адреса, до которых доходят конфигурации</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">apps [--filter &lt;текст&gt;]</code></td>
+      <td>что здесь можно назвать в правиле приложения</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">doctor</code></td>
+      <td>проверки, на которых спотыкается установка без окна</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">check</code></td>
+      <td>замер канала по звеньям с названием виновника</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">check channel [&lt;хост&gt;]</code></td>
+      <td>то же против названного назначения</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">check &lt;назначение&gt;</code></td>
+      <td>почему домен, адрес, <code class="language-plaintext highlighter-rouge">app:</code> или гео-правило идёт туда, куда идёт</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">diag collect</code></td>
+      <td>архив для поддержки со скрытыми ключами; печатает путь</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">update check</code></td>
+      <td>есть ли новая версия приложения</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="перенос">Перенос</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bundle export [--all] [--config &lt;имя&gt;]... [--list &lt;имя&gt;]... [--out &lt;путь&gt;]</code></td>
+      <td>файл с конфигурациями и списками</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bundle import (--file &lt;путь&gt; \| --stdin) [--policy new\|replace\|skip\|merge]</code></td>
+      <td>принять файл; <code class="language-plaintext highlighter-rouge">--policy</code> решает, что делать при совпадении имён</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="отладка">Отладка</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo log say <span class="s2">"начало прогона"</span> <span class="c"># отметка в журнале агента</span>
+amneziageo ops                      <span class="c"># операции протокола и команды, которые их вызывают</span>
+amneziageo ops <span class="nt">--probe</span>              <span class="c"># какие операции реализует агент этой платформы</span>
+amneziageo ipc &lt;операция&gt; <span class="o">[</span>арг...]  <span class="c"># вызвать любую операцию напрямую</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ops --probe</code> шлёт каждую операцию без аргументов: отказ от её обработчика значит, что операция есть, а отказ диспетчера - что её нет. Операции, которые без аргументов сделали бы работу по-настоящему - подключение, скачивание, удаление, - помечаются <code class="language-plaintext highlighter-rouge">-</code> и не отправляются.</p>
+
+<p>Переменные окружения: <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_LANG</code> - язык вывода без <code class="language-plaintext highlighter-rouge">--lang</code>, <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_CONNECT_WAIT</code> - сколько секунд ждать агента (по умолчанию 5).</p>
+
+<h2 id="коды-возврата">Коды возврата</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Код</th>
+      <th>Что означает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>готово</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>агент отказал</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ошибка в команде</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>агент недоступен</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>операция не реализована агентом этой платформы</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

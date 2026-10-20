@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Каналы · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Выходные подключения через хост или туннель к другому серверу и их группы.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/channels.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/channels.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/channels.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/panel/channels.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/channels.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/panel/channels.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html" aria-current="page">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a></li>
+  </ol>
+</nav>
+
+        <h1 id="каналы">Каналы</h1>
+
+<p>Канал - путь, которым трафик уходит с хоста: через сам хост, через туннель AmneziaWG, который хост держит как клиент другого сервера, или через такой же туннель внутри WebSocket к прокси <code class="language-plaintext highlighter-rouge">wstunnel</code>. У каждого канала своя метка: пакет с меткой уходит через этот канал. Группа собирает несколько каналов под одним именем. Правило называет канал или группу в поле «Канал».</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/channels.png" alt="Список каналов: канал direct через хост, готов" width="1440" height="900" loading="lazy" /><figcaption>Канал direct через хост.</figcaption></figure>
+
+<p>Страница «Каналы» делится на «Каналы» и «Группы». Список каналов называет тип, сервер, «fwmark / таблица», состояние («готов», «не поднят», «отказ» с причиной, «рукопожатия не было», «проверка не проходит», «выключен») и трафик в обе стороны; у канала через хост трафика нет, потому что у него нет своего интерфейса. Каналы переставляются стрелками, «Применить» перекладывает все каналы и правила на хост. Свежая панель начинает с одного канала через хост по имени <code class="language-plaintext highlighter-rouge">direct</code>.</p>
+
+<h2 id="канал">Канал</h2>
+
+<h3 id="типы">Типы</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Тип</th>
+      <th>Что несёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Через хост</td>
+      <td>выход самого хоста, без своего интерфейса</td>
+    </tr>
+    <tr>
+      <td>AmneziaWG</td>
+      <td>интерфейс AmneziaWG, который хост поднимает как клиент другого сервера</td>
+    </tr>
+    <tr>
+      <td>WebSocket</td>
+      <td>тот же интерфейс, чей UDP идёт внутри WebSocket к прокси <code class="language-plaintext highlighter-rouge">wstunnel</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="поля">Поля</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Включено</td>
+      <td>работает ли канал; правила через выключенный канал запирают трафик</td>
+    </tr>
+    <tr>
+      <td>Имя</td>
+      <td>имя интерфейса, до 15 знаков; группа не может взять имя канала и наоборот</td>
+    </tr>
+    <tr>
+      <td>Адрес, Порт</td>
+      <td>где достать сервер; у WebSocket - сервер за прокси и порт, на который прокси отдаёт туннель</td>
+    </tr>
+    <tr>
+      <td>Прокси websocket</td>
+      <td>прокси как <code class="language-plaintext highlighter-rouge">proxy.example.net</code> или <code class="language-plaintext highlighter-rouge">wss://user:secret@proxy.example.net:8443/token</code>; одно имя берёт порт сервера, адрес несёт порт, путь и учётные данные</td>
+    </tr>
+    <tr>
+      <td>Адрес интерфейса</td>
+      <td>диапазоны, которые несёт интерфейс, как их выдал сервер</td>
+    </tr>
+    <tr>
+      <td>Серверы имён</td>
+      <td>серверы, доступные через туннель</td>
+    </tr>
+    <tr>
+      <td>MTU, Keepalive</td>
+      <td>размер пакета и как часто держать путь открытым</td>
+    </tr>
+    <tr>
+      <td>Закрыть частные сети</td>
+      <td>не пускать клиентов через туннель в частные сети (<code class="language-plaintext highlighter-rouge">10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">172.16.0.0/12</code>, <code class="language-plaintext highlighter-rouge">192.168.0.0/16</code> и прочие), где живут сеть туннеля сервера и то, что за ним; у нового канала включено</td>
+    </tr>
+    <tr>
+      <td>Проверка доступности: Сервер имён, Период, с</td>
+      <td>сервер, которому канал шлёт вопрос по UDP под своей меткой, и как часто (5-3600 с); пусто - без проверки</td>
+    </tr>
+    <tr>
+      <td>Приватный ключ, Публичный ключ, Новые ключи</td>
+      <td>ключи интерфейса; публичный считается из приватного и отдаётся серверу</td>
+    </tr>
+    <tr>
+      <td>Публичный ключ сервера</td>
+      <td>ключ, по которому известен сервер</td>
+    </tr>
+    <tr>
+      <td>Общий ключ</td>
+      <td>ключ поверх рукопожатия, если сервер его просит</td>
+    </tr>
+    <tr>
+      <td>Обфускация</td>
+      <td>профиль AmneziaWG, который должен совпасть с сервером точно</td>
+    </tr>
+    <tr>
+      <td>Конфигурация клиента</td>
+      <td>поле внизу формы: вставьте <code class="language-plaintext highlighter-rouge">.conf</code>, который сервер AmneziaWG выдал клиенту, и «Прочитать» заполнит форму ключами, адресами, обфускацией и сервером</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/channel-form.png" alt="Форма нового канала AmneziaWG: имя, проверка доступности, адрес и порт сервера, адрес интерфейса, MTU, keepalive" width="1440" height="900" loading="lazy" /><figcaption>Канал AmneziaWG к другому серверу заполняется.</figcaption></figure>
+
+<p>Туннель без обфускации - обычный WireGuard. Канал WebSocket к другому серверу AmneziaGeo пишется как <code class="language-plaintext highlighter-rouge">wss://&lt;хост&gt;:&lt;порт сервисов&gt;/&lt;путь WebSocket интерфейса&gt;</code>: без учётных данных прокси получает токен из ключей канала и сервера и принимает любой сертификат фронта; без пути берётся <code class="language-plaintext highlighter-rouge">v1</code>, путь интерфейсов прежних выпусков. Смена прокси открывает новый несущий WebSocket, выключение канала закрывает его.</p>
+
+<h3 id="проверка-доступности">Проверка доступности</h3>
+
+<p>Вопрос про <code class="language-plaintext highlighter-rouge">example.com</code> уходит на названный сервер имён под меткой канала, то есть тем же путём, что трафик правил, и ответ за две секунды значит, что путь открыт. Два промаха подряд снимают канал с групп, один ответ возвращает. Пока канал не проверялся, вместо проверки считается возраст рукопожатия: канал через хост несёт всегда, туннель - пока его рукопожатие моложе трёх минут. «Проверить» в меню строки шлёт вопрос сейчас. Проверка, которую не удалось пометить (без <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>), оставляет вердикт как был.</p>
+
+<p>Канал «несёт» трафик, когда он жив и проверка проходит; правило прямо в канал, который ничего не несёт, не ложится на хост с причиной «Канал этого правила не несёт трафик».</p>
+
+<h3 id="на-хосте">На хосте</h3>
+
+<p>Каналу даётся первая свободная метка от <code class="language-plaintext highlighter-rouge">0xA601</code> и своя таблица маршрутизации от <code class="language-plaintext highlighter-rouge">42601</code>; канал через хост смотрит в главную таблицу. На хост ложатся правило <code class="language-plaintext highlighter-rouge">ip rule</code> с меткой на таблицу выше главного правила, маршрут по умолчанию в интерфейс в этой таблице, правило <code class="language-plaintext highlighter-rouge">unreachable</code> для помеченных пакетов, чей канал выключен, исчез или без интерфейса, чтобы они не утекли через хост, и таблица <code class="language-plaintext highlighter-rouge">inet amneziageo_out</code>: маскарад того, что уходит через включённые каналы, подгонка TCP под размер пути и фильтр того, что выходит из туннелей. Пока интерфейс туннеля опущен, его таблица пуста и проверка не проходит: канал перестаёт нести, запертое правило держит трафик, группа переходит на другой канал, а клиент получает <code class="language-plaintext highlighter-rouge">network unreachable</code> вместо утечки под адресом сервера.</p>
+
+<p>Серверу на другом конце туннеля доверяется то, что хост в него отправил, и ничего больше: из туннеля принимаются только ответы на соединения, которые хост открыл или пропустил, новое соединение из туннеля отбрасывается. «Закрыть частные сети» ещё отказывает клиенту в новом соединении через туннель в частные диапазоны; со снятой отметкой правило, которое отправляет такой диапазон в туннель, приводит клиента туда под адресом туннеля.</p>
+
+<p>Добавление, изменение, включение, выключение и удаление сразу кладутся на хост. Канал, через который идёт правило, группа или резолвер, не удаляется: «Через канал идёт правило, группа или резолвер». Панель следит за интерфейсами каналов, как за интерфейсами: опущенный поднимает, исчезнувший кладёт заново с ключами, адресами, маршрутом и несущим WebSocket; правила <code class="language-plaintext highlighter-rouge">ip rule</code>, которые уронил перезапуск сетевого менеджера (<code class="language-plaintext highlighter-rouge">systemd-networkd</code> с <code class="language-plaintext highlighter-rouge">ManageForeignRoutingPolicyRules=yes</code>), кладёт обратно и пишет об этом в журнал. Поднятие интерфейса и правила маршрутизации требуют <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>; без него панель отвечает каналом с причиной, а не ошибкой запроса.</p>
+
+<h2 id="группы">Группы</h2>
+
+<p>Группа - несколько каналов под одним именем; правило называет её так же, как канал, и трафик уходит через одного из членов.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Включено</td>
+      <td>работает ли группа; правила через выключенную группу запирают трафик</td>
+    </tr>
+    <tr>
+      <td>Название</td>
+      <td>до 32 знаков, в одном списке имён с каналами</td>
+    </tr>
+    <tr>
+      <td>Стратегия</td>
+      <td>«Приоритет» - первый живой канал списка, при его молчании следующий; «По кругу» - новые соединения по живым каналам по очереди; «По клиенту» - канал по адресу клиента, один клиент держится одного канала, пока набор живых не изменился</td>
+    </tr>
+    <tr>
+      <td>Каналы</td>
+      <td>до 16 каналов в порядке выбора</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Живые члены отмечены «на хосте». Группа читает живых каждые пятнадцать секунд и при смене набора перекладывает набор правил целиком, так что замолчавший канал заменяется без участия человека; изменение в панели не ждёт этого круга. Правило через группу без живых членов запирает трафик с причиной «Ни один канал не отвечает», через выключенную - «Группа выключена»: трафик правила отбрасывается, пока канал не оживёт. Группа, через которую идёт правило или резолвер, не удаляется: «Через группу идёт правило или резолвер». Сценарий - <a href="../recipes/channel-group.ru.html">Группа каналов с резервом</a>.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя из строчных букв, цифр, дефиса и подчёркивания, начинается с буквы; Такое имя уже занято</td>
+      <td>имя канала</td>
+    </tr>
+    <tr>
+      <td>Это не адрес и не имя хоста; Порт вне диапазона 1-65535</td>
+      <td>сервер</td>
+    </tr>
+    <tr>
+      <td>Адрес интерфейса не диапазон адресов; Это не адрес сервера имён; MTU вне диапазона 576-9000; Keepalive вне диапазона 0-65535</td>
+      <td>сеть</td>
+    </tr>
+    <tr>
+      <td>Приватный ключ не 32 байта в base64; Публичный ключ сервера не 32 байта в base64; Общий ключ не 32 байта в base64</td>
+      <td>ключи</td>
+    </tr>
+    <tr>
+      <td>В конфигурации нет ключа, нет сервера или она пуста</td>
+      <td>конфигурация клиента не прочитана</td>
+    </tr>
+    <tr>
+      <td>Метка вне диапазона, который держит панель; Таблица маршрутизации не соответствует метке; Панель держит столько каналов, сколько может</td>
+      <td>метки и таблицы</td>
+    </tr>
+    <tr>
+      <td>Через канал идёт правило, группа или резолвер</td>
+      <td>канал не удаляется</td>
+    </tr>
+    <tr>
+      <td>Название группы не подходит; Такой стратегии нет; Не выбрано ни одного канала; Каналов больше, чем берёт группа; Один канал назван дважды; Через группу идёт правило или резолвер</td>
+      <td>группа</td>
+    </tr>
+    <tr>
+      <td>Хост отказал в изменении</td>
+      <td><code class="language-plaintext highlighter-rouge">ip</code> или <code class="language-plaintext highlighter-rouge">nft</code> не приняли правило, причина в журнале</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

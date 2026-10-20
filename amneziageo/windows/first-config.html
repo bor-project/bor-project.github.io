@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>First configuration · Windows · AmneziaGeo</title>
+    <meta name="description" content="Add a configuration, pick the routing and connect.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/first-config.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/first-config.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/first-config.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/windows/first-config.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/windows/first-config.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/first-config.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/first-config.html">Linux</a>
+  <a href="/amneziageo/android/first-config.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.html" aria-current="page">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/">Windows</a></li>
+  </ol>
+</nav>
+
+        <h1 id="first-configuration">First configuration</h1>
+
+<ol>
+  <li>Open AmneziaGeo and import a configuration - a <code class="language-plaintext highlighter-rouge">.conf</code> file, a QR code or a shared settings file.</li>
+  <li>Pick a rule list or the full tunnel and connect.</li>
+</ol>
+
+<h2 id="add-a-configuration">Add a configuration</h2>
+
+<p>While there are no configurations, the home screen shows the “Add configuration” button, and later “Add” in the “Configurations” section. The ways: “Load file” - a <code class="language-plaintext highlighter-rouge">.conf</code> file or a picture with a QR code, “Paste” - the text of a configuration, a <code class="language-plaintext highlighter-rouge">vpn://</code> link or a subscription address from the clipboard, “Create manually” - wg-quick text in the editor. A file can also be dragged into the window. A shared settings file from another device - configurations and routing lists together - is imported through “Import / export” in the “General” section.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/config-add.png" alt="The Add menu in the catalogue: load file, paste, scan QR code, create manually" width="984" height="752" loading="lazy" /><figcaption>Ways to add a configuration.</figcaption></figure>
+
+<p>The configuration catalogue: <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>.</p>
+
+<h2 id="pick-the-routing">Pick the routing</h2>
+
+<p>While there is no list, all traffic goes through the VPN. A list is created in the “Routing” section with the “Add” button: pick the mode - “Only selected” or “Everything except selected” - and a template, for example “Unavailable sites”, and turn “In use” on for the list. An AmneziaGeo server sends its lists itself: such a list appears in the section and, when the server marked it on by default, is selected while no other is.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-new.png" alt="New list: the VPN mode for apps and the template choice" width="984" height="752" loading="lazy" /><figcaption>New list: the mode and the template.</figcaption></figure>
+
+<p>Modes and lists: <a href="/amneziageo/windows/menu/routing.html">Routing</a>.</p>
+
+<h2 id="connect">Connect</h2>
+
+<p>Click the button in the middle of the home screen. While the connection is being established, the line under the button reads “Establishing connection…”, and for a connected tunnel “Connected”; a failed attempt is named by its cause: the server did not answer, the configuration could not be read and so on. Once connected, the window can be closed: the application stays in the tray, and the menu of its icon connects, disconnects and opens the window.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/home-connected.png" alt="Home screen: the tunnel is connected" width="984" height="752" loading="lazy" /><figcaption>The tunnel is connected.</figcaption></figure>
+
+<p>More: <a href="/amneziageo/windows/menu/home.html">Home screen</a>.</p>
+
+<h2 id="what-next">What next</h2>
+
+<ul>
+  <li><a href="/amneziageo/windows/menu/">Menu</a></li>
+  <li><a href="/amneziageo/windows/recipes/">Recipes</a></li>
+</ul>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

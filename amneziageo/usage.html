@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuration · AmneziaGeo</title>
+    <meta name="description" content="Cross-platform AmneziaWG VPN client with split tunneling and traffic routing for Windows, Linux and Android. Multiple simultaneous VPN connections on Windows.">
+    <meta name="robots" content="noindex">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/usage.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/usage.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/usage.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/usage.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/usage.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Devices">
+  <p class="sidebar-label">Devices</p>
+  <a href="/amneziageo/windows/">Windows</a>
+  <a href="/amneziageo/linux/">Linux</a>
+  <a href="/amneziageo/android/">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="configuration">Configuration</h1>
+
+<p>The Configuration page is now split by device and menu section. Where each of its sections went:</p>
+
+<h2 id="modes">Modes</h2>
+
+<p class="moved-links">Routing: <a href="/amneziageo/windows/menu/routing.html#modes">Windows</a> · <a href="/amneziageo/linux/menu/routing.html#modes">Linux</a> · <a href="/amneziageo/android/menu/routing.html#modes">Android</a></p>
+
+<h2 id="multiple-vpn-connections-windows">Multiple VPN connections (Windows)</h2>
+
+<p class="moved-links">Multiple VPN connections: <a href="/amneziageo/windows/recipes/multiple-vpn.html">Windows</a></p>
+
+<h2 id="rule-lists">Rule lists</h2>
+
+<p class="moved-links">Routing: <a href="/amneziageo/windows/menu/routing.html#rule-lists">Windows</a> · <a href="/amneziageo/linux/menu/routing.html#rule-lists">Linux</a> · <a href="/amneziageo/android/menu/routing.html#rule-lists">Android</a></p>
+
+<h2 id="application-routing">Application routing</h2>
+
+<p class="moved-links">Routing: <a href="/amneziageo/windows/menu/routing.html#application-routing">Windows</a> · <a href="/amneziageo/linux/menu/routing.html#application-routing">Linux</a> · <a href="/amneziageo/android/menu/routing.html#application-routing">Android</a></p>
+
+<h2 id="all-udp-through-the-tunnel">All UDP through the tunnel</h2>
+
+<p class="moved-links">Routing: <a href="/amneziageo/windows/menu/routing.html#all-udp-through-the-tunnel">Windows</a> · <a href="/amneziageo/linux/menu/routing.html#all-udp-through-the-tunnel">Linux</a> · <a href="/amneziageo/android/menu/routing.html#all-udp-through-the-tunnel">Android</a></p>
+
+<h2 id="websocket-transport">WebSocket transport</h2>
+
+<p class="moved-links">Configurations: <a href="/amneziageo/windows/menu/configurations.html#websocket">Windows</a> · <a href="/amneziageo/linux/menu/configurations.html#websocket">Linux</a> · <a href="/amneziageo/android/menu/configurations.html#websocket">Android</a></p>
+
+<h2 id="what-the-server-offers">What the server offers</h2>
+
+<p class="moved-links">Configurations: <a href="/amneziageo/windows/menu/configurations.html#what-the-server-offers">Windows</a> · <a href="/amneziageo/linux/menu/configurations.html#what-the-server-offers">Linux</a> · <a href="/amneziageo/android/menu/configurations.html#what-the-server-offers">Android</a></p>
+
+<h2 id="leak-protection">Leak protection</h2>
+
+<p class="moved-links">Home screen: <a href="/amneziageo/windows/menu/home.html#holding-traffic-when-the-tunnel-drops">Windows</a> · <a href="/amneziageo/linux/menu/home.html#holding-traffic-when-the-tunnel-drops">Linux</a> · <a href="/amneziageo/android/menu/home.html#holding-traffic-when-the-tunnel-drops">Android</a></p>
+
+<h2 id="holding-traffic-when-the-tunnel-drops">Holding traffic when the tunnel drops</h2>
+
+<p class="moved-links">Home screen: <a href="/amneziageo/windows/menu/home.html#holding-traffic-when-the-tunnel-drops">Windows</a> · <a href="/amneziageo/linux/menu/home.html#holding-traffic-when-the-tunnel-drops">Linux</a> · <a href="/amneziageo/android/menu/home.html#holding-traffic-when-the-tunnel-drops">Android</a></p>
+
+<h2 id="access-to-a-remote-network">Access to a remote network</h2>
+
+<p class="moved-links">Access to a remote network: <a href="/amneziageo/windows/recipes/remote-network.html">Windows</a> · <a href="/amneziageo/linux/recipes/remote-network.html">Linux</a> · <a href="/amneziageo/android/recipes/remote-network.html">Android</a></p>
+
+<h2 id="access-from-the-tunnel">Access from the tunnel</h2>
+
+<p class="moved-links">Configurations: <a href="/amneziageo/windows/menu/configurations.html#incoming-connections-from-the-vpn-network">Windows</a> · <a href="/amneziageo/linux/menu/configurations.html#incoming-connections-from-the-vpn-network">Linux</a></p>
+
+<h2 id="proxy-for-the-local-network">Proxy for the local network</h2>
+
+<p class="moved-links">Connections: <a href="/amneziageo/windows/menu/connections.html#proxy">Windows</a> · <a href="/amneziageo/linux/menu/connections.html#proxy">Linux</a> · <a href="/amneziageo/android/menu/connections.html#proxy">Android</a></p>
+
+<h2 id="route-and-speed-check">Route and speed check</h2>
+
+<p class="moved-links">Diagnostics: <a href="/amneziageo/windows/menu/diagnostics.html#route-and-speed-check">Windows</a> · <a href="/amneziageo/linux/menu/diagnostics.html#route-and-speed-check">Linux</a> · <a href="/amneziageo/android/menu/diagnostics.html#route-and-speed-check">Android</a></p>
+
+<h2 id="example-discord-where-udp-is-blocked">Example: Discord where UDP is blocked</h2>
+
+<p class="moved-links">Discord where UDP is blocked: <a href="/amneziageo/windows/recipes/discord-udp.html">Windows</a> · <a href="/amneziageo/linux/recipes/discord-udp.html">Linux</a> · <a href="/amneziageo/android/recipes/discord-udp.html">Android</a></p>
+
+<h2 id="notes">Notes</h2>
+
+<p class="moved-links">Limitations: <a href="/amneziageo/windows/menu/routing.html#limitations">Windows</a> · <a href="/amneziageo/linux/menu/routing.html#limitations">Linux</a> · <a href="/amneziageo/android/menu/routing.html#limitations">Android</a></p>
+
+<p class="moved-links">Reconnecting: <a href="/amneziageo/windows/menu/home.html#reconnecting">Windows</a> · <a href="/amneziageo/linux/menu/home.html#reconnecting">Linux</a> · <a href="/amneziageo/android/menu/home.html#reconnecting">Android</a></p>
+
+<p class="moved-links">How Linux applies the rules: <a href="/amneziageo/linux/menu/routing.html#how-linux-applies-the-rules">Linux</a></p>
+
+<p class="moved-links">Agent rights: <a href="/amneziageo/linux/install.html#agent-rights">Linux</a></p>
+
+<p class="moved-links">Switching the configuration, the system stopping the tunnel, the notification: <a href="/amneziageo/android/menu/home.html#switching-the-configuration">Android</a></p>
+
+<p class="moved-links">The memory line in the log: <a href="/amneziageo/android/menu/diagnostics.html#log">Android</a></p>
+
+<p class="moved-links">Picking applications: <a href="/amneziageo/android/menu/routing.html#picking-applications">Android</a></p>
+
+<p class="moved-links">Background activity: <a href="/amneziageo/android/menu/general.html#background-activity">Android</a></p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

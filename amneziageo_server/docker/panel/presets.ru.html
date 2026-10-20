@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Пресеты маршрутизации · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Списки маршрутизации для приложения AmneziaGeo клиента.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/presets.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/presets.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/presets.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/panel/presets.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/presets.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/panel/presets.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html" aria-current="page">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="пресеты-маршрутизации">Пресеты маршрутизации</h1>
+
+<p>Пресет маршрутизации - список маршрутизации клиента AmneziaGeo, который хранится на панели и выдаётся приложению через hello интерфейса. Шаблон клиента называет пресеты, которые получают его клиенты; маршрутизация по ним идёт на устройстве, а не на сервере. Вкладка «Пресеты маршрутизации» страницы «Клиенты» перечисляет пресеты с временем изменения и числом шаблонов, которые их раздают.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/preset-form.png" alt="Форма нового пресета маршрутизации: имя, «Включён по умолчанию», списки «Через VPN», «Напрямую» и «Блокировать»" width="1440" height="900" loading="lazy" /><figcaption>Пустая форма пресета.</figcaption></figure>
+
+<h2 id="основное">Основное</h2>
+
+<p>«Имя» - до 64 знаков, одно на панель; так список зовётся на клиенте. «Включён по умолчанию» - клиент включает список, когда добавляет его, если у него не включён ни один другой список.</p>
+
+<h2 id="списки">Списки</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Часть</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Через VPN</td>
+      <td>записи идут через туннель</td>
+    </tr>
+    <tr>
+      <td>Напрямую</td>
+      <td>записи идут мимо туннеля</td>
+    </tr>
+    <tr>
+      <td>Блокировать</td>
+      <td>клиент отбрасывает записи</td>
+    </tr>
+    <tr>
+      <td>Всё через VPN</td>
+      <td>всё идёт через туннель, кроме того, что идёт напрямую</td>
+    </tr>
+    <tr>
+      <td>Весь UDP через туннель</td>
+      <td>каждый UDP-пакет идёт через туннель, что бы ни говорили списки: для звонков и игр, которые узнают адреса не через DNS</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Записи пишутся так же, как в шаблоне: <code class="language-plaintext highlighter-rouge">geoip:ru</code>, <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">domain:example.com</code>, до 256 в каждой части.</p>
+
+<h2 id="как-приложение-берёт-пресет">Как приложение берёт пресет</h2>
+
+<p>У пресета есть постоянный идентификатор, который даётся при добавлении, и время последнего изменения списка: имени, записей и переключателей. Hello отдаёт их вместе со списком, и клиент знает список по идентификатору:</p>
+
+<ul>
+  <li>клиент без такого списка добавляет его и включает, если пресет включён по умолчанию, а клиент ни по какому списку не маршрутизирует;</li>
+  <li>клиент со списком оставляет своё; когда пресет новее, карточка списка на устройстве предлагает обновление, и хозяин устройства, приняв его, получает имя, записи и переключатели пресета вместо того, что держал список, а список остаётся включённым или выключенным, как был;</li>
+  <li>список, который хозяин удалил, возвращается при следующем hello;</li>
+  <li>список, добавленный приложением старше идентификаторов под именем пресета, привязывается к пресету.</li>
+</ul>
+
+<p>Карточка списка на устройстве показывает, откуда он: имя конфигурации клиента, то, которое даёт подписка. Вместе с пресетами hello отдаёт гео-источники панели: клиент добавляет источники, которых у него нет, по адресу и переводит источник с тем же именем и видом на адрес панели, чтобы ключи пресета называли списки, которые у клиента есть, см. <a href="geo.ru.html">Списки Geo</a>. Сценарий целиком - <a href="../recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>.</p>
+
+<h2 id="удаление">Удаление</h2>
+
+<p>Пресет, который называет шаблон, не удаляется: «Пресет раздаётся в шаблоне»; сначала его убирают из шаблонов. Клиенты, которые уже получили список, сохранят его.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя пресета пустое или длиннее 64 знаков</td>
+      <td>имя</td>
+    </tr>
+    <tr>
+      <td>Это не ключ гео, не сеть, не адрес и не домен; В шаблоне не больше 256 записей</td>
+      <td>записи</td>
+    </tr>
+    <tr>
+      <td>Такого пресета маршрутизации нет</td>
+      <td>номер, которого панель не знает</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

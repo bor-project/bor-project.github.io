@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diagnostics · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Component versions, the event log and the connection log.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/diagnostics.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/diagnostics.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/diagnostics.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/diagnostics.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/diagnostics.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/diagnostics.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/diagnostics.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html" aria-current="page">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/service/panel/settings.html">Settings</a></li>
+  </ol>
+</nav>
+
+        <h1 id="diagnostics">Diagnostics</h1>
+
+<p>The “Diagnostics” tab shows what the panel runs on, its event log and the connection log of the clients.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/diagnostics.png" alt="Diagnostics: versions of the components and the event log" width="1440" height="900" loading="lazy" /><figcaption>Versions and the event log.</figcaption></figure>
+
+<h2 id="versions">Versions</h2>
+
+<p>“Panel”, “AmneziaWG” (the version of the module or “none”), “.NET”, “System”, “Kernel” and “wstunnel”, which is what <code class="language-plaintext highlighter-rouge">wstunnel --version</code> prints.</p>
+
+<h2 id="event-log">Event log</h2>
+
+<p>The last 500 records of the log of the panel, newest on top: the time, the level, the source and the message; “Refresh” reads them again. The records also live in the <code class="language-plaintext highlighter-rouge">journal.db</code> file next to the database of the panel: a line gets into it within a second, and after a restart the panel reads the last 500 back, so the page shows what happened before the restart as well. The file holds up to a hundred thousand records and 32 MB (<code class="language-plaintext highlighter-rouge">Journal__MostRecords</code> and <code class="language-plaintext highlighter-rouge">Journal__MostBytes</code> set other limits, no lower than 1000 records and 1 MB), and the old ones go first. The file is not part of the database backup.</p>
+
+<p>What the process prints goes where the host keeps its logs: into journald, read with <code class="language-plaintext highlighter-rouge">journalctl -u amneziageo-server</code>; item 19 of the console menu shows the same.</p>
+
+<h2 id="connection-log">Connection log</h2>
+
+<p>The connection log keeps a record of each new connection of a client: when it was decided, the client and the address it came from, the interface, the protocol, the destination address and port, the name the resolver of the panel answered for that address, how the connection was carried, whether it left the host by itself or was handed to another server, and what came back. It is off until turned on.</p>
+
+<p>“Record connections to the log” turns recording on, “Keep” sets how many days to keep the records (7 by default, 1 to 90); the log holds no more than a million records, and the old ones go first. The status line says how many records there are, since when, how many bytes, and “N lost” if records did not fit into the queue. “Clear” removes all the records. The records live in <code class="language-plaintext highlighter-rouge">access.db</code> next to the database of the panel and are not part of the backup.</p>
+
+<h3 id="summary-and-connections">Summary and connections</h3>
+
+<p>The filters: “Period” (“Last hour”, “Last 6 hours”, “Last 24 hours”, “Last 7 days”, “Custom range” with “From” and “To”), “Client” (a client or a source address, “all”), “How” (locally, relayed, through <channel>, direct, block, held, guard), "Outcome" (success, failure, no answer, reset, no data, unreachable), "Name or address".</channel></p>
+
+<p>“Summary” counts the connections, locally, relayed, blocked and held, success and failure, and groups them with “Group by” by domain (the last two parts of the name, three under a country with second-level domains), name, rule, channel or client: up to 500 of the largest groups with the number of successful and failed ones (“The N largest groups are shown”). “Connections” lists the records: the time, the client, “Where to” (a name or an address with the port), the rule (“none” if no rule matched), “How” and “Outcome”; “Show more” loads further.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>How</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>through <channel></channel></td>
+      <td>sent through a channel; for a group the chosen channel is named</td>
+    </tr>
+    <tr>
+      <td>direct</td>
+      <td>let out the way the host sends its own: a “Direct” rule, the “Direct” list, or no rule</td>
+    </tr>
+    <tr>
+      <td>block</td>
+      <td>dropped by a “Block” rule or list</td>
+    </tr>
+    <tr>
+      <td>held</td>
+      <td>dropped while the channel of the rule carries nothing</td>
+    </tr>
+    <tr>
+      <td>guard</td>
+      <td>reset by the guard of the resolver, DNS over TLS or HTTPS</td>
+    </tr>
+    <tr>
+      <td>locally, relayed</td>
+      <td>the path: left through the way out of the host, or handed to another server through the tunnel of a channel</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Outcome</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>success</td>
+      <td>the other side answered: with data over TCP, with any packet over other protocols</td>
+    </tr>
+    <tr>
+      <td>no data</td>
+      <td>the other side took the TCP connection and sent nothing for 10 seconds</td>
+    </tr>
+    <tr>
+      <td>reset</td>
+      <td>the other side reset the TCP connection or closed it without sending anything</td>
+    </tr>
+    <tr>
+      <td>no answer</td>
+      <td>nothing came back in time: 10 seconds after the last question packet, 30 at the most</td>
+    </tr>
+    <tr>
+      <td>unreachable</td>
+      <td>an ICMP error came: the address or the port is unreachable</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A dropped connection (block, held, guard) has neither a path nor an outcome, and neither has one the panel stopped following because the log was turned off or the panel stopped.</p>
+
+<h3 id="how-the-records-are-taken">How the records are taken</h3>
+
+<p>The kernel decides a connection once, on its first packet, in the <code class="language-plaintext highlighter-rouge">decide</code> chain of the rule table. While the log runs, each line of the chain hands the packet to the NFLOG group 7317 before the verdict, under a prefix with the rule and the verdict, and the last line hands over what no rule took; the panel reads the group over netlink with the first 96 bytes of the packet. The log also watches the answer: the <code class="language-plaintext highlighter-rouge">answer</code> chain hands over the first packet that came back to the connection, and over TCP the first one with data, a reset or a close. Nothing waits for the log: NFLOG does not hold the packet, and what did not fit into the queue of the panel is dropped and counted in “lost”. A repeated SYN and a repeated UDP packet fold into one record of the connection. Questions to the resolver of the panel do not go into the log: the names from them stand on the records of the connections that follow them. Connections the panel led itself to read a name, see <a href="dns.html#names-from-connections">Names from connections</a>, are written with the name the connection gave and the outcome the panel saw.</p>
+
+<p>A host that does not take the rule set with the log lines gets it without them, and the log says why. The kernel loads the <code class="language-plaintext highlighter-rouge">nfnetlink_log</code> and <code class="language-plaintext highlighter-rouge">nft_log</code> modules by itself.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

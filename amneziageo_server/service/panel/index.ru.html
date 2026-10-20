@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Панель · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Вход, шапка, меню, списки и формы веб-панели.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/index.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/index.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/index.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html" aria-current="page">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+  </ol>
+</nav>
+
+        <h1 id="панель">Панель</h1>
+
+<p>Панель - веб-интерфейс сервера. Она отдаётся с того порта и пути, где отвечает сервер, см. <a href="../first-run.ru.html#где-отвечает-панель">Где отвечает панель</a>, и всё делает через HTTP API под <code class="language-plaintext highlighter-rouge">/api</code>: скрипт зовёт те же маршруты, см. <a href="../../api.ru.html">HTTP API</a>.</p>
+
+<ul class="topic-list">
+  <li>
+    <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+    <span>Состояние хоста, службы, обновление и резервная копия.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+    <span>Серверные интерфейсы AmneziaWG: адреса, порты, ключи, обфускация, WebSocket, порты в брандмауэре.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+    <span>Конфигурации клиентов: список, настройки, экспорт, трафик, отключение.</span>
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a>
+        <span>Что клиент получает в файле: AllowedIPs из гео-ключей и доменов, маршрутизация по именам, DNS, MTU, keepalive.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a>
+        <span>Списки маршрутизации для приложения AmneziaGeo клиента.</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+    <span>Куда идёт трафик клиентов: правила, базовые списки, каналы, гео-базы, DNS.</span>
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a>
+        <span>Условия и направления трафика: через канал, напрямую или в блок.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a>
+        <span>Списки для блокировки и прямого доступа впереди правил.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a>
+        <span>Проверка маршрута соединения по имени, порту и клиенту.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a>
+        <span>Выходные подключения через хост или туннель к другому серверу и их группы.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a>
+        <span>Гео-базы стран и категорий сайтов для правил и шаблонов.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a>
+        <span>Резолвер для клиентов: внешние серверы, канал запросов, кэш, перехват, подставные адреса.</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+    <span>Сервер, сертификаты, подписки, пользователи и роли, диагностика.</span>
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a>
+        <span>Адрес, порт, путь и язык панели, шаблон имени конфигурации, предварительные версии.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a>
+        <span>Сертификат панели: домен Let&#39;s Encrypt или свои файлы.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a>
+        <span>Конфигурации клиентов по ссылке: порт, путь, сертификат, интервал обновления.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a>
+        <span>Учётные записи, роли с правами и токены для скриптов.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a>
+        <span>Версии компонентов, журнал событий и журнал подключений.</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="вход">Вход</h2>
+
+<p>Страница входа спрашивает имя и пароль; над формой стоят переключатели темы и языка. Вход даёт токен на десять минут, который панель обновляет сама; сессия живёт до тридцати дней, а без обновления кончается через четырнадцать. Пароль, который выдал администратор, меняется при первом входе на странице «Смена пароля»: текущий, новый и ещё раз. Десять промахов закрывают учётную запись на пятнадцать минут. Учётные записи и роли заводятся в <a href="users.ru.html">Пользователи и роли</a>.</p>
+
+<h2 id="шапка">Шапка</h2>
+
+<p>Слева имя «AmneziaGeo» ведёт на «Обзор», рядом навигационная цепочка страницы; вкладка браузера называется по последнему звену: «Правила · AmneziaGeo». Справа:</p>
+
+<ul>
+  <li>«Не работают службы: N» - пока хоть одна служба сервера не работает, ссылка ведёт к карточке «Службы» <a href="overview.ru.html#службы">Обзора</a>;</li>
+  <li>«Перезапустить» - появляется, когда сохранённые настройки вкладок «Сервер», «Сертификаты» или страницы «DNS» ждут перезапуска. Кнопка останавливает сервер, systemd запускает службу снова, а страница ждёт ответа и сама переходит на новый адрес, если панель переехала на другой путь или порт;</li>
+  <li>значок темы: каждое нажатие переводит «Авто», «Светлая», «Тёмная» по кругу; «Авто» следует за системой;</li>
+  <li>меню учётной записи: язык («Авто», English, Русский), «Смена пароля», «Выйти». Тема и язык хранятся в браузере, не в учётной записи, поэтому у каждого браузера свои;</li>
+  <li>строка состояния <code class="language-plaintext highlighter-rouge">сервер &lt;версия&gt;</code>, или <code class="language-plaintext highlighter-rouge">сервер не отвечает</code>, пока панель не достучится до него.</li>
+</ul>
+
+<h2 id="меню">Меню</h2>
+
+<p>Меню стоит слева, на узком экране его открывает кнопка «Меню» поверх страницы: «Обзор», «Интерфейсы», «Клиенты», группа «Маршрутизация» («Правила», «Базовые», «Каналы», «Списки Geo», «DNS») и группа «Настройки» («Сервер», «Сертификаты», «Подписки», «Пользователи и роли», «Диагностика»). Группа раскрывается нажатием, группа с открытой страницей раскрыта сама, и браузер помнит, какие группы были открыты. «Проверка» маршрута в меню не стоит: она открывается по адресу <code class="language-plaintext highlighter-rouge">/routing/test</code> и ссылкой со страниц маршрутизации.</p>
+
+<p>Раздел «Настройки» целиком виден только роли с правом «Управление доступом». Остальные разделы видит любая роль с правом «Чтение состояния», но без права на раздел имя в строке списка остаётся текстом, меню строки и кнопки «Добавить» нет.</p>
+
+<h2 id="права">Права</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Право</th>
+      <th>Что открывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Чтение состояния</td>
+      <td>«Обзор» и все списки: интерфейсы, клиенты, шаблоны, правила, каналы, гео, DNS, проверка маршрута</td>
+    </tr>
+    <tr>
+      <td>Управление клиентами</td>
+      <td>клиенты, их файлы и подписки, шаблоны, пресеты маршрутизации</td>
+    </tr>
+    <tr>
+      <td>Управление интерфейсами</td>
+      <td>интерфейсы и их порты в брандмауэре</td>
+    </tr>
+    <tr>
+      <td>Управление маршрутизацией</td>
+      <td>правила, базовые списки, каналы и группы, гео-источники, резолвер</td>
+    </tr>
+    <tr>
+      <td>Управление доступом</td>
+      <td>раздел «Настройки»: сервер, сертификаты, подписки, пользователи, роли и токены, диагностика и журнал подключений; восстановление из резервной копии</td>
+    </tr>
+    <tr>
+      <td>Обновление панели</td>
+      <td>кнопка «Обновить» на «Обзоре»</td>
+    </tr>
+    <tr>
+      <td>Скачивание бэкапа</td>
+      <td>кнопка «Скачать копию» на «Обзоре»</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Встроенная роль <code class="language-plaintext highlighter-rouge">admin</code> несёт все права, и новое право каждого выпуска попадает в неё само. Свои роли собираются из этих прав, см. <a href="users.ru.html#роли">Роли</a>.</p>
+
+<h2 id="списки">Списки</h2>
+
+<p>Список - таблица на широком экране и карточка на каждую строку на узком. Ширина колонки тянется за край её заголовка, двойной щелчок по краю возвращает исходную; браузер помнит ширины. Над списком стоят сортировка и поиск, в списке клиентов - ещё выбор интерфейса. Имя в строке ведёт на страницу элемента, в углу строки стоит меню строки с путями на его страницы: «Настройки», у клиента ещё «Экспорт». Что элемент делает (применить интерфейс, проверить канал, обновить шаблон), живёт на его странице, там же его удаление.</p>
+
+<p>Список с собственным порядком (правила, каналы, гео-источники) переставляется стрелками «Выше» и «Ниже» рядом с меню строки и перетаскиванием строки, пока список не отсортирован и не отфильтрован. Список, в котором выбираются строки (клиенты), после первого выбора показывает полосу: «Выбрано: N», действия над выбранными и «Снять выбор».</p>
+
+<p>Пока первый ответ в пути, список пишет «Загружаю»; когда сервер не отвечает, называет сбой над строками, которые успел показать; «Ничего не найдено» и «Клиентов нет» говорит, только когда сервер ответил так. Списки клиентов, интерфейсов и «Обзор» перечитывают хост каждые две секунды.</p>
+
+<h2 id="формы">Формы</h2>
+
+<p>Форма делится на части: «Основное», «Сеть», «Ключи», «Обфускация», «Доступ» и так далее. Кнопки «Сохранить» и «Отмена» стоят внизу окна и не уезжают, пока форма прокручивается; пока идёт сохранение, кнопка пишет «Сохраняю». Пояснение к полю - знак вопроса рядом с подписью, подсказка показывается при наведении. Удаление стоит на странице элемента и спрашивает «Удалить <имя>?» с пометкой «Действие необратимо».</имя></p>
+
+<p>На вкладках настроек правка, которую не сохранили, остаётся, пока открываются другие страницы, «Отмена» сбрасывает её. Настройки, которые вступают в силу после перезапуска, после «Сохранить» зажигают в шапке кнопку «Перезапустить».</p>
+
+<p>Отказ сервера приходит кодом, и форма пишет его словами на своём языке под полем или над кнопками: «Порт вне диапазона 1-65535», «Такое имя уже занято». Коды отказов каждого раздела перечислены на его странице.</p>
+
+<h2 id="закрытые-порты">Закрытые порты</h2>
+
+<p>Поля портов на вкладках «Сервер» и «Подписки» и в форме включённого интерфейса спрашивают брандмауэр хоста, пущен ли порт. Закрытый порт назван под полем: «Порт 8443 закрыт в брандмауэре хоста». Там же стоит кнопка «Открыть» для сохранённого порта или «Открыть при сохранении» для нового, если панель может менять брандмауэр и у роли есть право на этот раздел; иначе подсказка говорит, где открыть порт руками: пункт 23 меню <code class="language-plaintext highlighter-rouge">amneziageo-server</code>. Подробнее - <a href="interfaces.ru.html#порты-в-брандмауэре">Порты в брандмауэре</a>.</p>
+
+<h2 id="адреса-страниц">Адреса страниц</h2>
+
+<p>У каждой вкладки и страницы свой адрес, так что ссылка и перезагрузка открывают то же место, а путь назад ведёт на прежнюю вкладку: <code class="language-plaintext highlighter-rouge">/clients/templates</code> - шаблоны, <code class="language-plaintext highlighter-rouge">/clients/7/export</code> - экспорт клиента 7, <code class="language-plaintext highlighter-rouge">/routing/rules/new</code> - новое правило, <code class="language-plaintext highlighter-rouge">/settings/users</code> - пользователи. Адреса прежних выпусков ведут на новые: <code class="language-plaintext highlighter-rouge">/configs</code> и <code class="language-plaintext highlighter-rouge">/proxies</code> на интерфейсы, <code class="language-plaintext highlighter-rouge">/rules</code> на маршрутизацию, <code class="language-plaintext highlighter-rouge">/outbounds</code> и <code class="language-plaintext highlighter-rouge">/balancers</code> на каналы, <code class="language-plaintext highlighter-rouge">/geo</code> и <code class="language-plaintext highlighter-rouge">/dns</code> на свои страницы маршрутизации, <code class="language-plaintext highlighter-rouge">/access</code> на пользователей, <code class="language-plaintext highlighter-rouge">/connections/...</code> на интерфейсы, клиентов и шаблоны.</p>
+
+<p>Страница панели несёт свой путь в теге <code class="language-plaintext highlighter-rouge">base</code>, поэтому интерфейс и <code class="language-plaintext highlighter-rouge">/api</code> следуют за панелью, под каким бы путём она ни стояла.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

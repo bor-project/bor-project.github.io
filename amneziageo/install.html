@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Installation · AmneziaGeo</title>
+    <meta name="description" content="Cross-platform AmneziaWG VPN client with split tunneling and traffic routing for Windows, Linux and Android. Multiple simultaneous VPN connections on Windows.">
+    <meta name="robots" content="noindex">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/install.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/install.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/install.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/install.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/install.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Devices">
+  <p class="sidebar-label">Devices</p>
+  <a href="/amneziageo/windows/">Windows</a>
+  <a href="/amneziageo/linux/">Linux</a>
+  <a href="/amneziageo/android/">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="installation">Installation</h1>
+
+<p>Installation is now described for each device separately.</p>
+
+<h2 id="windows">Windows</h2>
+
+<p class="moved-links">Installation: <a href="/amneziageo/windows/install.html">Windows</a></p>
+
+<h2 id="linux">Linux</h2>
+
+<p class="moved-links">Installation: <a href="/amneziageo/linux/install.html">Linux</a></p>
+
+<h3 id="installer">Installer</h3>
+
+<p class="moved-links">Installation: <a href="/amneziageo/linux/install.html#installer">Linux</a></p>
+
+<h3 id="packages-by-hand">Packages by hand</h3>
+
+<p class="moved-links">Installation: <a href="/amneziageo/linux/install.html#packages-by-hand">Linux</a></p>
+
+<h3 id="first-run">First run</h3>
+
+<p class="moved-links">First configuration: <a href="/amneziageo/linux/first-config.html#from-the-console">Linux</a></p>
+
+<h3 id="start-and-stop">Start and stop</h3>
+
+<p class="moved-links">Installation: <a href="/amneziageo/linux/install.html#start-and-stop">Linux</a></p>
+
+<h3 id="update">Update</h3>
+
+<p class="moved-links">Installation: <a href="/amneziageo/windows/install.html#update">Windows</a> · <a href="/amneziageo/linux/install.html#update">Linux</a> · <a href="/amneziageo/android/install.html#update">Android</a></p>
+
+<h3 id="docker">Docker</h3>
+
+<p class="moved-links">Installation: <a href="/amneziageo/linux/install.html#docker">Linux</a></p>
+
+<h2 id="android">Android</h2>
+
+<p class="moved-links">Installation: <a href="/amneziageo/android/install.html">Android</a></p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

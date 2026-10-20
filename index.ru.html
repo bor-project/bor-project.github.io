@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Документация · AmneziaGeo</title>
+    <meta name="description" content="Документация AmneziaGeo - VPN-клиент AmneziaWG для Windows, Linux и Android с маршрутизацией по гео-базам и панель своего сервера AmneziaWG.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/index.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="product-nav" aria-label="Разделы">
+  <p class="sidebar-label">Клиент</p>
+  <a href="/amneziageo/windows/index.ru.html">Windows</a>
+  <a href="/amneziageo/linux/index.ru.html">Linux</a>
+  <a href="/amneziageo/android/index.ru.html">Android</a>
+  <p class="sidebar-label">Сервер</p>
+  <a href="/amneziageo_server/service/index.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/index.ru.html">Docker</a>
+</nav>
+
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="amneziageo">AmneziaGeo</h1>
+
+<p>Клиент AmneziaGeo поднимает туннели AmneziaWG на Windows, Linux и Android и по правилам решает, что идёт через них. Сервер AmneziaGeo - панель своего сервера AmneziaWG: выдаёт клиентам конфигурации и направляет их трафик дальше по тем же правилам.</p>
+
+<ul class="product-cards">
+  <li>
+    <a class="product-card-title" href="/amneziageo/index.ru.html">AmneziaGeo</a>
+    <span>VPN-клиент для Windows, Linux и Android на движке AmneziaWG. Маршрутизация по гео-базам, доменам, диапазонам адресов и приложениям; несколько VPN одновременно на Windows.</span>
+    <span class="product-card-links"><a href="/amneziageo/windows/index.ru.html">Windows</a> · <a href="/amneziageo/linux/index.ru.html">Linux</a> · <a href="/amneziageo/android/index.ru.html">Android</a></span>
+  </li>
+  <li>
+    <a class="product-card-title" href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a>
+    <span>Панель управления своим сервером AmneziaWG на Debian и Ubuntu - клиенты, шаблоны и подписки, маршрутизация по гео-базам и доменам через другие серверы, резолвер для клиентов, обновления и резервные копии.</span>
+    <span class="product-card-links"><a href="/amneziageo_server/service/index.ru.html">Служба</a> · <a href="/amneziageo_server/docker/index.ru.html">Docker</a></span>
+  </li>
+</ul>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo">Клиент на GitHub</a>
+          <a href="https://github.com/bor-project/amneziageo_server">Сервер на GitHub</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

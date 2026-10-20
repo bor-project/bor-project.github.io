@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Настройка · AmneziaGeo</title>
+    <meta name="description" content="Cross-platform AmneziaWG VPN client with split tunneling and traffic routing for Windows, Linux and Android. Multiple simultaneous VPN connections on Windows.">
+    <meta name="robots" content="noindex">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/usage.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/usage.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/usage.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/usage.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Устройства">
+  <p class="sidebar-label">Устройства</p>
+  <a href="/amneziageo/windows/index.ru.html">Windows</a>
+  <a href="/amneziageo/linux/index.ru.html">Linux</a>
+  <a href="/amneziageo/android/index.ru.html">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="настройка">Настройка</h1>
+
+<p>Страница «Настройка» разделена по устройствам и разделам меню. Где теперь каждый её раздел:</p>
+
+<h2 id="режимы">Режимы</h2>
+
+<p class="moved-links">Маршрутизация: <a href="/amneziageo/windows/menu/routing.ru.html#режимы">Windows</a> · <a href="/amneziageo/linux/menu/routing.ru.html#режимы">Linux</a> · <a href="/amneziageo/android/menu/routing.ru.html#режимы">Android</a></p>
+
+<h2 id="несколько-vpn-одновременно-windows">Несколько VPN одновременно (Windows)</h2>
+
+<p class="moved-links">Несколько VPN одновременно: <a href="/amneziageo/windows/recipes/multiple-vpn.ru.html">Windows</a></p>
+
+<h2 id="списки-правил">Списки правил</h2>
+
+<p class="moved-links">Маршрутизация: <a href="/amneziageo/windows/menu/routing.ru.html#списки-правил">Windows</a> · <a href="/amneziageo/linux/menu/routing.ru.html#списки-правил">Linux</a> · <a href="/amneziageo/android/menu/routing.ru.html#списки-правил">Android</a></p>
+
+<h2 id="маршрутизация-приложений">Маршрутизация приложений</h2>
+
+<p class="moved-links">Маршрутизация: <a href="/amneziageo/windows/menu/routing.ru.html#маршрутизация-приложений">Windows</a> · <a href="/amneziageo/linux/menu/routing.ru.html#маршрутизация-приложений">Linux</a> · <a href="/amneziageo/android/menu/routing.ru.html#маршрутизация-приложений">Android</a></p>
+
+<h2 id="весь-udp-через-туннель">Весь UDP через туннель</h2>
+
+<p class="moved-links">Маршрутизация: <a href="/amneziageo/windows/menu/routing.ru.html#весь-udp-через-туннель">Windows</a> · <a href="/amneziageo/linux/menu/routing.ru.html#весь-udp-через-туннель">Linux</a> · <a href="/amneziageo/android/menu/routing.ru.html#весь-udp-через-туннель">Android</a></p>
+
+<h2 id="транспорт-websocket">Транспорт WebSocket</h2>
+
+<p class="moved-links">Конфигурации: <a href="/amneziageo/windows/menu/configurations.ru.html#websocket">Windows</a> · <a href="/amneziageo/linux/menu/configurations.ru.html#websocket">Linux</a> · <a href="/amneziageo/android/menu/configurations.ru.html#websocket">Android</a></p>
+
+<h2 id="что-предлагает-сервер">Что предлагает сервер</h2>
+
+<p class="moved-links">Конфигурации: <a href="/amneziageo/windows/menu/configurations.ru.html#что-предлагает-сервер">Windows</a> · <a href="/amneziageo/linux/menu/configurations.ru.html#что-предлагает-сервер">Linux</a> · <a href="/amneziageo/android/menu/configurations.ru.html#что-предлагает-сервер">Android</a></p>
+
+<h2 id="защита-от-утечки">Защита от утечки</h2>
+
+<p class="moved-links">Главный экран: <a href="/amneziageo/windows/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Windows</a> · <a href="/amneziageo/linux/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Linux</a> · <a href="/amneziageo/android/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Android</a></p>
+
+<h2 id="удержание-трафика-при-обрыве-туннеля">Удержание трафика при обрыве туннеля</h2>
+
+<p class="moved-links">Главный экран: <a href="/amneziageo/windows/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Windows</a> · <a href="/amneziageo/linux/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Linux</a> · <a href="/amneziageo/android/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Android</a></p>
+
+<h2 id="доступ-в-удалённую-сеть">Доступ в удалённую сеть</h2>
+
+<p class="moved-links">Доступ в удалённую сеть: <a href="/amneziageo/windows/recipes/remote-network.ru.html">Windows</a> · <a href="/amneziageo/linux/recipes/remote-network.ru.html">Linux</a> · <a href="/amneziageo/android/recipes/remote-network.ru.html">Android</a></p>
+
+<h2 id="доступ-к-клиенту-из-туннеля">Доступ к клиенту из туннеля</h2>
+
+<p class="moved-links">Конфигурации: <a href="/amneziageo/windows/menu/configurations.ru.html#входящие-подключения-из-vpn-сети">Windows</a> · <a href="/amneziageo/linux/menu/configurations.ru.html#входящие-подключения-из-vpn-сети">Linux</a></p>
+
+<h2 id="прокси-для-локальной-сети">Прокси для локальной сети</h2>
+
+<p class="moved-links">Подключения: <a href="/amneziageo/windows/menu/connections.ru.html#прокси">Windows</a> · <a href="/amneziageo/linux/menu/connections.ru.html#прокси">Linux</a> · <a href="/amneziageo/android/menu/connections.ru.html#прокси">Android</a></p>
+
+<h2 id="проверка-маршрута-и-скорости">Проверка маршрута и скорости</h2>
+
+<p class="moved-links">Диагностика: <a href="/amneziageo/windows/menu/diagnostics.ru.html#проверка-маршрута-и-скорости">Windows</a> · <a href="/amneziageo/linux/menu/diagnostics.ru.html#проверка-маршрута-и-скорости">Linux</a> · <a href="/amneziageo/android/menu/diagnostics.ru.html#проверка-маршрута-и-скорости">Android</a></p>
+
+<h2 id="пример-discord-там-где-режут-udp">Пример: Discord там, где режут UDP</h2>
+
+<p class="moved-links">Discord там, где режут UDP: <a href="/amneziageo/windows/recipes/discord-udp.ru.html">Windows</a> · <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Linux</a> · <a href="/amneziageo/android/recipes/discord-udp.ru.html">Android</a></p>
+
+<h2 id="оговорки">Оговорки</h2>
+
+<p class="moved-links">Ограничения: <a href="/amneziageo/windows/menu/routing.ru.html#ограничения">Windows</a> · <a href="/amneziageo/linux/menu/routing.ru.html#ограничения">Linux</a> · <a href="/amneziageo/android/menu/routing.ru.html#ограничения">Android</a></p>
+
+<p class="moved-links">Переподключение: <a href="/amneziageo/windows/menu/home.ru.html#переподключение">Windows</a> · <a href="/amneziageo/linux/menu/home.ru.html#переподключение">Linux</a> · <a href="/amneziageo/android/menu/home.ru.html#переподключение">Android</a></p>
+
+<p class="moved-links">Как Linux применяет правила: <a href="/amneziageo/linux/menu/routing.ru.html#как-linux-применяет-правила">Linux</a></p>
+
+<p class="moved-links">Права агента: <a href="/amneziageo/linux/install.ru.html#права-агента">Linux</a></p>
+
+<p class="moved-links">Переключение конфигурации, остановка туннеля системой, уведомление: <a href="/amneziageo/android/menu/home.ru.html#переключение-конфигурации">Android</a></p>
+
+<p class="moved-links">Строка memory в журнале: <a href="/amneziageo/android/menu/diagnostics.ru.html#журнал">Android</a></p>
+
+<p class="moved-links">Выбор приложений: <a href="/amneziageo/android/menu/routing.ru.html#выбор-приложений">Android</a></p>
+
+<p class="moved-links">Работа в фоне: <a href="/amneziageo/android/menu/general.ru.html#работа-в-фоне">Android</a></p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

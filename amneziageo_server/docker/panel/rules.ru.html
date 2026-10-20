@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Правила · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Условия и направления трафика: через канал, напрямую или в блок.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/rules.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/rules.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/rules.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/panel/rules.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/rules.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/panel/rules.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html" aria-current="page">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a></li>
+  </ol>
+</nav>
+
+        <h1 id="правила">Правила</h1>
+
+<p>Правило говорит, куда идёт трафик: сравнивает, чего просит клиент, и либо отправляет через канал, либо выпускает через хост, либо отбрасывает. Правила лежат в порядке чтения, и весь набор превращается в один набор правил nftables, который хост берёт разом.</p>
+
+<h2 id="список">Список</h2>
+
+<p>Список показывает правила в их порядке с номером, переключателем, что правило сравнивает («Куда», «Клиенты», «Порты», «Вход»), куда отправляет («Трафик»: канал или «группа»), сколько диапазонов и имён вышло («Диапазоны»), и состояние: «на хосте», «выключено», «трафик заперт» с причиной, или причину, по которой правило на хост не легло. Правило переставляется стрелками «Выше» и «Ниже» и перетаскиванием строки, пока список не отсортирован и не отфильтрован. Переключатель включает и выключает правило; выключенное правило в набор не входит.</p>
+
+<h2 id="форма">Форма</h2>
+
+<h3 id="основное">Основное</h3>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/rule-form.png" alt="Форма нового правила: имя youtube, действие «Через канал» и цели из рецепта" width="1440" height="900" loading="lazy" /><figcaption>Правило заполняется, ещё не сохранено.</figcaption></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Включено</td>
+      <td>кладётся ли правило на хост</td>
+    </tr>
+    <tr>
+      <td>Имя</td>
+      <td>до 32 знаков</td>
+    </tr>
+    <tr>
+      <td>Действие</td>
+      <td>«Через канал», «Напрямую», «Блокировать»</td>
+    </tr>
+    <tr>
+      <td>Канал</td>
+      <td>канал или группа, через которые уходит трафик правила «Через канал»</td>
+    </tr>
+    <tr>
+      <td>Протокол</td>
+      <td>«Любой», TCP, UDP</td>
+    </tr>
+    <tr>
+      <td>Порты</td>
+      <td>порты назначения: <code class="language-plaintext highlighter-rouge">443</code>, <code class="language-plaintext highlighter-rouge">1000-2000</code></td>
+    </tr>
+    <tr>
+      <td>Порты источника</td>
+      <td>порты, с которых идёт трафик, так же</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Форма нового правила открывается включённой: правило ляжет на хост сразу после сохранения.</p>
+
+<h3 id="адреса">Адреса</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Куда</td>
+      <td>гео-ключи, домены и диапазоны адресов, в которые идёт трафик</td>
+    </tr>
+    <tr>
+      <td>Клиенты</td>
+      <td>клиенты панели по имени: правило сравнивает трафик с их адресов и перекладывается на хост при каждом изменении клиента, так что новый адрес клиента подхватывается сам</td>
+    </tr>
+    <tr>
+      <td>Интерфейсы</td>
+      <td>интерфейсы панели по имени: правило сравнивает только трафик, пришедший на один из них</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Цель читается по виду: <code class="language-plaintext highlighter-rouge">geoip:ru</code> - страна, <code class="language-plaintext highlighter-rouge">geosite:youtube</code> - категория, <code class="language-plaintext highlighter-rouge">203.0.113.0/24</code> и <code class="language-plaintext highlighter-rouge">198.51.100.7</code> - диапазоны, остальное с точкой - домен. Домен принимается и как <code class="language-plaintext highlighter-rouge">domain:example.com</code>, диапазон как <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, в форме списков клиента AmneziaGeo, так что список переносится с одной стороны на другую без правок. <code class="language-plaintext highlighter-rouge">keyword:ads</code> подходит под каждое имя, в котором есть слово; у ключевого слова своих адресов нет, и адреса такого правила приходят только из ответов, которые видит резолвер. Диапазоны дают <code class="language-plaintext highlighter-rouge">geoip:</code> и сети в целях, имена - <code class="language-plaintext highlighter-rouge">geosite:</code>, домены и ключевые слова. Правило без целей подходит под любой адрес, без «Клиентов» - под любого клиента, без «Интерфейсов» - под любой интерфейс.</p>
+
+<p>Переименование клиента, интерфейса, канала или группы переписывает новое имя во все правила, которые их называют.</p>
+
+<p>Поля «Откуда» (адреса и диапазоны клиентов) больше нет. При обновлении панель переносит адреса из него в «Клиенты»: правило называет по имени каждого клиента, чей адрес попадал под них. Правило, в котором после этого нет ни одного клиента, выключается, чтобы не стать правилом для всех; так же выключается правило, под адреса которого попало больше 64 клиентов: столько одно правило не называет. Каждое тронутое правило панель называет предупреждением в своём журнале. Клиент, заведённый после обновления, в такое правило сам не попадает: его добавляют в «Клиенты».</p>
+
+<h2 id="порядок">Порядок</h2>
+
+<p>Правила читаются сверху вниз, решает первое, которое подошло. Решение принимается один раз, на первом пакете соединения: правило «Через канал» ставит метку канала, и она держится на соединении; соединение без метки идёт туда, куда его отправил бы хост. Соединение остаётся на своём пути и после смены правил, и после того, как его адрес позже попал в набор другого правила. Правило «Блокировать» отбрасывает новое соединение, открытое до правила живёт, пока не кончится. Правило «Напрямую» возвращает из решения без метки, и правила ниже не читаются.</p>
+
+<p>Метка возвращается только на то, что отправили клиенты: ответ, который приходит через канал, метки не несёт, и хост находит клиента в своих таблицах, а не отправляет ответ обратно в канал.</p>
+
+<h2 id="что-не-кладётся-на-хост">Что не кладётся на хост</h2>
+
+<p>Правило входит в набор, только когда есть всё, что оно называет. Иначе список показывает причину:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Причина</th>
+      <th>Что значит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Такого канала нет</td>
+      <td>правило называет канал, которого панель не знает</td>
+    </tr>
+    <tr>
+      <td>Канал этого правила выключен</td>
+      <td>канал выключен</td>
+    </tr>
+    <tr>
+      <td>Канал этого правила не несёт трафик</td>
+      <td>проверка канала не проходит, или интерфейс канала не поднят</td>
+    </tr>
+    <tr>
+      <td>Ни один канал не отвечает</td>
+      <td>у группы нет ни одного живого канала</td>
+    </tr>
+    <tr>
+      <td>Гео-базы ничего не дают этому правилу</td>
+      <td>в базах нет того, что правило сравнивает</td>
+    </tr>
+    <tr>
+      <td>Такого клиента нет</td>
+      <td>панель не знает ни одного из названных клиентов</td>
+    </tr>
+    <tr>
+      <td>Ни одного из интерфейсов правила нет</td>
+      <td>панель не знает ни одного из названных интерфейсов</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Первые четыре причины говорят, что правило в порядке, а пропал его выход. Тогда правило запирает трафик: оно всё равно ложится на хост, но отбрасывает свой трафик вместо того, чтобы метить, и список пишет «трафик заперт» с причиной. Через хост, под адресом самого сервера, трафик правила «Через канал» не уходит никогда; так же запирает и правило, у которого раньше была снята отметка «Не выпускать, пока канал недоступен»: этой отметки в форме больше нет. Пустая цель - ошибка самого правила, такое правило просто не ложится.</p>
+
+<h2 id="на-хосте">На хосте</h2>
+
+<p>Правила живут в таблице nftables <code class="language-plaintext highlighter-rouge">inet amneziageo_rt</code>, которая пишется целиком и загружается одним шагом. Для каждого правила и семейства там набор диапазонов <code class="language-plaintext highlighter-rouge">r&lt;id&gt;v4</code> и <code class="language-plaintext highlighter-rouge">r&lt;id&gt;v6</code> из гео-баз и набор имён <code class="language-plaintext highlighter-rouge">n&lt;id&gt;v4</code> и <code class="language-plaintext highlighter-rouge">n&lt;id&gt;v6</code> со временем жизни, который резолвер наполняет адресами из ответов на имена правила, см. <a href="dns.ru.html">DNS</a>. Цепочка <code class="language-plaintext highlighter-rouge">prerouting</code> оставляет в покое всё, что пришло не на интерфейс панели, отбрасывает пакет клиента без отслеженного соединения, возвращает метку соединению, у которого она уже есть, и отдаёт цепочке <code class="language-plaintext highlighter-rouge">decide</code> только новое соединение; <code class="language-plaintext highlighter-rouge">decide</code> несёт базовые списки, а за ними правила. Набор целиком печатает пункт 23 консольного меню, подпункт 12. Правила кладутся при старте панели, после каждого изменения и когда меняется набор живых каналов.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя пустое или слишком длинное</td>
+      <td>имя</td>
+    </tr>
+    <tr>
+      <td>Действие - канал, напрямую или блокировка; В правиле не выбран канал</td>
+      <td>действие</td>
+    </tr>
+    <tr>
+      <td>Одна из целей не гео-ключ, не домен и не диапазон</td>
+      <td>«Куда»</td>
+    </tr>
+    <tr>
+      <td>Одно из имён клиентов не годится; Одно из имён интерфейсов не годится</td>
+      <td>«Клиенты», «Интерфейсы»</td>
+    </tr>
+    <tr>
+      <td>Протокол - любой, TCP или UDP; Порт источника не порт и не диапазон портов</td>
+      <td>протокол и порты</td>
+    </tr>
+    <tr>
+      <td>В правиле слишком много условий</td>
+      <td>правило не помещается в набор</td>
+    </tr>
+    <tr>
+      <td>Такого правила нет; Такого канала нет</td>
+      <td>номер или имя, которых панель не знает</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

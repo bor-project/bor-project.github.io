@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Интерфейсы · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Серверные интерфейсы AmneziaWG: адреса, порты, ключи, обфускация, WebSocket, порты в брандмауэре.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/interfaces.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/interfaces.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/interfaces.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/interfaces.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/interfaces.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html" aria-current="page">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+  </ol>
+</nav>
+
+        <h1 id="интерфейсы">Интерфейсы</h1>
+
+<p>Интерфейс - серверная сторона туннеля AmneziaWG: UDP-порт, на который приходят клиенты, ключи, адреса сети туннеля и вся обфускация профиля 3.1. В консольном меню и утилите он зовётся эндпоинтом (<code class="language-plaintext highlighter-rouge">endpoint</code>). Панель хранит настройки в своей базе и сама кладёт интерфейс в ядро: ключ, порт и обфускацию - в модуль, адреса - на интерфейс, NAT и закрытые сети - в брандмауэр. Хост, который поднимал интерфейсы через <code class="language-plaintext highlighter-rouge">awg-quick</code>, отдаёт их панели целиком, см. <a href="#перенос-с-awg-quick">Перенос с awg-quick</a>.</p>
+
+<h2 id="список">Список</h2>
+
+<p>Список называет имя, хост, адрес подключения <code class="language-plaintext highlighter-rouge">&lt;хост&gt;:&lt;порт&gt;</code>, число клиентов и состояние. Под адресом включённого интерфейса названы закрытые порты, если брандмауэр хоста не пускает его UDP-порт или TCP-порт сервисов: «51820 закрыт в брандмауэре хоста» или «51820 и 8446 закрыты в брандмауэре хоста», с кнопкой «Открыть», когда панель может менять брандмауэр. Имя ведёт в настройки интерфейса, «Добавить» открывает форму нового. Бейдж «по умолчанию» у имени отмечает интерфейс, на который встаёт новый клиент, если интерфейс не назван.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/interfaces.png" alt="Список интерфейсов: два интерфейса с адресом подключения, адресом интерфейса и числом клиентов, интерфейс по умолчанию отмечен" width="1440" height="900" loading="lazy" /><figcaption>Два интерфейса одного сервера.</figcaption></figure>
+
+<h2 id="форма">Форма</h2>
+
+<p>Новый интерфейс приходит заготовкой, которая уже сходится: порт 51820 или первый свободный выше него, сеть <code class="language-plaintext highlighter-rouge">10.8.0.1/24</code>, MTU 1420, keepalive 25, DNS <code class="language-plaintext highlighter-rouge">1.1.1.1</code> и <code class="language-plaintext highlighter-rouge">1.0.0.1</code>, AllowedIPs <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> и <code class="language-plaintext highlighter-rouge">::/0</code>, свежая пара ключей и случайная обфускация. Имя - первое свободное вида <code class="language-plaintext highlighter-rouge">awgN</code>; хост - тот, что назван у другого интерфейса, иначе домен сертификата панели, иначе адрес, по которому пришёл запрос, если клиенты снаружи достают его, иначе публичный IPv4 хоста. Заготовка не записывается, пока форму не сохранили.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/interface-form.png" alt="Форма интерфейса: включение, «По умолчанию», имя, хост, порт, адрес интерфейса, NAT, доступ к клиентам, прокси WebSocket" width="1440" height="900" loading="lazy" /><figcaption>Интерфейс на порту 443 с WebSocket.</figcaption></figure>
+
+<h3 id="основное">Основное</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя</td>
+      <td>имя интерфейса в ядре, до 15 знаков: строчные буквы, цифры, дефис и подчёркивание, с буквы</td>
+    </tr>
+    <tr>
+      <td>Хост</td>
+      <td>адрес или имя, по которому клиенты приходят: строка <code class="language-plaintext highlighter-rouge">Endpoint</code> в файлах клиентов. Включённый интерфейс без хоста не сохраняется; выключенный может быть без него</td>
+    </tr>
+    <tr>
+      <td>Порт</td>
+      <td>UDP-порт туннеля, у каждого интерфейса свой. Закрытый брандмауэром порт назван под полем с кнопкой «Открыть» или «Открыть при сохранении»</td>
+    </tr>
+    <tr>
+      <td>Порт сервисов</td>
+      <td>TCP-порт, на котором отвечают hello, замер скорости и WebSocket, см. <a href="#сервисы-на-tcp-порту">Сервисы на TCP-порту</a>; пусто - номер UDP-порта. Несколько интерфейсов делят один порт сервисов</td>
+    </tr>
+    <tr>
+      <td>WebSocket прокси</td>
+      <td>нести ли туннель внутри WebSocket на порту сервисов. Не запустился - панель снимает отметку и пишет причину</td>
+    </tr>
+    <tr>
+      <td>Путь WebSocket</td>
+      <td>часть адреса, под которой приходит WebSocket: буквы, цифры, <code class="language-plaintext highlighter-rouge">-</code> и <code class="language-plaintext highlighter-rouge">_</code>, до 64 знаков; новому интерфейсу придумывается 16 знаков, интерфейсы прежних выпусков несут <code class="language-plaintext highlighter-rouge">v1</code></td>
+    </tr>
+    <tr>
+      <td>MTU</td>
+      <td>размер пакета для клиентов, 576-9000; 0 оставляет системе</td>
+    </tr>
+    <tr>
+      <td>Адрес интерфейса</td>
+      <td>сети, которые несёт интерфейс, например <code class="language-plaintext highlighter-rouge">10.8.0.1/24</code>; клиенты получают адреса из них</td>
+    </tr>
+    <tr>
+      <td>Закрыто для клиентов</td>
+      <td>сети, в которые клиентов интерфейса не пускают, например <code class="language-plaintext highlighter-rouge">192.168.0.0/16</code> домашней сети сервера</td>
+    </tr>
+    <tr>
+      <td>Включено</td>
+      <td>кладётся ли интерфейс на хост. Выключение снимает его с хоста, клиенты теряют связь</td>
+    </tr>
+    <tr>
+      <td>По умолчанию</td>
+      <td>интерфейс, на который встаёт новый клиент: форма нового клиента выбирает его сразу, а клиент из API без <code class="language-plaintext highlighter-rouge">configId</code> встаёт на него. Отмечен всегда ровно один: первый интерфейс отмечается сам, отметка другого снимает её с прежнего, удалённый передаёт её следующему по порядку. Снять отметку можно, только отметив другой интерфейс</td>
+    </tr>
+    <tr>
+      <td>NAT для клиентов</td>
+      <td>маскировать ли то, что клиенты отправляют наружу, адресом хоста; без NAT клиенты выходят в интернет только с маршрутами к их сети</td>
+    </tr>
+    <tr>
+      <td>Доступ к клиентам</td>
+      <td>кто из туннеля может начать соединение с клиентами интерфейса: «Закрыт» - никто, «Только сервер» - панель и хост, «Вся сеть туннеля» - все клиенты интерфейса; отдельный клиент может выбрать своё, см. <a href="clients.ru.html#доступ-к-клиенту">Доступ к клиенту</a></td>
+    </tr>
+    <tr>
+      <td>Считать клиента в сети, с</td>
+      <td>сколько секунд после последнего пакета, включая keepalive, клиент считается в сети: 60 по умолчанию, от 10 до 3600 и не меньше двух keepalive. По нему идут отметка «в сети» в списке клиентов и охрана второго устройства</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="сеть">Сеть</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AllowedIPs</td>
+      <td>сети, которые клиент отправляет в туннель: <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> и <code class="language-plaintext highlighter-rouge">::/0</code> - всё. Шаблон клиента заменяет это своим списком, см. <a href="templates.ru.html">Шаблоны</a></td>
+    </tr>
+    <tr>
+      <td>DNS</td>
+      <td>серверы имён для клиента, если резолвер панели не отвечает внутри туннеля, см. <a href="dns.ru.html">DNS</a></td>
+    </tr>
+    <tr>
+      <td>Keepalive</td>
+      <td>как часто клиент шлёт пустой пакет, секунд; 0 выключает</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="ключи">Ключи</h3>
+
+<p>«Приватный ключ» - ключ интерфейса, «Публичный ключ» считается из него и идёт клиентам; «Новая пара» делает новые. «Общий ключ» (preshared) добавляется к рукопожатию, «Сгенерировать» делает 32 случайных байта; пусто - без общего ключа. Клиент, у которого нет своего общего ключа, берёт ключ интерфейса. Приватный и общий ключи отдаются только роли с правом «Управление интерфейсами», остальным приходят пустыми.</p>
+
+<h3 id="обфускация">Обфускация</h3>
+
+<p>Поля профиля AmneziaWG 3.1: Jc (число мусорных пакетов), Jmin и Jmax (их размер), S1-S4 (мусор перед инициацией, ответом, cookie и пакетом данных), H1-H4 (магические заголовки: одно число или диапазон <code class="language-plaintext highlighter-rouge">194488238-194553774</code>; пусто - классические 1/2/3/4), I1-I5 (сигнатурные пакеты, до 1024 знаков). В «Дополнительно»: ключ защиты заголовка (32 байта в base64; с ним S1-S4 не меньше 12 байт), паддинг данных, смена ключа, ожидание рекея, отказ сессии, простой канала, попытки рукопожатия (число или диапазон; пусто - значение WireGuard по умолчанию), «Случайные хвосты» и «Без cookies» (обе стороны на AmneziaWG 3.1 и новее). Диапазон пишется двумя числами через дефис, ядро берёт из него случайное значение. <code class="language-plaintext highlighter-rouge">S1 + 56 = S2</code> панель не принимает: инициация и ответ стали бы одного размера.</p>
+
+<p>Клиенты несут те же строки, что интерфейс, поэтому смена обфускации работающего интерфейса оставляет их без связи, пока они не получат новую конфигурацию: форма предупреждает «Клиенты перестанут подключаться, пока не получат новую конфигурацию». Интерфейс с другой обфускацией кладётся в ядро заново: модуль не убирает поля обфускации и часть изменений на месте не принимает; клиенты ложатся сверху и жмут руки снова.</p>
+
+<h3 id="файл-интерфейса">Файл интерфейса</h3>
+
+<p>Поле «Файл интерфейса» внизу формы нового интерфейса принимает текст файла <code class="language-plaintext highlighter-rouge">awg-quick</code> и кнопкой «Прочитать» заполняет форму из него: приватный ключ, адреса, порт, размер пакета и обфускация берутся из файла, остальное из заготовки. Сохранение - обычное добавление, с теми же проверками. Пиры того же файла становятся клиентами через <a href="clients.ru.html#импорт">импорт</a> консолью или API.</p>
+
+<h2 id="что-кладётся-на-хост">Что кладётся на хост</h2>
+
+<p>Включённый интерфейс кладётся на хост целиком: интерфейс добавляется, если его нет, ключ, порт и обфускация уходят в модуль, адреса ложатся на интерфейс, он поднимается с заданным MTU, и сверху ложатся его клиенты. Выключение и удаление снимают интерфейс с хоста. Пересылка пакетов в обоих семействах включается при каждом применении, поэтому перезагруженный хост получает её снова, как только сервер стартует.</p>
+
+<p>Правила живут в таблице nftables <code class="language-plaintext highlighter-rouge">inet amneziageo_in</code>, которая переписывается при каждом изменении интерфейса: маскарад клиентов за адресом хоста (NAT), пропуск ответов на то, что клиент отправил, доступ из туннеля к клиентам, которые его разрешили, и отказ клиентам в закрытых сетях. Интерфейс, который уже поднят, сохраняет пиров и адреса: меняется только то, что отличается.</p>
+
+<p>Панель следит за интерфейсами: после сообщения ядра об изменении интерфейсов хоста и каждые пять секунд без него. Опущенный за её спиной интерфейс поднимается снова, исчезнувший кладётся заново с ключами, адресами и клиентами, и журнал пишет об этом. Хост, который отказывает, назван в журнале один раз, и интерфейс пробуется снова раз в минуту.</p>
+
+<p>Чтение и запись интерфейса требуют <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>; без права панель хранит интерфейс и клиентов и пишет, что интерфейс отказал.</p>
+
+<h2 id="сервисы-на-tcp-порту">Сервисы на TCP-порту</h2>
+
+<p>Кроме UDP-порта у включённого интерфейса есть TCP-порт - порт сервисов. На нём панель отвечает приложению AmneziaGeo клиента, подтверждающему ключи своего файла:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сервис</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>hello</td>
+      <td>рассказывает приложению, что сервер ему предлагает: WebSocket с портом и путём, доступ из туннеля, сигнал отключения, замер скорости, адрес подписки, гео-источники панели и пресеты маршрутизации шаблона</td>
+    </tr>
+    <tr>
+      <td>скорость</td>
+      <td>отдаёт и принимает до 100 МиБ по билету из hello, чтобы приложение померило скорость до сервера внутри и снаружи туннеля</td>
+    </tr>
+    <tr>
+      <td>WebSocket</td>
+      <td>несёт туннель внутри WebSocket под путём интерфейса, пока включён «WebSocket прокси»</td>
+    </tr>
+    <tr>
+      <td>подписка</td>
+      <td>адрес подписки клиента, см. <a href="subscriptions.ru.html">Подписки</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Порт отвечает по TLS: под сертификатом панели, когда он есть, иначе под сертификатом, который панель делает себе при старте; приложение его не проверяет, клиента подтверждает подпись его ключами. Если порт сервисов перенесён, файл клиента несёт строку <code class="language-plaintext highlighter-rouge"># AmneziaGeo Services = &lt;порт&gt;</code>, другие приложения читают её как комментарий. Панель может отвечать на этом же порту и сама: достаточно назвать его на вкладке <a href="server.ru.html">Сервер</a>, и сервер открывает миру один TCP-порт.</p>
+
+<p>Для WebSocket панель запускает по одному <code class="language-plaintext highlighter-rouge">wstunnel</code> на интерфейс на петле, с портом <code class="language-plaintext highlighter-rouge">61000 + id % 4000</code>, и список целей фронта пускает его только к UDP-порту своего интерфейса. Фронт - служба <code class="language-plaintext highlighter-rouge">amneziageo-proxy@&lt;интерфейс&gt;</code> с аргументами в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/proxy-&lt;интерфейс&gt;.env</code> и списком целей в <code class="language-plaintext highlighter-rouge">proxy-&lt;интерфейс&gt;.yaml</code>. Путь WebSocket не может совпадать с путём панели, подписок или WebSocket другого интерфейса на том же порту: такое сохранение отвечает «Путь на этом порту занят». Если фронт не поднялся или порт сервисов держит другая программа, панель снимает отметку «WebSocket прокси» и называет причину; упавший позже фронт и закрытый порт видны в <a href="overview.ru.html#службы">Службах</a>.</p>
+
+<p>Сигнал отключения: выключение клиента говорит его приложению опустить туннель, см. <a href="clients.ru.html#отключение-клиента">Отключение клиента</a>.</p>
+
+<h2 id="порты-в-брандмауэре">Порты в брандмауэре</h2>
+
+<p>Панель держит порты открытыми только там, где её об этом попросили; по умолчанию она не трогает брандмауэр хоста. Порты интерфейса (UDP-порт, TCP-порт сервисов, обе стороны пересылки через интерфейс и порт резолвера на интерфейсе, пока резолвер отвечает на его адресе), порт панели и порт подписок включаются пунктом 23 <a href="../menu.ru.html">меню</a>, командами <code class="language-plaintext highlighter-rouge">amneziageo-server endpoint open &lt;имя&gt;</code>, <code class="language-plaintext highlighter-rouge">panel set --opened on</code>, <code class="language-plaintext highlighter-rouge">subscriptions set --opened on</code> или кнопкой «Открыть» рядом с закрытым портом в панели. Панель включает переключатель и никогда не выключает его сама; сохранение формы без слова о порте оставляет переключатель как есть.</p>
+
+<p>Где на хосте стоит ufw, панель даёт ему правила с пометкой в комментарии, по которой узнаёт свои:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ufw allow 51820/udp comment 'amneziageo awg0'
+ufw allow 51820/tcp comment 'amneziageo awg0'
+ufw route allow in on awg0 comment 'amneziageo awg0'
+ufw route allow out on awg0 comment 'amneziageo awg0'
+ufw allow 8443/tcp comment 'amneziageo panel'
+</code></pre></div></div>
+
+<p>Перед каждым изменением она читает <code class="language-plaintext highlighter-rouge">ufw show added</code>, добавляет недостающее и убирает только свои правила, которые больше никому не нужны; правило, написанное руками, остаётся. Выключенный ufw правила принимает и держит до включения, поэтому <code class="language-plaintext highlighter-rouge">ufw enable</code> на работающем сервере не рвёт туннели; включать и выключать ufw панель не берётся. Где ufw нет, панель кладёт таблицу <code class="language-plaintext highlighter-rouge">inet amneziageo_open</code> с теми же портами и интерфейсами: на хосте, который ничего не закрывает, это ничего не меняет, а на хосте с закрытыми в своей таблице портами их открывают там руками. Порт резолвера на интерфейсе, порты которого панель не держит, пускают в ufw подпункт 13 пункта 23 меню и <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, см. <a href="dns.ru.html#как-это-работает">DNS</a>.</p>
+
+<p>Закрытый порт форма называет под полем. Если панель может менять брандмауэр и у роли есть право на раздел (интерфейсы - «Управление интерфейсами», панель и подписки - «Управление доступом»), рядом стоит кнопка: «Открыть» для сохранённого порта держит его открытым сразу; «Открыть при сохранении» для нового или перенесённого порта открывает его вместе с сохранением, «Не открывать» отменяет. Новый порт на вкладках «Сервер» и «Подписки», который брандмауэр закрывает, не сохраняется, пока его не открыли, чтобы панель не уехала туда, где её никто не достанет; интерфейс сохраняется и так. Когда брандмауэр отказал, форма пишет «Сетевой экран сервера не принял порт», переключатель остаётся включённым до следующего применения.</p>
+
+<p>Порт, который панель держала открытым и который переехал на другой номер, открывается на новом и закрывается на старом. С ufw форма спрашивает «Закрыть прежний порт 51820/udp?»: «Закрыть» убирает старое правило, «Оставить открытым» передаёт его хосту под комментарием <code class="language-plaintext highlighter-rouge">kept by amneziageo &lt;имя&gt;</code>, и дальше панель его не трогает (подсказка: «Оставленный порт останется открытым в брандмауэре сервера (ufw) как его собственное правило, панель больше не будет его трогать»). Таблица <code class="language-plaintext highlighter-rouge">amneziageo_open</code> ничего не хранит, поэтому без ufw старый порт закрывается без вопроса.</p>
+
+<p>Состояние порта панель читает из <code class="language-plaintext highlighter-rouge">ufw status verbose</code>: решает первое правило, которое называет порт, иначе политика для входящих. Где ufw нет, она читает цепочки, которые ufw оставляет в nftables. Хост без того и другого ничего не говорит, и порт не называется. Порты кладутся заново при каждом сохранении, применении, открытии и удалении интерфейса, настроек панели и подписок, при перезапуске резолвера и при старте сервера, так что хост со сброшенным брандмауэром получает правила обратно, как только панель поднялась.</p>
+
+<h2 id="перенос-с-awg-quick">Перенос с awg-quick</h2>
+
+<p>Хост, который поднимал интерфейсы <code class="language-plaintext highlighter-rouge">awg-quick</code>, отдаёт панели интерфейсы и клиентов из файлов:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server import endpoint /etc/amnezia/amneziawg/awg1.conf --host vpn.example.com
+amneziageo-server import peers /etc/amnezia/amneziawg/awg1.conf --endpoint awg1
+amneziageo-server import clients /root/awg-clients.json --endpoint awg1 --v6 &lt;префикс&gt;
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">import endpoint</code> читает файл интерфейса в интерфейс панели с ключами и обфускацией и называет адрес для клиентов. <code class="language-plaintext highlighter-rouge">import peers</code> читает пиров того же файла: имена берутся из комментариев над ними, приватных ключей там нет, поэтому такой клиент управляется, но файла ему панель не выдаст, а клиенту, которому нужен файл, заводится новый. <code class="language-plaintext highlighter-rouge">import clients</code> читает файл, в котором хост держал клиентов с приватными ключами; <code class="language-plaintext highlighter-rouge">--v6</code> добавляет каждому адрес второго семейства по последнему числу первого. Клиент, чей публичный ключ панель уже знает, пропускается, поэтому импорт идёт дважды без удвоения; занятое имя получает номер (<code class="language-plaintext highlighter-rouge">anna-2</code>). Пункт 25 меню делает то же вопросами. В панели из этого есть поле «Файл интерфейса» формы нового интерфейса; клиентов из текста принимает <code class="language-plaintext highlighter-rouge">POST /api/clients/import</code>, см. <a href="clients.ru.html#импорт">Импорт</a>.</p>
+
+<p>Потом остановить старые службы и запустить панель:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl disable --now awg-quick@awg0 awg-quick@awg1
+systemctl start amneziageo-server
+</code></pre></div></div>
+
+<p>Интерфейсы сохраняют ключи, порты, адреса и обфускацию из файлов, и клиенты возвращаются сами с файлами, которые уже держат. Что старые <code class="language-plaintext highlighter-rouge">PostUp</code> отбрасывали, записывается в «Закрыто для клиентов», что маскировали - это «NAT для клиентов». Старые файлы остаются на месте, и <code class="language-plaintext highlighter-rouge">systemctl enable --now awg-quick@awg0</code> возвращает хост назад, когда служба панели остановлена. Всё, что управляло пирами до панели (скрипты синхронизации, таймеры), должно остановиться, иначе двое будут отменять друг друга. Копию файлов хоста и базы панели <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/server.db</code> стоит сохранить до переезда.</p>
+
+<p>Панель добавляет и меняет пиров интерфейса и снимает тех, кого выключила или удалила; пира, которого она не знает, оставляет на месте, и <code class="language-plaintext highlighter-rouge">POST /api/clients/apply</code> перечисляет таких как лишних. Те же клиенты пишутся в файл интерфейса в <code class="language-plaintext highlighter-rouge">/etc/amnezia/amneziawg</code>, чтобы перезагрузка их не потеряла; шапка файла до первого <code class="language-plaintext highlighter-rouge">[Peer]</code> сохраняется как есть. Каталог задаёт <code class="language-plaintext highlighter-rouge">Endpoints__Directory</code>, <code class="language-plaintext highlighter-rouge">Endpoints__KeepFile=false</code> выключает запись файла.</p>
+
+<h2 id="удаление">Удаление</h2>
+
+<p>Удаление стоит на странице интерфейса: «Удалить <имя>?». Оно снимает интерфейс с хоста вместе с клиентами. Интерфейс, который называют правила маршрутизации, остаётся в них по имени: такое правило не кладётся на хост с причиной «Ни одного из интерфейсов правила нет».</имя></p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя из строчных букв, цифр, дефиса и подчёркивания, начинается с буквы</td>
+      <td>имя пустое, длиннее 15 знаков или с другими знаками</td>
+    </tr>
+    <tr>
+      <td>Это не адрес и не имя хоста; Укажите хост, по которому клиенты подключаются к серверу</td>
+      <td>хост не разобран; включённый интерфейс без хоста</td>
+    </tr>
+    <tr>
+      <td>Порт вне диапазона 1-65535; Порт уже занят другим интерфейсом</td>
+      <td>UDP-порт</td>
+    </tr>
+    <tr>
+      <td>Адрес интерфейса не диапазон адресов; AllowedIPs не диапазон адресов; Это не адрес сервера имён; Закрытая сеть записана не диапазоном</td>
+      <td>сети и адреса</td>
+    </tr>
+    <tr>
+      <td>MTU вне диапазона 576-9000; Keepalive вне диапазона 0-65535; Не меньше двух keepalive и в пределах 10-3600 с</td>
+      <td>размеры и времена</td>
+    </tr>
+    <tr>
+      <td>Приватный ключ не 32 байта в base64; Общий ключ не 32 байта в base64; Ключ защиты заголовка не 32 байта в base64</td>
+      <td>ключи</td>
+    </tr>
+    <tr>
+      <td>Размеры мусора не сходятся; Типы пакетов совпадают или ниже пяти; Спецпакет длиннее 1024 символов; Значение пишется числом или парой через дефис; Для ключа защиты заголовка S1-S4 должны быть не меньше 12 байт</td>
+      <td>обфускация</td>
+    </tr>
+    <tr>
+      <td>Такое имя уже занято</td>
+      <td>интерфейс с таким именем есть</td>
+    </tr>
+    <tr>
+      <td>В пути только буквы, цифры, - и _, одной частью; Путь на этом порту занят</td>
+      <td>путь WebSocket</td>
+    </tr>
+    <tr>
+      <td>В конфигурации нет ключа, нет сервера или она пуста</td>
+      <td>файл интерфейса не прочитан</td>
+    </tr>
+    <tr>
+      <td>В ядре нет модуля amneziawg; Панели не хватает прав на сеть хоста; Хост не даёт включить пересылку пакетов; Интерфейс не поднялся: <причина>; WebSocket прокси не запустился: <причина></причина></причина></td>
+      <td>хост не принял интерфейс</td>
+    </tr>
+    <tr>
+      <td>Сетевой экран сервера не принял порт</td>
+      <td>ufw или nft отказали открыть порт</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

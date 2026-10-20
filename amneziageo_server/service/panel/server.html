@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Server · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Address, port, path and language of the panel, configuration name template, pre-releases.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/server.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/server.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/server.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/server.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/server.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/server.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/server.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html" aria-current="page">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/service/panel/settings.html">Settings</a></li>
+  </ol>
+</nav>
+
+        <h1 id="server">Server</h1>
+
+<p>The “Server” tab sets where the panel answers and a few settings of the panel as a whole. The address, port and path take effect after “Restart”, the language, the name template and pre-releases at once.</p>
+
+<h2 id="panel">Panel</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Listen addresses</td>
+      <td>the addresses of the host on which the panel answers; “Every address”, on each address of the host</td>
+    </tr>
+    <tr>
+      <td>Listen domains</td>
+      <td>the names the panel answers to; “Any domain”, to any. A request with another name gets 404, one from the loopback passes</td>
+    </tr>
+    <tr>
+      <td>Port</td>
+      <td>the TCP port of the panel, 8443 until another is set. A port closed by the firewall is named under the field with the “Open” or “Open on save” button; a new port that the firewall closes is not saved until it is opened, see <a href="interfaces.html#ports-in-the-firewall">Ports in the firewall</a></td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td>what comes after the port: <code class="language-plaintext highlighter-rouge">/</code> is the root, <code class="language-plaintext highlighter-rouge">/panel/</code> the panel under this path, and everything outside it answers 404</td>
+    </tr>
+    <tr>
+      <td>Language</td>
+      <td>the language the panel opens in until the browser picks its own</td>
+    </tr>
+    <tr>
+      <td>Config name template</td>
+      <td>the name under which the configuration of a client goes in the file, the link and the subscription, see below</td>
+    </tr>
+    <tr>
+      <td>Receive prerelease versions</td>
+      <td>whether to offer pre-releases of the panel; the panel looks at the releases again right after saving, see <a href="overview.html#updates">Updates</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/server.png" alt="Server tab: listen addresses and domains, port, path, language, configuration name template with an example, pre-releases" width="1440" height="900" loading="lazy" /><figcaption>The Server tab of the settings.</figcaption></figure>
+
+<p>After a restart that moved the panel, the page moves to the new address by itself: to the new path at the same address, and to the new port and scheme as well, if the page is open on a port the panel listens on.</p>
+
+<p>The panel can also answer on the TCP services port of the interfaces: it is enough to name the same port here. Then hello, the speed test, the WebSocket of the tunnel and subscriptions are answered by the panel itself on this port, no listener of its own is raised for it, and the server answers the world on one TCP port. Such a port always answers over TLS: under the certificate of the panel when there is one, otherwise under a certificate the panel makes itself. Only the path under which the WebSocket of an interface comes on this port is refused: “The path is taken on this port by the WebSocket of an interface”.</p>
+
+<h2 id="first-start">First start</h2>
+
+<p>While the panel has no settings of its own, what to listen on is told by the list <code class="language-plaintext highlighter-rouge">Web__Listen__&lt;n&gt;</code> in the environment: <code class="language-plaintext highlighter-rouge">*:8443</code>, every address of the host; <code class="language-plaintext highlighter-rouge">127.0.0.1:8443</code>, one address; <code class="language-plaintext highlighter-rouge">[::1]:8443</code>, an IPv6 address; <code class="language-plaintext highlighter-rouge">lo:8443</code>, the addresses of the <code class="language-plaintext highlighter-rouge">lo</code> interface; <code class="language-plaintext highlighter-rouge">wgadmin:8443</code>, the addresses of a tunnel, so that the panel answers only inside it. The service and <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/server.env</code> give <code class="language-plaintext highlighter-rouge">127.0.0.1:8443</code>. At the first start the list becomes the settings of the panel: the port of the first entry and the addresses of the entries with this port; after that the panel edits them, and the list is read again only if the settings are removed from the database (<code class="language-plaintext highlighter-rouge">amneziageo-server panel reset</code>).</p>
+
+<p>The path comes together with them: a panel without settings takes <code class="language-plaintext highlighter-rouge">/&lt;16 letters and digits&gt;/</code>, makes it up once and writes it to the log as the line <code class="language-plaintext highlighter-rouge">the panel answers from *:8443 under /&lt;path&gt;/</code>; <code class="language-plaintext highlighter-rouge">Web__Path=/</code> in the environment puts it at the root. The command <code class="language-plaintext highlighter-rouge">amneziageo-server panel set</code>, given before the first start, writes the same settings first, from the variables it runs under, and changes only what is named. A panel whose address another program holds writes one line <code class="language-plaintext highlighter-rouge">the panel did not start: ... address already in use; free the port or move the panel with 'amneziageo-server panel set --port &lt;port&gt;'</code> and exits with code 1; systemd starts it again every three seconds until the port is free or the panel moves.</p>
+
+<p>Behind a reverse proxy the panel reads <code class="language-plaintext highlighter-rouge">X-Forwarded-Host</code>, <code class="language-plaintext highlighter-rouge">X-Forwarded-Proto</code> and <code class="language-plaintext highlighter-rouge">X-Forwarded-For</code> only from the addresses in <code class="language-plaintext highlighter-rouge">Web__Proxies__&lt;n&gt;</code>; this way the subscription of a client carries the name by which the clients reach the server, not an internal address. A name set in the panel is stronger: a subscription takes its own domain, then the domain of the panel, and only then the host of the request.</p>
+
+<h2 id="config-name-template">Config name template</h2>
+
+<p>The name of a configuration in the file, the <code class="language-plaintext highlighter-rouge">vpn://</code> link and the subscription is built from a template, <code class="language-plaintext highlighter-rouge">{HOST}-{INTERFACE}-{CLIENT}</code> until another is set. The template is text with substitutions in curly braces, in any case:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Substitution</th>
+      <th>What it gives</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{HOST}</code></td>
+      <td>the host of the interface, or the host of the request if the interface names none</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{INTERFACE}</code></td>
+      <td>the name of the interface</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{CLIENT}</code></td>
+      <td>the name of the client</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{ID}</code></td>
+      <td>the number of the client</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{PORT}</code></td>
+      <td>the port of the interface</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{NOTE}</code></td>
+      <td>the note of the client</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{DATE}</code></td>
+      <td>the day the client was added, in UTC</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A substitution that came out empty takes the separator after it along (<code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">_</code>, <code class="language-plaintext highlighter-rouge">.</code>, <code class="language-plaintext highlighter-rouge">|</code> or a space), the name loses separators at its edges, and a name of which nothing is left becomes the moment the client was added, to the millisecond. In a file name the characters <code class="language-plaintext highlighter-rouge">\ / : * ? " &lt; &gt; |</code> are replaced with <code class="language-plaintext highlighter-rouge">_</code>. The page shows the name as you type, on the example of the first client; a template with an unknown substitution writes “Unknown substitution: <list>", one longer than 128 characters "The name template is longer than 128 characters".</list></p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The port is outside 1 to 65535; Another program holds the port; The port is taken by <name></name></td>
+      <td>the port</td>
+    </tr>
+    <tr>
+      <td>The address to listen on was not read; The domain was not read; The path is not one the panel can sit under</td>
+      <td>addresses, domains, path</td>
+    </tr>
+    <tr>
+      <td>The path is taken on this port by the WebSocket of an interface</td>
+      <td>the path on a shared port</td>
+    </tr>
+    <tr>
+      <td>The panel does not open in this language</td>
+      <td>the language</td>
+    </tr>
+    <tr>
+      <td>The name template holds an unknown substitution; The name template is longer than 128 characters</td>
+      <td>the name template</td>
+    </tr>
+    <tr>
+      <td>The firewall of the host refused the port</td>
+      <td>the firewall</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

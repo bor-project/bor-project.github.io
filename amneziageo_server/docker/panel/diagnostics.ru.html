@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Диагностика · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Версии компонентов, журнал событий и журнал подключений.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/diagnostics.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/diagnostics.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/diagnostics.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/panel/diagnostics.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/diagnostics.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/panel/diagnostics.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html" aria-current="page">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a></li>
+  </ol>
+</nav>
+
+        <h1 id="диагностика">Диагностика</h1>
+
+<p>Вкладка «Диагностика» показывает, на чём работает панель, её журнал событий и журнал подключений клиентов.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/diagnostics.png" alt="«Диагностика»: версии компонентов и журнал событий" width="1440" height="900" loading="lazy" /><figcaption>Версии и журнал событий.</figcaption></figure>
+
+<h2 id="версии">Версии</h2>
+
+<p>«Панель», «AmneziaWG» (версия модуля или «нет»), «.NET», «Система», «Ядро» и «wstunnel» - то, что печатает <code class="language-plaintext highlighter-rouge">wstunnel --version</code>.</p>
+
+<h2 id="журнал-событий">Журнал событий</h2>
+
+<p>Последние 500 записей журнала панели, новые сверху: время, уровень, источник и сообщение; «Обновить» перечитывает. Записи живут и в файле <code class="language-plaintext highlighter-rouge">journal.db</code> рядом с базой панели: строка попадает в него в течение секунды, после перезапуска панель читает последние 500 обратно, так что страница показывает и то, что было до перезапуска. Файл держит до ста тысяч записей и 32 МБ (<code class="language-plaintext highlighter-rouge">Journal__MostRecords</code> и <code class="language-plaintext highlighter-rouge">Journal__MostBytes</code> задают другие пределы, не ниже 1000 записей и 1 МБ), старые уходят первыми. В копию базы файл не входит.</p>
+
+<p>Что процесс печатает, идёт туда, где хост держит журналы: в журнал контейнера (<code class="language-plaintext highlighter-rouge">json-file</code>, 10 МБ в 3 файлах, как задаёт <code class="language-plaintext highlighter-rouge">compose.yaml</code>), читается <code class="language-plaintext highlighter-rouge">docker compose logs</code>; то же показывает пункт 19 консольного меню.</p>
+
+<h2 id="журнал-подключений">Журнал подключений</h2>
+
+<p>Журнал подключений держит запись о каждом новом соединении клиента: когда решено, клиент и адрес, с которого он пришёл, интерфейс, протокол, адрес и порт назначения, имя, которое резолвер панели ответил для этого адреса, как соединение понесли, вышло ли оно с хоста само или передано другому серверу, и что пришло в ответ. Он выключен, пока не включат.</p>
+
+<p>«Записывать подключения в журнал» включает запись, «Хранить» - сколько дней держать записи (7 по умолчанию, 1-90); журнал держит не больше миллиона записей, старые уходят первыми. Строка состояния говорит, сколько записей, с какого времени, сколько байт и «потеряно N», если записи не поместились в очередь. «Очистить» убирает все записи. Записи живут в <code class="language-plaintext highlighter-rouge">access.db</code> рядом с базой панели и в копию базы не входят.</p>
+
+<h3 id="сводка-и-подключения">Сводка и подключения</h3>
+
+<p>Фильтры: «Период» («Последний час», «Последние 6 часов», «Последние сутки», «Последние 7 дней», «Свой диапазон» с «С» и «По»), «Клиент» (клиент или адрес источника, «все»), «Как» (локально, передано, через <канал>, напрямую, блок, заперто, охрана), «Итог» (успешно, сбой, нет ответа, сброшено, без данных, недоступно), «Имя или адрес».</канал></p>
+
+<p>«Сводка» считает подключения, локально, передано, блок и заперто, успешно и сбой, и группирует «Группировать» по домену (последние две части имени, три под страной с доменами второго уровня), имени, правилу, каналу или клиенту: до 500 самых больших групп с числом успешных и сбойных («Показаны N самых больших групп»). «Подключения» перечисляют записи: время, клиент, «Куда» (имя или адрес с портом), правило («нет», если не сработало ни одно), «Как» и «Итог»; «Показать ещё» грузит дальше.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Как</th>
+      <th>Что значит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>через <канал></канал></td>
+      <td>отправлено через канал; у группы назван выбранный канал</td>
+    </tr>
+    <tr>
+      <td>напрямую</td>
+      <td>выпущено так, как хост отправляет своё: правило «Напрямую», список «Напрямую» или ни одно правило</td>
+    </tr>
+    <tr>
+      <td>блок</td>
+      <td>отброшено правилом «Блокировать» или списком</td>
+    </tr>
+    <tr>
+      <td>заперто</td>
+      <td>отброшено, пока канал правила ничего не несёт</td>
+    </tr>
+    <tr>
+      <td>охрана</td>
+      <td>сброшено защитой резолвера, DNS через TLS или HTTPS</td>
+    </tr>
+    <tr>
+      <td>локально, передано</td>
+      <td>путь: вышло через выход хоста или передано другому серверу через туннель канала</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Итог</th>
+      <th>Что значит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>успешно</td>
+      <td>другая сторона ответила: данными по TCP, любым пакетом по другим протоколам</td>
+    </tr>
+    <tr>
+      <td>без данных</td>
+      <td>другая сторона приняла TCP-соединение и за 10 секунд ничего не прислала</td>
+    </tr>
+    <tr>
+      <td>сброшено</td>
+      <td>другая сторона сбросила TCP-соединение или закрыла его, ничего не прислав</td>
+    </tr>
+    <tr>
+      <td>нет ответа</td>
+      <td>ничего не вернулось вовремя: 10 секунд после последнего пакета-вопроса, самое большее 30</td>
+    </tr>
+    <tr>
+      <td>недоступно</td>
+      <td>пришла ошибка ICMP: адрес или порт недостижимы</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>У отброшенного соединения (блок, заперто, охрана) нет ни пути, ни итога, как и у того, за которым панель перестала следить, потому что журнал выключили или панель остановилась.</p>
+
+<h3 id="как-берутся-записи">Как берутся записи</h3>
+
+<p>Ядро решает соединение один раз, на первом пакете, в цепочке <code class="language-plaintext highlighter-rouge">decide</code> таблицы правил. Пока журнал работает, каждая строка цепочки отдаёт пакет группе NFLOG 7317 перед вердиктом, под префиксом с правилом и вердиктом, и последняя строка отдаёт то, что не взяло ни одно правило; панель читает группу по netlink с первыми 96 байтами пакета. Журнал смотрит и за ответом: цепочка <code class="language-plaintext highlighter-rouge">answer</code> отдаёт первый пакет, который вернулся соединению, а по TCP - первый с данными, сбросом или закрытием. Ничего не ждёт журнала: NFLOG не держит пакет, а то, что не влезло в очередь панели, отбрасывается и считается в «потеряно». Повторный SYN и повторный UDP-пакет складываются в одну запись соединения. Вопросы к резолверу панели в журнал не идут: имена из них стоят на записях соединений, которые за ними следуют. Соединения, которые панель вела сама ради чтения имени, см. <a href="dns.ru.html#имена-из-соединений">Имена из соединений</a>, пишутся с именем, которое соединение назвало, и итогом, который видела панель.</p>
+
+<p>Хост, который не принимает набор правил со строками журнала, получает его без них, и журнал пишет почему. Модули <code class="language-plaintext highlighter-rouge">nfnetlink_log</code> и <code class="language-plaintext highlighter-rouge">nft_log</code> ядро загружает само.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

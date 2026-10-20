@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>First configuration · Linux · AmneziaGeo</title>
+    <meta name="description" content="Add a configuration, pick the routing and connect - from the console or in the window.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/first-config.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/first-config.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/first-config.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/linux/first-config.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/linux/first-config.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/first-config.html">Windows</a>
+  <a href="/amneziageo/linux/first-config.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/first-config.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.html" aria-current="page">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/">Linux</a></li>
+  </ol>
+</nav>
+
+        <h1 id="first-configuration">First configuration</h1>
+
+<h2 id="from-the-console">From the console</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>amneziageo geo download
+<span class="nb">sudo </span>amneziageo config import work <span class="nt">--file</span> work.conf
+<span class="nb">sudo </span>amneziageo up work
+<span class="nb">sudo </span>amneziageo settings <span class="nb">set </span>survive-reboot on
+</code></pre></div></div>
+
+<p>Import also takes <code class="language-plaintext highlighter-rouge">--link</code> with a <code class="language-plaintext highlighter-rouge">vpn://</code> URL or <code class="language-plaintext highlighter-rouge">--stdin</code>. An <code class="language-plaintext highlighter-rouge">http(s)</code> address in <code class="language-plaintext highlighter-rouge">--link</code> is downloaded: the agent reads it as a subscription, whether it serves a list of links or a single configuration, and keeps it up to date. The import box of <code class="language-plaintext highlighter-rouge">amneziageo tui</code> takes the same three kinds of text.</p>
+
+<p><code class="language-plaintext highlighter-rouge">up &lt;config&gt;</code> selects the configuration and connects on it; <code class="language-plaintext highlighter-rouge">select &lt;config&gt;</code> only remembers it for the next connect. The routing list is one setting for the whole machine, not a per-configuration pairing: <code class="language-plaintext highlighter-rouge">routing use &lt;name&gt;</code> picks it, <code class="language-plaintext highlighter-rouge">routing use none</code> leaves the configuration’s own <code class="language-plaintext highlighter-rouge">AllowedIPs</code> to decide what the tunnel carries.</p>
+
+<p><code class="language-plaintext highlighter-rouge">survive-reboot</code> starts the agent at boot and dials at its start; without it a reboot leaves the server without a tunnel. A tunnel that dies is dialled again by itself: <code class="language-plaintext highlighter-rouge">periodic-reconnect-enabled</code> is on unless you turn it off.</p>
+
+<h2 id="in-the-window">In the window</h2>
+
+<p class="todo"><span>Coming soon</span> on a desktop - the same as on Windows: Add configuration, the routing list, connecting</p>
+
+<p>The configuration catalogue: <a href="/amneziageo/linux/menu/configurations.html">Configurations</a>; modes and lists: <a href="/amneziageo/linux/menu/routing.html">Routing</a>.</p>
+
+<h2 id="what-next">What next</h2>
+
+<ul>
+  <li><a href="/amneziageo/linux/menu/">Menu</a></li>
+  <li><a href="/amneziageo/linux/recipes/">Recipes</a></li>
+  <li><a href="/amneziageo/linux/cli.html">Command line</a></li>
+</ul>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

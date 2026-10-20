@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Консольное меню · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Скрипт amneziageo-server: состояние, пункты меню и команды.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/menu.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/menu.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/menu.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/menu.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/menu.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/menu.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html" aria-current="page">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+  </ol>
+</nav>
+
+        <h1 id="консольное-меню">Консольное меню</h1>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo-server</code> - скрипт, который ставит панель на хост и дальше обслуживает её. Он приходит с каждым релизом в <code class="language-plaintext highlighter-rouge">/usr/local/bin</code>, и каждое обновление панели обновляет его. Без аргументов он открывает меню, в том числе по ssh; каждый пункт работает и командой, а команда, которой меню не знает, уходит в <a href="cli.ru.html">утилиту</a>: <code class="language-plaintext highlighter-rouge">amneziageo-server user list</code>. <code class="language-plaintext highlighter-rouge">amneziageo-server help</code> печатает список. Короткая команда, которую ставит установка (по умолчанию <code class="language-plaintext highlighter-rouge">ag-s</code>), - ссылка на скрипт в том же каталоге и открывает то же меню.</p>
+
+<p>Под меню скрипт печатает состояние:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Строка</th>
+      <th>Что показывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Panel</code></td>
+      <td>работает ли панель, как поставлена, версия и канал релизов</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Autostart</code></td>
+      <td>стартует ли панель с хостом</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Kernel</code></td>
+      <td>загружен ли модуль <code class="language-plaintext highlighter-rouge">amneziawg</code>, включена ли пересылка</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Websocket</code></td>
+      <td>сколько фронтов WebSocket работает, включён ли BBR</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DNS</code></td>
+      <td>резолвер для клиентов: выключен, включён и шифрует ли запросы наружу</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Services</code></td>
+      <td>строка служб панели, например <code class="language-plaintext highlighter-rouge">all 3 work</code> или <code class="language-plaintext highlighter-rouge">2 of 3 down: subscriptions (port-refused), endpoint awg1 (port-closed udp 443)</code>, та же, что в карточке «Службы» <a href="panel/overview.ru.html#службы">Обзора</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Пока скрипт собирает эти строки, на их месте крутится индикатор <code class="language-plaintext highlighter-rouge">reading...</code>, а набранное в это время не печатается и в вопрос меню не попадает. Так же меню ведёт себя, пока читает настройки и списки для пунктов и подменю.</p>
+
+<h2 id="установка-и-релизы">Установка и релизы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Пункт</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 <code class="language-plaintext highlighter-rouge">Install</code></td>
+      <td>осматривает хост, спрашивает всё нужное и ставит панель, см. <a href="install.ru.html">Установка</a>; на хосте с панелью отвечает, что обновляет её пункт 2</td>
+    </tr>
+    <tr>
+      <td>2 <code class="language-plaintext highlighter-rouge">Update</code></td>
+      <td>переводит панель на последний релиз её канала: просит панель обновиться и ждёт до пяти минут, пока она ответит новой версией</td>
+    </tr>
+    <tr>
+      <td>3 <code class="language-plaintext highlighter-rouge">Update Beta</code></td>
+      <td>то же, с предварительными выпусками</td>
+    </tr>
+    <tr>
+      <td>4 <code class="language-plaintext highlighter-rouge">Roll Back</code></td>
+      <td>возвращает прежний релиз, см. <a href="install.ru.html#откат">Откат</a>, и предлагает вернуть копию базы, сделанную перед обновлением</td>
+    </tr>
+    <tr>
+      <td>5 <code class="language-plaintext highlighter-rouge">Releases &amp; Backups</code></td>
+      <td>подменю: релизы на хосте; копии базы; вернуть копию (панель останавливается, прежняя база откладывается рядом); восстановить файл копии с другой панели; сделать копию сейчас (панель останавливается на миг); канал релизов; проверить новый релиз; поставить архив веб-интерфейса</td>
+    </tr>
+    <tr>
+      <td>6 <code class="language-plaintext highlighter-rouge">Uninstall</code></td>
+      <td>снимает панель с хоста, по желанию с базой и настройками, см. <a href="install.ru.html#удаление">Удаление</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="доступ-и-настройки-панели">Доступ и настройки панели</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Пункт</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7 <code class="language-plaintext highlighter-rouge">Reset Username &amp; Password</code></td>
+      <td>печатает учётные записи и задаёт пароль названной, включая её; логина нет - предлагает завести администратора с таким логином; логин принадлежит пользователю хоста - предлагает сделать его администратором панели, см. <a href="panel/users.ru.html#пользователи-системы">Пользователи системы</a></td>
+    </tr>
+    <tr>
+      <td>8 <code class="language-plaintext highlighter-rouge">Users &amp; Roles</code></td>
+      <td>подменю: пользователи; добавить; пароль; роль; включить; выключить; удалить; роли; добавить роль; права роли; удалить роль. Это команды <code class="language-plaintext highlighter-rouge">user</code> и <code class="language-plaintext highlighter-rouge">role</code> <a href="cli.ru.html">утилиты</a></td>
+    </tr>
+    <tr>
+      <td>9 <code class="language-plaintext highlighter-rouge">API Tokens</code></td>
+      <td>подменю: токены; добавить; отозвать; войти и напечатать токены сессии; кто я - что панель думает об учётной записи хоста</td>
+    </tr>
+    <tr>
+      <td>10 <code class="language-plaintext highlighter-rouge">Reset Web Base Path</code></td>
+      <td>путь панели: новый случайный, корень или свой</td>
+    </tr>
+    <tr>
+      <td>11 <code class="language-plaintext highlighter-rouge">Reset Settings</code></td>
+      <td>адрес, порт, путь и сертификат панели по умолчанию: <code class="language-plaintext highlighter-rouge">127.0.0.1</code>, 8443, новый случайный путь, без сертификата</td>
+    </tr>
+    <tr>
+      <td>12 <code class="language-plaintext highlighter-rouge">Change Port</code></td>
+      <td>другой TCP-порт панели; занятый порт не берёт; при включённом ufw предлагает держать новый порт открытым</td>
+    </tr>
+    <tr>
+      <td>13 <code class="language-plaintext highlighter-rouge">Listen Addresses &amp; Domains</code></td>
+      <td>слушать на всех адресах хоста, на выбранных (печатает адреса хоста) или ограничить имена, на которые панель отвечает</td>
+    </tr>
+    <tr>
+      <td>14 <code class="language-plaintext highlighter-rouge">View Current Settings</code></td>
+      <td>панель без секретов: как поставлена, состояние и версия, адрес, настройки <code class="language-plaintext highlighter-rouge">panel show</code>, интерфейсы с портами, резолвер, модуль, пересылка, BBR, ufw</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Каждая правка адреса, порта, пути или сертификата перезапускает панель и печатает её новый адрес. То же делают вкладки <a href="panel/server.ru.html">Сервер</a> и <a href="panel/certificates.ru.html">Сертификаты</a> панели.</p>
+
+<h2 id="служба">Служба</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Пункт</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15 <code class="language-plaintext highlighter-rouge">Start</code>, 16 <code class="language-plaintext highlighter-rouge">Stop</code>, 17 <code class="language-plaintext highlighter-rouge">Restart</code></td>
+      <td>служба <code class="language-plaintext highlighter-rouge">amneziageo-server</code></td>
+    </tr>
+    <tr>
+      <td>18 <code class="language-plaintext highlighter-rouge">Check Status</code></td>
+      <td>служба, ответ панели и версия, автозапуск; модуль (не загружен - предлагает загрузить сейчас и при загрузке хоста), пересылка (предлагает включить), фронты и BBR, строка служб. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server status</code></td>
+    </tr>
+    <tr>
+      <td>19 <code class="language-plaintext highlighter-rouge">Logs Management</code></td>
+      <td>подменю: следить за журналом панели; последние 200 строк; журнал последнего обновления; журналы фронтов WebSocket. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server log</code></td>
+    </tr>
+    <tr>
+      <td>20 <code class="language-plaintext highlighter-rouge">Enable Autostart</code>, 21 <code class="language-plaintext highlighter-rouge">Disable Autostart</code></td>
+      <td><code class="language-plaintext highlighter-rouge">systemctl enable</code> и <code class="language-plaintext highlighter-rouge">disable</code> службы</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="сертификаты-брандмауэр-ssh">Сертификаты, брандмауэр, SSH</h2>
+
+<p><strong>22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>.</strong> Подменю: получить сертификат Let’s Encrypt; продлить сертификаты сейчас; сертификаты; поставить файлы сертификата панели; снять сертификат с панели. Выпуск спрашивает имя хоста, проверяет, что имя разрешается и TCP 80 свободен (на нём <code class="language-plaintext highlighter-rouge">certbot</code> отвечает на проверку Let’s Encrypt), ставит <code class="language-plaintext highlighter-rouge">certbot</code>, открывает 80 в ufw, выпускает сертификат с ключом RSA (сертификат того же имени с ключом ECDSA выпускает заново) и включает таймер продления <code class="language-plaintext highlighter-rouge">certbot.timer</code>, затем ставит сертификат панели и предлагает слушать на всех адресах хоста. «Сертификаты» печатает <code class="language-plaintext highlighter-rouge">certbot certificates</code> и то, чем отвечает панель. Подробнее - <a href="panel/certificates.ru.html">Сертификаты</a>.</p>
+
+<p><strong>23 <code class="language-plaintext highlighter-rouge">Firewall Management</code>.</strong> Подменю:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Подпункт</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>состояние ufw, таблицы nftables панели и порты, которые ей нужны: ssh, панель, подписки, интерфейсы, 80 для продления сертификата; интерфейсы, чьих клиентов ufw не пускает к резолверу</td>
+    </tr>
+    <tr>
+      <td>2, 3</td>
+      <td>держать порт панели открытым или оставить его хосту</td>
+    </tr>
+    <tr>
+      <td>4, 5</td>
+      <td>то же для порта подписок</td>
+    </tr>
+    <tr>
+      <td>6, 7</td>
+      <td>открыть или закрыть порты интерфейса: UDP-порт, TCP-порт сервисов и обе стороны пересылки через интерфейс</td>
+    </tr>
+    <tr>
+      <td>8, 9</td>
+      <td>открыть или закрыть любой порт в ufw, как <code class="language-plaintext highlighter-rouge">443/tcp</code></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>включить ufw: ставит его, впускает порт ssh, включает и перезапускает панель, чтобы она положила свои правила</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>выключить ufw</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>таблицы nftables панели как их держит хост: <code class="language-plaintext highlighter-rouge">amneziageo_in</code> (NAT и доступ к клиентам), <code class="language-plaintext highlighter-rouge">amneziageo_rt</code> (маршрутизация), <code class="language-plaintext highlighter-rouge">amneziageo_out</code> (каналы), <code class="language-plaintext highlighter-rouge">amneziageo_open</code> (открытые порты без ufw), <code class="language-plaintext highlighter-rouge">amneziageo_guard</code> (второе устройство)</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><code class="language-plaintext highlighter-rouge">Let the clients reach the resolver</code>: пустить к резолверу панели (порт 53) клиентов интерфейсов, которых ufw к нему не пускает, правилом <code class="language-plaintext highlighter-rouge">allow in on &lt;интерфейс&gt; to any port 53</code>; при выключенном резолвере говорит, что его включает пункт 29. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, см. <a href="panel/dns.ru.html#как-это-работает">DNS</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Панель сама никогда не включает и не выключает ufw. Как она держит порты открытыми - <a href="panel/interfaces.ru.html#порты-в-брандмауэре">Порты в брандмауэре</a>.</p>
+
+<p><strong>24 <code class="language-plaintext highlighter-rouge">SSH Port Forwarding Management</code>.</strong> Держать панель на <code class="language-plaintext highlighter-rouge">127.0.0.1</code> (печатает команду ssh для туннеля), пустить её на все адреса, показать команду ssh.</p>
+
+<h2 id="интерфейсы-фронты-bbr">Интерфейсы, фронты, BBR</h2>
+
+<p><strong>25 <code class="language-plaintext highlighter-rouge">Endpoints &amp; Interfaces</code>.</strong> Подменю: интерфейсы панели с портами и тем, кто держит порт открытым (<code class="language-plaintext highlighter-rouge">endpoint list</code>); открыть или закрыть порты интерфейса; интерфейсы в ядре (<code class="language-plaintext highlighter-rouge">device list</code>); интерфейс с его пирами (<code class="language-plaintext highlighter-rouge">device show</code>); импорт интерфейса из файла <code class="language-plaintext highlighter-rouge">awg-quick</code> с адресом для клиентов; импорт пиров интерфейса; импорт клиентов из файла хоста; сделать интерфейс интерфейсом по умолчанию (<code class="language-plaintext highlighter-rouge">endpoint default</code>), на него встаёт новый клиент. Перенос описан в <a href="panel/interfaces.ru.html#перенос-с-awg-quick">Интерфейсы</a>.</p>
+
+<p><strong>26 <code class="language-plaintext highlighter-rouge">Websocket Fronts</code>.</strong> Интерфейсы и порты их WebSocket со службами <code class="language-plaintext highlighter-rouge">amneziageo-proxy@&lt;интерфейс&gt;</code>, перезапуск фронтов, их журналы.</p>
+
+<p><strong>27 <code class="language-plaintext highlighter-rouge">Enable BBR</code>.</strong> Печатает алгоритм перегрузки и дисциплину очереди и предлагает включить или выключить BBR с очередью <code class="language-plaintext highlighter-rouge">fq</code>: сейчас и при загрузке (<code class="language-plaintext highlighter-rouge">/etc/sysctl.d/91-amneziageo-bbr.conf</code>, <code class="language-plaintext highlighter-rouge">tcp_bbr</code> в <code class="language-plaintext highlighter-rouge">/etc/modules-load.d</code>). Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server bbr on</code> и <code class="language-plaintext highlighter-rouge">bbr off</code>.</p>
+
+<h2 id="гео-и-dns">Гео и DNS</h2>
+
+<p><strong>28 <code class="language-plaintext highlighter-rouge">Update Geo Files</code>.</strong> Скачивает включённые гео-источники панели сейчас, как «Обновить все» на странице <a href="panel/geo.ru.html">Списки Geo</a>.</p>
+
+<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Печатает настройки резолвера (<code class="language-plaintext highlighter-rouge">dns show</code>) и предлагает включить или выключить его; если внешние серверы спрашиваются открытым DNS, предлагает заменить их на те, с которых начинает свежая панель, по HTTPS. Включённый резолвер, к которому ufw не пускает клиентов каких-то интерфейсов, пункт предлагает открыть им, как подпункт 13 пункта 23. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> с вопросом, <code class="language-plaintext highlighter-rouge">dns open</code>. Подробнее - <a href="panel/dns.ru.html">DNS</a>.</p>
+
+<h2 id="команды">Команды</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server</code></td>
+      <td>открыть меню</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">install [--restore &lt;файл&gt;] [--answers &lt;файл&gt;]</code></td>
+      <td>осмотреть хост, спросить нужное и поставить панель; на копии базы с другой панели; с ответами из файла</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">restore &lt;файл&gt;</code></td>
+      <td>положить копию базы, скачанную с панели, на место базы</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">update</code>, <code class="language-plaintext highlighter-rouge">update beta</code></td>
+      <td>перевести панель на последний релиз канала, с предварительными для <code class="language-plaintext highlighter-rouge">beta</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rollback</code></td>
+      <td>вернуться на прежний релиз</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">uninstall</code></td>
+      <td>снять панель с хоста вместе с короткими командами меню</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">settings</code></td>
+      <td>чем отвечает панель, её интерфейсы и что несёт хост</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">start</code>, <code class="language-plaintext highlighter-rouge">stop</code>, <code class="language-plaintext highlighter-rouge">restart</code>, <code class="language-plaintext highlighter-rouge">status</code>, <code class="language-plaintext highlighter-rouge">log</code></td>
+      <td>служба и её журнал</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">enable</code>, <code class="language-plaintext highlighter-rouge">disable</code></td>
+      <td>стартовать ли панели с хостом</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bbr on</code>, <code class="language-plaintext highlighter-rouge">bbr off</code></td>
+      <td>BBR с очередью <code class="language-plaintext highlighter-rouge">fq</code>, сейчас и при загрузке</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code></td>
+      <td>резолвер для клиентов</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns open</code></td>
+      <td>пустить к резолверу клиентов интерфейсов, которых ufw к нему не пускает</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;команда утилиты&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">user</code>, <code class="language-plaintext highlighter-rouge">role</code>, <code class="language-plaintext highlighter-rouge">token</code>, <code class="language-plaintext highlighter-rouge">panel</code>, <code class="language-plaintext highlighter-rouge">endpoint</code>, <code class="language-plaintext highlighter-rouge">subscriptions</code>, <code class="language-plaintext highlighter-rouge">import</code>, <code class="language-plaintext highlighter-rouge">device</code>, <code class="language-plaintext highlighter-rouge">family</code>, <code class="language-plaintext highlighter-rouge">geo</code>, <code class="language-plaintext highlighter-rouge">dns</code>, <code class="language-plaintext highlighter-rouge">init</code>, <code class="language-plaintext highlighter-rouge">login</code>, <code class="language-plaintext highlighter-rouge">whoami</code>, <code class="language-plaintext highlighter-rouge">update status</code>, см. <a href="cli.ru.html">Утилита</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">help</code></td>
+      <td>список команд</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

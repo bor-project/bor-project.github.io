@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About · AmneziaGeo Server</title>
+    <meta name="description" content="Panel for an AmneziaWG server on Linux - interfaces, clients with configurations and subscriptions, templates, routing by geo databases and domains through other servers, a resolver for the clients, updates and backups. As a service or in Docker.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/index.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/index.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/index.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-nav" aria-label="Installation">
+  <p class="sidebar-label">Installation</p>
+  <a href="/amneziageo_server/service/">Service</a>
+  <a href="/amneziageo_server/docker/">Docker</a></nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="amneziageo-server">AmneziaGeo Server</h1>
+
+<p>AmneziaGeo Server is a panel for an AmneziaWG server on Linux. It raises the tunnel interfaces in the kernel itself, keeps the clients and hands them their configurations as a file, a QR code, a <code class="language-plaintext highlighter-rouge">vpn://</code> link and a subscription, counts their traffic, and can send that traffic further: by geo databases and domains through other servers, through the host itself or into a block. It runs on Debian and Ubuntu with the <code class="language-plaintext highlighter-rouge">amneziawg</code> kernel module, as a service or in Docker, on amd64 and arm64.</p>
+
+<h2 id="choose-how-to-install">Choose how to install</h2>
+
+<ul class="kind-cards">
+  <li>
+    <a class="kind-card-title" href="/amneziageo_server/service/">Service</a>
+    <span>systemd on the host, Debian 12 and Ubuntu, amd64 and arm64</span>
+    <span class="kind-card-links"><a href="/amneziageo_server/service/install.html">Installation</a> · <a href="/amneziageo_server/service/first-run.html">First run</a></span>
+  </li>
+  <li>
+    <a class="kind-card-title" href="/amneziageo_server/docker/">Docker</a>
+    <span>a container in the network of the host, the image for amd64 and arm64</span>
+    <span class="kind-card-links"><a href="/amneziageo_server/docker/install.html">Installation</a> · <a href="/amneziageo_server/docker/first-run.html">First run</a></span>
+  </li>
+</ul>
+
+<p>Both ways give the same server: the container runs in the network of the host, so its interfaces, firewall rules and ports are the same as those of the service. One command puts either of them on the host: the console menu <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, which then keeps the server running: updates and rollback, database backups, certificates, the firewall, users and tokens.</p>
+
+<h2 id="what-it-does">What it does</h2>
+
+<ul>
+  <li><strong>Interfaces.</strong> AmneziaWG server interfaces with keys, a port, addresses and all the obfuscation of profile 3.1. The panel puts them into the kernel itself, without <code class="language-plaintext highlighter-rouge">awg</code> and <code class="language-plaintext highlighter-rouge">awg-quick</code>, watches them and raises them again if the host loses them. Interfaces raised by <code class="language-plaintext highlighter-rouge">awg-quick</code> move into the panel whole, together with their clients.</li>
+  <li><strong>Clients.</strong> A key pair, addresses in the tunnel, enabling and disabling, a note, a daily traffic limit, access to the client from the tunnel. The configuration comes as a <code class="language-plaintext highlighter-rouge">.conf</code> file, a QR code and a <code class="language-plaintext highlighter-rouge">vpn://</code> link, and its name is built from a template. The list shows who is online, the speed and the traffic of the day. When a client is disabled, the AmneziaGeo app takes its tunnel down by itself on a signal from the server.</li>
+  <li><strong>Templates and subscriptions.</strong> A template gives its clients <code class="language-plaintext highlighter-rouge">AllowedIPs</code> built from geo keys, networks and domains, DNS, MTU and keepalive, and routes services behind a CDN by name through stand-in addresses of the resolver; editing the template changes the files of all its clients. A subscription serves the configurations of several devices at one address, and client apps reload it by themselves.</li>
+  <li><strong>Routing on the server.</strong> Rules by countries and site categories from geo databases, by domains, addresses, ports and clients. Traffic goes through a channel (an AmneziaWG tunnel to another server, inside WebSocket as well), through the host, or is blocked. Channel groups: by priority, round robin or per client. A route test by name and port.</li>
+  <li><strong>A resolver for the clients.</strong> The server answers the DNS queries of the clients itself, asks upstream servers over HTTPS or TLS and puts the addresses it sees into the sets of the rules: this is how rules by domains work at the kernel level.</li>
+  <li><strong>WebSocket.</strong> The tunnel inside WebSocket on the TCP port of the interface, for networks that let only web traffic through.</li>
+  <li><strong>For the AmneziaGeo app.</strong> The server hands the client app its geo sources, routing lists (presets), the subscription address and a speed test; the AmneziaGeo client for Windows, Linux and Android reads all of this by itself. Any other AmneziaWG app works with the server as with a plain AmneziaWG server.</li>
+  <li><strong>Maintenance.</strong> Updates from the panel with a rollback on failure, a database backup in one click and a move to another server from it, the event log and the connection log, and the console menu for everything done on the host.</li>
+</ul>
+
+<h2 id="what-you-need">What you need</h2>
+
+<ul>
+  <li>Linux with the <code class="language-plaintext highlighter-rouge">amneziawg</code> kernel module on amd64 or arm64: Debian 12 or newer, Ubuntu. The console menu puts the module on from the Amnezia PPA when the kernel lacks it.</li>
+  <li>A public address or name at which the clients find the server. The panel over HTTPS needs a name and a Let’s Encrypt certificate, which the menu also gets.</li>
+  <li>Root on the server.</li>
+</ul>
+
+<h2 id="client">Client</h2>
+
+<p>The AmneziaGeo client for Windows, Linux and Android has a site of its own: <a href="https://bor-project.github.io/amneziageo/">client documentation</a>. What the server offers the client is told there in the section on what the server offers.</p>
+
+<h2 id="for-developers">For developers</h2>
+
+<p><a href="/amneziageo_server/build.html">Building and the layout of the repository</a>, <a href="/amneziageo_server/api.html">HTTP API</a>.</p>
+
+<h2 id="license-and-credits">License and credits</h2>
+
+<p>The server is built on the <a href="https://github.com/amnezia-vpn">Amnezia VPN</a> ecosystem: the AmneziaWG kernel module. The tunnel inside WebSocket is carried by <a href="https://github.com/erebe/wstunnel">wstunnel</a>. Default geo databases: <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a>, <a href="https://github.com/runetfreedom">runetfreedom</a>, <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a> and our own <a href="https://github.com/bor-project/amneziageo-geo">amneziageo-geo</a>.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

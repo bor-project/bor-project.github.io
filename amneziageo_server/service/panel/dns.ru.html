@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DNS · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Резолвер для клиентов: внешние серверы, канал запросов, кэш, перехват, подставные адреса.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/dns.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/dns.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/dns.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/dns.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/dns.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/dns.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html" aria-current="page">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a></li>
+  </ol>
+</nav>
+
+        <h1 id="dns">DNS</h1>
+
+<p>Резолвер панели отвечает клиентам туннеля на вопросы об именах сам: передаёт вопрос внешнему серверу, по HTTPS, пока не сказано иначе, отдаёт ответ клиенту и кладёт увиденные адреса в наборы правил, которые сравнивают по этому имени. Так работает правило по домену: ядро решает по адресу, а адреса приносит резолвер. Заодно вопросы клиентов не уходят с сервера открытым DNS.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/dns.png" alt="Страница DNS: состояние, адреса, запросы, кэш, без ответа, настройки резолвера" width="1440" height="900" loading="lazy" /><figcaption>Резолвер отвечает клиентам двух интерфейсов.</figcaption></figure>
+
+<p>Свежая панель держит резолвер выключенным: клиенты получают в конфигурации серверы имён и спрашивают их через туннель. Включают его вопрос установки, пункт 29 консольного меню <code class="language-plaintext highlighter-rouge">DNS for Clients</code>, команда <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> или отметка «Отвечать клиентам» здесь. Выключенный резолвер не работает, не держит порт и не держит соединений с внешними серверами.</p>
+
+<h2 id="состояние">Состояние</h2>
+
+<p>Над настройками страница показывает, что делает резолвер: «Работает» или «Остановлен», «Слушает» с адресами, которые он взял, «Запросов», «Из кэша», «Без ответа», «Адресов в наборах», «В очереди» и «Правил по именам». Сбой стоит в той же строке: ни один внешний сервер не отвечает (<code class="language-plaintext highlighter-rouge">no name server answers: ...</code>), канал выключен, нет адреса, на котором отвечать (<code class="language-plaintext highlighter-rouge">the resolver does not run yet: there is no address to answer the clients on</code>, пока нет ни одного интерфейса).</p>
+
+<h2 id="резолвер">Резолвер</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Отвечать клиентам</td>
+      <td>работает ли резолвер</td>
+    </tr>
+    <tr>
+      <td>Порт</td>
+      <td>порт вопросов, 53 по умолчанию; порт ниже 1024 требует <code class="language-plaintext highlighter-rouge">CAP_NET_BIND_SERVICE</code></td>
+    </tr>
+    <tr>
+      <td>Слушать на адресах</td>
+      <td>адреса, на которых принимаются вопросы; пусто - адреса интерфейсов панели. Адреса, которого нет на хосте, пропускается</td>
+    </tr>
+    <tr>
+      <td>Внешние серверы</td>
+      <td>серверы имён, которым передаются вопросы, и как каждый спрашивается, см. ниже</td>
+    </tr>
+    <tr>
+      <td>Спрашивать через канал</td>
+      <td>канал или группа, через которые уходят вопросы; «Через хост» - выход самого хоста</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Внешний сервер называется адресом, а не именем, чтобы ничего не разрешать заранее:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Запись</th>
+      <th>Как спрашивается</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">https://1.1.1.1/dns-query</code>, <code class="language-plaintext highlighter-rouge">https://9.9.9.9:5053/dns-query</code></td>
+      <td>DNS через HTTPS, порт 443 и путь <code class="language-plaintext highlighter-rouge">/dns-query</code>, если не написаны другие</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tls://1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">tls://1.1.1.1:853</code></td>
+      <td>DNS через TLS, порт 853</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">8.8.8.8:5300</code>, <code class="language-plaintext highlighter-rouge">[2606:4700:4700::1111]:53</code></td>
+      <td>открытым DNS: UDP, и TCP для клиента, который пришёл по TCP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Свежая панель спрашивает <code class="language-plaintext highlighter-rouge">https://1.1.1.1/dns-query</code> и <code class="language-plaintext highlighter-rouge">https://8.8.4.4/dns-query</code>; <code class="language-plaintext highlighter-rouge">amneziageo-server dns set --upstreams default</code> возвращает к ним. Сертификат сервера проверяется по адресу под доверенными корнями хоста; Cloudflare, Google и Quad9 несут адреса в сертификатах. Серверы спрашиваются по порядку; тот, что не ответил, на тридцать секунд уходит в конец и спрашивается в стороне, чтобы клиенты его не ждали. На открытый DNS ничего не падает само: он спрашивается, только где записан. Когда три вопроса подряд не нашли сервера, сбой встаёт в состояние и в журнал, и службы считают резолвер неработающим, пока сервер не ответит.</p>
+
+<p>«Спрашивать через канал» ставит на вопросы метку канала, так что ответы приходят оттуда, куда уйдёт трафик; без этого там, где локальная сеть отвечает о сервисе иначе, чем сеть за каналом, правило по имени наполняется чужими адресами. Канал выбирается на каждый вопрос: группа «Приоритет» отдаёт вопросы первому живому члену, «По кругу» раздаёт по очереди, «По клиенту» ведёт себя как «Приоритет», потому что все вопросы идут от хоста. Пока выбранный канал выключен или ничего не несёт, резолвер не спрашивает и отвечает клиентам <code class="language-plaintext highlighter-rouge">SERVFAIL</code>, а состояние называет причину; через хост вопросы при выбранном канале не уходят никогда. Так же разрешаются записи шаблонов клиентов и имена в проверке маршрута.</p>
+
+<h2 id="кэш">Кэш</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TTL записи, мин</td>
+      <td>сколько минут отвеченный адрес стоит в наборе правила</td>
+    </tr>
+    <tr>
+      <td>Размер кэша, записей</td>
+      <td>сколько ответов держится в памяти, 0 - не держать</td>
+    </tr>
+    <tr>
+      <td>TTL ответа: мин, с и макс, с</td>
+      <td>в какие границы зажимается время жизни ответа из кэша</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="вопросы-клиентов">Вопросы клиентов</h2>
+
+<p>Настроек здесь нет: пока резолвер отвечает, панель сама решает, куда идут вопросы клиентов.</p>
+
+<ul>
+  <li>Вопрос на порт 53, который клиент послал любому серверу имён, заворачивается на резолвер. Вопрос к публичному адресу резолвер отвечает сам. Вопрос к частному адресу (<code class="language-plaintext highlighter-rouge">10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">100.64.0.0/10</code>, <code class="language-plaintext highlighter-rouge">169.254.0.0/16</code>, <code class="language-plaintext highlighter-rouge">172.16.0.0/12</code>, <code class="language-plaintext highlighter-rouge">192.168.0.0/16</code>, <code class="language-plaintext highlighter-rouge">fc00::/7</code>, <code class="language-plaintext highlighter-rouge">fe80::/10</code>), например к роутеру в сети за сервером, резолвер передаёт тому серверу, которого спросил клиент, открытым DNS через хост, и кладёт адреса ответа в наборы правил, как свои; в кэш такие ответы не идут. Передаётся только вопрос в сеть, до которой у хоста есть свой маршрут, а не маршрут по умолчанию. Вопрос к другому частному адресу и вопрос, на который тот сервер не ответил, резолвер отвечает сам, а не ответивший сервер пропускает пять минут.</li>
+  <li>Вопрос внутри TLS или HTTPS резолвер не видит. Пока хоть одно правило или базовый список сравнивает по имени, соединение клиента такого правила на порт 853 и на порт 443 к известным публичным серверам имён (Cloudflare, Google, Quad9, NextDNS, AdGuard, OpenDNS) сразу сбрасывается. Клиент в автоматическом режиме («Частный DNS» Android, безопасный DNS браузера) тогда без ожидания переходит на обычный DNS и попадает на резолвер.</li>
+  <li>Клиент, который после сбросов на резолвер так и не пришёл, отпускается на сутки: после трёх сбросов за короткое время его DoT и DoH идут как есть, мимо правил по имени. Так продолжают работать строгий «Частный DNS» с заданным сервером, браузер со строго заданным DoH и другой сервер AmneziaGeo, который выходит через этот и спрашивает свои серверы по HTTPS.</li>
+  <li>Пока панель читает имена из самих соединений (<a href="#имена-из-соединений">Имена из соединений</a>), ничего не сбрасывается: имя видно и без резолвера.</li>
+</ul>
+
+<h2 id="сохранение">Сохранение</h2>
+
+<p>«Сохранить» записывает настройки, и резолвер с правилами берут их по кнопке «Перезапустить» в шапке, которая появляется, пока сохранённые настройки ждут; она перезапускает резолвер или всю панель, если и её настройки ждут. «Отмена» сбрасывает несохранённое. Изменение интерфейсов перезапускает резолвер на их адресах с теми настройками, с которыми он работает.</p>
+
+<h2 id="как-это-работает">Как это работает</h2>
+
+<p>Пока резолвер работает на порту 53 и отвечает на адресах интерфейсов, строка <code class="language-plaintext highlighter-rouge">DNS</code> файла каждого клиента несёт адрес его интерфейса вместо публичных серверов, и так же в ссылках подписки; шаблон со своими серверами имён перекрывает это, шаблон без них берёт резолвер. Резолвер отвечает только через туннель, поэтому его адрес идёт и в <code class="language-plaintext highlighter-rouge">AllowedIPs</code> клиента, если диапазоны шаблона или интерфейса его не покрывают. Где панель держит порты интерфейса открытыми в брандмауэре, она пускает клиентов интерфейса и к резолверу: порт резолвера открывается на интерфейсе для UDP и TCP, см. <a href="interfaces.ru.html#порты-в-брандмауэре">Порты в брандмауэре</a>.</p>
+
+<p>Интерфейс, чьи порты панель не держит, остаётся хосту: его клиенты не получают ответа, пока порт резолвера не пущен на его интерфейсе. Панель читает ufw и называет интерфейсы, чьих клиентов он не пускает к резолверу: страница DNS пишет это под «Отвечать клиентам» («Брандмауэр сервера (ufw) не пускает клиентов <интерфейсы> к резолверу панели (порт 53)»), форма шаблона с [маршрутизацией по именам](templates.ru.html#маршрутизация-по-именам) тоже, с командами, которые их пускают. На хосте подпункт 13 пункта 23 меню `Let the clients reach the resolver` и команда `amneziageo-server dns open` дают ufw `allow in on <интерфейс> to any port 53` для каждого такого интерфейса с комментарием `amneziageo resolver <интерфейс>`; пункт 29 и установка предлагают это сами, когда резолвер отвечает. Хост без ufw никого не держит.</интерфейс></интерфейс></интерфейсы></p>
+
+<p>Резолвер спрашивает имена правил и сам, не дожидаясь клиента: каждое имя, по которому сравнивает правило, в том числе имена категории <code class="language-plaintext highlighter-rouge">geosite:</code>, спрашивается, и ответы ложатся в набор правила, так что правило работает с момента сохранения, даже для сервиса, адрес которого клиент уже держит в своём кэше. Имена спрашиваются пачками по шестнадцать, не чаще двух раз в секунду и не больше 256 на правило, и спрашиваются снова, когда прошла половина «TTL записи»; имя без ответа повторяется через две секунды, и ожидание удваивается до минуты. Ключевые слова и выражения категорий не спрашиваются: у них нет имени.</p>
+
+<p>Ответ, который принёс адрес, которого в наборах ещё нет, уходит клиенту, когда адрес уже в наборе, самое большее через полсекунды, так что первое соединение к нему уже идёт по правилу. Правило держит 128 новейших адресов стоящими: раз в минуту они пишутся в базу и после перезапуска возвращаются в набор до первого вопроса, так что перезагруженная машина не оставляет правило пустым.</p>
+
+<p>Ответ больше, чем датаграмма клиента, уходит обрезанным с пометкой, и клиент спрашивает снова по TCP. На хост резолвер добавляет цепочку <code class="language-plaintext highlighter-rouge">resolve</code>, которая заворачивает вопросы с интерфейсов панели на резолвер. Сбросы лежат в своей таблице <code class="language-plaintext highlighter-rouge">amneziageo_dns</code>: наборы <code class="language-plaintext highlighter-rouge">doh4</code> и <code class="language-plaintext highlighter-rouge">doh6</code> публичных серверов, <code class="language-plaintext highlighter-rouge">asked4</code> и <code class="language-plaintext highlighter-rouge">asked6</code> клиентов, которые спрашивали порт 53 последние полчаса, <code class="language-plaintext highlighter-rouge">free4</code> и <code class="language-plaintext highlighter-rouge">free6</code> клиентов, отпущенных на сутки. Таблица не пересоздаётся вместе с правилами, поэтому отпущенный клиент остаётся отпущенным; когда сбросы не нужны, панель её убирает.</p>
+
+<h2 id="подставные-адреса">Подставные адреса</h2>
+
+<p>Клиентам шаблона с включённой <a href="templates.ru.html#маршрутизация-по-именам">маршрутизацией по именам</a> резолвер отвечает об именах шаблона подставными адресами из <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>. Имя он спрашивает, как для любого клиента, поэтому правила получают в свои наборы настоящие адреса, а журнал подключений знает имя. Клиент получает одну запись <code class="language-plaintext highlighter-rouge">A</code> с подставным адресом и временем жизни не больше 300 секунд; <code class="language-plaintext highlighter-rouge">AAAA</code> и <code class="language-plaintext highlighter-rouge">HTTPS</code> приходят пустыми. Имя, которое псевдонимом ведёт к имени шаблона, тоже получает подставной адрес.</p>
+
+<p>Хост держит отображение <code class="language-plaintext highlighter-rouge">stand</code> в таблице <code class="language-plaintext highlighter-rouge">amneziageo_rt</code>: новое соединение клиента к подставному адресу уходит на настоящий адрес (<code class="language-plaintext highlighter-rouge">dnat</code>), правила решают его по настоящему адресу в цепочке сразу за этим, а подставной адрес, которого в отображении нет, отказывается сбросом. Имена с подставными адресами панель пишет в базу через десять секунд после изменения и при остановке и кладёт снова при старте; имя, которое семь дней никто не спрашивал, свой адрес отдаёт.</p>
+
+<h2 id="имена-из-соединений">Имена из соединений</h2>
+
+<p>Клиент, который спрашивает свой сервер имён, или любой клиент при выключенном резолвере, идёт на адрес, которого ни один ответ панели не нёс. Поэтому панель умеет читать имя из самого соединения, пока хоть одно правило сравнивает по имени: имя сервера из первого сообщения TLS на TCP 443, заголовок <code class="language-plaintext highlighter-rouge">Host</code> на TCP 80 и имя сервера из первых пакетов QUIC на UDP 443. Адрес ложится в наборы правил, под которые попало имя, на «TTL записи».</p>
+
+<p>Чтение выключено, пока в окружении панели не стоит <code class="language-plaintext highlighter-rouge">Names__IsEnabled=true</code>; с ним первое соединение к адресу панель забирает себе (TPROXY на порт 7319), читает имя, решает по правилам, как проверка маршрута, кладёт адрес в наборы и ведёт соединение сама через канал правила, через хост или никуда для блокирующего правила; следующие соединения к адресу решает ядро. Берутся только соединения к портам 80 и 443 публичных адресов, не больше 300 в секунду и 4096 разом. Что из этого работает, показывает состояние резолвера, а соединения, которые панель вела сама, попадают в <a href="diagnostics.ru.html#журнал-подключений">журнал подключений</a>. Подробности - в справке репозитория <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/dns.md#names-read-out-of-the-connections">dns.md</a>.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Не задан ни один внешний сервер; Адрес внешнего сервера не разобран</td>
+      <td>«Внешние серверы»</td>
+    </tr>
+    <tr>
+      <td>Адрес, на котором слушать, не разобран; Порт вне диапазона 1-65535</td>
+      <td>адреса и порт</td>
+    </tr>
+    <tr>
+      <td>TTL записи вне допустимого; Размер кэша вне допустимого; TTL ответа вне допустимого</td>
+      <td>кэш</td>
+    </tr>
+    <tr>
+      <td>Такого канала нет</td>
+      <td>«Спрашивать через канал»</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

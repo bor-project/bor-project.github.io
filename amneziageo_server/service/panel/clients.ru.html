@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Клиенты · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Конфигурации клиентов: список, настройки, экспорт, трафик, отключение.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/clients.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/clients.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/clients.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/clients.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/clients.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/clients.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html" aria-current="page">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+  </ol>
+</nav>
+
+        <h1 id="клиенты">Клиенты</h1>
+
+<p>Клиент - один пир интерфейса: пара ключей, адреса внутри туннеля и файл конфигурации, который получает устройство. Страница «Клиенты» несёт три вкладки: «Конфиги» - сами клиенты, <a href="templates.ru.html">Шаблоны</a> - что клиенты получают в файле, <a href="presets.ru.html">Пресеты маршрутизации</a> - списки для приложения AmneziaGeo. Одна конфигурация - одно устройство: сервер держит для ключа одного пира, и два устройства с одним файлом отбирают сессию друг у друга, см. <a href="#одна-конфигурация-одно-устройство">Одна конфигурация, одно устройство</a>.</p>
+
+<h2 id="список">Список</h2>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/clients.png" alt="Список клиентов: выбор интерфейса, поиск и переключатель «Только онлайн»; переключатель, имя, интерфейс, шаблон, адрес, скорость, трафик и время последнего подключения" width="1440" height="900" loading="lazy" /><figcaption>Клиенты двух интерфейсов.</figcaption></figure>
+
+<p>Вкладка «Конфиги» показывает клиентов всех интерфейсов или одного, по выбору «Все интерфейсы» над списком, с поиском по имени. Переключатель «Только онлайн» рядом оставляет в списке клиентов, которые сейчас в сети. Колонки:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Колонка</th>
+      <th>Что показывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Вкл</td>
+      <td>переключатель клиента; выключенный клиент снимается с интерфейса</td>
+    </tr>
+    <tr>
+      <td>Имя</td>
+      <td>имя, под ним «в сети», «выключен», «нет на интерфейсе» (пир не найден в ядре: интерфейс опущен или панели не хватает прав), «ограничение на сегодня исчерпано», «Сигнал не доставлен»</td>
+    </tr>
+    <tr>
+      <td>Интерфейс</td>
+      <td>интерфейс клиента</td>
+    </tr>
+    <tr>
+      <td>Шаблон</td>
+      <td>его шаблон или «По умолчанию»</td>
+    </tr>
+    <tr>
+      <td>Адрес</td>
+      <td>адреса клиента в туннеле</td>
+    </tr>
+    <tr>
+      <td>Скорость</td>
+      <td>к клиенту и от клиента сейчас</td>
+    </tr>
+    <tr>
+      <td>Трафик</td>
+      <td>за сегодня; с ограничением - «использовано из ограничения»</td>
+    </tr>
+    <tr>
+      <td>Был онлайн</td>
+      <td>время последнего рукопожатия или «никогда»</td>
+    </tr>
+    <tr>
+      <td>Действия</td>
+      <td>меню строки: «Экспорт», «Настройки»</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Первая колонка выбирает клиентов, «Выбрать всех показанных» берёт весь отфильтрованный список. Полоса над списком считает выбранных и несёт «Включить», «Отключить», «Удалить»; итог приходит строкой «Включено N из M», «Не вышло: <список>» с причинами и «Интерфейсы не приняли изменения: <список>», если ядро не взяло пиров. Список читает хост каждые две секунды.</список></список></p>
+
+<p>«Добавить» открывает нового клиента. Клиентов из готовых файлов переносит <a href="#импорт">импорт</a> через API или консоль.</p>
+
+<h2 id="клиент">Клиент</h2>
+
+<p>Страница клиента несёт две вкладки: «Экспорт» и «Настройки» (вторая - для роли с правом «Управление клиентами»).</p>
+
+<h3 id="экспорт">Экспорт</h3>
+
+<p>Три карточки с QR-кодом: «QR: файл .conf» - файл клиента, «QR: ссылка vpn://» - та же конфигурация ссылкой Amnezia, «QR: подписка» - адрес подписки, пока подписки включены (иначе «Подписки выключены», «У клиента нет адреса подписки» или «У клиента нет закрытого ключа»). У каждой «Копировать текст», «Копировать картинку» и «Скачать». Картинка копируется только по HTTPS или с <code class="language-plaintext highlighter-rouge">localhost</code>, где браузер это разрешает; текст копируется всегда. Длинный список <code class="language-plaintext highlighter-rouge">AllowedIPs</code> может не поместиться в QR-код файла: тогда панель открывает карточку на ссылке, в которой он занимает куда меньше места, а если не помещается и она, пишет «Не помещается в QR-код».</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-export.png" alt="Вкладка «Экспорт» клиента: QR-коды подписки, файла .conf и ссылки vpn:// с кнопками копирования и скачивания" width="1440" height="900" loading="lazy" /><figcaption>QR-коды выдуманной конфигурации.</figcaption></figure>
+
+<p>Файл несёт приватный ключ клиента, адреса, серверы имён, размер пакета и обфускацию интерфейса, а под <code class="language-plaintext highlighter-rouge">[Peer]</code> публичный ключ интерфейса, общий ключ, <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, <code class="language-plaintext highlighter-rouge">Endpoint</code> с хостом интерфейса и keepalive. Клиент с шаблоном берёт <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, серверы имён, размер пакета и keepalive из шаблона. Интерфейс без хоста отдаёт файл без строки <code class="language-plaintext highlighter-rouge">Endpoint</code>, и такому клиенту некуда подключаться. Пока резолвер панели отвечает на адресах интерфейсов, строка <code class="language-plaintext highlighter-rouge">DNS</code> несёт адрес интерфейса клиента вместо публичных серверов, а <code class="language-plaintext highlighter-rouge">AllowedIPs</code> - и этот адрес, если диапазоны его не покрывают, см. <a href="dns.ru.html">DNS</a>. Клиент шаблона с <a href="templates.ru.html#маршрутизация-по-именам">маршрутизацией по именам</a> получает резолвер панели единственным сервером имён и <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> в <code class="language-plaintext highlighter-rouge">AllowedIPs</code>.</p>
+
+<p>Имя конфигурации в файле, ссылке и подписке собирается по шаблону имени с вкладки <a href="server.ru.html#шаблон-имени-конфигурации">Сервер</a>, по умолчанию <code class="language-plaintext highlighter-rouge">{HOST}-{INTERFACE}-{CLIENT}</code>.</p>
+
+<h3 id="настройки">Настройки</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя</td>
+      <td>до 64 знаков, одно на всю панель без учёта регистра</td>
+    </tr>
+    <tr>
+      <td>Интерфейс</td>
+      <td>интерфейс, на который встаёт клиент; новый клиент начинает с интерфейса по умолчанию, см. <a href="interfaces.ru.html#основное">Интерфейсы</a></td>
+    </tr>
+    <tr>
+      <td>Адрес</td>
+      <td>по одному адресу из каждой сети интерфейса; панель подставляет первый свободный номер, занятый подсказывает: «Занят клиентом <имя>»</имя></td>
+    </tr>
+    <tr>
+      <td>Приватный и публичный ключи</td>
+      <td>пара клиента, «Сгенерировать» делает новую; публичный считается из приватного</td>
+    </tr>
+    <tr>
+      <td>Общий ключ</td>
+      <td>свой общий ключ клиента; пусто - ключ интерфейса</td>
+    </tr>
+    <tr>
+      <td>Шаблон</td>
+      <td>шаблон клиента или «По умолчанию»</td>
+    </tr>
+    <tr>
+      <td>Подписка</td>
+      <td>имя подписки, под которым клиент отдаётся по ссылке; одно имя у нескольких клиентов собирает их в одну подписку, пусто выводит клиента из подписок, кнопка рядом делает новое имя, см. <a href="subscriptions.ru.html">Подписки</a></td>
+    </tr>
+    <tr>
+      <td>Заметка</td>
+      <td>строка для себя, до 255 знаков; идёт в имя конфигурации подстановкой <code class="language-plaintext highlighter-rouge">{NOTE}</code></td>
+    </tr>
+    <tr>
+      <td>Включено</td>
+      <td>берёт ли интерфейс клиента</td>
+    </tr>
+    <tr>
+      <td>Доступ к клиенту</td>
+      <td>«Как у интерфейса», «Закрыт», «Только сервер», «Вся сеть туннеля», см. ниже</td>
+    </tr>
+    <tr>
+      <td>Разрешить серверу отключать туннель</td>
+      <td>слать ли приложению сигнал опустить туннель при выключении клиента, по умолчанию да</td>
+    </tr>
+    <tr>
+      <td>Ограничение в день, ГБ</td>
+      <td>сколько клиент может передать за сутки в обе стороны; пусто - без ограничения</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-settings.png" alt="Вкладка «Настройки» клиента: включение, интерфейс, имя, общий ключ, адрес, заметка, шаблон" width="1440" height="900" loading="lazy" /><figcaption>Клиент с шаблоном.</figcaption></figure>
+
+<p>Удаление стоит внизу страницы: «Удалить <имя>?». Клиент снимается с интерфейса, и правила маршрутизации, которые называли его по имени, его больше не находят.</имя></p>
+
+<h2 id="доступ-к-клиенту">Доступ к клиенту</h2>
+
+<p>Клиента достают из туннеля только настолько, насколько разрешает его доступ: «Закрыт» - никто из туннеля не начинает соединение с ним, «Только сервер» - до него достают панель и хост, «Вся сеть туннеля» - и все клиенты интерфейса. «Как у интерфейса» берёт «Доступ к клиентам» интерфейса, с него начинает новый клиент. Панель кладёт это правилами брандмауэра интерфейса: адрес клиента со всей сетью попадает в набор интерфейса, остальное к клиентам отбрасывается. Клиенты, заведённые до появления этой настройки, получили «Закрыт».</p>
+
+<p>Устройство со своей стороны пускает соединения из туннеля, только когда ему это сказано на нём: в клиенте AmneziaGeo это «Разрешить входящие подключения из VPN-сети» в настройках конфигурации или <code class="language-plaintext highlighter-rouge">amneziageo config inbound &lt;имя&gt; host</code> для сервера и <code class="language-plaintext highlighter-rouge">network</code> для всей сети. Файл и ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> этого не несут. Сценарий целиком - <a href="../recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>.</p>
+
+<h2 id="трафик">Трафик</h2>
+
+<p>Панель читает счётчики каждого пира каждые две секунды: прирост счётчика - трафик клиента, прирост за две секунды - его скорость. Трафик дня пишется в базу каждые 30 секунд и при остановке панели вместе с последними показаниями, поэтому то, что пиры передали, пока панель не работала, засчитывается, когда она вернулась. День - день по часам хоста: в полночь его часового пояса трафик каждого клиента начинается с нуля.</p>
+
+<p>«Ограничение в день» - самое большее, что клиент передаёт за день в обе стороны вместе. Когда трафик дня достигает его, панель снимает пира с интерфейса и из файла интерфейса, а список пишет «ограничение на сегодня исчерпано». В полночь, а также когда ограничение подняли или сняли, пир возвращается. Счётчики читаются каждые две секунды, так что клиент на полной скорости переходит ограничение на то, что успел за это время.</p>
+
+<p>Клиент «в сети», когда его пир что-то отправил, включая keepalive, за время «Считать клиента в сети» его интерфейса (60 секунд по умолчанию), а если панели не читаются интерфейсы - когда его рукопожатие моложе трёх минут.</p>
+
+<h2 id="отключение-клиента">Отключение клиента</h2>
+
+<p>Выключенный клиент уходит с интерфейса, и его устройство остаётся с туннелем, который никто не отвечает: приложение AmneziaGeo держит такой туннель, чтобы ничего не ушло мимо него, и машина, до которой добирались через туннель, остаётся недоступной. Поэтому панель сначала говорит приложению отключиться, а потом снимает клиента с интерфейса. Так работают переключатель в списке, выключение выбранных и сохранение настроек с снятой отметкой «Включено».</p>
+
+<p>Сигнал идёт включённому клиенту включённого интерфейса, которого панель видит подключённым; неподключённому ничего не шлётся. Приложение AmneziaGeo для Windows, Linux и Android принимает сигнал и отключается, как по слову пользователя: туннель не поднимется, пока пользователь не подключится сам. Другое приложение, в том числе AmneziaGeo старше сигнала, его не принимает и остаётся как было.</p>
+
+<p>Сигнал нужен обеим сторонам. «Разрешить серверу отключать туннель» у клиента включено, пока не снято: со снятым hello не предлагает приложению сигнал и панель его не шлёт. У приложения есть такой же переключатель в настройках конфигурации, он показывается, пока панель оставляет ему выбор; приложение, которое его выключило, говорит об этом серверу при следующем hello, и панель такому клиенту сигнал не шлёт.</p>
+
+<p>Сигнал, который приложение не приняло, список показывает в колонке «Был онлайн» строкой «Сигнал не доставлен», в подсказке - причина и время: «Приложение не ответило» (нет ответа за три секунды), «На устройстве сигнал никто не принимает» (порт закрыт), «Устройство недоступно», «Ответило не приложение этого клиента», «У клиента нет адреса или ключа, чтобы достать приложение». Отметка держится, пока клиента не включили снова, не удалили или панель не перезапустилась. Чтобы послать сигнал снова, включите клиента, дождитесь подключения и выключите. Как устроен сигнал, рассказано в справке репозитория <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/services.md#the-signal-to-disconnect">services.md</a>.</p>
+
+<h2 id="одна-конфигурация-одно-устройство">Одна конфигурация, одно устройство</h2>
+
+<p>Конфигурация несёт один приватный ключ, и сервер держит для него одного пира: одну сессию и один адрес, куда отвечает. Два устройства с одной конфигурацией отбирают пира друг у друга каждым пакетом, и каждое молчит, пока не повторит рукопожатие, то есть по 15 секунд; на стенде два устройства с одним ключом теряли 69-77% пакетов. Каждому устройству человека заводится свой клиент, а несколько клиентов одного человека собирает подписка, см. <a href="../recipes/family.ru.html">Подписка на несколько устройств</a>.</p>
+
+<p>Охрана второго устройства выключена, пока в окружении панели не стоит <code class="language-plaintext highlighter-rouge">Guard__IsEnabled=true</code>. Включённая, она замечает пира, которого под одним ключом берут два адреса, оставляет то устройство, чья очередь, а остальные отсекает в брандмауэре по адресу и порту источника (таблица <code class="language-plaintext highlighter-rouge">inet amneziageo_guard</code>); список клиентов пишет «Второе устройство отрезано: <адреса>». Отсечение держится, пока оставленное устройство в сети, и снимается, когда оно молчит дольше «Считать клиента в сети». Охрана читает интерфейсы и меняет брандмауэр, поэтому работает от root; устройство, которое ходит между сетями, она не трогает.</адреса></p>
+
+<h2 id="импорт">Импорт</h2>
+
+<p>Кнопки импорта клиентов в панели нет: клиентов из готовых файлов переносят консоль и API. Команды <code class="language-plaintext highlighter-rouge">amneziageo-server import peers</code> и <code class="language-plaintext highlighter-rouge">import clients</code> читают файлы хоста, см. <a href="interfaces.ru.html#перенос-с-awg-quick">Перенос с awg-quick</a>. Маршрут <code class="language-plaintext highlighter-rouge">POST /api/clients/import</code> для роли с правом «Управление клиентами» принимает <code class="language-plaintext highlighter-rouge">{ configId, text, prefix }</code>: номер интерфейса и текст, либо файл интерфейса <code class="language-plaintext highlighter-rouge">awg-quick</code>, пиры которого становятся клиентами, либо файл, в котором хост держал клиентов с приватными ключами, с префиксом IPv6 для второго адреса. Ответ говорит, сколько клиентов взято (<code class="language-plaintext highlighter-rouge">taken</code>), сколько пропущено как уже известные по публичному ключу (<code class="language-plaintext highlighter-rouge">held</code>), кого взяли под другим именем (<code class="language-plaintext highlighter-rouge">renamed</code>) и кого отказали с кодом (<code class="language-plaintext highlighter-rouge">refused</code>), и кладёт интерфейс на хост один раз. Текст без клиентов этого интерфейса получает отказ <code class="language-plaintext highlighter-rouge">bad-client-import</code>.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя клиента не годится; Клиент с таким именем уже есть</td>
+      <td>имя пустое, длиннее 64 знаков, с запретными знаками или занято без учёта регистра</td>
+    </tr>
+    <tr>
+      <td>Ключ клиента не годится; Общий ключ не годится; Клиент с таким ключом уже есть</td>
+      <td>ключи не 32 байта в base64 или публичный ключ уже у другого клиента</td>
+    </tr>
+    <tr>
+      <td>Адрес клиента не годится; Адрес вне подсети интерфейса; Это адрес сети, широковещательный или адрес интерфейса; Этот адрес уже занят</td>
+      <td>адреса</td>
+    </tr>
+    <tr>
+      <td>Заметка слишком длинная</td>
+      <td>больше 255 знаков</td>
+    </tr>
+    <tr>
+      <td>Подписка из латинских букв, цифр, дефиса и подчёркивания, до 64 знаков</td>
+      <td>имя подписки</td>
+    </tr>
+    <tr>
+      <td>Ограничение: число гигабайт больше нуля, не больше 1048576</td>
+      <td>ограничение в день</td>
+    </tr>
+    <tr>
+      <td>Доступ к клиенту: закрыт, только сервер, вся сеть туннеля или как у интерфейса</td>
+      <td>доступ</td>
+    </tr>
+    <tr>
+      <td>Такого клиента нет; Такого интерфейса нет; Такого шаблона нет</td>
+      <td>номер, которого панель не знает</td>
+    </tr>
+    <tr>
+      <td>Интерфейсы не приняли изменения</td>
+      <td>ядро не взяло пиров: интерфейс опущен или не хватает прав</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

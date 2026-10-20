@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Documentation · AmneziaGeo</title>
+    <meta name="description" content="AmneziaGeo documentation - a VPN client for Windows, Linux and Android on the AmneziaWG engine that routes by geo databases, and a panel for your own AmneziaWG server.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/index.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/index.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="/amneziageo/">Client</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/index.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="product-nav" aria-label="Products">
+  <p class="sidebar-label">Client</p>
+  <a href="/amneziageo/windows/">Windows</a>
+  <a href="/amneziageo/linux/">Linux</a>
+  <a href="/amneziageo/android/">Android</a>
+  <p class="sidebar-label">Server</p>
+  <a href="/amneziageo_server/service/">Service</a>
+  <a href="/amneziageo_server/docker/">Docker</a>
+</nav>
+
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="amneziageo">AmneziaGeo</h1>
+
+<p>The AmneziaGeo client brings up AmneziaWG tunnels on Windows, Linux and Android and decides by rules what goes through them. AmneziaGeo Server runs your own AmneziaWG server: it hands the clients their configurations and sends their traffic on by the same rules.</p>
+
+<ul class="product-cards">
+  <li>
+    <a class="product-card-title" href="/amneziageo/">AmneziaGeo</a>
+    <span>VPN client for Windows, Linux and Android on the AmneziaWG engine. Routes by geo databases, domains, address ranges and applications; multiple simultaneous VPN connections on Windows.</span>
+    <span class="product-card-links"><a href="/amneziageo/windows/">Windows</a> · <a href="/amneziageo/linux/">Linux</a> · <a href="/amneziageo/android/">Android</a></span>
+  </li>
+  <li>
+    <a class="product-card-title" href="/amneziageo_server/">AmneziaGeo Server</a>
+    <span>Panel for your own AmneziaWG server on Debian and Ubuntu - clients, templates and subscriptions, routing by geo databases and domains through other servers, a resolver for the clients, updates and backups.</span>
+    <span class="product-card-links"><a href="/amneziageo_server/service/">Service</a> · <a href="/amneziageo_server/docker/">Docker</a></span>
+  </li>
+</ul>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo">Client on GitHub</a>
+          <a href="https://github.com/bor-project/amneziageo_server">Server on GitHub</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

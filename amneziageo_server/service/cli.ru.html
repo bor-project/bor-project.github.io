@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Утилита · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Команды amneziageo-server для консоли и скриптов.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/cli.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/cli.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/cli.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/cli.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/cli.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/cli.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html" aria-current="page">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+  </ol>
+</nav>
+
+        <h1 id="утилита">Утилита</h1>
+
+<p>Утилита - консоль сервера: она работает с той же базой, что панель, и делает то, что не делается через HTTP до первого входа, да и всё остальное из скриптов. Она лежит в релизе как <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/AmneziaGeo.Server.Cli</code>, а меню <code class="language-plaintext highlighter-rouge">amneziageo-server</code> передаёт ей команды, которых не знает само: <code class="language-plaintext highlighter-rouge">amneziageo-server user list</code>. Член группы <code class="language-plaintext highlighter-rouge">amneziageo</code> запускает её без <code class="language-plaintext highlighter-rouge">sudo</code>; чтение интерфейсов ядра требует root. <code class="language-plaintext highlighter-rouge">amneziageo-server help</code> печатает команды меню, утилита без команды - свои.</p>
+
+<p>Пароль утилита спрашивает в терминале; <code class="language-plaintext highlighter-rouge">--generate</code> придумывает его и печатает один раз, <code class="language-plaintext highlighter-rouge">--permanent</code> не требует смены при первом входе. Команды, которые что-то удаляют, спрашивают подтверждение, <code class="language-plaintext highlighter-rouge">--yes</code> отвечает за вас.</p>
+
+<h2 id="вход-и-учётные-записи">Вход и учётные записи</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">init [--user &lt;логин&gt;] [--generate] [--permanent]</code></td>
+      <td>первый администратор, пока в панели нет включённого; без <code class="language-plaintext highlighter-rouge">--user</code> - учётная запись хоста, от которой запущена утилита. Последней строкой называет порт и путь панели</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">login [--user &lt;логин&gt;] [--json]</code></td>
+      <td>войти и напечатать токены сессии</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">refresh &lt;токен&gt;</code></td>
+      <td>обменять токен обновления на новую пару</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">whoami</code></td>
+      <td>что панель думает об учётной записи хоста, от которой запущена утилита</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user list</code></td>
+      <td>учётные записи с ролью и состоянием</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user add &lt;логин&gt; [--role &lt;роль&gt;] [--host [--key &lt;открытый ключ&gt;]] [--generate] [--permanent]</code></td>
+      <td>учётная запись панели; <code class="language-plaintext highlighter-rouge">--host</code> делает её и пользователем хоста с ключом ssh</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user passwd &lt;логин&gt; [--generate] [--permanent]</code></td>
+      <td>новый пароль</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user role &lt;логин&gt; &lt;роль&gt;</code></td>
+      <td>роль</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user enable</code>, <code class="language-plaintext highlighter-rouge">disable</code>, <code class="language-plaintext highlighter-rouge">remove &lt;логин&gt;</code></td>
+      <td>включить, выключить, удалить</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">role list</code>, <code class="language-plaintext highlighter-rouge">role add &lt;код&gt; [--title &lt;название&gt;] &lt;право&gt;...</code>, <code class="language-plaintext highlighter-rouge">role set &lt;код&gt; [--title &lt;название&gt;] [&lt;право&gt;...]</code>, <code class="language-plaintext highlighter-rouge">role remove &lt;код&gt; [--yes]</code></td>
+      <td>роли; права - <code class="language-plaintext highlighter-rouge">state:read</code>, <code class="language-plaintext highlighter-rouge">clients:write</code>, <code class="language-plaintext highlighter-rouge">interfaces:write</code>, <code class="language-plaintext highlighter-rouge">routing:write</code>, <code class="language-plaintext highlighter-rouge">access:write</code>, <code class="language-plaintext highlighter-rouge">updates:write</code>, <code class="language-plaintext highlighter-rouge">backup:read</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">token list</code>, <code class="language-plaintext highlighter-rouge">token add &lt;название&gt; --role &lt;роль&gt; [--days &lt;n&gt;]</code>, <code class="language-plaintext highlighter-rouge">token revoke &lt;id&gt; [--yes]</code></td>
+      <td>токены для скриптов; секрет печатается один раз последней строкой</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="панель">Панель</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel show</code></td>
+      <td>где отвечает панель</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel get port</code>, <code class="language-plaintext highlighter-rouge">path</code>, <code class="language-plaintext highlighter-rouge">listen</code>, <code class="language-plaintext highlighter-rouge">domains</code>, <code class="language-plaintext highlighter-rouge">certificate</code>, <code class="language-plaintext highlighter-rouge">key</code>, <code class="language-plaintext highlighter-rouge">opened</code>, <code class="language-plaintext highlighter-rouge">channel</code></td>
+      <td>одно значение, для скриптов</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel set [--port &lt;n&gt;] [--path &lt;путь&gt; | random | /] [--listen &lt;адреса&gt; | all] [--domains &lt;имена&gt; | none] [--certificate &lt;цепочка&gt; --key &lt;ключ&gt; | --certificate none] [--opened on | off] [--channel stable | test]</code></td>
+      <td>настройки вкладок «Сервер» и «Сертификаты»; <code class="language-plaintext highlighter-rouge">--opened</code> держит порт панели открытым в брандмауэре, <code class="language-plaintext highlighter-rouge">--channel</code> - канал релизов. Данная до первого старта, записывает настройки первой, см. <a href="panel/server.ru.html#первый-старт">Первый старт</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">panel reset [--yes]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">127.0.0.1</code>, порт 8443, новый случайный путь, без сертификата</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">subscriptions show</code>, <code class="language-plaintext highlighter-rouge">subscriptions get &lt;имя&gt;</code>, <code class="language-plaintext highlighter-rouge">subscriptions set --opened on | off</code></td>
+      <td>подписки: показать, одно значение, держать порт открытым</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">update status</code>, <code class="language-plaintext highlighter-rouge">update check</code>, <code class="language-plaintext highlighter-rouge">update apply [--beta]</code></td>
+      <td>обновление: как прошло последнее, посмотреть релизы сейчас, поставить новейший; меню зовёт <code class="language-plaintext highlighter-rouge">apply</code> в пунктах 2 и 3</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">backup check &lt;файл&gt;</code></td>
+      <td>проверить файл копии базы</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Настройки меняются в базе; панель берёт адрес, порт, путь и сертификат после перезапуска, меню перезапускает её само после каждого <code class="language-plaintext highlighter-rouge">panel set</code>.</p>
+
+<h2 id="интерфейсы-и-клиенты">Интерфейсы и клиенты</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">endpoint list</code></td>
+      <td>интерфейсы с портом и тем, кто держит порт открытым: панель или хост</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">endpoint open &lt;имя&gt;</code>, <code class="language-plaintext highlighter-rouge">endpoint close &lt;имя&gt;</code></td>
+      <td>держать порты интерфейса открытыми в брандмауэре или оставить хосту</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">endpoint default &lt;имя&gt;</code></td>
+      <td>сделать интерфейс тем, на который встаёт новый клиент; <code class="language-plaintext highlighter-rouge">endpoint list</code> отмечает его словом <code class="language-plaintext highlighter-rouge">default</code> в конце строки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">import endpoint &lt;файл.conf&gt; [--name &lt;имя&gt;] [--host &lt;адрес&gt;] [--dns &lt;список&gt;] [--allowed &lt;список&gt;]</code></td>
+      <td>интерфейс из файла <code class="language-plaintext highlighter-rouge">awg-quick</code>, с ключами и обфускацией</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">import peers &lt;файл.conf&gt; [--endpoint &lt;имя&gt;]</code></td>
+      <td>пиры файла интерфейса как клиенты без приватных ключей</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">import clients &lt;файл.json&gt; [--endpoint &lt;имя&gt;] [--v6 &lt;префикс&gt;]</code></td>
+      <td>клиенты из файла, в котором хост держал их с приватными ключами</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device list</code></td>
+      <td>интерфейсы <code class="language-plaintext highlighter-rouge">amneziawg</code> в ядре</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device show [имя] [--secrets]</code></td>
+      <td>интерфейс с пирами, как его держит ядро</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device set &lt;имя&gt; [--key &lt;base64&gt;] [--generate] [--port &lt;n&gt;] [--fwmark &lt;n&gt;] [--shape jc=4,jmin=40,...] [--i1 &lt;спец&gt;] [--hpk &lt;base64&gt;]</code></td>
+      <td>записать настройки интерфейса в ядро напрямую, для отладки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device peer &lt;имя&gt; &lt;публичный ключ&gt; [--allowed &lt;a,b&gt;] [--endpoint &lt;хост:порт&gt;] [--preshared &lt;base64&gt;] [--keepalive &lt;с&gt;] [--replace-ips] [--update-only] [--remove]</code></td>
+      <td>пир интерфейса в ядре, для отладки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">family [имя]</code></td>
+      <td>номер семейства netlink</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Команды <code class="language-plaintext highlighter-rouge">device</code> и <code class="language-plaintext highlighter-rouge">family</code> говорят с ядром, минуя базу панели: что они изменили, панель при следующем применении положит обратно по своим настройкам. Клиенты, правила, каналы и шаблоны из консоли не редактируются: это <a href="../api.ru.html">HTTP API</a> с токеном от <code class="language-plaintext highlighter-rouge">token add</code>.</p>
+
+<h2 id="гео-и-dns">Гео и DNS</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geo update</code></td>
+      <td>скачать включённые гео-источники сейчас</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns show</code></td>
+      <td>настройки резолвера</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns get enabled</code>, <code class="language-plaintext highlighter-rouge">port</code>, <code class="language-plaintext highlighter-rouge">upstreams</code>, <code class="language-plaintext highlighter-rouge">encrypted</code>, <code class="language-plaintext highlighter-rouge">outbound</code></td>
+      <td>одно значение; <code class="language-plaintext highlighter-rouge">encrypted</code> - <code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">none</code> или <code class="language-plaintext highlighter-rouge">partly</code>, спрашиваются ли внешние серверы шифрованно</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dns set --enabled on | off [--upstreams &lt;серверы&gt; | default]</code></td>
+      <td>включить или выключить резолвер, задать внешние серверы или вернуть те, с которых начинает свежая панель</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Меню <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> и <code class="language-plaintext highlighter-rouge">dns off</code> зовут то же с вопросами.</p>
+
+<h2 id="пример">Пример</h2>
+
+<p>Токен на сутки, список клиентов через API и его отзыв:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server token add nightly --role admin --days 1
+curl -s -H "Authorization: Bearer agt_..." https://panel.example.com:8443/api/clients
+amneziageo-server token revoke &lt;id&gt; --yes
+</code></pre></div></div>
+
+<p>Все команды принимают <code class="language-plaintext highlighter-rouge">--db &lt;файл&gt;</code>, чтобы работать с другой базой, например с копией.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Templates · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="What a client gets in its file: AllowedIPs from geo keys and domains, routing by name, DNS, MTU, keepalive.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/templates.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/templates.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/templates.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/panel/templates.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/panel/templates.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/templates.html">Service</a>
+  <a href="/amneziageo_server/docker/panel/templates.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html" aria-current="page">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/docker/panel/clients.html">Clients</a></li>
+  </ol>
+</nav>
+
+        <h1 id="templates">Templates</h1>
+
+<p>A template carries what in a client file does not belong to one client: <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, name servers, the packet size and keepalive, and also the routing presets the AmneziaGeo app gets. A client points at a template rather than holding a copy: editing the template changes the files of all its clients, and a subscription serves the new file at once, because the file is assembled at the moment of the request. A fresh panel starts with the <code class="language-plaintext highlighter-rouge">default</code> template.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/templates.png" alt="List of templates: a template with geo keys and the default one, the number of addresses in the file and of clients" width="1440" height="900" loading="lazy" /><figcaption>Templates of the server.</figcaption></figure>
+
+<p>The “Templates” tab of the “Clients” page lists the templates with their <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, DNS, MTU, keepalive and the number of clients; the name leads to the settings, “Add” opens a new one, “Duplicate” in the row menu makes a copy “<name> copy". The "Template" field in the settings of a client picks its template, "Default" leaves the client the settings of the interface.</name></p>
+
+<h2 id="main">Main</h2>
+
+<p>“Name”: up to 64 characters, one of a kind in the panel.</p>
+
+<h2 id="routing">Routing</h2>
+
+<p>The entries of a template are what the client sends into the tunnel. Ranges are not written by hand: the template holds a list of entries, like the lists of the AmneziaGeo client, and unfolds them into addresses itself.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entry</th>
+      <th>Written as</th>
+      <th>Gives</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GeoIP</td>
+      <td><code class="language-plaintext highlighter-rouge">geoip:ru</code></td>
+      <td>the ranges of a country or a network from the geo databases</td>
+    </tr>
+    <tr>
+      <td>GeoSite</td>
+      <td><code class="language-plaintext highlighter-rouge">geosite:youtube</code></td>
+      <td>the addresses the domains of the category resolve to</td>
+    </tr>
+    <tr>
+      <td>Network</td>
+      <td><code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code></td>
+      <td>itself</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td><code class="language-plaintext highlighter-rouge">cidr:203.0.113.10</code></td>
+      <td>itself</td>
+    </tr>
+    <tr>
+      <td>Domain</td>
+      <td><code class="language-plaintext highlighter-rouge">domain:example.com</code></td>
+      <td>the addresses the name resolves to</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A network, address or name typed without a prefix gets one as it is added; a link keeps its host. The names are asked in both families through the upstream servers of the resolver of the panel; from a geosite category only domains and exact names are asked, since keywords and expressions have no address. One pass asks up to 4000 names and ends after a minute; a name without an answer counts as not found. Addresses a packet through the tunnel would not go to (loopback, zero, link-local, multicast, broadcast) are dropped; a private address stays, because a name of an internal resolver may lead to a host behind the server.</p>
+
+<p>What the entries gave is folded into the fewest ranges and kept with the template, together with the entries that gave nothing and the time of the pass: “Refreshed <time>", "Nothing found for: <list>". This is what goes into `AllowedIPs` of every client of the template; an empty list gives `0.0.0.0/0`, and a client with an IPv6 address also gets `::/0`. A name server of the file inside the network of the interface, the resolver of the panel among them, answers only through the tunnel: when the ranges leave it out, it is added to `AllowedIPs` as a single address. The list is computed again on save, with the "Refresh" button, on its own once a day and right after the geo databases change: names move and the geo databases update, and the files of the clients change only after a new pass. When the name servers give no answer, the panel keeps the list it had and tries again in an hour.</list></time></p>
+
+<p>While a template is being edited, the panel counts what each entry gives: “Addresses: N” on the entry and on the whole template, “Show what it holds” unfolds the first addresses or names of a category (“No entries: the category is absent from the downloaded databases”). Over 12000 ranges means “the speed may drop”, over 16000 “too many addresses to save”. A template holds no more than 256 entries.</p>
+
+<p>“Routing presets” are the lists the AmneziaGeo app of a client of the template gets, in the order of handing out, while routing happens on the client, see <a href="presets.html">Routing presets</a>; “No presets: add them in the tab Routing presets” while none are made.</p>
+
+<h2 id="route-by-name">Route by name</h2>
+
+<p>A client with nothing but <code class="language-plaintext highlighter-rouge">AllowedIPs</code> cannot follow a name. A service behind a CDN answers with the cache nearest to whoever asks; the caches stand in the networks of providers and change, and neither the addresses a pass found nor the geo ranges of the service cover them. With the “Route by name” switch in the “Routing” part, the names of the template (<code class="language-plaintext highlighter-rouge">geosite:</code> and <code class="language-plaintext highlighter-rouge">domain:</code>) are not unfolded into addresses, and such entries show “by name” instead of a number of addresses. The resolver of the panel answers a client of the template about these names with a stand-in address out of <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>: one address per name, the same for as long as the name is asked about, and the same on every server as long as two names do not land on one address. The host leads a connection to the stand-in to the real address the resolver got for the name and decides it by the real one, so the rules of the server see such a connection as any other, see <a href="dns.html#stand-in-addresses">Stand-in addresses</a>.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/template-form.png" alt="Form of a template: geosite entries marked by name and the Route by name switch on" width="1440" height="900" loading="lazy" /><figcaption>A template with routing by name.</figcaption></figure>
+
+<p>The file of such a client carries the resolver of the panel as its only name server (the “DNS” field of the “Network” part shows its addresses and cannot be edited), and in <code class="language-plaintext highlighter-rouge">AllowedIPs</code> the networks and addresses of the template, <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> and the address of the resolver. A geo key of addresses (<code class="language-plaintext highlighter-rouge">geoip:</code>) stays a range: it serves the applications that go to addresses without asking a name, Telegram and calls among them.</p>
+
+<p>The switch works while the resolver of the panel answers the clients on port 53 and the firewall of the host lets them reach it. The template is saved with the switch on in any case, and the form under it names what keeps it from working, with the command that mends it:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What to do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Will not work: the panel resolver is off</td>
+      <td>turn the resolver on on the <a href="dns.html">DNS</a> page, with <code class="language-plaintext highlighter-rouge">sudo amneziageo-server dns on</code> or with menu item 29</td>
+    </tr>
+    <tr>
+      <td>Will not work: the panel resolver answers on port N, while the clients ask on 53</td>
+      <td>set port 53 on the DNS page</td>
+    </tr>
+    <tr>
+      <td>Will not work: the server firewall (ufw) keeps the clients of <interfaces> from the panel resolver (port 53)</interfaces></td>
+      <td>on the server <code class="language-plaintext highlighter-rouge">sudo amneziageo-server dns open</code>, menu item 23, sub-item 13, or <code class="language-plaintext highlighter-rouge">sudo ufw allow in on &lt;interface&gt; to any port 53</code> for each interface</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>An application with name servers of its own goes past the stand-ins; the guard of the resolver resets the known public servers of DoT and DoH for the clients, see <a href="dns.html#questions-of-the-clients">Questions of the clients</a>. A name with a stand-in gets no IPv6 answer and no <code class="language-plaintext highlighter-rouge">HTTPS</code> record, so the client goes to it over IPv4. A stand-in that leads nowhere, after a client came over from another server or for a name nobody asked about for a week, is refused at once, and the client asks for the name again.</p>
+
+<h2 id="network">Network</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DNS</td>
+      <td>the name servers of the client; empty means the resolver of the panel when it answers inside the tunnel, otherwise <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>; with routing by name, the addresses of the resolver of the panel, and the field cannot be edited</td>
+    </tr>
+    <tr>
+      <td>MTU</td>
+      <td>576 to 9000; empty means 1420</td>
+    </tr>
+    <tr>
+      <td>Keepalive</td>
+      <td>0 to 65535 seconds, 0 turns it off; empty means 25</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The keys, the address of the client, the address of the interface and the obfuscation always come from the interface: they must fit the server.</p>
+
+<h2 id="removing">Removing</h2>
+
+<p>A template taken by at least one client is not removed: “The template is in use”. First the clients get another template.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The name of the template is empty or longer than 64 characters</td>
+      <td>the name</td>
+    </tr>
+    <tr>
+      <td>Not a geo key, a network, an address or a domain; A template carries at most 256 entries</td>
+      <td>the entries</td>
+    </tr>
+    <tr>
+      <td>The name server is not an address; MTU is outside 576 to 9000; Keepalive is outside 0 to 65535</td>
+      <td>network</td>
+    </tr>
+    <tr>
+      <td>There is no such routing preset</td>
+      <td>the template names a preset that does not exist</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

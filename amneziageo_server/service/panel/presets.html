@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Routing presets · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Routing lists for the AmneziaGeo client app.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/presets.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/presets.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/presets.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/presets.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/presets.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/presets.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/presets.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html" aria-current="page">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/service/panel/clients.html">Clients</a></li>
+  </ol>
+</nav>
+
+        <h1 id="routing-presets">Routing presets</h1>
+
+<p>A routing preset is a routing list of the AmneziaGeo client that is kept on the panel and handed to the app through the hello of the interface. The template of a client names the presets its clients get; routing by them happens on the device, not on the server. The “Routing presets” tab of the “Clients” page lists the presets with the time of the change and the number of templates that hand them out.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/preset-form.png" alt="Form of a new routing preset: name, On by default, the lists Through the VPN, Directly and Block" width="1440" height="900" loading="lazy" /><figcaption>An empty form of a preset.</figcaption></figure>
+
+<h2 id="main">Main</h2>
+
+<p>“Name”: up to 64 characters, one of a kind in the panel; this is what the list is called on the client. “On by default”: the client puts the list in use when it adds it, unless another list is in use already.</p>
+
+<h2 id="lists">Lists</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Through the VPN</td>
+      <td>the entries go through the tunnel</td>
+    </tr>
+    <tr>
+      <td>Directly</td>
+      <td>the entries go past the tunnel</td>
+    </tr>
+    <tr>
+      <td>Block</td>
+      <td>the client drops the entries</td>
+    </tr>
+    <tr>
+      <td>Everything through the VPN</td>
+      <td>everything goes through the tunnel but what goes directly</td>
+    </tr>
+    <tr>
+      <td>All UDP through the tunnel</td>
+      <td>every UDP packet goes through the tunnel, whatever the lists say: for calls and games that learn their addresses not through DNS</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The entries are written the same way as in a template: <code class="language-plaintext highlighter-rouge">geoip:ru</code>, <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">domain:example.com</code>, up to 256 in each part.</p>
+
+<h2 id="how-the-app-takes-a-preset">How the app takes a preset</h2>
+
+<p>A preset has a permanent identifier, given when it is added, and the time of the last change of the list: of the name, the entries and the switches. Hello hands them out together with the list, and the client knows the list by its identifier:</p>
+
+<ul>
+  <li>a client without such a list adds it, and puts it in use if the preset is on by default and the client routes by no list;</li>
+  <li>a client with the list keeps its own; when the preset is newer, the card of the list on the device offers an update, and the owner of the device, accepting it, gets the name, entries and switches of the preset instead of what the list held, while the list stays in use or not, as it was;</li>
+  <li>a list the owner removed comes back at the next hello;</li>
+  <li>a list added under the name of the preset by an app older than the identifiers gets tied to the preset.</li>
+</ul>
+
+<p>The card of the list on the device shows where it comes from: the name of the configuration of the client, the one the subscription gives. Together with the presets, hello hands out the geo sources of the panel: the client adds the sources it lacks by address and moves a source with the same name and kind to the address of the panel, so that the keys of the preset name lists the client has, see <a href="geo.html">Geo lists</a>. The whole scenario: <a href="../recipes/client-routing.html">Routing on the client device</a>.</p>
+
+<h2 id="removing">Removing</h2>
+
+<p>A preset a template names is not removed: “A template hands the preset out”; first it is taken out of the templates. Clients that already got the list keep it.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The name of the preset is empty or longer than 64 characters</td>
+      <td>the name</td>
+    </tr>
+    <tr>
+      <td>Not a geo key, a network, an address or a domain; A template carries at most 256 entries</td>
+      <td>the entries</td>
+    </tr>
+    <tr>
+      <td>There is no such routing preset</td>
+      <td>a number the panel does not know</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

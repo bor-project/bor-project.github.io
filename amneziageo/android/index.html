@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AmneziaGeo for Android · AmneziaGeo</title>
+    <meta name="description" content="Installation, first configuration, menu sections and recipes of AmneziaGeo for Android.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/android/">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/android/index.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/android/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/android/index.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/android/index.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/">Windows</a>
+  <a href="/amneziageo/linux/">Linux</a>
+  <a href="/amneziageo/android/" aria-current="page">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/android/" aria-current="page">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/android/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+  </ol>
+</nav>
+
+        <h1 id="amneziageo-for-android">AmneziaGeo for Android</h1>
+
+<p>Android 7.0 or newer: phones, tablets and Android TV sets.</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<ol>
+  <li><a href="/amneziageo/android/install.html">Installation</a></li>
+  <li><a href="/amneziageo/android/first-config.html">First configuration</a></li>
+</ol>
+
+<h2 id="menu">Menu</h2>
+
+<ul class="topic-list">
+  <li>
+    <a href="/amneziageo/android/menu/home.html">Home screen</a>
+    <span>Connecting, the server and the routing list</span>
+  </li>
+  <li>
+    <a href="/amneziageo/android/menu/configurations.html">Configurations</a>
+    <span>Server catalogue</span>
+  </li>
+  <li>
+    <a href="/amneziageo/android/menu/routing.html">Routing</a>
+    <span>Rule lists and traffic</span>
+    <ul>
+      <li>
+        <a href="/amneziageo/android/menu/geo-sources.html">Geo sources</a>
+        <span>geosite and geoip databases</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/amneziageo/android/menu/connections.html">Connections</a>
+    <span>Proxy</span>
+  </li>
+  <li>
+    <a href="/amneziageo/android/menu/diagnostics.html">Diagnostics</a>
+    <span>Log and current configuration</span>
+  </li>
+  <li>
+    <a href="/amneziageo/android/menu/general.html">General</a>
+    <span>Appearance and info</span>
+  </li>
+</ul>
+
+<h2 id="recipes">Recipes</h2>
+
+<ul class="topic-list">
+  <li>
+    <a href="/amneziageo/android/recipes/discord-udp.html">Discord where UDP is blocked</a>
+    <span>Discord text and voice through the tunnel, everything else direct</span>
+  </li>
+  <li>
+    <a href="/amneziageo/android/recipes/remote-network.html">Access to a remote network</a>
+    <span>Subnets behind the server: the office, a home NAS, cameras</span>
+  </li>
+  <li>
+    <a href="/amneziageo/android/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+    <span>A TV, a console, a phone without a client of its own</span>
+  </li>
+</ul>
+
+<h2 id="command-line">Command line</h2>
+
+<p><a href="/amneziageo/android/cli.html">Command line</a>: agent commands over <code class="language-plaintext highlighter-rouge">adb</code>.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

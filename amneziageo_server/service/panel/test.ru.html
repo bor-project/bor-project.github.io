@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Проверка · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Проверка маршрута соединения по имени, порту и клиенту.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/test.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/test.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/test.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/test.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/test.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/test.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html" aria-current="page">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a></li>
+  </ol>
+</nav>
+
+        <h1 id="проверка">Проверка</h1>
+
+<p>Проверка маршрута говорит, что правила на хосте сделают с соединением. Страница открывается по адресу <code class="language-plaintext highlighter-rouge">/routing/test</code> и ссылкой со страниц маршрутизации, в меню её нет.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/test.png" alt="Проверка маршрута www.youtube.com на порт 443 для клиента: напрямую через хост, ни одно правило не сработало, адреса имени" width="1440" height="900" loading="lazy" /><figcaption>Ни одно правило не берёт соединение, и оно идёт через хост.</figcaption></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя или адрес</td>
+      <td>имя, адрес или ссылка, у которой берётся хост; имя спрашивается через выход резолвера, а с выключенным резолвером через хост</td>
+    </tr>
+    <tr>
+      <td>Порт</td>
+      <td>порт назначения; можно оставить пустым</td>
+    </tr>
+    <tr>
+      <td>Клиент</td>
+      <td>клиент панели, чьи адреса и интерфейс несёт соединение, или адрес, интерфейс которого - интерфейс его сети</td>
+    </tr>
+    <tr>
+      <td>Протокол</td>
+      <td>TCP или UDP</td>
+    </tr>
+    <tr>
+      <td>Порт источника</td>
+      <td>можно оставить пустым</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>«Проверить» читает правила так, как их читает набор на хосте. Сначала защита резолвера, пока хоть одно правило на хосте сравнивает по имени, а имена из соединений не читаются: клиенту такого правила сбрасывается порт 853 и порт 443 к известным серверам имён; клиента, отпущенного на сутки, проверка не знает и показывает сброс и ему. Потом сам резолвер: пока он отвечает, каждый вопрос на порт 53 с интерфейса клиента отвечает он, и правила не читаются. Потом правила по порядку: правило не на хосте пропускается с причиной, правило, у которого не сошлись интерфейс, клиент, протокол, порт или порт источника, идёт мимо, а правило, под чьи цели попал трафик, срабатывает по диапазону, по имени или по адресу, который резолвер положил в его набор.</p>
+
+<h2 id="итог">Итог</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Итог</th>
+      <th>Что значит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Через канал <имя></имя></td>
+      <td>трафик уйдёт через канал; у группы перечислены её каналы с отметками «несёт», «в резерве», «недоступен», «выключен» и тем, какой выбран для этого правила</td>
+    </tr>
+    <tr>
+      <td>Напрямую через хост</td>
+      <td>правило «Напрямую», список «Напрямую» или ни одно правило не сработало</td>
+    </tr>
+    <tr>
+      <td>Блокируется</td>
+      <td>правило «Блокировать» или список «Блокировать»</td>
+    </tr>
+    <tr>
+      <td>Заперт: канал <имя> недоступен</имя></td>
+      <td>правило сработало, но его канал ничего не несёт, а правило заперто</td>
+    </tr>
+    <tr>
+      <td>Отсекается защитой резолвера (dot или doh)</td>
+      <td>соединение к серверу имён мимо резолвера</td>
+    </tr>
+    <tr>
+      <td>Отвечает резолвер панели</td>
+      <td>вопрос DNS, который перехватывает резолвер</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ниже стоят «Правило», которое решило, с его местом, «Адреса», в которые разрешилось имя («имя не разрешилось»), и список правил, прочитанных до решения, у каждого «По чему»: «сработало», «мимо» с тем, что не сошлось (цель, интерфейс, клиент, протокол, порт, порт источника), или «не на хосте» с причиной. Так видно, какое правило перехватило трафик раньше задуманного и почему нужное промахнулось.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

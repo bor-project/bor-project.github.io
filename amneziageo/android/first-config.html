@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>First configuration · Android · AmneziaGeo</title>
+    <meta name="description" content="Add a configuration, grant the VPN permission, pick the routing and connect.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/android/first-config.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/android/first-config.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/android/first-config.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/android/first-config.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/android/first-config.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/first-config.html">Windows</a>
+  <a href="/amneziageo/linux/first-config.html">Linux</a>
+  <a href="/amneziageo/android/first-config.html" aria-current="page">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/android/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/first-config.html" aria-current="page">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/android/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/android/">Android</a></li>
+  </ol>
+</nav>
+
+        <h1 id="first-configuration">First configuration</h1>
+
+<ol>
+  <li>Open the app and import a configuration.</li>
+  <li>On the first connect Android asks for VPN permission - it has to be granted.</li>
+</ol>
+
+<h2 id="add-a-configuration">Add a configuration</h2>
+
+<p class="todo"><span>Coming soon</span> Add configuration: a file, pasted text or a vpn:// link, a subscription address, a QR code; what differs on a TV</p>
+
+<p>The configuration catalogue: <a href="/amneziageo/android/menu/configurations.html">Configurations</a>.</p>
+
+<h2 id="background-activity">Background activity</h2>
+
+<p class="todo"><span>Coming soon</span> notifications, the battery saver and autostart on MIUI and HyperOS</p>
+
+<p>More: <a href="/amneziageo/android/menu/general.html#background-activity">Background activity</a>.</p>
+
+<h2 id="pick-the-routing">Pick the routing</h2>
+
+<p class="todo"><span>Coming soon</span> the full tunnel or a rule list; the lists a server hands out</p>
+
+<p>Modes and lists: <a href="/amneziageo/android/menu/routing.html">Routing</a>.</p>
+
+<h2 id="connect">Connect</h2>
+
+<p class="todo"><span>Coming soon</span> the connect button on the home screen and its states; the tunnel notification</p>
+
+<p>More: <a href="/amneziageo/android/menu/home.html">Home screen</a>.</p>
+
+<h2 id="what-next">What next</h2>
+
+<ul>
+  <li><a href="/amneziageo/android/menu/">Menu</a></li>
+  <li><a href="/amneziageo/android/recipes/">Recipes</a></li>
+</ul>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

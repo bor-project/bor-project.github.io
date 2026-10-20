@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Connections · Windows · AmneziaGeo</title>
+    <meta name="description" content="Tunnel, proxy and access point">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/menu/connections.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/menu/connections.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/menu/connections.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/windows/menu/connections.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/windows/menu/connections.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/menu/connections.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/menu/connections.html">Linux</a>
+  <a href="/amneziageo/android/menu/connections.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.html" aria-current="page">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/">Windows</a></li>
+    <li><a href="/amneziageo/windows/menu/">Menu</a></li>
+  </ol>
+</nav>
+
+        <h1 id="connections">Connections</h1>
+
+<h2 id="tunnel">Tunnel</h2>
+
+<ul>
+  <li>“Show notifications” - tray messages about connecting and about updates of the application and of the databases.</li>
+  <li>“Reconnect after reboot” - connect the selected configuration when the computer starts; in the console it is <code class="language-plaintext highlighter-rouge">survive-reboot</code>.</li>
+  <li>“Reconnect automatically” and “Retry interval” - keep trying after a drop: at once, in 5, 10 and 20 s, then every interval; the interval is the longest pause between attempts. How a connect is retried: <a href="home.html#reconnecting">Reconnecting</a>.</li>
+  <li>“Allow several VPNs” turns on the mode of the <a href="../recipes/multiple-vpn.html">Multiple VPN connections</a> recipe. Under it stand the settings of how rules move between servers: “Check interval” - how often to check whether a rule should move to another server, “Checks before a switch” - after how many checks in a row without an answer the rule moves to another server, “Switch threshold” - how much faster the other server has to answer for the rule to move to it.</li>
+</ul>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/connections-tunnel.png" alt="Connections, the Tunnel tab: notifications, reconnect after reboot, reconnecting, several VPNs" width="984" height="752" loading="lazy" /><figcaption>The tunnel tab.</figcaption></figure>
+
+<h2 id="proxy">Proxy</h2>
+
+<p>The application runs SOCKS5 and HTTP proxies through which devices without a client of their own reach the tunnel: a TV, a phone, a console.</p>
+
+<ul>
+  <li>“Allow connections” turns the proxy on: programs on this computer and devices on the local network use it.</li>
+  <li>The ports are set separately: “SOCKS5 port” and “HTTP port”. The address at which the proxy is reachable on the network stands beside them, and a button copies it.</li>
+  <li>Access is by “Accounts” (“User” and “Password”, any of them will do) or through “Connect without a password”: then the proxy is open to any device on the network. With no account and without that switch nobody can connect.</li>
+  <li>“Clients” shows who is connected and how many connections each holds.</li>
+</ul>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/connections-proxy.png" alt="Connections, the Proxy tab: allow connections, addresses, ports, clients and accounts" width="984" height="752" loading="lazy" /><figcaption>The proxy is on. Network addresses are hidden.</figcaption></figure>
+
+<p>A proxy set in the network settings is followed by the browser and by programs that reach the network through the system. Telegram on a phone is not one of them: the phone’s address and the SOCKS5 port go into Telegram itself (Settings - Data and Storage - Proxy Settings, type SOCKS5). The proxy carries TCP connections; datagrams (UDP) of neighbouring devices do not pass through it.</p>
+
+<p>Traffic reaches the tunnel only while the tunnel is up.</p>
+
+<p>Step by step: the <a href="../recipes/lan-proxy.html">Devices on the network through the proxy</a> recipe. From the console: <code class="language-plaintext highlighter-rouge">amneziageo proxy show</code>, <code class="language-plaintext highlighter-rouge">amneziageo proxy on [--socks &lt;port&gt;] [--http &lt;port&gt;] [--anon on|off] [--auth &lt;user:password&gt;]... [--auth off]</code>, <code class="language-plaintext highlighter-rouge">amneziageo proxy off</code>.</p>
+
+<h2 id="access-point">Access point</h2>
+
+<p>The “Wi-Fi” tab. “Access point” turns sharing on: the computer shares Wi-Fi, and the devices joined to it reach the internet through it - with the tunnel up by its rules, so the same goes into the tunnel as for the computer itself, and without the tunnel directly. “Network name” - up to 32 bytes, “Password” - from 8 to 63 characters, and the button beside it shows it. “Band” - “Auto”, “2.4 GHz” or “5 GHz”; when the adapter picked the band itself, the line under the field says which one the network runs on. “Devices” lists the ones joined. The access point has a switch of its own, apart from the proxy.</p>
+
+<p>Sharing goes through the Windows service “Internet Connection Sharing”: when it is stopped, the tab says so. A Wi-Fi adapter that can share is needed.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/connections-hotspot.png" alt="Connections, the Wi-Fi tab: the access point is on, the network name, the password, the band and the devices joined" width="984" height="752" loading="lazy" /><figcaption>The access point is running.</figcaption></figure>
+
+<p>Step by step: the <a href="../recipes/hotspot.html">Sharing the VPN over Wi-Fi</a> recipe. From the console: <code class="language-plaintext highlighter-rouge">amneziageo hotspot show</code>, <code class="language-plaintext highlighter-rouge">amneziageo hotspot on [--ssid &lt;name&gt;] [--password &lt;password&gt;] [--band auto|2.4|5] [--hidden on|off]</code>, <code class="language-plaintext highlighter-rouge">amneziageo hotspot off</code>.</p>
+
+<h2 id="subscription-auto-refresh">Subscription auto-refresh</h2>
+
+<p>Configurations from subscriptions refresh themselves: the agent reads the subscriptions again every 12 hours unless the panel set a term of its own, and a configuration changed in the panel applies at the next connect. There is no separate setting in the window. To refresh every subscription now, use the “Refresh configs” button in the <a href="configurations.html#catalogue">configuration</a> catalogue. From the console: <code class="language-plaintext highlighter-rouge">amneziageo settings set subscription-auto-refresh-enabled on|off</code> turns refreshing on and off, <code class="language-plaintext highlighter-rouge">amneziageo settings set subscription-refresh-interval-hours &lt;1-168&gt;</code> sets the term in hours; subscriptions are managed with <code class="language-plaintext highlighter-rouge">amneziageo sub list</code>, <code class="language-plaintext highlighter-rouge">amneziageo sub add &lt;url&gt; [&lt;name&gt;]</code>, <code class="language-plaintext highlighter-rouge">amneziageo sub refresh [&lt;name&gt;]</code>, <code class="language-plaintext highlighter-rouge">amneziageo sub remove &lt;name&gt; [--configs]</code>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Первая конфигурация · Windows · AmneziaGeo</title>
+    <meta name="description" content="Добавить конфигурацию, выбрать маршрутизацию и подключиться.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/first-config.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/first-config.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/first-config.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/windows/first-config.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/first-config.ru.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/first-config.ru.html">Linux</a>
+  <a href="/amneziageo/android/first-config.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.ru.html" aria-current="page">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.ru.html">Несколько VPN одновременно</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/index.ru.html">Windows</a></li>
+  </ol>
+</nav>
+
+        <h1 id="первая-конфигурация">Первая конфигурация</h1>
+
+<ol>
+  <li>Откройте AmneziaGeo и импортируйте конфигурацию - файл <code class="language-plaintext highlighter-rouge">.conf</code>, QR-код или общий файл настроек.</li>
+  <li>Выберите список правил или полный туннель и подключитесь.</li>
+</ol>
+
+<h2 id="добавить-конфигурацию">Добавить конфигурацию</h2>
+
+<p>Пока конфигураций нет, на главном экране стоит кнопка «Добавить конфигурацию», потом - «Добавить» в разделе «Конфигурации». Способы: «Загрузить файл» - файл <code class="language-plaintext highlighter-rouge">.conf</code> или картинка с QR-кодом, «Вставить» - текст конфигурации, ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> или адрес подписки из буфера обмена, «Создать вручную» - текст wg-quick в редакторе. Файл можно и перетащить в окно. Общий файл настроек с другого устройства - конфигурации и списки маршрутизации вместе - импортируется через «Импорт / экспорт» в разделе «Общие».</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/ru/config-add.png" alt="Меню «Добавить» в каталоге: загрузить файл, вставить, сканировать QR-код, создать вручную" width="984" height="752" loading="lazy" /><figcaption>Способы добавить конфигурацию.</figcaption></figure>
+
+<p>Каталог конфигураций - в разделе <a href="/amneziageo/windows/menu/configurations.ru.html">Конфигурации</a>.</p>
+
+<h2 id="выбрать-маршрутизацию">Выбрать маршрутизацию</h2>
+
+<p>Пока списка нет, весь трафик идёт через VPN. Список создаётся в разделе «Маршрутизация» кнопкой «Добавить»: выберите режим - «Только выбранное» или «Всё, кроме выбранного» - и шаблон, например «Недоступные сайты», и включите у списка «Используется». Сервер AmneziaGeo присылает свои списки сам: такой список появляется в разделе и, если сервер пометил его включённым по умолчанию, выбирается, пока не выбран другой.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/ru/routing-new.png" alt="Новый список: режим VPN для приложений и выбор шаблона" width="984" height="752" loading="lazy" /><figcaption>Новый список: режим и шаблон.</figcaption></figure>
+
+<p>Режимы и списки - в разделе <a href="/amneziageo/windows/menu/routing.ru.html">Маршрутизация</a>.</p>
+
+<h2 id="подключиться">Подключиться</h2>
+
+<p>Нажмите кнопку посередине главного экрана. Пока соединение устанавливается, под кнопкой написано «Устанавливается соединение…», у подключённого туннеля - «Подключено»; неудачную попытку окно называет причиной: сервер не ответил, конфигурацию не удалось прочитать и так далее. После подключения окно можно закрыть: приложение остаётся в трее, а меню значка подключает, отключает и открывает окно.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/ru/home-connected.png" alt="Главный экран: туннель подключён" width="984" height="752" loading="lazy" /><figcaption>Туннель подключён.</figcaption></figure>
+
+<p>Подробнее - <a href="/amneziageo/windows/menu/home.ru.html">Главный экран</a>.</p>
+
+<h2 id="что-дальше">Что дальше</h2>
+
+<ul>
+  <li><a href="/amneziageo/windows/menu/index.ru.html">Разделы меню</a></li>
+  <li><a href="/amneziageo/windows/recipes/index.ru.html">Рецепты</a></li>
+</ul>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

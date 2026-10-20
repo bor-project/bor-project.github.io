@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Building from source · AmneziaGeo</title>
+    <meta name="description" content="Cross-platform AmneziaWG VPN client with split tunneling and traffic routing for Windows, Linux and Android. Multiple simultaneous VPN connections on Windows.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/build.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/build.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/build.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/build.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/build.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Devices">
+  <p class="sidebar-label">Devices</p>
+  <a href="/amneziageo/windows/">Windows</a>
+  <a href="/amneziageo/linux/">Linux</a>
+  <a href="/amneziageo/android/">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html" aria-current="page">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="building-from-source">Building from source</h1>
+
+<p>Each platform builds on its own. The tunnel engine always comes first: the app picks up an already built binary.</p>
+
+<h2 id="windows">Windows</h2>
+
+<p>You need the <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET 10 SDK</a>, <a href="https://wixtoolset.org">WiX</a> for the installer, and git.</p>
+
+<h3 id="1-fetch-the-submodules">1. Fetch the submodules</h3>
+
+<p>Two things the build needs are git submodules and no part of the main checkout: the Windows AmneziaWG engine (<code class="language-plaintext highlighter-rouge">amneziawg-windows</code>), and <code class="language-plaintext highlighter-rouge">sing-tun</code>, the userspace network stack the access point gateway stands on:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span><span class="w"> </span><span class="nx">submodule</span><span class="w"> </span><span class="nx">update</span><span class="w"> </span><span class="nt">--init</span><span class="w"> </span><span class="nt">--recursive</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="2-build-the-tunnel-engine">2. Build the tunnel engine</h3>
+
+<p>So the tunnel also works on Windows 7, the engine is built with a Windows 7-capable Go:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">amneziageo-windows\tools\build-engine-win7.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The first run downloads everything it needs - Go, llvm-mingw and wintun via the <code class="language-plaintext highlighter-rouge">build.cmd</code> of the submodule, plus a separate Go for Windows 7 - verifies the downloads by checksum and drops the finished <code class="language-plaintext highlighter-rouge">tunnel.dll</code> where the app picks it up. Options:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-Arch x64|x86|arm64</code> - target architecture, <code class="language-plaintext highlighter-rouge">x64</code> by default;</li>
+  <li><code class="language-plaintext highlighter-rouge">-Upstream</code> - build with stock Go, without Windows 7 support;</li>
+  <li><code class="language-plaintext highlighter-rouge">-Force</code> - re-download and rebuild the toolchain.</li>
+</ul>
+
+<h3 id="3-build-the-access-point-gateway">3. Build the access point gateway</h3>
+
+<p><code class="language-plaintext highlighter-rouge">gateway.exe</code> carries the clients of the shared access point through a userspace stack, so what they send leaves this machine the way its own traffic does. It is a Go module in <code class="language-plaintext highlighter-rouge">amneziageo-windows\gateway</code> standing on the <code class="language-plaintext highlighter-rouge">sing-tun</code> submodule next to it:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">amneziageo-windows\tools\build-gateway.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Go is taken from <code class="language-plaintext highlighter-rouge">PATH</code>, and failing that from the toolchain step 2 downloaded into <code class="language-plaintext highlighter-rouge">amneziawg-windows\.deps</code>. The build lands in <code class="language-plaintext highlighter-rouge">gateway\bin\&lt;arch&gt;\gateway.exe</code>, where the app picks it up; without it the app build stops and names this step. Options:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-Arch x64|arm64|both</code> - target architecture, both by default.</li>
+</ul>
+
+<h3 id="4-build-the-app-and-installer">4. Build the app and installer</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># app and service</span><span class="w">
+</span><span class="n">dotnet</span><span class="w"> </span><span class="nx">build</span><span class="w"> </span><span class="nx">amneziageo-windows\AmneziaGeo.Windows.Ui\AmneziaGeo.Windows.Ui.csproj</span><span class="w"> </span><span class="nt">-c</span><span class="w"> </span><span class="nx">Release</span><span class="w">
+
+</span><span class="c"># installer -&gt; dist\AmneziaGeo-&lt;version&gt;-win-&lt;arch&gt;-&lt;payload&gt;.exe</span><span class="w">
+</span><span class="n">amneziageo-windows\installer\AmneziaGeo.Windows.Installer.Bundle\build-installer.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Given the installers of the release before (<code class="language-plaintext highlighter-rouge">-b, -Earlier &lt;folder&gt;</code>), the builder puts beside every installer its patch (<code class="language-plaintext highlighter-rouge">.patch</code>, made by <code class="language-plaintext highlighter-rouge">amneziageo-lib/AmneziaGeo.Deltas</code>): the files of that release are taken out of its installer, and the patch carries what a machine with it lacks, a changed file as a delta from the installed one. The app’s update on a machine with that release fetches the patch instead of the installer; any other machine downloads the installer whole. A release builds its patches from the release before it: the newest one for a prerelease, the previous stable one for a stable release.</p>
+
+<p>By default one variant is built: <code class="language-plaintext highlighter-rouge">x64</code>, framework-dependent - the target machine needs the .NET 10 Desktop Runtime installed. Builder options, each with a short alias, <code class="language-plaintext highlighter-rouge">-h</code> lists them all:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-v, -Version N.N.N.N</code> - bundle and binary version, otherwise <code class="language-plaintext highlighter-rouge">0.0.1.&lt;commit count&gt;</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">-a, -Arch x64,arm64</code> - architectures, as a list or <code class="language-plaintext highlighter-rouge">all</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">-p, -Payload fdd,scd</code> - payload kind: <code class="language-plaintext highlighter-rouge">fdd</code> needs the runtime installed and is lighter, <code class="language-plaintext highlighter-rouge">scd</code> bundles the runtime;</li>
+  <li><code class="language-plaintext highlighter-rouge">-c, -Configuration Debug|Release</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">-pre, -Prerelease</code> - bake in the beta update channel;</li>
+  <li><code class="language-plaintext highlighter-rouge">-b, -Earlier &lt;folder&gt;</code> - installers of the release before, each variant gets its patch from them;</li>
+  <li><code class="language-plaintext highlighter-rouge">-r, -Rebuild</code> - clean before building;</li>
+  <li><code class="language-plaintext highlighter-rouge">-l, -ListOnly</code> - print the build matrix and exit.</li>
+</ul>
+
+<h3 id="running-in-development">Running in development</h3>
+
+<p>The launcher brings up the backend agent and the UI in a single process with one command. Run it from an elevated console - it installs the service and the WFP rules and brings up the tunnel; it needs the <code class="language-plaintext highlighter-rouge">tunnel.dll</code> from step 2 and the <code class="language-plaintext highlighter-rouge">gateway.exe</code> from step 3.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dotnet</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="nt">--project</span><span class="w"> </span><span class="nx">amneziageo-windows\tools\AmneziaGeo.Windows.Launcher</span><span class="w">
+</span></code></pre></div></div>
+
+<p>With no flags both parts start. Flags: <code class="language-plaintext highlighter-rouge">--service</code> - agent only, <code class="language-plaintext highlighter-rouge">--ui</code> - UI only, <code class="language-plaintext highlighter-rouge">--target &lt;name&gt;</code> - select a configuration right away, <code class="language-plaintext highlighter-rouge">--config &lt;path.conf&gt;</code> - register a wg-quick config and launch on it.</p>
+
+<h2 id="linux">Linux</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule update <span class="nt">--init</span> <span class="nt">--recursive</span>
+amneziageo-linux/tools/build-deb.sh <span class="nt">--arch</span> amd64,arm64
+</code></pre></div></div>
+
+<p>Building needs the .NET SDK and Go; the target machine needs neither, the packages are self-contained. They land in <code class="language-plaintext highlighter-rouge">dist/</code>; with <code class="language-plaintext highlighter-rouge">--earlier &lt;dir&gt;</code>, a folder with the packages of the release before, each gets its patch (<code class="language-plaintext highlighter-rouge">.patch</code>) beside it, which the agent’s update fetches instead of the package on a machine with that release, as for the installers. Options: <code class="language-plaintext highlighter-rouge">--version N.N.N.N</code> (otherwise <code class="language-plaintext highlighter-rouge">0.0.1.&lt;commit count&gt;</code>), <code class="language-plaintext highlighter-rouge">--arch amd64,arm64</code>, <code class="language-plaintext highlighter-rouge">--out &lt;dir&gt;</code>, <code class="language-plaintext highlighter-rouge">--no-gui</code>, <code class="language-plaintext highlighter-rouge">--debug</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">libicu</code> alternatives in the script name the ICU packages a target distribution may carry, so a new distribution release adds one entry there.</p>
+
+<h2 id="android">Android</h2>
+
+<p>The native engine first, then the APK:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-android/tools/build-engine-android.sh
+amneziageo-android/tools/build-apk.sh <span class="nt">--abi</span> android-arm64
+</code></pre></div></div>
+
+<p>The engine is built with the Android NDK toolchain into <code class="language-plaintext highlighter-rouge">AmneziaGeo.Android.Engine/native/&lt;abi&gt;/libamneziawg-go.so</code>; the <code class="language-plaintext highlighter-rouge">amneziawg-go</code> submodule is not modified - the c-shared entry points live in a separate module next to it. Options of <code class="language-plaintext highlighter-rouge">build-apk.sh</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--config Release|Debug</code> - <code class="language-plaintext highlighter-rouge">Release</code> by default, it is AOT-compiled and starts about twice as fast on a weak TV;</li>
+  <li><code class="language-plaintext highlighter-rouge">--version N.N.N.N</code> - package version, all four fields make the versionCode;</li>
+  <li><code class="language-plaintext highlighter-rouge">--abi android-arm,android-arm64,android-x64</code> - the ABI list, by default every ABI the project declares; a single
+ABI names the APK after it (<code class="language-plaintext highlighter-rouge">AmneziaGeo-&lt;version&gt;-android-arm64.apk</code>);</li>
+  <li><code class="language-plaintext highlighter-rouge">--update-url &lt;url&gt;</code> - the update manifest baked into the package;</li>
+  <li><code class="language-plaintext highlighter-rouge">--prerelease</code> - keep the build on the prerelease channel.</li>
+</ul>
+
+<p>Signing takes the SDK debug key unless <code class="language-plaintext highlighter-rouge">ANDROID_KEYSTORE</code> names a keystore, in which case <code class="language-plaintext highlighter-rouge">ANDROID_KEY_ALIAS</code>, <code class="language-plaintext highlighter-rouge">ANDROID_STORE_PASS</code> and <code class="language-plaintext highlighter-rouge">ANDROID_KEY_PASS</code> have to be set as well.</p>
+
+<p>The engine script links the library so that the memory its Go runtime frees leaves the process at once instead of staying with it until the system asks for it back; the <code class="language-plaintext highlighter-rouge">freed memory</code> line of its result says whether that went in.</p>
+
+<p>The same scripts exist for PowerShell on Windows: <code class="language-plaintext highlighter-rouge">build-engine-android.ps1</code> and <code class="language-plaintext highlighter-rouge">build-apk.ps1</code>.</p>
+
+<h2 id="tests">Tests</h2>
+
+<p>The tests live in one project and cover the shared libraries, the console and the Windows app:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet <span class="nb">test </span>amneziageo-tests/AmneziaGeo.Tests/AmneziaGeo.Tests.csproj
+</code></pre></div></div>
+
+<p>The project targets Windows, so a run on Linux or macOS takes <code class="language-plaintext highlighter-rouge">-p:EnableWindowsTargeting=true</code> both when building
+and when running. The few tests that read what only Windows answers for - the profile of the current user, the
+tunnel service, the relay socket of the access point - are skipped there with the reason, and the rest of the
+suite runs as it does on Windows.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

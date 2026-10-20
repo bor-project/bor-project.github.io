@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Маршрутизация на устройстве клиента · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Пресеты и гео-источники для приложения AmneziaGeo через шаблон.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/recipes/client-routing.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/recipes/client-routing.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/recipes/client-routing.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/recipes/client-routing.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/recipes/client-routing.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html" aria-current="page">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="маршрутизация-на-устройстве-клиента">Маршрутизация на устройстве клиента</h1>
+
+<p>Задача: клиенты получают список сайтов, которые идут через VPN, а остальное у них идёт напрямую, и этот список ведёт сервер. Есть два пути: <code class="language-plaintext highlighter-rouge">AllowedIPs</code> в файле клиента, который понимает любое приложение AmneziaWG, и пресеты маршрутизации, которые понимает приложение AmneziaGeo.</p>
+
+<h2 id="через-allowedips-шаблон">Через AllowedIPs: шаблон</h2>
+
+<p>«Клиенты» &gt; «Шаблоны» &gt; «Добавить»: имя <code class="language-plaintext highlighter-rouge">split</code>, в «Маршрутизация» записи вроде <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code>, <code class="language-plaintext highlighter-rouge">geosite:telegram</code>, <code class="language-plaintext highlighter-rouge">example.com</code>. Панель разворачивает записи в диапазоны адресов, и это идёт в <code class="language-plaintext highlighter-rouge">AllowedIPs</code> файла каждого клиента шаблона; «Адресов: N» под записями говорит, сколько вышло. «Сохранить», затем у нужных клиентов «Шаблон» <code class="language-plaintext highlighter-rouge">split</code>.</p>
+
+<p>Так работает любой клиент WireGuard: он отправляет в туннель только адреса из файла. Но адреса сервисов меняются, а в файле стоят те, что дал последний пересчёт шаблона: панель пересчитывает его раз в сутки, после изменения гео-баз и кнопкой «Обновить», а клиент получает новый файл через подписку. Сервисы за CDN с тысячами адресов дают длинный список: панель предупреждает о замедлении после 12000 диапазонов и не сохраняет шаблон после 16000. Подробнее - <a href="../panel/templates.ru.html">Шаблоны</a>.</p>
+
+<p>Для таких сервисов в шаблоне есть переключатель «Маршрутизация по именам»: имена шаблона в адреса не разворачиваются, резолвер панели отвечает клиентам о них подставными адресами из <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>, а сервер ведёт соединения к настоящим адресам, какой бы кэш ни ответил. Файл несёт резолвер панели единственным сервером имён, так что работает это с любым приложением AmneziaWG; нужно, чтобы резолвер панели отвечал на порту 53 и брандмауэр сервера пускал к нему клиентов, форма шаблона сама скажет, что мешает. Подробнее - <a href="../panel/templates.ru.html#маршрутизация-по-именам">Маршрутизация по именам</a>.</p>
+
+<h2 id="через-пресеты-приложение-amneziageo">Через пресеты: приложение AmneziaGeo</h2>
+
+<p>Приложение AmneziaGeo само следит за ответами DNS и кладёт адреса из своих списков в туннель на лету. Список для него ведётся на сервере пресетом.</p>
+
+<ol>
+  <li>«Клиенты» &gt; «Пресеты маршрутизации» &gt; «Добавить»: имя <code class="language-plaintext highlighter-rouge">Недоступные сайты</code>, в «Через VPN» те же записи, <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code>, <code class="language-plaintext highlighter-rouge">geosite:telegram</code>; в «Блокировать» можно <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code>. «Включён по умолчанию», чтобы приложение включило список, когда добавит его. «Весь UDP через туннель» - для звонков и игр, которые узнают адреса не через DNS. «Сохранить».</li>
+  <li>«Клиенты» &gt; «Шаблоны» &gt; шаблон клиентов &gt; «Пресеты маршрутизации»: отметьте пресет, «Сохранить». Записи шаблона в «Маршрутизация» оставьте пустыми: <code class="language-plaintext highlighter-rouge">AllowedIPs</code> остаётся <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code>, а что идёт в туннель, решает приложение по списку.</li>
+  <li>Приложение при следующем hello добавляет список и включает его. Вместе с пресетом оно получает гео-источники панели со страницы <a href="../panel/geo.ru.html">Списки Geo</a>, так что ключи <code class="language-plaintext highlighter-rouge">ag-</code> собственной базы у него тоже есть.</li>
+</ol>
+
+<p>Правка пресета меняет его время изменения, и карточка списка в приложении предлагает обновление; хозяин устройства принимает его или оставляет своё. Список, который хозяин удалил, возвращается при следующем hello. Подробнее - <a href="../panel/presets.ru.html">Пресеты маршрутизации</a>.</p>
+
+<h2 id="что-выбрать">Что выбрать</h2>
+
+<p>Пресеты - для приложения AmneziaGeo: список живой, обновляется сам и не раздувает файл. Шаблон с записями - для любого другого клиента и для случаев, когда маршрутизация должна быть зашита в файл. Оба пути можно совмещать: шаблон с записями для чужих приложений, пресет для своих, но тогда <code class="language-plaintext highlighter-rouge">AllowedIPs</code> ограничит и приложение AmneziaGeo тем, что в файле.</p>
+
+<p>Маршрутизация на сервере - правила раздела <a href="../panel/routing.ru.html">Маршрутизация</a> - решает другое: куда трафик идёт после сервера.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

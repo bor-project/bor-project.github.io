@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Установка · Linux · AmneziaGeo</title>
+    <meta name="description" content="Пакеты deb для сервера и рабочего стола, установщик, Docker, обновление и удаление.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/install.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/install.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/install.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/linux/install.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/install.ru.html">Windows</a>
+  <a href="/amneziageo/linux/install.ru.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/install.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.ru.html" aria-current="page">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/index.ru.html">Linux</a></li>
+  </ol>
+</nav>
+
+        <h1 id="установка">Установка</h1>
+
+<p>Две части из одного дерева исходников:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">amneziageo</code> - агент службой systemd, движок AmneziaWG и консольный клиент <code class="language-plaintext highlighter-rouge">amneziageo</code> с полноэкранным интерфейсом. Графических библиотек не тянет, годится серверу без рабочего стола.</li>
+  <li><code class="language-plaintext highlighter-rouge">amneziageo-gui</code> - графический интерфейс. Работает от пользователя рабочего стола, управляет тем же агентом через его контрольный сокет и требует <code class="language-plaintext highlighter-rouge">amneziageo</code> той же версии.</li>
+</ul>
+
+<p>Серверу нужен только первый пакет, рабочему столу - оба. Всё, что настраивается в графическом интерфейсе, доступно и из консольного клиента.</p>
+
+<h2 id="установщик">Установщик</h2>
+
+<p>Скрипт берёт нужные машине пакеты прямо из свежего релиза:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/bor-project/amneziageo/master/amneziageo-linux/tools/install.sh | <span class="nb">sudo </span>bash
+</code></pre></div></div>
+
+<p>Архитектуру он читает из dpkg, каждый пакет сверяет с SHA-256 из <code class="language-plaintext highlighter-rouge">update.json</code> и отдаёт apt. Ключи: <code class="language-plaintext highlighter-rouge">--no-gui</code> (только агент), <code class="language-plaintext highlighter-rouge">--tag v1.2.3.4</code> (конкретный релиз), <code class="language-plaintext highlighter-rouge">--prerelease</code>, <code class="language-plaintext highlighter-rouge">--repo owner/name</code>.</p>
+
+<p>С терминала он спрашивает, поставить ли короткую команду консольного клиента и как её назвать, по умолчанию <code class="language-plaintext highlighter-rouge">ag-c</code>: это ссылка <code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-c</code> на <code class="language-plaintext highlighter-rouge">/usr/bin/amneziageo</code>, и <code class="language-plaintext highlighter-rouge">ag-c status</code> делает то же, что <code class="language-plaintext highlighter-rouge">amneziageo status</code>. Имя, занятое другой программой или командой оболочки, скрипт не трогает и спрашивает другое. <code class="language-plaintext highlighter-rouge">--shortcut &lt;имя&gt;</code> ставит ссылку без вопроса, <code class="language-plaintext highlighter-rouge">--no-shortcut</code> ничего не спрашивает, без терминала ссылка не ставится. Повторный запуск оставляет найденную ссылку, удаление пакета её убирает.</p>
+
+<h2 id="пакеты-вручную">Пакеты вручную</h2>
+
+<p>Возьмите пакеты своей архитектуры со страницы <a href="https://github.com/bor-project/amneziageo/releases">Releases</a> - собираются amd64 и arm64 - и поставьте через apt, он подтянет названные ими библиотеки:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># сервер</span>
+<span class="nb">sudo </span>apt <span class="nb">install</span> ./amneziageo_&lt;версия&gt;_amd64.deb
+
+<span class="c"># рабочий стол</span>
+<span class="nb">sudo </span>apt <span class="nb">install</span> ./amneziageo_&lt;версия&gt;_amd64.deb ./amneziageo-gui_&lt;версия&gt;_amd64.deb
+</code></pre></div></div>
+
+<p>Агент сразу запускается; в автозагрузке он стоит, пока включён <code class="language-plaintext highlighter-rouge">survive-reboot</code>. Бинарники лежат в <code class="language-plaintext highlighter-rouge">/usr/lib/amneziageo</code>, библиотека - в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo</code>, клиент - <code class="language-plaintext highlighter-rouge">/usr/bin/amneziageo</code>, имя интерфейса агент берёт из <code class="language-plaintext highlighter-rouge">/etc/default/amneziageo</code>. apt о короткой команде не спрашивает: её ставит <code class="language-plaintext highlighter-rouge">sudo ln -s /usr/bin/amneziageo /usr/local/bin/ag-c</code>, удаление пакета её убирает.</p>
+
+<p>Для машины не на Debian <code class="language-plaintext highlighter-rouge">amneziageo-linux/tools/install-server.sh</code> публикует агент и консольный клиент из исходников прямо в <code class="language-plaintext highlighter-rouge">/opt/amneziageo</code> и так же спрашивает о короткой команде, ссылке на <code class="language-plaintext highlighter-rouge">/opt/amneziageo/amneziageo</code>.</p>
+
+<p>Дальше - <a href="/amneziageo/linux/first-config.ru.html">первая конфигурация</a>.</p>
+
+<h2 id="запуск-и-остановка">Запуск и остановка</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>amneziageo start    <span class="c"># запустить агента</span>
+<span class="nb">sudo </span>amneziageo stop     <span class="c"># остановить его и опустить туннель</span>
+amneziageo daemon status <span class="c"># работает ли, стоит ли в автозагрузке, есть ли сокет</span>
+</code></pre></div></div>
+
+<p>Автозагрузка агента следует за <code class="language-plaintext highlighter-rouge">survive-reboot</code>: агент включает или выключает свой юнит при старте и при каждой смене настройки - из консоли, полноэкранной консоли или окна. С выключенной настройкой после перезагрузки агент не работает, пока не выполнить <code class="language-plaintext highlighter-rouge">sudo amneziageo start</code>.</p>
+
+<h2 id="права-агента">Права агента</h2>
+
+<p>Агент работает от root: он создаёт устройство туннеля и правит маршруты, одного <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code> его проверке недостаточно. Управляющий сокет - <code class="language-plaintext highlighter-rouge">/tmp/CoreFxPipe_AmneziaGeo.Agent</code>, поэтому в юните нельзя включать <code class="language-plaintext highlighter-rouge">PrivateTmp</code>; любая локальная учётная запись, дотянувшаяся до сокета, управляет агентом и читает ключи конфигураций.</p>
+
+<h2 id="обновление">Обновление</h2>
+
+<p>Пакет несёт в себе адрес манифеста релизов, поэтому приложение обновляет себя само: окно предлагает новую версию, агент берёт ровно те пакеты, что стоят на машине, под её архитектуру и отдаёт их apt из временного юнита, который переживает перезапуск самого агента. Если установлен предыдущий выпуск, на каждый пакет качается одна дельта с файлами, изменившимися против установленных (изменившийся файл - разностью от установленного), она сверяется с опубликованной SHA-256, и пакет собирается заново; с более старой версии, или если дельта не подошла, агент качает пакет целиком, сверяет его с опубликованной SHA-256 и после обрыва продолжает с места обрыва. То же самое из консоли - <code class="language-plaintext highlighter-rouge">amneziageo update check</code>. После установки перезапустите окно, чтобы обновился и интерфейс.</p>
+
+<h2 id="docker">Docker</h2>
+
+<p>Агент и консольный клиент работают и в контейнере. <code class="language-plaintext highlighter-rouge">amneziageo-linux/docker/Dockerfile</code> собирает образ из корня репозитория под amd64 и arm64; контейнеру нужны <code class="language-plaintext highlighter-rouge">NET_ADMIN</code> и <code class="language-plaintext highlighter-rouge">/dev/net/tun</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>amneziageo-linux/docker
+<span class="nb">mkdir</span> <span class="nt">-p</span> configs <span class="o">&amp;&amp;</span> <span class="nb">cp</span> ~/work.conf configs/
+<span class="nv">AMNEZIAGEO_CONNECT</span><span class="o">=</span>work docker compose up <span class="nt">-d</span> <span class="nt">--build</span>
+docker compose <span class="nb">exec </span>amneziageo amneziageo geo download
+docker compose <span class="nb">exec </span>amneziageo amneziageo tui
+</code></pre></div></div>
+
+<p>Каждый <code class="language-plaintext highlighter-rouge">configs/&lt;имя&gt;.conf</code> при старте импортируется под именем файла, а <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_CONNECT</code> подключается на одном из них и держит туннель после перезапусков. Библиотека лежит в томе, журнал агента выводит <code class="language-plaintext highlighter-rouge">docker compose logs</code>.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">compose.yaml</code> - у контейнера своя сеть. Другие сервисы входят в неё через <code class="language-plaintext highlighter-rouge">network_mode: service:amneziageo</code> и ходят туда, куда их отправляет список маршрутизации; при каждом перезапуске контейнера агента такой сервис теряет сеть и возвращается через <code class="language-plaintext highlighter-rouge">docker compose up -d --force-recreate &lt;сервис&gt;</code>. Локальный прокси опубликован на 10808 (SOCKS5) и 10809 (HTTP): <code class="language-plaintext highlighter-rouge">docker compose exec amneziageo amneziageo proxy on --auth user:password</code>. На соединения, пришедшие через опубликованные порты, ответ уходит мимо туннеля.</li>
+  <li><code class="language-plaintext highlighter-rouge">compose.host.yaml</code> - <code class="language-plaintext highlighter-rouge">network_mode: host</code>: туннель, маршруты и резолвер принадлежат самому хосту. <code class="language-plaintext highlighter-rouge">/etc</code> хоста примонтирован, чтобы агент направил на себя <code class="language-plaintext highlighter-rouge">resolv.conf</code> хоста (<code class="language-plaintext highlighter-rouge">AMNEZIAGEO_RESOLV_CONF</code>), а системная шина со снятыми ограничениями AppArmor и SELinux - чтобы systemd-resolved, пока туннель поднят, спрашивал только агента. Рядом с установленным агентом не запускается: оба занимают один и тот же интерфейс и адрес резолвера.</li>
+</ul>
+
+<h2 id="удаление">Удаление</h2>
+
+<p><code class="language-plaintext highlighter-rouge">apt remove</code> библиотеку оставляет, <code class="language-plaintext highlighter-rouge">apt purge</code> удаляет.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

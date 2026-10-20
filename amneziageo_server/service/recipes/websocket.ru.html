@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Туннель внутри WebSocket · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Для сетей, где проходит только веб-трафик.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/recipes/websocket.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/recipes/websocket.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/recipes/websocket.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/recipes/websocket.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/recipes/websocket.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html" aria-current="page">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="туннель-внутри-websocket">Туннель внутри WebSocket</h1>
+
+<p>Задача: клиент сидит в сети, где UDP не проходит или проходит только веб-трафик. Интерфейс несёт туннель и внутри WebSocket на своём TCP-порту; приложение AmneziaGeo узнаёт этот вход от сервера, а включить WebSocket на устройстве решает его хозяин.</p>
+
+<h2 id="1-интерфейс">1. Интерфейс</h2>
+
+<p>«Интерфейсы» &gt; интерфейс &gt; «Настройки»:</p>
+
+<ol>
+  <li>«WebSocket прокси» включено.</li>
+  <li>«Порт сервисов» - TCP-порт, на котором отвечают WebSocket, hello и замер скорости. Пусто - номер UDP-порта интерфейса. Чтобы туннель выглядел как обычный сайт, поставьте 443; несколько интерфейсов могут делить один порт сервисов, и панель может отвечать на нём же, если назвать тот же порт на вкладке <a href="../panel/server.ru.html">Сервер</a>.</li>
+  <li>«Путь WebSocket» - часть адреса, под которой приходит WebSocket; новому интерфейсу он придуман, и подбирать его не стоит. Путь не должен совпадать с путём панели, подписок или WebSocket другого интерфейса на том же порту.</li>
+  <li>«Сохранить». Если фронт не поднялся или порт держит другая программа, панель снимет отметку и назовёт причину под ней.</li>
+</ol>
+
+<p>Фронт - служба <code class="language-plaintext highlighter-rouge">amneziageo-proxy@&lt;интерфейс&gt;</code>, пункт 26 консольного меню показывает фронты, перезапускает их и читает журналы. TCP-порт сервисов должен быть открыт в брандмауэре: кнопка «Открыть» под полем или пункт 23 меню, подпункт 6.</p>
+
+<h2 id="2-клиент">2. Клиент</h2>
+
+<p>Клиенту ничего менять не нужно: приложение AmneziaGeo спрашивает hello интерфейса и узнаёт порт и путь WebSocket из него. Если порт сервисов перенесён, файл клиента несёт строку <code class="language-plaintext highlighter-rouge"># AmneziaGeo Services = &lt;порт&gt;</code>, а новый файл клиент получает с вкладки «Экспорт» или через подписку. На устройстве WebSocket включается переключателем «Прокси» в настройках транспорта конфигурации, как описано на <a href="https://bor-project.github.io/amneziageo/index.ru.html">сайте клиента</a>.</p>
+
+<p>Другое приложение AmneziaWG WebSocket само не откроет: ему нужен свой <code class="language-plaintext highlighter-rouge">wstunnel</code> на устройстве, который дозванивается до <code class="language-plaintext highlighter-rouge">wss://&lt;хост&gt;:&lt;порт сервисов&gt;/&lt;путь&gt;</code> и подставляет локальный UDP-порт вместо сервера. Клиент, которому фронт написали руками, проходит так же: WebSocket пускает путь, а не файл панели.</p>
+
+<h2 id="3-проверка">3. Проверка</h2>
+
+<p>Карточка «Службы» на <a href="../panel/overview.ru.html#службы">Обзоре</a> у интерфейса показывает часть «WebSocket»; «фронт WebSocket не запущен», «падал» или «не слушает» называют беду с фронтом, «файрвол хоста держит <порт> закрытым» - с брандмауэром. На устройстве в сети без UDP туннель поднимается по TCP.</порт></p>
+
+<p>Этот же порт и путь принимают канал WebSocket другого сервера AmneziaGeo: там канал типа «WebSocket» с прокси <code class="language-plaintext highlighter-rouge">wss://&lt;хост&gt;:&lt;порт сервисов&gt;/&lt;путь&gt;</code>, см. <a href="another-server.ru.html">Выход через другой сервер</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

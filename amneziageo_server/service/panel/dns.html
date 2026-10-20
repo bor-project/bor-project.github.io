@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DNS · Service · AmneziaGeo Server</title>
+    <meta name="description" content="The resolver for the clients: upstream servers, query channel, cache, interception, stand-in addresses.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/dns.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/dns.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/dns.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/dns.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/dns.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/dns.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/dns.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html" aria-current="page">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/service/panel/routing.html">Routing</a></li>
+  </ol>
+</nav>
+
+        <h1 id="dns">DNS</h1>
+
+<p>The resolver of the panel answers the questions of the tunnel clients about names itself: it passes a question to an upstream server, over HTTPS unless told otherwise, gives the answer to the client and puts the addresses it sees into the sets of the rules that compare by this name. This is how a rule by domain works: the kernel decides by address, and the resolver brings the addresses. Along the way the questions of the clients do not leave the server as plain DNS.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/dns.png" alt="DNS page: state, listen addresses, questions, cache, unanswered, the settings of the resolver" width="1440" height="900" loading="lazy" /><figcaption>The resolver answers the clients of two interfaces.</figcaption></figure>
+
+<p>A fresh panel keeps the resolver off: the clients get name servers in their configuration and ask them through the tunnel. It is turned on by the question of the installation, item 29 of the console menu <code class="language-plaintext highlighter-rouge">DNS for Clients</code>, the command <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, or “Answer the clients” here. A resolver that is off does not run, holds no port and keeps no connections to upstream servers.</p>
+
+<h2 id="state">State</h2>
+
+<p>Above the settings the page shows what the resolver does: “Running” or “Stopped”, “Listening on” with the addresses it took, “Questions”, “From cache”, “Unanswered”, “Addresses in the sets”, “Waiting” and “Rules by name”. A failure stands in the same line: no upstream server answers (<code class="language-plaintext highlighter-rouge">no name server answers: ...</code>), the channel is off, there is no address to answer on (<code class="language-plaintext highlighter-rouge">the resolver does not run yet: there is no address to answer the clients on</code>, while there is no interface at all).</p>
+
+<h2 id="resolver">Resolver</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Answer the clients</td>
+      <td>whether the resolver runs</td>
+    </tr>
+    <tr>
+      <td>Port</td>
+      <td>the port of the questions, 53 by default; a port below 1024 needs <code class="language-plaintext highlighter-rouge">CAP_NET_BIND_SERVICE</code></td>
+    </tr>
+    <tr>
+      <td>Listen addresses</td>
+      <td>the addresses on which questions are taken; empty means the addresses of the interfaces of the panel. An address the host does not have is skipped</td>
+    </tr>
+    <tr>
+      <td>Upstream servers</td>
+      <td>the name servers the questions are passed to, and how each is asked, see below</td>
+    </tr>
+    <tr>
+      <td>Ask through the channel</td>
+      <td>the channel or group through which the questions leave; “Through the host” is the way out of the host itself</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>An upstream server is named by address, not by name, so that nothing has to be resolved beforehand:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entry</th>
+      <th>How it is asked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">https://1.1.1.1/dns-query</code>, <code class="language-plaintext highlighter-rouge">https://9.9.9.9:5053/dns-query</code></td>
+      <td>DNS over HTTPS, port 443 and the path <code class="language-plaintext highlighter-rouge">/dns-query</code> unless others are written</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tls://1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">tls://1.1.1.1:853</code></td>
+      <td>DNS over TLS, port 853</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">8.8.8.8:5300</code>, <code class="language-plaintext highlighter-rouge">[2606:4700:4700::1111]:53</code></td>
+      <td>plain DNS: UDP, and TCP for a client that came over TCP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A fresh panel asks <code class="language-plaintext highlighter-rouge">https://1.1.1.1/dns-query</code> and <code class="language-plaintext highlighter-rouge">https://8.8.4.4/dns-query</code>; <code class="language-plaintext highlighter-rouge">amneziageo-server dns set --upstreams default</code> brings them back. The certificate of the server is checked by its address under the trusted roots of the host; Cloudflare, Google and Quad9 carry their addresses in their certificates. The servers are asked in order; one that did not answer goes to the end for thirty seconds and is asked on the side, so that the clients do not wait for it. Nothing falls back to plain DNS by itself: it is asked only where it is written. When three questions in a row found no server, the failure goes into the state and the log, and the services count the resolver as down until a server answers.</p>
+
+<p>“Ask through the channel” puts the mark of the channel on the questions, so that the answers come from where the traffic will go; without it, where the local network answers about a service differently from the network behind the channel, a rule by name fills up with foreign addresses. The channel is picked for each question: a “Priority” group gives the questions to its first live member, “Round” hands them out in turn, “By client” behaves like “Priority”, because all the questions come from the host. While the chosen channel is off or carries nothing, the resolver does not ask and answers the clients <code class="language-plaintext highlighter-rouge">SERVFAIL</code>, and the state names the reason; with a channel chosen, the questions never leave through the host. The entries of client templates and the names in the route test are resolved the same way.</p>
+
+<h2 id="cache">Cache</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Record TTL, min</td>
+      <td>for how many minutes an answered address stands in the set of a rule</td>
+    </tr>
+    <tr>
+      <td>Cache size, entries</td>
+      <td>how many answers are kept in memory, 0 means none</td>
+    </tr>
+    <tr>
+      <td>Answer TTL: min, s and max, s</td>
+      <td>the bounds the lifetime of an answer from the cache is clamped to</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="questions-of-the-clients">Questions of the clients</h2>
+
+<p>There are no settings here: while the resolver answers, the panel decides where the questions of the clients go.</p>
+
+<ul>
+  <li>A question a client sent to any name server on port 53 is turned to the resolver. A question to a public address the resolver answers itself. A question to a private address (<code class="language-plaintext highlighter-rouge">10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">100.64.0.0/10</code>, <code class="language-plaintext highlighter-rouge">169.254.0.0/16</code>, <code class="language-plaintext highlighter-rouge">172.16.0.0/12</code>, <code class="language-plaintext highlighter-rouge">192.168.0.0/16</code>, <code class="language-plaintext highlighter-rouge">fc00::/7</code>, <code class="language-plaintext highlighter-rouge">fe80::/10</code>), such as a router in the network behind the server, the resolver passes on to the server the client asked, as plain DNS through the host, and puts the addresses of the answer into the sets of the rules as its own; such answers stay out of the cache. Only a question to a network the host reaches by a route of its own, not by its default route, is passed on. A question to another private address, and one that server did not answer, the resolver answers itself, and it passes over a server that did not answer for five minutes.</li>
+  <li>The resolver does not see a question inside TLS or HTTPS. While at least one rule or basic list compares by name, a connection of a client of such a rule to port 853, and to port 443 of known public name servers (Cloudflare, Google, Quad9, NextDNS, AdGuard, OpenDNS), is reset at once. A client in an automatic mode (Private DNS of Android, the secure DNS of a browser) then falls back to plain DNS without waiting and reaches the resolver.</li>
+  <li>A client that never comes to the resolver after the resets is let go for a day: after three resets in a short while its DoT and DoH go as they are, past the rules by name. This keeps working a strict Private DNS with a named server, a browser with DoH set strictly and another AmneziaGeo server that leaves through this one and asks its servers over HTTPS.</li>
+  <li>While the panel reads the names out of the connections themselves (<a href="#names-from-connections">Names from connections</a>), nothing is reset: the name is seen without the resolver.</li>
+</ul>
+
+<h2 id="saving">Saving</h2>
+
+<p>“Save” writes the settings, and the resolver and the rules take them with the “Restart” button in the header, which appears while saved settings wait; it restarts the resolver, or the whole panel if its settings wait too. “Cancel” drops what is not saved. A change of the interfaces restarts the resolver on their addresses with the settings it runs with.</p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>While the resolver runs on port 53 and answers at the addresses of the interfaces, the <code class="language-plaintext highlighter-rouge">DNS</code> line of the file of each client carries the address of its interface instead of public servers, and so do the subscription links; a template with name servers of its own overrides this, a template without them takes the resolver. The resolver answers only through the tunnel, so its address also goes into <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of the client when the ranges of the template or the interface leave it out. Where the panel keeps the ports of an interface open in the firewall, it lets the clients of the interface to the resolver too: the port of the resolver is opened on the interface for UDP and TCP, see <a href="interfaces.html#ports-in-the-firewall">Ports in the firewall</a>.</p>
+
+<p>An interface whose ports the panel does not hold is left to the host: its clients get no answer until the port of the resolver is let in on its interface. The panel reads ufw and names the interfaces whose clients it keeps from the resolver: the DNS page writes this under “Answer the clients” (“The server firewall (ufw) keeps the clients of <interfaces> from the panel resolver (port 53)"), and so does the form of a template with [Route by name](templates.html#route-by-name), with the commands that let them in. On the host, sub-item 13 of menu item 23 `Let the clients reach the resolver` and the command `amneziageo-server dns open` give ufw `allow in on <interface> to any port 53` for each such interface, with the comment `amneziageo resolver <interface>`; item 29 and the installation offer this themselves once the resolver answers. A host without ufw keeps nobody out.</interface></interface></interfaces></p>
+
+<p>The resolver also asks the names of the rules itself, without waiting for a client: every name a rule compares by, the names of a <code class="language-plaintext highlighter-rouge">geosite:</code> category included, is asked, and the answers go into the set of the rule, so the rule works from the moment it is saved, even for a service whose address the client already holds in its cache. The names are asked in batches of sixteen, no more often than twice a second and no more than 256 per rule, and are asked again when half of the “Record TTL” has passed; a name without an answer is repeated after two seconds, and the wait doubles up to a minute. Keywords and expressions of categories are not asked: they have no name.</p>
+
+<p>An answer that brought an address not yet in the sets goes to the client once the address is in the set, at most half a second later, so the first connection to it already follows the rule. A rule keeps its 128 newest addresses standing: once a minute they are written to the database and after a restart come back into the set before the first question, so a rebooted machine does not leave the rule empty.</p>
+
+<p>An answer larger than the datagram of the client goes out truncated with a flag, and the client asks again over TCP. On the host the resolver adds the <code class="language-plaintext highlighter-rouge">resolve</code> chain, which turns the questions from the interfaces of the panel to the resolver. The resets live in a table of their own, <code class="language-plaintext highlighter-rouge">amneziageo_dns</code>: the sets <code class="language-plaintext highlighter-rouge">doh4</code> and <code class="language-plaintext highlighter-rouge">doh6</code> of public servers, <code class="language-plaintext highlighter-rouge">asked4</code> and <code class="language-plaintext highlighter-rouge">asked6</code> of the clients that asked port 53 in the last half hour, <code class="language-plaintext highlighter-rouge">free4</code> and <code class="language-plaintext highlighter-rouge">free6</code> of the clients let go for a day. The table is not laid anew with the rules, so a client let go stays let go; when no reset is needed, the panel takes it away.</p>
+
+<h2 id="stand-in-addresses">Stand-in addresses</h2>
+
+<p>The clients of a template with <a href="templates.html#route-by-name">Route by name</a> on are answered by the resolver about the names of the template with stand-in addresses out of <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>. The resolver asks the name as it does for any client, so the rules take the real addresses into their sets and the connection log knows the name. The client gets one <code class="language-plaintext highlighter-rouge">A</code> record with the stand-in address and a lifetime of at most 300 seconds; <code class="language-plaintext highlighter-rouge">AAAA</code> and <code class="language-plaintext highlighter-rouge">HTTPS</code> come back empty. A name that leads to a name of the template through an alias takes a stand-in too.</p>
+
+<p>The host holds the map <code class="language-plaintext highlighter-rouge">stand</code> in the table <code class="language-plaintext highlighter-rouge">amneziageo_rt</code>: a new connection of a client to a stand-in goes to the real address (<code class="language-plaintext highlighter-rouge">dnat</code>), the rules decide it by the real address in a chain right after that, and a stand-in the map does not hold is refused with a reset. The panel writes the names with their stand-ins to its database ten seconds after they change and when it stops, and lays them again when it starts; a name nobody asked about for seven days lets its address go.</p>
+
+<h2 id="names-from-connections">Names from connections</h2>
+
+<p>A client that asks its own name server, or any client with the resolver off, goes to an address no answer of the panel carried. So the panel can read the name from the connection itself while at least one rule compares by name: the server name from the first TLS message on TCP 443, the <code class="language-plaintext highlighter-rouge">Host</code> header on TCP 80 and the server name from the first QUIC packets on UDP 443. The address goes into the sets of the rules the name fell under, for the “Record TTL”.</p>
+
+<p>The reading is off until the environment of the panel carries <code class="language-plaintext highlighter-rouge">Names__IsEnabled=true</code>; with it the panel takes the first connection to an address to itself (TPROXY to port 7319), reads the name, decides by the rules like the route test, puts the address into the sets and leads the connection itself through the channel of the rule, through the host, or nowhere for a blocking rule; the next connections to the address are decided by the kernel. Only connections to ports 80 and 443 of public addresses are taken, no more than 300 a second and 4096 at once. The state of the resolver shows what of this works, and the connections the panel led itself go into the <a href="diagnostics.html#connection-log">connection log</a>. Details are in the reference of the repository, <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/dns.md#names-read-out-of-the-connections">dns.md</a>.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>No upstream name server is named; The address of the upstream server was not read</td>
+      <td>“Upstream servers”</td>
+    </tr>
+    <tr>
+      <td>The address to listen on was not read; The port is outside 1 to 65535</td>
+      <td>the addresses and the port</td>
+    </tr>
+    <tr>
+      <td>The record TTL is outside the range; The cache size is outside the range; The answer TTL is outside the range</td>
+      <td>the cache</td>
+    </tr>
+    <tr>
+      <td>There is no such channel</td>
+      <td>“Ask through the channel”</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

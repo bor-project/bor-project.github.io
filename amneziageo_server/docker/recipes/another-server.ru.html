@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Выход через другой сервер · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Канал AmneziaWG к другому серверу и правило по странам и сайтам.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/recipes/another-server.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/recipes/another-server.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/recipes/another-server.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/recipes/another-server.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/recipes/another-server.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/recipes/another-server.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html" aria-current="page">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="выход-через-другой-сервер">Выход через другой сервер</h1>
+
+<p>Задача: клиенты подключаются к этому серверу, а сайты из списка открываются через другой сервер, например за границей. Этот сервер становится клиентом того и отправляет в туннель только то, что подошло под правило; остальное идёт через хост как раньше.</p>
+
+<h2 id="1-конфигурация-клиента-на-другом-сервере">1. Конфигурация клиента на другом сервере</h2>
+
+<p>На другом сервере нужна конфигурация клиента для этого хоста. На сервере AmneziaGeo это «Клиенты» &gt; «Добавить», имя вроде <code class="language-plaintext highlighter-rouge">relay-home</code>, и файл <code class="language-plaintext highlighter-rouge">.conf</code> с вкладки «Экспорт». Подойдёт любой сервер AmneziaWG или WireGuard, который выдаёт файл клиента.</p>
+
+<h2 id="2-канал">2. Канал</h2>
+
+<p>«Маршрутизация» &gt; «Каналы» &gt; «Добавить»:</p>
+
+<ol>
+  <li>Тип «AmneziaWG».</li>
+  <li>Внизу формы вставьте файл клиента в поле «Конфигурация клиента» и нажмите «Прочитать»: ключи, адрес интерфейса, сервер с портом и обфускация заполнятся из него.</li>
+  <li>«Имя» - до 15 знаков, например <code class="language-plaintext highlighter-rouge">awg-de</code>.</li>
+  <li>«Проверка доступности»: «Сервер имён» <code class="language-plaintext highlighter-rouge">1.1.1.1</code>, «Период, с» 30. Вопрос уходит через туннель, и ответ значит, что туннель жив.</li>
+  <li>«Закрыть частные сети» оставьте включённым: клиенты не попадут в сеть за тем сервером.</li>
+  <li>«Сохранить».</li>
+</ol>
+
+<p>Через несколько секунд в списке у канала стоит «готов», рукопожатие и трафик. «Отказ» с причиной значит, что хост не поднял интерфейс; «рукопожатия не было» - сервер не ответил: проверьте адрес, порт и обфускацию, они должны совпадать с сервером точно.</p>
+
+<p>Если сеть до того сервера пропускает только веб-трафик, тип «WebSocket» и поле «Прокси websocket»: для сервера AmneziaGeo это <code class="language-plaintext highlighter-rouge">wss://&lt;его хост&gt;:&lt;порт сервисов&gt;/&lt;путь WebSocket интерфейса&gt;</code>, путь виден в форме его интерфейса.</p>
+
+<h2 id="3-резолвер">3. Резолвер</h2>
+
+<p>Правило по доменам работает через резолвер панели: «Маршрутизация» &gt; «DNS», «Отвечать клиентам» включено, «Спрашивать через канал» - <code class="language-plaintext highlighter-rouge">awg-de</code>, чтобы адреса приходили оттуда, куда пойдёт трафик, «Сохранить» и «Перезапустить» в шапке. Если резолвер ещё не включали, его включает и пункт 29 консольного меню.</p>
+
+<h2 id="4-правило">4. Правило</h2>
+
+<p>«Маршрутизация» &gt; «Правила» &gt; «Добавить»:</p>
+
+<ol>
+  <li>«Имя» <code class="language-plaintext highlighter-rouge">abroad</code>, «Действие» «Через канал», «Канал» <code class="language-plaintext highlighter-rouge">awg-de</code>.</li>
+  <li>«Куда»: ключи и домены, которые должны идти через тот сервер, например <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code>, <code class="language-plaintext highlighter-rouge">geosite:netflix</code>, <code class="language-plaintext highlighter-rouge">example.com</code>. Что несёт ключ, подсказывает «Показать содержимое» в шаблонах и справка по <a href="../panel/geo.ru.html">Спискам Geo</a>.</li>
+  <li>«Включено», «Сохранить».</li>
+</ol>
+
+<p>Пока туннель до того сервера лежит, трафик правила отбрасывается, а не уходит через хост под адресом этого сервера.</p>
+
+<p>В списке у правила «на хосте» и число диапазонов и имён. Правило стоит в порядке чтения: если выше есть правило, которое берёт тот же трафик, переставьте стрелками.</p>
+
+<h2 id="5-проверка">5. Проверка</h2>
+
+<p>«Маршрутизация» &gt; «Проверка»: «Имя или адрес» <code class="language-plaintext highlighter-rouge">youtube.com</code>, «Порт» 443, «Клиент» любой клиент панели, «Проверить». Итог «Через канал awg-de» и правило <code class="language-plaintext highlighter-rouge">abroad</code> со «сработало» по имени или диапазону. С устройства клиента откройте сайт из списка и любой другой: первый видит адрес того сервера, второй - этого.</p>
+
+<h2 id="если-не-работает">Если не работает</h2>
+
+<ul>
+  <li>Правило «трафик заперт»: канал ничего не несёт, см. его состояние. Пока проверка доступности не проходит, группа и правила считают канал мёртвым.</li>
+  <li>Сайт открывается через хост: правило выше по списку взяло трафик раньше, или имя не попало в наборы. «Проверка» называет правило и то, по чему оно сработало; «Адресов в наборах» на странице DNS растёт с ответами резолвера.</li>
+  <li>Другой сервер AmneziaGeo с собственными правилами по именам сбрасывает DNS через HTTPS от этого, пока не отпустит его после трёх попыток: чтобы вопросы шли сразу, назовите внешний сервер здесь открытым DNS (<code class="language-plaintext highlighter-rouge">1.1.1.1</code>) и спрашивайте через канал, тот сервер примет вопрос своим резолвером, см. <a href="../panel/dns.ru.html#вопросы-клиентов">DNS</a>.</li>
+</ul>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

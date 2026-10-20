@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discord там, где режут UDP · Android · AmneziaGeo</title>
+    <meta name="description" content="Текст и голос Discord через туннель, остальное напрямую">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/android/recipes/discord-udp.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/android/recipes/discord-udp.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/android/recipes/discord-udp.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/android/recipes/discord-udp.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/recipes/discord-udp.ru.html">Windows</a>
+  <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Linux</a>
+  <a href="/amneziageo/android/recipes/discord-udp.ru.html" aria-current="page">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/android/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/android/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/recipes/discord-udp.ru.html" aria-current="page">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/android/index.ru.html">Android</a></li>
+    <li><a href="/amneziageo/android/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="discord-там-где-режут-udp">Discord там, где режут UDP</h1>
+
+<p>Проще всего готовым шаблоном: список «Вручную», режим «Только выбранное», шаблон «Недоступные сайты». В нём уже есть <code class="language-plaintext highlighter-rouge">geosite:discord</code> - домены Discord - и <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code> - сети его голосовых серверов из собственной базы проекта, а «Весь UDP через туннель» включён.</p>
+
+<p>Своим списком:</p>
+
+<ol>
+  <li>Создайте список и назовите его <code class="language-plaintext highlighter-rouge">discord</code>.</li>
+  <li>
+    <p>Добавьте правила <code class="language-plaintext highlighter-rouge">geosite:discord</code> и <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code>. Или вместо них добавьте в правилах приложений сам Discord: тогда через туннель пойдёт весь его трафик, куда бы он ни обращался.</p>
+
+    <figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-discord.png" alt="Редактор списка: записи geosite:discord и geoip:ag-discord-voice среди правил шаблона" width="360" height="724" loading="lazy" /><figcaption>Записи Discord в списке.</figcaption></figure>
+  </li>
+  <li>Включите «Весь UDP через туннель»: голосовые серверы Discord приходят не через DNS, и так в туннель уйдёт и голос, адреса которого в базах нет.</li>
+  <li>
+    <p>Раз в сети режут UDP, в настройках транспорта включите WebSocket: сервер AmneziaGeo предлагает вход сам, для другого сервера укажите его адрес, порт и авторизацию, если сервер её требует.</p>
+
+    <figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/config-websocket.png" alt="Страница конфигурации: «Прокси» (WebSocket) включён, изменение ещё не сохранено" width="360" height="724" loading="lazy" /><figcaption>WebSocket в настройках транспорта.</figcaption></figure>
+  </li>
+  <li>Выберите список <code class="language-plaintext highlighter-rouge">discord</code> и подключитесь.</li>
+</ol>
+
+<p>Текст и голос Discord идут через туннель, остальное напрямую.</p>
+
+<p>Подробнее: <a href="../menu/routing.ru.html#новый-список">Новый список</a>, <a href="../menu/routing.ru.html#маршрутизация-приложений">Маршрутизация приложений</a>, <a href="../menu/routing.ru.html#весь-udp-через-туннель">Весь UDP через туннель</a>, <a href="../menu/configurations.ru.html#websocket">WebSocket</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

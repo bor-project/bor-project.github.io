@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Checking the route of a connection by name, port and client.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/test.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/test.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/test.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/panel/test.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/panel/test.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/test.html">Service</a>
+  <a href="/amneziageo_server/docker/panel/test.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html" aria-current="page">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/docker/panel/routing.html">Routing</a></li>
+  </ol>
+</nav>
+
+        <h1 id="test">Test</h1>
+
+<p>The route test tells what the rules on the host will do with a connection. The page opens at <code class="language-plaintext highlighter-rouge">/routing/test</code> and by a link from the routing pages; it is not in the menu.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/test.png" alt="Route test of www.youtube.com on port 443 for a client: direct through the host, no rule matched, the addresses of the name" width="1440" height="900" loading="lazy" /><figcaption>No rule takes the connection, so it goes through the host.</figcaption></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name or address</td>
+      <td>a name, an address or a link whose host is taken; the name is asked through the way out of the resolver, and with the resolver off through the host</td>
+    </tr>
+    <tr>
+      <td>Port</td>
+      <td>the destination port; may be left empty</td>
+    </tr>
+    <tr>
+      <td>Client</td>
+      <td>a client of the panel whose addresses and interface the connection carries, or an address whose interface is the interface of its network</td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td>TCP or UDP</td>
+    </tr>
+    <tr>
+      <td>Source port</td>
+      <td>may be left empty</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>“Test” reads the rules the way the set on the host reads them. First comes the guard of the resolver, while at least one rule on the host compares by name and no names are read out of the connections: a client of such a rule gets port 853 and port 443 of known name servers reset; the test does not know a client let go for a day and shows the reset for it too. Then the resolver itself: while it answers, it takes every question to port 53 from the interface of a client, and the rules are not read. Then the rules in order: a rule not on the host is skipped with its reason, a rule whose interface, client, protocol, port or source port did not match is missed, and a rule whose targets the traffic falls under matches by range, by name or by an address the resolver put into its set.</p>
+
+<h2 id="outcome">Outcome</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Outcome</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Through <name></name></td>
+      <td>the traffic leaves through the channel; for a group its channels are listed with the marks “carries”, “spare”, “down”, “off” and which one is picked for this rule</td>
+    </tr>
+    <tr>
+      <td>Direct through the host</td>
+      <td>a “Direct” rule, the “Direct” list, or no rule matched</td>
+    </tr>
+    <tr>
+      <td>Blocked</td>
+      <td>a “Block” rule or the “Block” list</td>
+    </tr>
+    <tr>
+      <td>Held: <name> carries nothing</name></td>
+      <td>the rule matched, but its channel carries nothing, and the rule holds the traffic</td>
+    </tr>
+    <tr>
+      <td>Dropped by the resolver guard (dot or doh)</td>
+      <td>a connection to a name server past the resolver</td>
+    </tr>
+    <tr>
+      <td>Answered by the resolver of the panel</td>
+      <td>a DNS question the resolver intercepts</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Below stand the “Rule” that decided, with its place, the “Addresses” the name resolved to (“the name did not resolve”), and the list of rules read before the decision, each with “By what”: “matched”, “missed” with what did not match (target, interface, client, protocol, port, source port), or “not on the host” with the reason. This shows which rule caught the traffic earlier than intended and why the right one missed.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

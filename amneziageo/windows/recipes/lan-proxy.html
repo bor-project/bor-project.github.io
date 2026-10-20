@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Devices on the network through the proxy · Windows · AmneziaGeo</title>
+    <meta name="description" content="A TV, a console, a phone without a client of its own">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/recipes/lan-proxy.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/recipes/lan-proxy.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/recipes/lan-proxy.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/windows/recipes/lan-proxy.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/windows/recipes/lan-proxy.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/recipes/lan-proxy.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/recipes/lan-proxy.html">Linux</a>
+  <a href="/amneziageo/android/recipes/lan-proxy.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.html" aria-current="page">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/">Windows</a></li>
+    <li><a href="/amneziageo/windows/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="devices-on-the-network-through-the-proxy">Devices on the network through the proxy</h1>
+
+<ol>
+  <li>In the “Connections” section, on the “Proxy” tab, turn “Allow connections” on.</li>
+  <li>Set the access: add an account (“User” and “Password”) or turn “Connect without a password” on. Without either nobody connects, and without a password the proxy is open to any device on the network.</li>
+  <li>Change the “SOCKS5 port” and the “HTTP port” if you need to, then save.</li>
+  <li>
+    <p>Note the address of the machine on the network: it stands beside the ports, and a button copies it.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/en/connections-proxy.png" alt="Connections, the Proxy tab: allow connections, addresses, ports, clients and accounts" width="984" height="752" loading="lazy" /><figcaption>The proxy is on. Network addresses are hidden.</figcaption></figure>
+  </li>
+  <li>On the device enter the proxy in the settings of its Wi-Fi network: the address of the machine and the HTTP port. A TV, a console and a phone take it from there; Telegram in its own settings: Settings - Data and Storage - Proxy Settings, type SOCKS5, the SOCKS5 port.</li>
+  <li>Bring the tunnel up: the proxy works only while it is connected.</li>
+</ol>
+
+<p>More: <a href="../menu/connections.html#proxy">Proxy</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

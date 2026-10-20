@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Перенос на другой сервер · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Резервная копия базы и установка на новом хосте из неё.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/recipes/move.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/recipes/move.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/recipes/move.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/recipes/move.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/recipes/move.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/recipes/move.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html" aria-current="page">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="перенос-на-другой-сервер">Перенос на другой сервер</h1>
+
+<p>Задача: перевезти панель с клиентами, интерфейсами и настройками на новый хост так, чтобы клиенты продолжили подключаться со своими конфигурациями. Копия базы несёт всё, кроме сертификата, ключа подписи токенов и файлов гео.</p>
+
+<h2 id="1-копия-на-старом-хосте">1. Копия на старом хосте</h2>
+
+<p>«Обзор» &gt; «Резервная копия» &gt; «Скачать копию» (право «Скачивание бэкапа»). Файл <code class="language-plaintext highlighter-rouge">amneziageo-&lt;имя&gt;-&lt;время&gt;.db</code> несёт учётные записи и токены, интерфейсы с ключами, клиентов, шаблоны, правила, каналы и настройки панели. Из консоли копию снимает пункт 5 меню, подпункт 5, в каталог <code class="language-plaintext highlighter-rouge">backup</code> рядом с базой.</p>
+
+<h2 id="2-панель-на-новом-хосте">2. Панель на новом хосте</h2>
+
+<p>Скопируйте файл на новый хост и поставьте панель на нём:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server install --restore /root/amneziageo-&lt;имя&gt;-&lt;время&gt;.db
+</code></pre></div></div>
+
+<p>Скрипт проверяет файл, ставит панель контейнером, откладывает свежую базу в <code class="language-plaintext highlighter-rouge">backup</code> и запускает панель на копии; администратора и интерфейс он не заводит, они уже в копии. Если панель на новом хосте уже стоит, то же делает <code class="language-plaintext highlighter-rouge">amneziageo-server restore &lt;файл&gt;</code> или «Восстановить из файла» на «Обзоре» (копия с адресами, которых у хоста нет, из панели не встаёт, консольная команда подгоняет её под хост).</p>
+
+<h2 id="3-имя">3. Имя</h2>
+
+<p>Клиенты ходят на сервер по имени из своих конфигураций, строка <code class="language-plaintext highlighter-rouge">Endpoint</code>. Переведите имя в DNS на адрес нового хоста; конфигурации клиентов менять не нужно. Если в <code class="language-plaintext highlighter-rouge">Endpoint</code> стоял адрес, а не имя, клиентам понадобятся новые файлы: подписка отдаст их сама, как только хост интерфейса исправлен на новый адрес.</p>
+
+<h2 id="4-сертификат-и-порты">4. Сертификат и порты</h2>
+
+<p>Сертификат панели в копию не входит. Скрипт предлагает выпустить сертификат Let’s Encrypt на то же имя, когда имя уже указывает на новый хост; иначе панель отвечает без сертификата, пока его не поставит пункт 22 меню. Адреса старого хоста, на которых слушала панель, скрипт отбрасывает. Порты интерфейсов, панели и подписок, которые панель держала открытыми, она откроет в брандмауэре нового хоста сама при старте; ufw на новом хосте включает установка или пункт 23 меню. Панель в контейнере до ufw хоста не достаёт: на хосте с включённым ufw порты открывает пункт 23 меню на хосте или <code class="language-plaintext highlighter-rouge">ufw allow &lt;порт&gt;</code>.</p>
+
+<h2 id="5-проверка">5. Проверка</h2>
+
+<p>Карточка «Службы» на «Обзоре»: интерфейсы поднялись, подписки и резолвер отвечают, сертификат на месте. Клиент с устройства подключается без правок. Гео-источники панель скачивает сама после запуска.</p>
+
+<h2 id="6-старый-хост">6. Старый хост</h2>
+
+<p>Остановите панель на старом хосте (<code class="language-plaintext highlighter-rouge">amneziageo-server stop</code> и <code class="language-plaintext highlighter-rouge">disable</code>), чтобы клиенты, у которых имя ещё не обновилось в кэше, не ходили на оба сервера. Ключ подписи токенов на новом хосте новый: сессии в браузерах и токены сессий кончатся, войти придётся заново; долгоживущие токены для скриптов (<code class="language-plaintext highlighter-rouge">agt_...</code>) живут в базе и работают дальше.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

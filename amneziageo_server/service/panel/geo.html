@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Geo lists · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Geo databases of countries and site categories for rules and templates.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/geo.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/geo.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/geo.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/geo.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/geo.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/geo.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/geo.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html" aria-current="page">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/service/panel/routing.html">Routing</a></li>
+  </ol>
+</nav>
+
+        <h1 id="geo-lists">Geo lists</h1>
+
+<p>Geo lists are the geo databases rules and templates compare against: <code class="language-plaintext highlighter-rouge">geoip.dat</code> files with the ranges of countries and networks and <code class="language-plaintext highlighter-rouge">geosite.dat</code> files with the domains of categories, in the v2ray and Xray format, the same the AmneziaGeo client reads. A source is the address the panel downloads the file from, its type and its place in the order. The files lie in <code class="language-plaintext highlighter-rouge">geo</code> next to the database of the panel (<code class="language-plaintext highlighter-rouge">Geo__Path</code> sets the directory).</p>
+
+<h2 id="list">List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>What it shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>the name the file lies under on the disk, lower case, up to 32 characters</td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td>“Addresses” (<code class="language-plaintext highlighter-rouge">geoip</code>) or “Domains” (<code class="language-plaintext highlighter-rouge">geosite</code>)</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>an http or https link to a <code class="language-plaintext highlighter-rouge">.dat</code> file</td>
+    </tr>
+    <tr>
+      <td>Entries</td>
+      <td>“Countries N” or “Categories N” after a download</td>
+    </tr>
+    <tr>
+      <td>Size, Updated</td>
+      <td>the size of the file and the time of the download; “not downloaded”, “off”, or the reason the download failed</td>
+    </tr>
+    <tr>
+      <td>Enabled</td>
+      <td>whether rules are compared against the source</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/geo.png" alt="Geo lists: the number of countries and categories and the sources with address, entries, size and time of update" width="1440" height="900" loading="lazy" /><figcaption>The sources of a fresh panel, downloaded.</figcaption></figure>
+
+<p>“Update” on a source downloads it, “Update all” all the enabled ones. Sources are moved with the “Up” and “Down” arrows.</p>
+
+<h2 id="order">Order</h2>
+
+<p>Sources are read in their order, and an entry from a source lower down overrides the same entry from a source above: if <code class="language-plaintext highlighter-rouge">geoip</code> and <code class="language-plaintext highlighter-rouge">geoip-ru-only</code> both carry <code class="language-plaintext highlighter-rouge">ru</code>, the ranges come from the lower one. A source that is off is skipped.</p>
+
+<h2 id="what-a-fresh-panel-has">What a fresh panel has</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>From</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">zkeenip</code></td>
+      <td>addresses</td>
+      <td>jameszeroX <code class="language-plaintext highlighter-rouge">zkeen-ip</code>, <code class="language-plaintext highlighter-rouge">zkeenip.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geosite</code></td>
+      <td>domains</td>
+      <td>Loyalsoldier <code class="language-plaintext highlighter-rouge">v2ray-rules-dat</code>, <code class="language-plaintext highlighter-rouge">geosite.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geoip</code></td>
+      <td>addresses</td>
+      <td>Loyalsoldier <code class="language-plaintext highlighter-rouge">v2ray-rules-dat</code>, <code class="language-plaintext highlighter-rouge">geoip.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geosite-ru-only</code></td>
+      <td>domains</td>
+      <td>runetfreedom <code class="language-plaintext highlighter-rouge">russia-blocked-geosite</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geoip-ru-only</code></td>
+      <td>addresses</td>
+      <td>runetfreedom <code class="language-plaintext highlighter-rouge">russia-blocked-geoip</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo</code></td>
+      <td>addresses</td>
+      <td>bor-project <code class="language-plaintext highlighter-rouge">amneziageo-geo</code>, <code class="language-plaintext highlighter-rouge">geoip.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-geosite</code></td>
+      <td>domains</td>
+      <td>bor-project <code class="language-plaintext highlighter-rouge">amneziageo-geo</code>, <code class="language-plaintext highlighter-rouge">geosite.dat</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>They are added at the first start on a fresh database and are changed and removed like any others; no files come with the panel, and all seven are downloaded at the first update. A source that appeared in this list later reaches the panel at the first start after an update, once; one removed by hand does not come back.</p>
+
+<p><code class="language-plaintext highlighter-rouge">zkeenip</code> stands first because besides <code class="language-plaintext highlighter-rouge">discord</code> it carries <code class="language-plaintext highlighter-rouge">ru</code>, <code class="language-plaintext highlighter-rouge">google</code>, <code class="language-plaintext highlighter-rouge">cloudflare</code>, <code class="language-plaintext highlighter-rouge">telegram</code> and <code class="language-plaintext highlighter-rouge">fastly</code>, and these keys stay with the databases below. Discord calls go to bare addresses of the voice servers, which the app gets without DNS, so <code class="language-plaintext highlighter-rouge">geosite:discord</code> does not catch them: <code class="language-plaintext highlighter-rouge">geoip:discord</code> from <code class="language-plaintext highlighter-rouge">zkeenip</code> carries them. The own databases <code class="language-plaintext highlighter-rouge">amneziageo</code> and <code class="language-plaintext highlighter-rouge">amneziageo-geosite</code> carry keys with the <code class="language-plaintext highlighter-rouge">ag-</code> prefix, so as not to override anyone else’s: <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code> is what a YouTube client needs by address, together with the video caches, <code class="language-plaintext highlighter-rouge">geosite:ag-tiktok</code> and <code class="language-plaintext highlighter-rouge">geoip:ag-tiktok</code> are TikTok.</p>
+
+<h2 id="downloading">Downloading</h2>
+
+<p>The request carries the <code class="language-plaintext highlighter-rouge">If-None-Match</code> and <code class="language-plaintext highlighter-rouge">If-Modified-Since</code> of the previous download, so a database that did not change costs one answer without traffic. The file is read before it is written: an address that answers with a page instead of a database is refused, and nothing is overwritten; so is a file over 256 MB. The download goes through a temporary file, so a broken one leaves the previous file in place.</p>
+
+<p>Downloads also run by themselves: two minutes after the start and then every half hour for sources older than <code class="language-plaintext highlighter-rouge">Geo__UpdateHours</code> hours (24 by default; 0 leaves downloading to the button). Item 28 of the console menu and <code class="language-plaintext highlighter-rouge">amneziageo-server geo update</code> download everything now.</p>
+
+<p>When the databases change, the panel works out the ranges of every template with entries anew at once: after a download that replaced a file, and after a source is added, changed, removed or moved. The clients get the new <code class="language-plaintext highlighter-rouge">AllowedIPs</code> with their file through the subscription, see <a href="templates.html#routing">Templates</a>.</p>
+
+<h2 id="what-is-read-from-them">What is read from them</h2>
+
+<p>A rule or a template names a key like <code class="language-plaintext highlighter-rouge">geoip:ru</code> or <code class="language-plaintext highlighter-rouge">geosite:youtube</code>. The usual databases give about 260 countries and 1500 categories, <code class="language-plaintext highlighter-rouge">zkeenip</code> adds some twenty networks such as <code class="language-plaintext highlighter-rouge">discord</code>, <code class="language-plaintext highlighter-rouge">hetzner</code>, <code class="language-plaintext highlighter-rouge">youtube</code>, and the own database the <code class="language-plaintext highlighter-rouge">ag-</code> keys. A country brings its domain zones as well: <code class="language-plaintext highlighter-rouge">ru</code> also <code class="language-plaintext highlighter-rouge">su</code>, <code class="language-plaintext highlighter-rouge">xn--p1ai</code> and <code class="language-plaintext highlighter-rouge">рф</code>. A geosite entry comes in four kinds: an exact name, a suffix, a keyword and an expression; an expression gets 50 milliseconds. What a key carries is shown by “Show what it holds” on an entry of a template, see <a href="templates.html#routing">Templates</a>.</p>
+
+<p>The AmneziaGeo client app also gets the geo sources of the panel through hello, see <a href="presets.html">Routing presets</a>.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The type is addresses or domains</td>
+      <td>the type</td>
+    </tr>
+    <tr>
+      <td>The address is not an http or https link to a .dat file; This address is already downloaded by another list</td>
+      <td>the address</td>
+    </tr>
+    <tr>
+      <td>The name is already taken; There is no such geo list</td>
+      <td>the name or the number</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

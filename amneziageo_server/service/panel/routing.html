@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Routing · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Where the traffic of the clients goes: rules, basic lists, channels, geo databases, DNS.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/routing.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/routing.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/routing.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/routing.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/routing.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/routing.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/routing.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html" aria-current="page">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+  </ol>
+</nav>
+
+        <h1 id="routing">Routing</h1>
+
+<p>Routing decides where the traffic of the clients goes after the server: through a channel (a tunnel to another server), directly through the host, or into a block. The kernel decides, by nftables rules the panel assembles from its settings; the resolver of the panel turns domain names into addresses.</p>
+
+<ul class="topic-list">
+  <li>
+    <a href="/amneziageo_server/service/panel/rules.html">Rules</a>
+    <span>Conditions and directions of traffic: through a channel, direct or blocked.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/basic.html">Basic</a>
+    <span>Block and direct lists ahead of the rules.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/test.html">Test</a>
+    <span>Checking the route of a connection by name, port and client.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/channels.html">Channels</a>
+    <span>Outbound connections through the host or a tunnel to another server, and their groups.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/geo.html">Geo lists</a>
+    <span>Geo databases of countries and site categories for rules and templates.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/dns.html">DNS</a>
+    <span>The resolver for the clients: upstream servers, query channel, cache, interception, stand-in addresses.</span>
+  </li>
+</ul>
+
+<h2 id="how-it-works">How it works</h2>
+
+<ul>
+  <li><strong>Rules</strong> are read top down, and the first that fits applies. A rule compares the first packet of a new connection: where it goes (geo keys, domains, addresses), where it comes from (clients, interfaces), ports and protocol. A “Through a channel” rule puts the mark of the channel on the connection, and the connection keeps this path while it lives, even if the rules change later.</li>
+  <li><strong>Basic lists</strong> stand before the rules: “Block” drops, “Direct” lets out through the host without a mark.</li>
+  <li><strong>Channels</strong> are the ways out: the host itself, an AmneziaWG tunnel to another server or the same tunnel inside WebSocket; each channel carries its own mark and routing table. A group of channels under one name hands out the traffic by priority, round robin or per client, and a rule names a group the same way as a channel.</li>
+  <li><strong>Geo lists</strong> are the <code class="language-plaintext highlighter-rouge">geoip.dat</code> and <code class="language-plaintext highlighter-rouge">geosite.dat</code> databases from which rules and templates take the ranges of countries and the domains of categories.</li>
+  <li><strong>DNS</strong>: the resolver of the panel answers the clients for names, asks upstream servers over HTTPS and puts the addresses it sees into the sets of the rules that compare by name; without it a rule by domain works only by the addresses the resolver asked for itself.</li>
+  <li><strong>Test</strong> tells what the rules will do with a connection to a name or an address from a given client.</li>
+</ul>
+
+<p>Traffic that fits no rule goes the way the host itself would send it. An answer that comes back through a channel carries no mark, and the host finds the client in its own tables. Rules need interfaces: without an interface the traffic comes to, there is nothing to mark.</p>
+
+<p>Routing rules, channels, groups, geo sources and the resolver are changed by a role with the “Manage routing” permission; any role reads them. The rule set as the host holds it is printed by item 23 of the console menu, sub-item 12.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

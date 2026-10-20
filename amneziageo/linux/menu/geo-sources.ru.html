@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Источники geo · Linux · AmneziaGeo</title>
+    <meta name="description" content="Базы geosite и geoip">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/menu/geo-sources.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/menu/geo-sources.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/menu/geo-sources.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/linux/menu/geo-sources.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/menu/geo-sources.ru.html">Windows</a>
+  <a href="/amneziageo/linux/menu/geo-sources.ru.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/menu/geo-sources.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.ru.html" aria-current="page">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/index.ru.html">Linux</a></li>
+    <li><a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a></li>
+    <li><a href="/amneziageo/linux/menu/routing.ru.html">Маршрутизация</a></li>
+  </ol>
+</nav>
+
+        <h1 id="источники-geo">Источники geo</h1>
+
+<p>Базы для правил <code class="language-plaintext highlighter-rouge">geosite:</code> - категории доменов - и <code class="language-plaintext highlighter-rouge">geoip:</code> - страны и сети. Раздел открывается ссылкой из <a href="routing.ru.html">маршрутизации</a>.</p>
+
+<h2 id="базы-по-умолчанию">Базы по умолчанию</h2>
+
+<p>Свежая установка получает источники сама: <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a> (<code class="language-plaintext highlighter-rouge">geosite</code> и <code class="language-plaintext highlighter-rouge">geoip</code>), <a href="https://github.com/runetfreedom/russia-blocked-geosite">runetfreedom</a> (<code class="language-plaintext highlighter-rouge">geosite-ru-only</code> и <code class="language-plaintext highlighter-rouge">geoip-ru-only</code>), <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a> (<code class="language-plaintext highlighter-rouge">geoip</code>) и собственные базы проекта <a href="https://github.com/bor-project/amneziageo-geo">amneziageo-geo</a> (<code class="language-plaintext highlighter-rouge">geoip</code> и <code class="language-plaintext highlighter-rouge">geosite</code>; их ключи начинаются с <code class="language-plaintext highlighter-rouge">ag-</code>, так что они не перекрывают ключи других баз). Копии баз runetfreedom лежат в комплекте приложения, поэтому правила по ним работают до первой загрузки. Остальные базы скачиваются по «Обновить все» или по кнопке «Обновить сейчас» на главном экране, когда проверка нашла, чего не хватает; из консоли это <code class="language-plaintext highlighter-rouge">sudo amneziageo geo download</code>. Источник, добавленный в набор по умолчанию позже, появляется при обновлении приложения; удалённый вами не возвращается.</p>
+
+<h2 id="список-баз">Список баз</h2>
+
+<p>Каждая база - строка: имя, тип, число категорий и время загрузки, «не загружен» или «ошибка», если файла нет, во время загрузки - принятые мегабайты. Базы одного типа складываются по порядку: категория берётся из последней базы в списке, в которой она есть, поэтому своя база дополняет общие, а не заменяет их. Правый клик или ⋮ у строки: «Обновить», «Изменить» адрес или тип, «Удалить». «Обновить все» скачивает заново базы, чьи файлы изменились: сервер спрашивается с ETag и датой файла, неизменившийся файл не качается.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/geo-sources.png" alt="Источники geo: автообновление, добавление базы и список источников" width="984" height="752" loading="lazy" /><figcaption>Источники geo: автообновление, новая база, список баз.</figcaption></figure>
+
+<h2 id="добавить-базу">Добавить базу</h2>
+
+<p>Вставьте прямую ссылку на файл <code class="language-plaintext highlighter-rouge">geosite.dat</code> или <code class="language-plaintext highlighter-rouge">geoip.dat</code> и нажмите «Добавить». Тип определяется по имени файла в ссылке, если в нём есть <code class="language-plaintext highlighter-rouge">geosite</code> или <code class="language-plaintext highlighter-rouge">geoip</code>, иначе выберите его сами. Нужна ссылка на сам файл (raw), а не на страницу репозитория: страница не разбирается как база, и приложение скажет об этом. Добавленная база скачивается сразу.</p>
+
+<h2 id="автообновление">Автообновление</h2>
+
+<p>Переключатель «Автообновление» раз в сутки проверяет, не вышли ли новые версии баз, без скачивания: по опубликованной рядом с файлом контрольной сумме <code class="language-plaintext highlighter-rouge">.sha256sum</code>, а где её нет - по заголовкам и размеру файла. База с новой версией помечается «Доступно обновление», а на главном экране появляется «Доступны обновления geo-списков»: «Обновить сейчас» скачивает их, «Позже» убирает полосу до следующей проверки. Включено по умолчанию.</p>
+
+<p>Сервер AmneziaGeo присылает свои источники вместе с ответом конфигурации, см. <a href="configurations.ru.html#что-предлагает-сервер">Что предлагает сервер</a>.</p>
+
+<h2 id="из-консоли">Из консоли</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo <span class="nb">source </span>list
+amneziageo <span class="nb">source </span>add geosite|geoip &lt;url&gt;
+amneziageo <span class="nb">source </span>edit &lt;имя&gt; geosite|geoip &lt;url&gt;
+amneziageo <span class="nb">source </span>remove &lt;имя&gt;
+amneziageo geo list <span class="nt">--filter</span> telegram   <span class="c"># категории загруженных баз</span>
+amneziageo geo show geosite:telegram    <span class="c"># что входит в категорию</span>
+amneziageo geo check                    <span class="c"># есть ли новые версии, без скачивания</span>
+amneziageo geo update <span class="o">[</span>&lt;источник&gt;]      <span class="c"># скачать заново</span>
+amneziageo geo download                 <span class="c"># добавить источники по умолчанию и скачать их</span>
+</code></pre></div></div>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Installation · Service · AmneziaGeo Server</title>
+    <meta name="description" content="The service in one command of the menu or by hand, updates and rollback, what lies on the host, uninstalling.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/install.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/install.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/install.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/install.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/install.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/install.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/install.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html" aria-current="page">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+  </ol>
+</nav>
+
+        <h1 id="installation">Installation</h1>
+
+<p>You need Debian 12 or newer or Ubuntu on amd64 or arm64, root, a public address and about 2 GB of free disk space. The panel raises the tunnel interfaces through the <code class="language-plaintext highlighter-rouge">amneziawg</code> kernel module, so the module goes on first; the console menu does this itself. Docker is not needed on this host. If it is already there, it turns the policy of the <code class="language-plaintext highlighter-rouge">FORWARD</code> chain to <code class="language-plaintext highlighter-rouge">DROP</code>, and the clients go no further than the server: the installation adds <code class="language-plaintext highlighter-rouge">"ip-forward-no-drop": true</code> to <code class="language-plaintext highlighter-rouge">/etc/docker/daemon.json</code> where the version of Docker takes it, and lifts a <code class="language-plaintext highlighter-rouge">DROP</code> already set where ufw does not hold the chain.</p>
+
+<h2 id="in-one-command">In one command</h2>
+
+<p>Every release carries the <code class="language-plaintext highlighter-rouge">amneziageo-server</code> script, the <a href="/amneziageo_server/service/menu.html">console menu</a>, which puts the panel on a clean host and keeps it running afterwards. As root:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fsSL https://github.com/bor-project/amneziageo_server/releases/latest/download/amneziageo-server \
+  -o /usr/local/bin/amneziageo-server
+chmod 755 /usr/local/bin/amneziageo-server
+amneziageo-server install
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">install</code> first looks the host over and prints what it carries: the system and the kernel, the upgrades waiting, the <code class="language-plaintext highlighter-rouge">amneziawg</code> module, memory and disk, Docker and its containers, forwarding and BBR, ufw, the ports taken with the services behind them, the AmneziaWG and WireGuard interfaces, the Let’s Encrypt certificates. It stops on what the panel cannot live with: no release for the architecture, a container host without the module. Then it asks all its questions at once, with defaults taken from the look, prints the plan and, once you agree, does everything on the list.</p>
+
+<h3 id="questions">Questions</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Default</th>
+      <th>Key of the answers file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Install as</code>: <code class="language-plaintext highlighter-rouge">1. Package</code> (the service), <code class="language-plaintext highlighter-rouge">2. Docker</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code> when the host has no Docker</td>
+      <td><code class="language-plaintext highlighter-rouge">kind</code>: <code class="language-plaintext highlighter-rouge">package</code> or <code class="language-plaintext highlighter-rouge">docker</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Put a short command for amneziageo-server on the host?</code>, <code class="language-plaintext highlighter-rouge">Name of the short command</code></td>
+      <td>asked only on a terminal; <code class="language-plaintext highlighter-rouge">ag-s</code> or the first free name with a number</td>
+      <td><code class="language-plaintext highlighter-rouge">shortcut</code>: the name, empty for none</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Upgrade the system first (apt full-upgrade)?</code></td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">upgrade</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Channel</code>: 1 Stable, 2 Test</td>
+      <td>Stable</td>
+      <td><code class="language-plaintext highlighter-rouge">channel</code>: <code class="language-plaintext highlighter-rouge">stable</code> or <code class="language-plaintext highlighter-rouge">test</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Backup file to restore, empty for a fresh panel</code></td>
+      <td>empty</td>
+      <td><code class="language-plaintext highlighter-rouge">restore</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Turn BBR on?</code></td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">bbr</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Login of the first administrator</code></td>
+      <td><code class="language-plaintext highlighter-rouge">admin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">login</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Make &lt;login&gt; an administrator of the panel?</code>, when the login is a user of the host</td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">host_admin</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Make up a temporary password for it, replaced at the first sign-in?</code></td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">generate</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Name of the server for a certificate of Let's Encrypt, empty for none</code></td>
+      <td>the name the host already holds a certificate for</td>
+      <td><code class="language-plaintext highlighter-rouge">domain</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Email for Let's Encrypt</code>; <code class="language-plaintext highlighter-rouge">Agree to the terms of Let's Encrypt</code></td>
+      <td>empty; yes</td>
+      <td><code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">terms</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Port of the panel</code></td>
+      <td>8443 or the first free one above it</td>
+      <td><code class="language-plaintext highlighter-rouge">port</code></td>
+    </tr>
+    <tr>
+      <td>Without a name: <code class="language-plaintext highlighter-rouge">Let the panel answer on every address of the host, without TLS?</code></td>
+      <td>no</td>
+      <td><code class="language-plaintext highlighter-rouge">everywhere</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Make the first interface?</code></td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">endpoint</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Name of the interface</code>; <code class="language-plaintext highlighter-rouge">UDP port of the interface, its services on TCP of the same number</code>; <code class="language-plaintext highlighter-rouge">Address clients reach the server at</code></td>
+      <td><code class="language-plaintext highlighter-rouge">awg0</code>; 51820 or the first free one; the name of the server or the public address of the host</td>
+      <td><code class="language-plaintext highlighter-rouge">endpoint_name</code>, <code class="language-plaintext highlighter-rouge">endpoint_port</code>, <code class="language-plaintext highlighter-rouge">endpoint_host</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Carry the tunnel in a websocket too, on TCP &lt;port&gt;?</code></td>
+      <td>no</td>
+      <td><code class="language-plaintext highlighter-rouge">websocket</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Name of the first client, empty for none</code>; <code class="language-plaintext highlighter-rouge">Show its configuration as a QR code?</code></td>
+      <td><code class="language-plaintext highlighter-rouge">client1</code>; yes</td>
+      <td><code class="language-plaintext highlighter-rouge">client</code>, <code class="language-plaintext highlighter-rouge">qr</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Answer the DNS of its clients on this server, asking outside over HTTPS?</code></td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">resolver</code></td>
+    </tr>
+    <tr>
+      <td>(not asked) the IPv6 range of the clients of the first interface, its first address the address of the interface</td>
+      <td>on a host with a global IPv6 address a random range of its own, <code class="language-plaintext highlighter-rouge">fdXX:XXXX:XXXX::1/64</code>, otherwise no IPv6</td>
+      <td><code class="language-plaintext highlighter-rouge">ipv6_range</code>: like <code class="language-plaintext highlighter-rouge">fd3a:4b5c:6d7e::1/64</code>, empty for none</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Open &lt;ports&gt; in ufw?</code>, or <code class="language-plaintext highlighter-rouge">Turn ufw on, letting in ssh and what listens now?</code></td>
+      <td>yes when ufw is not installed</td>
+      <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ufw keeps the clients of &lt;interfaces&gt; from the resolver of the panel: let them reach it?</code>, at the end, when ufw keeps the clients of interfaces from the resolver</td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">resolver_ufw</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Reboot now?</code> after an upgrade with a new kernel</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">reboot</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Go on?</code> past the plan</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">go</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The answers can be put into a file beforehand as <code class="language-plaintext highlighter-rouge">key=value</code> lines and given with <code class="language-plaintext highlighter-rouge">amneziageo-server install --answers &lt;file&gt;</code>: the script then asks only for what the file lacks, and with every key it runs without a question.</p>
+
+<h3 id="what-it-does">What it does</h3>
+
+<ul>
+  <li>upgrades the system; if a new kernel came, it reboots the host, and the same command goes on with the same answers after the reboot;</li>
+  <li>puts on the module from the Amnezia PPA (<code class="language-plaintext highlighter-rouge">amneziawg-dkms</code>) when the kernel lacks it, turns packet forwarding on now and at boot, and turns BBR on; the interface on which the host takes its IPv6 route from router advertisements gets <code class="language-plaintext highlighter-rouge">accept_ra = 2</code>, otherwise with forwarding on the kernel would drop that route at once;</li>
+  <li>if Docker is on the host, lets the packets of the clients past its <code class="language-plaintext highlighter-rouge">DROP</code>, as said above;</li>
+  <li>downloads the archive of the newest release of the channel, checks it against the key the releases are signed with and installs it with its <code class="language-plaintext highlighter-rouge">install.sh</code>;</li>
+  <li>makes the first administrator; the temporary password is printed once at the end;</li>
+  <li>gets a Let’s Encrypt certificate for the name of the server (<code class="language-plaintext highlighter-rouge">certbot</code> with an RSA key, an HTTP-01 check on TCP 80, renewal by the <code class="language-plaintext highlighter-rouge">certbot.timer</code> timer, see <a href="/amneziageo_server/service/panel/certificates.html#lets-encrypt">Certificates</a>) or takes the one the host already holds, and opens the panel on every address of the host;</li>
+  <li>makes the first interface and client through the API of the panel: the configuration of the client goes to <code class="language-plaintext highlighter-rouge">/root</code> and, when asked, is printed as a QR code; on a host with a global IPv6 address the interface gets a range of unique local IPv6 addresses, and the clients go over IPv6 through the server;</li>
+  <li>turns the resolver for the clients on, if you agreed;</li>
+  <li>opens the ports in ufw or turns ufw on, keeping ssh and what already listened open;</li>
+  <li>if ufw keeps the clients of some interface from the resolver of the panel, offers to let them in with the rule <code class="language-plaintext highlighter-rouge">allow in on &lt;interface&gt; to any port 53</code>, see <a href="/amneziageo_server/service/panel/dns.html#how-it-works">DNS</a>;</li>
+  <li>puts the short command of the menu on, if you agreed: a link <code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code> to <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, or with the name you gave; a name another command already holds is not taken, and the script asks for another one;</li>
+  <li>checks the service, the panel, the certificate and the interface and prints the address of the panel, the login and the password, the ports of the panel and the interface, the IPv6 address of the host and the command of the menu with its short command.</li>
+</ul>
+
+<p>On a host installed without it, <code class="language-plaintext highlighter-rouge">ln -s /usr/local/bin/amneziageo-server /usr/local/bin/ag-s</code> puts the short command on; an update leaves the link alone, uninstalling the panel takes it off.</p>
+
+<p>Next: <a href="/amneziageo_server/service/first-run.html">First run</a>: signing in, changing the password, the first interface and client if the script did not make them.</p>
+
+<h3 id="moving-from-another-server">Moving from another server</h3>
+
+<p>On the old panel “Overview” &gt; “Backup” &gt; “Download a copy”; the file is copied to the new host:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server install --restore /root/amneziageo-&lt;name&gt;-&lt;time&gt;.db
+</code></pre></div></div>
+
+<p>The script checks the file, installs the panel and starts it on the database from the backup: accounts and tokens, interfaces with their keys, clients, rules and settings move as they are; it makes no administrator and no interface. The clients reach the server by the name in their configurations, so the name in DNS is moved to the new host. The certificate, the signing key and the geo files are not in the backup: the script offers to get a certificate for the same name once the name already points at the new host, drops the addresses of the old host from the settings of the panel, and the panel downloads the geo sources after it starts. On a running panel <code class="language-plaintext highlighter-rouge">amneziageo-server restore &lt;file&gt;</code> does the same. More in <a href="/amneziageo_server/service/panel/overview.html#backup">Backup</a>.</p>
+
+<h2 id="by-hand">By hand</h2>
+
+<p>The same path is described in the reference of the repository, <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/install.md">install.md</a>, and step by step in Russian in <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/ru/install-debian12.md">Панель AmneziaGeo на Debian 12 без Docker</a>. In short:</p>
+
+<ol>
+  <li>Upgrade the system and reboot; install the kernel headers, <code class="language-plaintext highlighter-rouge">nftables</code>, <code class="language-plaintext highlighter-rouge">dkms</code>, <code class="language-plaintext highlighter-rouge">gcc</code>, <code class="language-plaintext highlighter-rouge">make</code>.</li>
+  <li>Install <code class="language-plaintext highlighter-rouge">amneziawg-dkms</code> from the Amnezia PPA and load the module: <code class="language-plaintext highlighter-rouge">modprobe amneziawg</code>, the line <code class="language-plaintext highlighter-rouge">amneziawg</code> in <code class="language-plaintext highlighter-rouge">/etc/modules-load.d/amneziawg.conf</code>. The <code class="language-plaintext highlighter-rouge">amneziawg-tools</code> package is not needed: the panel talks to the module itself.</li>
+  <li>Turn forwarding on: <code class="language-plaintext highlighter-rouge">net.ipv4.ip_forward = 1</code> and <code class="language-plaintext highlighter-rouge">net.ipv6.conf.all.forwarding = 1</code> in <code class="language-plaintext highlighter-rouge">/etc/sysctl.d/90-amneziageo.conf</code>, then <code class="language-plaintext highlighter-rouge">sysctl --system</code>. If the host takes its IPv6 from router advertisements (SLAAC), the first line of the same file is <code class="language-plaintext highlighter-rouge">net/ipv6/conf/&lt;external interface&gt;/accept_ra = 2</code>: with forwarding on, the kernel drops such a route at once and takes no new advertisements.</li>
+  <li>Download from the <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a> page the archive <code class="language-plaintext highlighter-rouge">amneziageo-server-&lt;version&gt;-linux-x64.tar.gz</code> (<code class="language-plaintext highlighter-rouge">-arm64</code> for arm64) and <code class="language-plaintext highlighter-rouge">update.json</code> of the same release, check the <code class="language-plaintext highlighter-rouge">sha256</code> of the archive against the manifest, unpack it and run the installer:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tar xzf /root/amneziageo-server-&lt;version&gt;-linux-x64.tar.gz -C /root
+/root/amneziageo-server/install.sh
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">install.sh</code> puts the release into <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/releases/&lt;release&gt;</code> and the web interface into <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/web/&lt;release&gt;</code>, and points the <code class="language-plaintext highlighter-rouge">current</code> and <code class="language-plaintext highlighter-rouge">wwwroot</code> links at them; it makes <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server</code> for the database and <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server</code> with a <code class="language-plaintext highlighter-rouge">server.env</code> stub where every line is commented out; it installs the services <code class="language-plaintext highlighter-rouge">amneziageo-server.service</code> and <code class="language-plaintext highlighter-rouge">amneziageo-proxy@.service</code>; it puts the menu into <code class="language-plaintext highlighter-rouge">/usr/local/bin/amneziageo-server</code>; it enables the service at boot but does not start it: an administrator is needed first, see <a href="/amneziageo_server/service/first-run.html">First run</a>. At the end it writes <code class="language-plaintext highlighter-rouge">&lt;release&gt; is on the host, the server is not running</code> and the two next commands.</p>
+
+<p>The service runs as root: reading and writing an interface need <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>, and the interface files belong to root. A separate account with <code class="language-plaintext highlighter-rouge">AmbientCapabilities=CAP_NET_ADMIN</code> and the files handed over to it does the same.</p>
+
+<h2 id="updates">Updates</h2>
+
+<p>The panel installs a new release by itself. Every 12 hours it asks GitHub about releases, checks the signature of the <code class="language-plaintext highlighter-rouge">update.json</code> manifest with the release key and, if the release is newer, shows it in the header of “Overview” next to its own version. The “Update” button, for a role with the “Update the panel” permission, assembles the archive for the architecture of the host: the files the host already has are copied, the rest are downloaded from the release in parts (usually a megabyte or two out of about 55), each is checked against its digest, and the <code class="language-plaintext highlighter-rouge">install.sh</code> of the archive is run apart from the panel, through <code class="language-plaintext highlighter-rouge">systemd-run</code>. The page follows the steps “Download”, “Install”, “Restart”, “Done” and loads the new panel by itself once it answers; a failed update stays in the header with its log until it is hidden with the “Hide” cross or the next one goes through. More in <a href="/amneziageo_server/service/panel/overview.html#updates">Updates</a>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">install.sh</code> of the new release puts it next to the working one, stops the service, copies the database to <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code>, moves <code class="language-plaintext highlighter-rouge">current</code> to the new release and starts the service. It waits until the server says it is up and watches it for five more seconds: a release that did not come up or fell over in that time rolls back by itself: the copy of the database comes back, <code class="language-plaintext highlighter-rouge">current</code> points at the previous release, the service starts on it, and the script ends with an error. A service stopped before the update stays stopped.</p>
+
+<p>Interfaces and their clients live in the kernel and do not break during an update:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>What</th>
+      <th>During the restart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>interfaces and clients</td>
+      <td>stay in the kernel with their handshakes and counters</td>
+    </tr>
+    <tr>
+      <td>channels</td>
+      <td>keep the server as a peer, with the handshake and counters; a channel inside WebSocket is carried by the server itself and waits for it</td>
+    </tr>
+    <tr>
+      <td>routing rules and firewall tables</td>
+      <td>stay on the host and are put again in one step at the start</td>
+    </tr>
+    <tr>
+      <td>addresses the resolver put into the sets</td>
+      <td>are read from the host at the start and put again with the rules</td>
+    </tr>
+    <tr>
+      <td>resolver</td>
+      <td>does not answer for the seconds the server is starting; the clients ask again</td>
+    </tr>
+    <tr>
+      <td>WebSocket fronts</td>
+      <td>keep working: a front restarts only if its files changed</td>
+    </tr>
+    <tr>
+      <td>panel and subscriptions</td>
+      <td>do not answer while the server is starting</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>From the console <code class="language-plaintext highlighter-rouge">amneziageo-server update</code> and <code class="language-plaintext highlighter-rouge">amneziageo-server update beta</code> do the same (menu items 2 and 3): the script asks the panel to update and waits until it answers with the new version. The panel takes pre-releases after “Receive prerelease versions” is checked on the <a href="/amneziageo_server/service/panel/server.html">Server</a> tab of the settings. By hand: unpack the new archive and run its <code class="language-plaintext highlighter-rouge">install.sh</code>, as the first time; an archive the host already carries is not installed again without <code class="language-plaintext highlighter-rouge">--force</code>.</p>
+
+<p>The web interface alone, while the server runs, is installed by <code class="language-plaintext highlighter-rouge">install.sh --ui</code> of the archive or by the <code class="language-plaintext highlighter-rouge">amneziageo-web.tar.gz</code> archive: the script puts the interface next to the one the server serves and moves <code class="language-plaintext highlighter-rouge">wwwroot</code> to it, and the next page opened is already new; a page that is open keeps working, because the files it may still ask for are copied from the previous interface. The archive knows which server it was built for and refuses a host with another one; <code class="language-plaintext highlighter-rouge">--force</code> installs it anyway.</p>
+
+<h2 id="rollback">Rollback</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server rollback
+</code></pre></div></div>
+
+<p>Menu item 4 or <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/current/install.sh --rollback</code> moves <code class="language-plaintext highlighter-rouge">current</code> to the previous release and starts the service on it, with the web interface of that release; the same command moves back to the new one. The database stays as it is: before every update and restore it is copied to <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code>, where the last five copies lie, and after a rollback the menu offers to bring one of them back. <code class="language-plaintext highlighter-rouge">install.sh --list</code> prints the releases on the host.</p>
+
+<h2 id="what-lies-on-the-host">What lies on the host</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Path</th>
+      <th>What</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/releases/&lt;release&gt;</code></td>
+      <td>a release of the server and the utility</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/web/&lt;release&gt;</code></td>
+      <td>a release of the web interface</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/current</code></td>
+      <td>the working release; <code class="language-plaintext highlighter-rouge">AmneziaGeo.Server.Api</code> and <code class="language-plaintext highlighter-rouge">AmneziaGeo.Server.Cli</code> in <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server</code> lead into it</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/previous</code></td>
+      <td>the previous release, where a rollback goes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/wwwroot</code></td>
+      <td>the web interface the server serves</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/current/wstunnel</code></td>
+      <td>the WebSocket proxy of the release; the installation leaves a <code class="language-plaintext highlighter-rouge">/usr/local/bin/wstunnel</code> of the host alone</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/server.db</code></td>
+      <td>the database: accounts, interfaces, clients, rules, settings</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/geo</code></td>
+      <td>geo database files</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code></td>
+      <td>the last five copies of the database, from before updates and restores</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/update</code></td>
+      <td>downloads, logs and the record of the last update</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/journal.db</code>, <code class="language-plaintext highlighter-rouge">access.db</code></td>
+      <td>the event log and the connection log, not part of the backup</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/server.env</code></td>
+      <td>start variables: the address before the first start, the certificate, <code class="language-plaintext highlighter-rouge">Update__*</code> and others</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/signing.pem</code></td>
+      <td>the key the sign-in tokens are signed with</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/proxy-&lt;interface&gt;.env</code>, <code class="language-plaintext highlighter-rouge">.yaml</code></td>
+      <td>the arguments and the target list of the WebSocket front of an interface</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amnezia/amneziawg/&lt;interface&gt;.conf</code></td>
+      <td>the interface files the panel reads and writes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/systemd/system/amneziageo-server.service</code>, <code class="language-plaintext highlighter-rouge">amneziageo-proxy@.service</code></td>
+      <td>the service of the panel and the service of a front</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/usr/local/bin/amneziageo-server</code></td>
+      <td>the console menu, comes with every release</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code></td>
+      <td>the short command of the menu, a link to <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, if it was put on</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The host keeps the working release and the previous one, each with its web interface, and the interface served before the last one; the rest is removed, including a release that did not come up. A panel installed before releases existed moves into the release <code class="language-plaintext highlighter-rouge">legacy-&lt;date&gt;</code> at its first update.</p>
+
+<h2 id="uninstalling">Uninstalling</h2>
+
+<p>Menu item 6 <code class="language-plaintext highlighter-rouge">Uninstall</code> asks whether to take the panel off and whether to take its database and settings with it. It stops and removes the service of the panel and of the fronts, removes <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server</code>, takes the interfaces of the panel, its nftables tables and the ufw rules with its mark off the host, and removes the menu and its short commands from <code class="language-plaintext highlighter-rouge">/usr/local/bin</code>. The database in <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server</code> and the settings in <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server</code> stay unless you agree to remove them; the interface files go with them. The <code class="language-plaintext highlighter-rouge">amneziawg</code> module and the forwarding file <code class="language-plaintext highlighter-rouge">/etc/sysctl.d/90-amneziageo.conf</code> stay on the host.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

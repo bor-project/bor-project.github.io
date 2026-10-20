@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AmneziaGeo Server как служба · AmneziaGeo Server</title>
+    <meta name="description" content="Установка, первый запуск, консольное меню, панель по разделам и рецепты.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/index.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/index.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/index.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html" aria-current="page">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+  </ol>
+</nav>
+
+        <h1 id="amneziageo-server-как-служба">AmneziaGeo Server как служба</h1>
+
+<p>Панель работает службой systemd <code class="language-plaintext highlighter-rouge">amneziageo-server</code> от root из <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server</code>: релизы лежат рядом, ссылка <code class="language-plaintext highlighter-rouge">current</code> указывает на рабочий, <code class="language-plaintext highlighter-rouge">previous</code> - на предыдущий для отката. База в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server</code>, ключ подписи токенов и переменные запуска в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server</code>. Фронты WebSocket интерфейсов - службы <code class="language-plaintext highlighter-rouge">amneziageo-proxy@&lt;интерфейс&gt;</code>.</p>
+
+<h2 id="с-чего-начать">С чего начать</h2>
+
+<ol>
+  <li><a href="install.ru.html">Установка</a></li>
+  <li><a href="first-run.ru.html">Первый запуск</a></li>
+</ol>
+
+<h2 id="консольное-меню">Консольное меню</h2>
+
+<p><a href="menu.ru.html">Консольное меню</a> <code class="language-plaintext highlighter-rouge">amneziageo-server</code>: установка, обновление и откат, копии базы, адрес, порт и путь панели, пользователи и токены, служба и её журнал, сертификаты, брандмауэр, интерфейсы, фронты WebSocket, BBR и DNS для клиентов.</p>
+
+<h2 id="панель">Панель</h2>
+
+<ul class="topic-list">
+  <li>
+    <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+    <span>Состояние хоста, службы, обновление и резервная копия.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+    <span>Серверные интерфейсы AmneziaWG: адреса, порты, ключи, обфускация, WebSocket, порты в брандмауэре.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+    <span>Конфигурации клиентов: список, настройки, экспорт, трафик, отключение.</span>
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a>
+        <span>Что клиент получает в файле: AllowedIPs из гео-ключей и доменов, маршрутизация по именам, DNS, MTU, keepalive.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a>
+        <span>Списки маршрутизации для приложения AmneziaGeo клиента.</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+    <span>Куда идёт трафик клиентов: правила, базовые списки, каналы, гео-базы, DNS.</span>
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a>
+        <span>Условия и направления трафика: через канал, напрямую или в блок.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a>
+        <span>Списки для блокировки и прямого доступа впереди правил.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a>
+        <span>Проверка маршрута соединения по имени, порту и клиенту.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a>
+        <span>Выходные подключения через хост или туннель к другому серверу и их группы.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a>
+        <span>Гео-базы стран и категорий сайтов для правил и шаблонов.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a>
+        <span>Резолвер для клиентов: внешние серверы, канал запросов, кэш, перехват, подставные адреса.</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+    <span>Сервер, сертификаты, подписки, пользователи и роли, диагностика.</span>
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a>
+        <span>Адрес, порт, путь и язык панели, шаблон имени конфигурации, предварительные версии.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a>
+        <span>Сертификат панели: домен Let&#39;s Encrypt или свои файлы.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a>
+        <span>Конфигурации клиентов по ссылке: порт, путь, сертификат, интервал обновления.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a>
+        <span>Учётные записи, роли с правами и токены для скриптов.</span>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a>
+        <span>Версии компонентов, журнал событий и журнал подключений.</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="рецепты">Рецепты</h2>
+
+<ul class="topic-list">
+  <li>
+    <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+    <span>Канал AmneziaWG к другому серверу и правило по странам и сайтам.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+    <span>Несколько каналов под одним именем: приоритет, по кругу, по клиенту.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+    <span>Для сетей, где проходит только веб-трафик.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+    <span>Одна подписка для всех устройств одного человека.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+    <span>Достать клиента из туннеля: только сервер или вся сеть.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+    <span>Пресеты и гео-источники для приложения AmneziaGeo через шаблон.</span>
+  </li>
+  <li>
+    <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+    <span>Резервная копия базы и установка на новом хосте из неё.</span>
+  </li>
+</ul>
+
+<h2 id="утилита">Утилита</h2>
+
+<p><a href="cli.ru.html">Утилита</a>: команды <code class="language-plaintext highlighter-rouge">amneziageo-server &lt;команда&gt;</code> для консоли и скриптов, <a href="../api.ru.html">HTTP API</a> для всего остального.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

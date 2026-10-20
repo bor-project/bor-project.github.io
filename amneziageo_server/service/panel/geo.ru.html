@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Списки Geo · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Гео-базы стран и категорий сайтов для правил и шаблонов.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/geo.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/geo.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/geo.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/geo.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/geo.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/geo.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html" aria-current="page">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a></li>
+  </ol>
+</nav>
+
+        <h1 id="списки-geo">Списки Geo</h1>
+
+<p>Списки Geo - гео-базы, по которым сравниваются правила и шаблоны: файлы <code class="language-plaintext highlighter-rouge">geoip.dat</code> с диапазонами стран и сетей и <code class="language-plaintext highlighter-rouge">geosite.dat</code> с доменами категорий, в формате v2ray и Xray, те же, что читает клиент AmneziaGeo. Источник - адрес, откуда панель скачивает файл, вид и место в порядке. Файлы лежат в <code class="language-plaintext highlighter-rouge">geo</code> рядом с базой панели (каталог задаёт <code class="language-plaintext highlighter-rouge">Geo__Path</code>).</p>
+
+<h2 id="список">Список</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Колонка</th>
+      <th>Что показывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя</td>
+      <td>имя, под которым файл лежит на диске, строчными, до 32 знаков</td>
+    </tr>
+    <tr>
+      <td>Тип</td>
+      <td>«Адреса» (<code class="language-plaintext highlighter-rouge">geoip</code>) или «Домены» (<code class="language-plaintext highlighter-rouge">geosite</code>)</td>
+    </tr>
+    <tr>
+      <td>Адрес</td>
+      <td>ссылка http или https на файл <code class="language-plaintext highlighter-rouge">.dat</code></td>
+    </tr>
+    <tr>
+      <td>Записей</td>
+      <td>«Стран N» или «Категорий N» после загрузки</td>
+    </tr>
+    <tr>
+      <td>Размер, Обновлён</td>
+      <td>размер файла и время загрузки; «не загружался», «выключен», или причина, по которой загрузка не прошла</td>
+    </tr>
+    <tr>
+      <td>Включено</td>
+      <td>сравниваются ли правила с источником</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/geo.png" alt="Списки Geo: число стран и категорий и источники с адресом, числом записей, размером и временем обновления" width="1440" height="900" loading="lazy" /><figcaption>Источники свежей панели, загруженные.</figcaption></figure>
+
+<p>«Обновить» у источника скачивает его, «Обновить все» - все включённые. Источники переставляются стрелками «Выше» и «Ниже».</p>
+
+<h2 id="порядок">Порядок</h2>
+
+<p>Источники читаются в своём порядке, и запись из источника ниже перекрывает ту же запись из источника выше: если <code class="language-plaintext highlighter-rouge">geoip</code> и <code class="language-plaintext highlighter-rouge">geoip-ru-only</code> оба несут <code class="language-plaintext highlighter-rouge">ru</code>, диапазоны берутся из того, что ниже. Выключенный источник пропускается.</p>
+
+<h2 id="что-есть-у-свежей-панели">Что есть у свежей панели</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Тип</th>
+      <th>Откуда</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">zkeenip</code></td>
+      <td>адреса</td>
+      <td>jameszeroX <code class="language-plaintext highlighter-rouge">zkeen-ip</code>, <code class="language-plaintext highlighter-rouge">zkeenip.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geosite</code></td>
+      <td>домены</td>
+      <td>Loyalsoldier <code class="language-plaintext highlighter-rouge">v2ray-rules-dat</code>, <code class="language-plaintext highlighter-rouge">geosite.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geoip</code></td>
+      <td>адреса</td>
+      <td>Loyalsoldier <code class="language-plaintext highlighter-rouge">v2ray-rules-dat</code>, <code class="language-plaintext highlighter-rouge">geoip.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geosite-ru-only</code></td>
+      <td>домены</td>
+      <td>runetfreedom <code class="language-plaintext highlighter-rouge">russia-blocked-geosite</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geoip-ru-only</code></td>
+      <td>адреса</td>
+      <td>runetfreedom <code class="language-plaintext highlighter-rouge">russia-blocked-geoip</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo</code></td>
+      <td>адреса</td>
+      <td>bor-project <code class="language-plaintext highlighter-rouge">amneziageo-geo</code>, <code class="language-plaintext highlighter-rouge">geoip.dat</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-geosite</code></td>
+      <td>домены</td>
+      <td>bor-project <code class="language-plaintext highlighter-rouge">amneziageo-geo</code>, <code class="language-plaintext highlighter-rouge">geosite.dat</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Они добавляются при первом старте на свежей базе и меняются и удаляются как любые другие; файлов с панелью не едет, все семь скачиваются при первом обновлении. Источник, который появился в этом списке позже, доезжает до панели при первом старте после обновления, один раз; удалённый руками не возвращается.</p>
+
+<p><code class="language-plaintext highlighter-rouge">zkeenip</code> стоит первым, потому что кроме <code class="language-plaintext highlighter-rouge">discord</code> несёт <code class="language-plaintext highlighter-rouge">ru</code>, <code class="language-plaintext highlighter-rouge">google</code>, <code class="language-plaintext highlighter-rouge">cloudflare</code>, <code class="language-plaintext highlighter-rouge">telegram</code> и <code class="language-plaintext highlighter-rouge">fastly</code>, и эти ключи остаются за базами ниже. Звонки Discord идут на голые адреса голосовых серверов, которые приложение получает без DNS, поэтому <code class="language-plaintext highlighter-rouge">geosite:discord</code> их не ловит: их несёт <code class="language-plaintext highlighter-rouge">geoip:discord</code> из <code class="language-plaintext highlighter-rouge">zkeenip</code>. Собственные базы <code class="language-plaintext highlighter-rouge">amneziageo</code> и <code class="language-plaintext highlighter-rouge">amneziageo-geosite</code> несут ключи с приставкой <code class="language-plaintext highlighter-rouge">ag-</code>, чтобы не перекрыть чужие: <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code> - то, что нужно YouTube клиенту по адресам, вместе с видеокешами, <code class="language-plaintext highlighter-rouge">geosite:ag-tiktok</code> и <code class="language-plaintext highlighter-rouge">geoip:ag-tiktok</code> - TikTok.</p>
+
+<h2 id="загрузка">Загрузка</h2>
+
+<p>Запрос несёт <code class="language-plaintext highlighter-rouge">If-None-Match</code> и <code class="language-plaintext highlighter-rouge">If-Modified-Since</code> прошлой загрузки, так что неизменившаяся база стоит одного ответа без трафика. Файл читается до записи: адрес, который отвечает страницей вместо базы, отказывается, и ничего не перезаписывается; файл больше 256 МБ тоже. Загрузка идёт через временный файл, поэтому оборванная оставляет прежний файл на месте.</p>
+
+<p>Загрузки идут и сами: через две минуты после старта и дальше каждые полчаса для источников старше <code class="language-plaintext highlighter-rouge">Geo__UpdateHours</code> часов (24 по умолчанию; 0 оставляет загрузку кнопке). Пункт 28 консольного меню и <code class="language-plaintext highlighter-rouge">amneziageo-server geo update</code> скачивают всё сейчас.</p>
+
+<p>Когда базы меняются, панель сразу пересчитывает диапазоны всех шаблонов с записями: после загрузки, которая заменила файл, и после того, как источник добавили, изменили, удалили или переставили. Клиенты получают новые <code class="language-plaintext highlighter-rouge">AllowedIPs</code> с файлом через подписку, см. <a href="templates.ru.html#маршрутизация">Шаблоны</a>.</p>
+
+<h2 id="что-из-них-читается">Что из них читается</h2>
+
+<p>Правило или шаблон называет ключ как <code class="language-plaintext highlighter-rouge">geoip:ru</code> или <code class="language-plaintext highlighter-rouge">geosite:youtube</code>. Обычные базы дают около 260 стран и 1500 категорий, <code class="language-plaintext highlighter-rouge">zkeenip</code> добавляет десятка два сетей вроде <code class="language-plaintext highlighter-rouge">discord</code>, <code class="language-plaintext highlighter-rouge">hetzner</code>, <code class="language-plaintext highlighter-rouge">youtube</code>, собственная база - ключи <code class="language-plaintext highlighter-rouge">ag-</code>. Страна приносит и свои доменные зоны: <code class="language-plaintext highlighter-rouge">ru</code> - ещё <code class="language-plaintext highlighter-rouge">su</code>, <code class="language-plaintext highlighter-rouge">xn--p1ai</code> и <code class="language-plaintext highlighter-rouge">рф</code>. Запись geosite бывает четырёх видов: точное имя, суффикс, ключевое слово и выражение; выражению даётся 50 миллисекунд. Что несёт ключ, показывает «Показать содержимое» у записи шаблона, см. <a href="templates.ru.html#маршрутизация">Шаблоны</a>.</p>
+
+<p>Гео-источники панели получает и приложение AmneziaGeo клиента через hello, см. <a href="presets.ru.html">Пресеты маршрутизации</a>.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Тип - адреса или домены</td>
+      <td>тип</td>
+    </tr>
+    <tr>
+      <td>Адрес не похож на http или https ссылку на файл .dat; Этот адрес уже загружает другой список</td>
+      <td>адрес</td>
+    </tr>
+    <tr>
+      <td>Такое имя уже занято; Такого списка нет</td>
+      <td>имя или номер</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

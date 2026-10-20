@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Конфигурации · Linux · AmneziaGeo</title>
+    <meta name="description" content="Каталог серверов">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/menu/configurations.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/menu/configurations.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/menu/configurations.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/linux/menu/configurations.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/menu/configurations.ru.html">Windows</a>
+  <a href="/amneziageo/linux/menu/configurations.ru.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/menu/configurations.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.ru.html" aria-current="page">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/index.ru.html">Linux</a></li>
+    <li><a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a></li>
+  </ol>
+</nav>
+
+        <h1 id="конфигурации">Конфигурации</h1>
+
+<h2 id="каталог">Каталог</h2>
+
+<p>Конфигурации стоят карточками: имя, отклик сервера, метки - «MTU авто» или «MTU 1420», имя подписки, из которой конфигурация пришла, - и отметка «Выбран» у выбранной. Переключатель «Используется» выбирает конфигурацию для следующего подключения; ссылка «Подключиться» поднимает туннель на ней сразу, «Настройки» открывает её страницу, «Изменить порядок» в меню карточки переставляет карточки.</p>
+
+<p>«Проверить» меряет отклик всех серверов разом, мимо туннеля. На карточке появляется время в миллисекундах, «нет ответа», «недоступен», если у сервера нет адреса, или «не видно из туннеля», если туннель поднят на другой конфигурации и уводит пробу в себя. У подключённого сервера на карточке стоит отклик самого туннеля. «Обновить конфиги» перечитывает все подписки сразу, не дожидаясь их срока. Когда подписка принесла новую версию конфигурации, а туннель работает на старой, главный экран пишет «Доступно обновление конфигурации»: она применится при следующем подключении.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/config-catalog.png" alt="Каталог конфигураций: карточки с адресом, откликом, приёмом и отдачей, потерями и метками, подключённая выделена" width="984" height="752" loading="lazy" /><figcaption>Каталог конфигураций.</figcaption></figure>
+
+<h2 id="добавление-конфигурации">Добавление конфигурации</h2>
+
+<p>«Добавить» в каталоге и «Добавить конфигурацию» на главном экране предлагают способ:</p>
+
+<ul>
+  <li>«Загрузить файл» - файл <code class="language-plaintext highlighter-rouge">.conf</code> или картинка с QR-кодом.</li>
+  <li>«Вставить» - из буфера обмена: текст конфигурации wg-quick, ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> или адрес подписки <code class="language-plaintext highlighter-rouge">http(s)</code>. Адрес подписки приложение распознаёт само, читает его и загружает конфигурации, которые он отдаёт, а дальше держит их свежими, см. <a href="connections.ru.html#автообновление-подписок">Автообновление подписок</a>. Адрес без шифрования помечается предупреждением: ключи из подписки идут открытым текстом.</li>
+  <li>«Сканировать QR-код» - камерой, где она есть.</li>
+  <li>«Создать вручную» - редактор текста wg-quick; нужны секции <code class="language-plaintext highlighter-rouge">[Interface]</code> и <code class="language-plaintext highlighter-rouge">[Peer]</code>.</li>
+</ul>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/config-add.png" alt="Меню «Добавить» в каталоге: загрузить файл, вставить, сканировать QR-код, создать вручную" width="984" height="752" loading="lazy" /><figcaption>Способы добавить конфигурацию.</figcaption></figure>
+
+<p>Файл конфигурации или картинку с QR-кодом можно перетащить в окно. Перетащенный файл переноса окно не импортирует, а отсылает в окно импорта.</p>
+
+<p>Конфигурация с параметром, которого движок не знает, отклоняется с сообщением, что нужна более новая версия AmneziaWG. Общий файл настроек с другого устройства - конфигурации и списки маршрутизации вместе - импортируется через «Импорт / экспорт» в разделе <a href="general.ru.html#импорт--экспорт">Общие</a>.</p>
+
+<h2 id="настройки-конфигурации">Настройки конфигурации</h2>
+
+<p>Страница конфигурации открывается ссылкой «Настройки» на карточке. «Имя конфигурации» - под ним у конфигурации из подписки стоит имя подписки, время последнего обновления и кнопка «Обновить», которая перечитывает подписку сейчас. «Текст конфигурации» скрыт за кнопкой «Показать»: это wg-quick, как он сохранён, только для чтения. Имя сохраняется кнопкой «Сохранить» внизу страницы. Ниже на той же странице стоят настройки транспорта, см. <a href="#транспорт">Транспорт</a>.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/config-page.png" alt="Страница конфигурации: «Используется», имя, текст конфигурации и настройки транспорта" width="984" height="752" loading="lazy" /><figcaption>Страница конфигурации: имя, текст и транспорт.</figcaption></figure>
+
+<p>Текст конфигурации, её собственные резолверы и исключения меняются из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config edit &lt;имя&gt; ...</code>, <code class="language-plaintext highlighter-rouge">amneziageo config dns &lt;имя&gt; [&lt;серверы&gt;]</code> и <code class="language-plaintext highlighter-rouge">amneziageo config exclusions &lt;имя&gt; ...</code>; новый текст туннель берёт при следующем подключении.</p>
+
+<h3 id="экспорт">Экспорт</h3>
+
+<p>«Экспорт» на странице конфигурации показывает QR-код в одном из видов: «QR файл» - содержимое <code class="language-plaintext highlighter-rouge">.conf</code>, «QR ссылка» - ссылка <code class="language-plaintext highlighter-rouge">vpn://</code>, «Подписка» - адрес подписки у конфигурации, которая из неё пришла. «Скопировать» кладёт текст в буфер обмена, «Скачать QR» сохраняет картинку. QR-код содержит приватный ключ: не показывайте его посторонним. Длинная конфигурация в QR-код не помещается, тогда остаётся текст или ссылка <code class="language-plaintext highlighter-rouge">vpn://</code>. Из консоли ссылку печатает <code class="language-plaintext highlighter-rouge">amneziageo config link &lt;имя&gt;</code>.</p>
+
+<h3 id="удаление">Удаление</h3>
+
+<p>«Удалить конфигурацию» внизу страницы спрашивает подтверждение; отменить удаление нельзя. Конфигурация из подписки вернётся при её обновлении, пока подписка её отдаёт; подписку целиком удаляет <code class="language-plaintext highlighter-rouge">amneziageo sub remove &lt;имя&gt; --configs</code>.</p>
+
+<h2 id="транспорт">Транспорт</h2>
+
+<p>Настройки транспорта на странице конфигурации: «Прокси» (WebSocket, см. ниже), «MTU», «IPv6», «Маршрутизация», «Удерживать трафик при обрыве туннеля», «Разрешить входящие подключения из VPN-сети», «Разрешить серверу отключать туннель».</p>
+
+<ul>
+  <li>«MTU» - размер пакета туннеля: «Авто» - наибольший, который проходит по каналу, но не больше объявленного в конфигурации, «Конфиг» - ровно из строки <code class="language-plaintext highlighter-rouge">MTU</code> конфигурации, «Вручную» - число от 1280 до 1500. Действующее значение стоит меткой на карточке. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config mtu &lt;имя&gt; auto|config|&lt;число&gt;</code>.</li>
+  <li>«IPv6» - несёт ли туннель IPv6; по умолчанию выключено, см. <a href="routing.ru.html#ограничения">Ограничения</a>.</li>
+  <li>«Маршрутизация» - применять ли к этой конфигурации выбранный список маршрутизации. С выключенным переключателем туннель идёт по <code class="language-plaintext highlighter-rouge">AllowedIPs</code> из её текста. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config routing &lt;имя&gt; on|off</code>.</li>
+</ul>
+
+<h3 id="websocket">WebSocket</h3>
+
+<p>AmneziaWG работает поверх UDP, а в некоторых сетях - корпоративный и гостевой Wi-Fi, часть мобильных операторов - он не проходит. Тогда весь туннель пускается поверх WebSocket по TCP: снаружи это выглядит как обычный HTTPS-трафик.</p>
+
+<p>Сервер AmneziaGeo, который ответил, сам предлагает вход: хост Endpoint конфигурации и порт его сервисов. По умолчанию это порт Endpoint, а если сервер перенёс сервисы, то порт из строки <code class="language-plaintext highlighter-rouge"># AmneziaGeo Services = &lt;порт&gt;</code>. Вход набирается по TLS, сервер узнаёт конфигурацию по токену из её ключей, поэтому сертификат не проверяется. Если наш сервер вход не предлагает, переключатель WebSocket недоступен.</p>
+
+<p>Старый сервер AmneziaGeo называет свой вход в выдаваемой конфигурации, строкой <code class="language-plaintext highlighter-rouge"># AmneziaGeo WebSocket = wss://&lt;хост&gt;:&lt;порт&gt;/&lt;путь&gt;</code>, и этот вход берётся как есть.</p>
+
+<p>Для любого другого сервера вход задаётся в настройках: адрес и порт, а если сервер требует авторизацию, логин с паролем или токен. Пустые адрес и порт берутся из хоста и порта Endpoint; адрес или порт, который не годится, считается пустым. Такой вход набирается по TLS с проверкой сертификата. Включить WebSocket решаете вы. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config websocket &lt;имя&gt; on|off [--host &lt;адрес&gt;] [--port &lt;порт&gt;]</code>.</p>
+
+<h3 id="удерживать-трафик-при-обрыве-туннеля">Удерживать трафик при обрыве туннеля</h3>
+
+<p>Пока туннель переподключается, выбранное не идёт напрямую. Как это действует - в разделе <a href="home.ru.html#удержание-трафика-при-обрыве-туннеля">Удержание трафика при обрыве туннеля</a>.</p>
+
+<h3 id="входящие-подключения-из-vpn-сети">Входящие подключения из VPN-сети</h3>
+
+<p>По умолчанию клиент не отвечает ни на что пришедшее из туннеля: то, что он открыл сам, продолжает работать, остальное отбрасывается. Доступ разрешается для каждой конфигурации отдельно и имеет три состояния:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Состояние</th>
+      <th>Кто может достучаться до этой машины</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>выключено</td>
+      <td>никто, это состояние по умолчанию</td>
+    </tr>
+    <tr>
+      <td>сервер</td>
+      <td>только шлюз туннеля, первый адрес сети туннеля</td>
+    </tr>
+    <tr>
+      <td>вся сеть туннеля</td>
+      <td>любой адрес сети туннеля</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>В консоли это одна команда, а <code class="language-plaintext highlighter-rouge">config list</code> печатает состояние в колонке INBOUND:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo config inbound &lt;name&gt; off|host|network
+amneziageo config list
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">host</code> здесь означает сервер, а не эту машину: слово называет шлюз, к которому подключается конфигурация. В приложении переключатель стоит на вкладке транспорта конфигурации.</p>
+
+<p>Со стороны сервера доступ тоже нужно разрешить: у сервера AmneziaGeo для каждого клиента свой переключатель, и пока обе стороны не согласны, ничего не проходит. Проброшенному на сервере порту тоже нужно, чтобы клиент принимал входящее.</p>
+
+<p>Настройка доходит до работающего туннеля сразу.</p>
+
+<h3 id="разрешить-серверу-отключать-туннель">Разрешить серверу отключать туннель</h3>
+
+<p>Сервер снимает туннель, когда этого клиента выключают на сервере. Как это действует - в разделе <a href="home.ru.html#удержание-трафика-при-обрыве-туннеля">Удержание трафика при обрыве туннеля</a>.</p>
+
+<h2 id="что-предлагает-сервер">Что предлагает сервер</h2>
+
+<p>Приложение спрашивает сервер AmneziaGeo, что он предлагает конфигурации: при открытии окна, после добавления или правки конфигурации, когда подписка или набор принесли конфигурацию, чей сервер ещё не спрошен, и перед подключением. Первое подключение конфигурации и подключение после смены её Endpoint или ключей ждут ответа; следующие берут сохранённый ответ сразу, а наш сервер спрашивается снова фоном раз в сутки. Вопрос идёт по TCP на хост Endpoint и порт сервисов, приложение доказывает ключи конфигурации, и ответ зашифрован для неё одной.</p>
+
+<p>Ответ хранится по конфигурации: вход WebSocket и где мерить скорость. Ещё ответ раздаёт гео-источники сервера и списки маршрутизации, которые назначены в шаблоне клиента. Приложение добавляет источник, если у него нет источника с таким адресом, переводит источник с тем же именем на адрес сервера, один раз на каждый адрес, и сразу скачивает эти источники; удалённый владельцем источник возвращается со следующим ответом.</p>
+
+<p>Список сервера узнаётся по идентификатору. Если такого списка нет, он добавляется и выбирается сам, когда сервер пометил его включённым по умолчанию и не выбран ни один список. Если список есть, он остаётся как есть; когда сервер с тех пор его изменил, на карточке и у заголовка открытого списка появляется «Обновить», и нажатие заменяет имя, правила и переключатели трафика присланными, а выбран список или нет, не меняется. Удалённый владельцем список возвращается со следующим ответом. На карточке списка написано, откуда он: имя конфигурации, с которой он пришёл, или «Локальный» у списка, созданного на устройстве. Списки сервера старше идентификаторов добавляются по имени и сами не выбираются.</p>
+
+<p>Сервер другого вида или молчащий сервер ничего не меняет. Наш сервер остаётся нашим, пока трижды подряд не ответит как сервер другого вида или один раз при обновлении подписки; порт, который отказывает в соединении, считается таким ответом. Вопрос без ответа (время вышло, имя не нашлось, TLS не сошёлся, ошибка сервера) ничего не меняет, и сервер спрашивается снова после паузы, которая растёт вдвое от минуты до суток. Сервер, который на прошлый вопрос ответил как сервер другого вида, перед подключением спрашивается фоном, и подключение его не ждёт. Сервер, который ещё ни разу не ответил, сервером другого вида не считается: три следующих подключения ждут его снова, не дольше трёх секунд каждое, а дальше он тоже спрашивается фоном.</p>
+
+<p>Подписка, прочитанная по адресу, доказывается сертификатом её сервера: по хранилищу устройства или по корням Let’s Encrypt, которые приложение несёт с собой для устройства, в чьём хранилище их нет.</p>
+
+<p>Сервер со стороны панели описан в его репозитории: <a href="https://github.com/bor-project/amneziageo_server/tree/master/docs">amneziageo_server</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

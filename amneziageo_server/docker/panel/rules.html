@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rules · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Conditions and directions of traffic: through a channel, direct or blocked.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/rules.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/rules.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/rules.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/panel/rules.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/panel/rules.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/rules.html">Service</a>
+  <a href="/amneziageo_server/docker/panel/rules.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html" aria-current="page">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/docker/panel/routing.html">Routing</a></li>
+  </ol>
+</nav>
+
+        <h1 id="rules">Rules</h1>
+
+<p>A rule says where traffic goes: it compares what the client asks for and either sends it through a channel, lets it out through the host, or drops it. The rules lie in the order of reading, and the whole set turns into one nftables rule set the host takes at once.</p>
+
+<h2 id="list">List</h2>
+
+<p>The list shows the rules in their order with a number, a switch, what the rule compares (“Where to”, “Clients”, “Ports”, “Inbound”), where it sends (“Traffic”: a channel or a “group”), how many ranges and names came out (“Ranges”), and the status: “on the host”, “off”, “traffic held” with the reason, or the reason the rule did not go on the host. A rule is moved with the “Up” and “Down” arrows and by dragging the row, while the list is neither sorted nor filtered. The switch turns a rule on and off; a rule that is off is not in the set.</p>
+
+<h2 id="form">Form</h2>
+
+<h3 id="general">General</h3>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/rule-form.png" alt="Form of a new rule: the name youtube, the action Through a channel and the targets of the recipe" width="1440" height="900" loading="lazy" /><figcaption>A rule being filled in, not saved yet.</figcaption></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enabled</td>
+      <td>whether the rule goes on the host</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>up to 32 characters</td>
+    </tr>
+    <tr>
+      <td>Action</td>
+      <td>“Through a channel”, “Direct”, “Block”</td>
+    </tr>
+    <tr>
+      <td>Channel</td>
+      <td>the channel or group through which the traffic of a “Through a channel” rule leaves</td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td>“Any”, TCP, UDP</td>
+    </tr>
+    <tr>
+      <td>Ports</td>
+      <td>destination ports: <code class="language-plaintext highlighter-rouge">443</code>, <code class="language-plaintext highlighter-rouge">1000-2000</code></td>
+    </tr>
+    <tr>
+      <td>Source ports</td>
+      <td>the ports the traffic comes from, the same way</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The form of a new rule opens enabled: the rule goes on the host right after saving.</p>
+
+<h3 id="addresses">Addresses</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Where to</td>
+      <td>geo keys, domains and address ranges the traffic goes to</td>
+    </tr>
+    <tr>
+      <td>Clients</td>
+      <td>clients of the panel by name: the rule compares the traffic from their addresses and is put on the host again at every change of a client, so a new address of the client is picked up by itself</td>
+    </tr>
+    <tr>
+      <td>Interfaces</td>
+      <td>interfaces of the panel by name: the rule compares only traffic that came to one of them</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A target is read by its look: <code class="language-plaintext highlighter-rouge">geoip:ru</code> is a country, <code class="language-plaintext highlighter-rouge">geosite:youtube</code> a category, <code class="language-plaintext highlighter-rouge">203.0.113.0/24</code> and <code class="language-plaintext highlighter-rouge">198.51.100.7</code> ranges, anything else with a dot a domain. A domain is also taken as <code class="language-plaintext highlighter-rouge">domain:example.com</code> and a range as <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, in the form of the lists of the AmneziaGeo client, so a list moves from one side to the other without edits. <code class="language-plaintext highlighter-rouge">keyword:ads</code> fits every name that has the word in it; a keyword has no addresses of its own, and the addresses of such a rule come only from the answers the resolver sees. Ranges come from <code class="language-plaintext highlighter-rouge">geoip:</code> and networks in the targets, names from <code class="language-plaintext highlighter-rouge">geosite:</code>, domains and keywords. A rule without targets fits any address, without “Clients” any client, without “Interfaces” any interface.</p>
+
+<p>Renaming a client, interface, channel or group writes the new name into every rule that names it.</p>
+
+<p>The “Where from” field (addresses and ranges of clients) is gone. At the update the panel moves its addresses into “Clients”: the rule names every client whose address fell under them. A rule left without a client is turned off so that it does not become a rule for everyone, and so is a rule whose addresses covered more than 64 clients, more than one rule names; the panel names every rule it touched in a warning of its log. A client added after the update does not get into such a rule by itself: add it to “Clients”.</p>
+
+<h2 id="order">Order</h2>
+
+<p>The rules are read top down, and the first that fits decides. The decision is made once, on the first packet of the connection: a “Through a channel” rule puts the mark of the channel, and it stays on the connection; a connection without a mark goes where the host would send it. A connection stays on its path both after the rules change and after its address later gets into the set of another rule. A “Block” rule drops a new connection; one opened before the rule lives until it ends. A “Direct” rule returns from the decision without a mark, and the rules below are not read.</p>
+
+<p>The mark goes back only onto what the clients sent: an answer that comes through a channel carries no mark, and the host finds the client in its tables rather than sending the answer back into the channel.</p>
+
+<h2 id="what-does-not-go-on-the-host">What does not go on the host</h2>
+
+<p>A rule enters the set only when everything it names is there. Otherwise the list shows the reason:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reason</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>There is no such channel</td>
+      <td>the rule names a channel the panel does not know</td>
+    </tr>
+    <tr>
+      <td>The channel of the rule is turned off</td>
+      <td>the channel is off</td>
+    </tr>
+    <tr>
+      <td>The channel of the rule carries nothing</td>
+      <td>the check of the channel does not get through, or the interface of the channel is not up</td>
+    </tr>
+    <tr>
+      <td>No channel of the group answers</td>
+      <td>the group has no live channel</td>
+    </tr>
+    <tr>
+      <td>The geo databases carry nothing for this rule</td>
+      <td>the databases have nothing of what the rule compares</td>
+    </tr>
+    <tr>
+      <td>There is no such client</td>
+      <td>the panel knows none of the clients named</td>
+    </tr>
+    <tr>
+      <td>The panel holds none of the interfaces the rule names</td>
+      <td>the panel knows none of the interfaces named</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The first four reasons say that the rule is fine, but its way out is gone. Then the rule holds its traffic: it goes on the host anyway, but drops its traffic instead of marking it, and the list writes “traffic held” with the reason. The traffic of a “Through a channel” rule never leaves through the host, under the address of the server itself; a rule that had “Hold the traffic while the channel is down” cleared before holds the same way: the form carries this setting no more. An empty target is a fault of the rule itself, and such a rule simply does not go on.</p>
+
+<h2 id="on-the-host">On the host</h2>
+
+<p>The rules live in the nftables table <code class="language-plaintext highlighter-rouge">inet amneziageo_rt</code>, which is written whole and loaded in one step. For each rule and family it has a set of ranges <code class="language-plaintext highlighter-rouge">r&lt;id&gt;v4</code> and <code class="language-plaintext highlighter-rouge">r&lt;id&gt;v6</code> from the geo databases and a set of names <code class="language-plaintext highlighter-rouge">n&lt;id&gt;v4</code> and <code class="language-plaintext highlighter-rouge">n&lt;id&gt;v6</code> with a lifetime, which the resolver fills with addresses from the answers to the names of the rule, see <a href="dns.html">DNS</a>. The <code class="language-plaintext highlighter-rouge">prerouting</code> chain leaves alone everything that did not come to an interface of the panel, drops a packet of a client without a tracked connection, gives the mark back to a connection that already has one, and passes only a new connection on to the <code class="language-plaintext highlighter-rouge">decide</code> chain; <code class="language-plaintext highlighter-rouge">decide</code> carries the basic lists and the rules after them. The whole set is printed by item 23 of the console menu, sub-item 12. The rules are put at the start of the panel, after every change and when the set of live channels changes.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The name is empty or too long</td>
+      <td>the name</td>
+    </tr>
+    <tr>
+      <td>The action is a channel, direct or a block; The rule names no channel</td>
+      <td>the action</td>
+    </tr>
+    <tr>
+      <td>One of the targets is not a geo key, a domain or a range</td>
+      <td>“Where to”</td>
+    </tr>
+    <tr>
+      <td>One of the client names is not a name a client takes; One of the interface names is not a name an interface takes</td>
+      <td>“Clients”, “Interfaces”</td>
+    </tr>
+    <tr>
+      <td>The protocol is any, TCP or UDP; A source port is not a port or a range of ports</td>
+      <td>protocol and ports</td>
+    </tr>
+    <tr>
+      <td>The rule carries too many conditions</td>
+      <td>the rule does not fit into the set</td>
+    </tr>
+    <tr>
+      <td>There is no such rule; There is no such channel</td>
+      <td>a number or name the panel does not know</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

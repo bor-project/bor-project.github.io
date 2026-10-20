@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multiple VPN connections · Windows · AmneziaGeo</title>
+    <meta name="description" content="A main and reserve servers, a server for each rule">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/recipes/multiple-vpn.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/recipes/multiple-vpn.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/recipes/multiple-vpn.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/windows/recipes/multiple-vpn.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/windows/recipes/multiple-vpn.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/recipes/multiple-vpn.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/recipes/">Linux</a>
+  <a href="/amneziageo/android/recipes/">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.html" aria-current="page">Multiple VPN connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/">Windows</a></li>
+    <li><a href="/amneziageo/windows/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="multiple-vpn-connections">Multiple VPN connections</h1>
+
+<p>Windows can keep several VPN tunnels connected at the same time. In the settings, turn on <strong>Allow several VPNs</strong>, then connect the required server configurations. Connecting another server adds a tunnel while the existing ones stay connected.</p>
+
+<ul>
+  <li>Choose a <strong>main</strong> server and the order of the <strong>reserve</strong> servers. A <strong>neutral</strong> server stays outside that reserve order and carries traffic explicitly assigned to it.</li>
+  <li>A routing rule can use <strong>Auto</strong>, <strong>Best</strong>, <strong>Direct</strong>, <strong>Block</strong>, or a named server. You can also select a fallback for that rule.</li>
+  <li>This combines split tunneling with several connections: for example, send a work subnet through the office VPN and selected sites through a different VPN, leaving the remaining traffic direct in split-tunnel mode.</li>
+</ul>
+
+<p>This mode is currently Windows-only. Linux and Android keep one active VPN connection. See the <a href="../cli.html#multiple-vpn-connections">command-line examples</a>.</p>
+
+<h2 id="step-by-step-in-the-window">Step by step in the window</h2>
+
+<ol>
+  <li>
+    <p>In the “Connections” section, on the “Tunnel” tab, turn “Allow several VPNs” on.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/en/connections-multi.png" alt="The Tunnel tab: Allow several VPNs is on, under it the check interval, the checks before a switch and the threshold" width="984" height="752" loading="lazy" /><figcaption>Several VPNs and how rules move between servers.</figcaption></figure>
+  </li>
+  <li>In the configuration catalogue turn “In use” on for every server that should be up: each adds its own tunnel, and the ones running stay.</li>
+  <li>
+    <p>On the home screen, in the “Servers” block, click the place of a server and pick “Primary”, “Reserve 1”, “Reserve 2” and on, or “Neutral”.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/en/home-servers.png" alt="Home screen in the multiple-VPN mode: the Servers block, two servers up and their places" width="984" height="752" loading="lazy" /><figcaption>The Servers block on the home screen.</figcaption></figure>
+  </li>
+  <li>
+    <p>In the list editor, on a “Through VPN” entry, pick the “Route” - “Auto”, “Best”, “Direct”, “Block” or a server - and the “Fallback”: where the traffic goes when the chosen server is silent.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-route.png" alt="The list editor in the multiple-VPN mode: an unfolded entry with Route and Fallback" width="984" height="752" loading="lazy" /><figcaption>Route and fallback on the entries of a list.</figcaption></figure>
+  </li>
+</ol>
+
+<p>How rules move between servers is set under the “Allow several VPNs” switch: “Check interval”, “Checks before a switch”, “Switch threshold”. When the server the tunnel ran on is gone, the tunnel moves to another one, and the window says so.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

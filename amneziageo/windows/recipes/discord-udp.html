@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discord where UDP is blocked · Windows · AmneziaGeo</title>
+    <meta name="description" content="Discord text and voice through the tunnel, everything else direct">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/recipes/discord-udp.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/recipes/discord-udp.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/recipes/discord-udp.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/windows/recipes/discord-udp.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/windows/recipes/discord-udp.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/recipes/discord-udp.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/recipes/discord-udp.html">Linux</a>
+  <a href="/amneziageo/android/recipes/discord-udp.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.html" aria-current="page">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/">Windows</a></li>
+    <li><a href="/amneziageo/windows/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="discord-where-udp-is-blocked">Discord where UDP is blocked</h1>
+
+<p>The simplest way is the ready template: a new list, the “Only selected” mode, the “Unavailable sites” template. It already holds <code class="language-plaintext highlighter-rouge">geosite:discord</code> - the domains of Discord - and <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code> - the networks of its voice servers from the project’s own database, and “All UDP through the tunnel” is on.</p>
+
+<p>With a list of your own:</p>
+
+<ol>
+  <li>Create a list and name it <code class="language-plaintext highlighter-rouge">discord</code>.</li>
+  <li>
+    <p>Add the rules <code class="language-plaintext highlighter-rouge">geosite:discord</code> and <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code>. Or instead of them add Discord itself in the application rules: then all its traffic goes through the tunnel, wherever it connects.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-discord.png" alt="The list editor: the geosite:discord entry among the rules of the template" width="984" height="752" loading="lazy" /><figcaption>The Discord entry in the list.</figcaption></figure>
+  </li>
+  <li>Turn “All UDP through the tunnel” on: the voice servers of Discord arrive without DNS, and this way voice whose addresses are not in the databases goes into the tunnel too.</li>
+  <li>
+    <p>Since the network cuts UDP, turn WebSocket on in the transport settings: an AmneziaGeo server offers its front itself, for another server set its address, port and authentication if the server requires it.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/en/config-websocket.png" alt="Configuration page: Proxy (WebSocket) is on" width="984" height="752" loading="lazy" /><figcaption>WebSocket in the transport settings. The server address is hidden.</figcaption></figure>
+  </li>
+  <li>Select the <code class="language-plaintext highlighter-rouge">discord</code> list and connect.</li>
+</ol>
+
+<p>Discord text and voice go through the tunnel, everything else goes direct.</p>
+
+<p>More: <a href="../menu/routing.html#new-list">New list</a>, <a href="../menu/routing.html#application-routing">Application routing</a>, <a href="../menu/routing.html#all-udp-through-the-tunnel">All UDP through the tunnel</a>, <a href="../menu/configurations.html#websocket">WebSocket</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

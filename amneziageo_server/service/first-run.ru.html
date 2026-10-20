@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Первый запуск · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Первый администратор, адрес панели, вход, первый интерфейс и клиент, DNS для клиентов.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/first-run.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/first-run.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/first-run.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/first-run.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/first-run.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/first-run.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html" aria-current="page">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+  </ol>
+</nav>
+
+        <h1 id="первый-запуск">Первый запуск</h1>
+
+<p>Если панель ставил <code class="language-plaintext highlighter-rouge">amneziageo-server install</code>, администратор, интерфейс и первый клиент уже есть, а в конце он напечатал адрес панели, логин и временный пароль: переходите к <a href="#вход">входу</a>. Здесь тот же путь руками для панели, поставленной службой из <code class="language-plaintext highlighter-rouge">install.sh</code>.</p>
+
+<h2 id="первый-администратор">Первый администратор</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/amneziageo-server/AmneziaGeo.Server.Cli init --user admin
+</code></pre></div></div>
+
+<p>Без <code class="language-plaintext highlighter-rouge">--user</code> администратором станет учётная запись хоста, от которой запущена утилита, то есть root, без пароля: в браузер такая учётная запись входит только по паролю панели, его ставит <code class="language-plaintext highlighter-rouge">user passwd &lt;логин&gt;</code>.</p>
+
+<p>Утилита спросит пароль дважды. С ключом <code class="language-plaintext highlighter-rouge">--generate</code> она придумает пароль сама и напечатает его один раз строкой <code class="language-plaintext highlighter-rouge">password: ...</code>. Пароль выдаётся временным: при первом входе панель попросит заменить его; <code class="language-plaintext highlighter-rouge">--permanent</code> оставляет пароль как есть. <code class="language-plaintext highlighter-rouge">init</code> работает, только пока в панели нет включённого администратора; дальше учётные записи заводятся в панели или командой <code class="language-plaintext highlighter-rouge">user add</code>, см. <a href="panel/users.ru.html">Пользователи и роли</a>.</p>
+
+<p>Последней строкой утилита называет порт и путь панели. Если служба ещё ни разу не запускалась, настроек в базе нет, и утилита скажет, что их назовёт журнал первого старта. Запуск службы: <code class="language-plaintext highlighter-rouge">systemctl start amneziageo-server</code>.</p>
+
+<h2 id="где-отвечает-панель">Где отвечает панель</h2>
+
+<p>По умолчанию панель слушает только <code class="language-plaintext highlighter-rouge">127.0.0.1:8443</code> без TLS, в сети хоста её не видно. На первом старте она придумывает себе путь вида <code class="language-plaintext highlighter-rouge">/&lt;16 букв и цифр&gt;/</code>, чтобы вход нельзя было угадать, пишет его в журнал и в свою базу:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl -u amneziageo-server | grep "the panel answers"
+</code></pre></div></div>
+
+<p>Адрес, порт и путь панель берёт из <code class="language-plaintext highlighter-rouge">server.env</code> только до первого запуска: на первом старте она записывает их в базу и дальше читает оттуда, см. <a href="panel/server.ru.html#первый-старт">Сервер</a>. Поставить панель в корень до первого старта - строка <code class="language-plaintext highlighter-rouge">Web__Path=/</code> в <code class="language-plaintext highlighter-rouge">server.env</code>; потом путь меняет пункт 10 меню или вкладка «Сервер».</p>
+
+<p>Открыть панель можно двумя способами.</p>
+
+<ul>
+  <li><strong>Через SSH-туннель, без сертификата.</strong> На своём компьютере <code class="language-plaintext highlighter-rouge">ssh -N -L 8443:127.0.0.1:8443 root@&lt;адрес сервера&gt;</code>, в браузере <code class="language-plaintext highlighter-rouge">http://localhost:8443/&lt;путь&gt;/</code>.</li>
+  <li><strong>В сети по TLS.</strong> Пункт 22 меню <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code> выпускает сертификат Let’s Encrypt на имя сервера (имя должно указывать на хост, TCP 80 свободен) или берёт готовые файлы, ставит их панели и предлагает открыть её на всех адресах хоста; дальше панель отвечает на <code class="language-plaintext highlighter-rouge">https://&lt;имя&gt;:8443/&lt;путь&gt;/</code>. То же руками: вкладка <a href="panel/certificates.ru.html">Сертификаты</a>, затем <a href="panel/server.ru.html">Сервер</a> &gt; «Слушать на адресах» &gt; «Все адреса»; или строки <code class="language-plaintext highlighter-rouge">Web__Listen__0=*:8443</code>, <code class="language-plaintext highlighter-rouge">Web__Certificate</code> и <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code> в <code class="language-plaintext highlighter-rouge">server.env</code> до первого старта.</li>
+</ul>
+
+<p>Порт панели в брандмауэре хоста открывает пункт 23 меню или кнопка «Открыть» под полем порта на вкладке «Сервер», см. <a href="panel/interfaces.ru.html#порты-в-брандмауэре">Порты в брандмауэре</a>.</p>
+
+<h2 id="вход">Вход</h2>
+
+<p>Страница входа спрашивает имя и пароль; над формой стоят переключатели темы и языка, чтобы браузер без русского и английского не остался ни с чем. Временный пароль панель просит заменить сразу: «Пароль выдан администратором, замените его». Десять промахов закрывают вход на пятнадцать минут. Что видно после входа - <a href="panel/index.ru.html">Панель</a>.</p>
+
+<h2 id="первый-интерфейс">Первый интерфейс</h2>
+
+<p>«Интерфейсы» &gt; «Добавить». Панель предлагает заготовку, которая уже сходится: имя <code class="language-plaintext highlighter-rouge">awg0</code>, UDP-порт 51820 или первый свободный выше, сеть <code class="language-plaintext highlighter-rouge">10.8.0.1/24</code>, MTU 1420, keepalive 25, DNS <code class="language-plaintext highlighter-rouge">1.1.1.1</code> и <code class="language-plaintext highlighter-rouge">1.0.0.1</code>, новая пара ключей и случайная обфускация. Проверьте четыре вещи.</p>
+
+<ol>
+  <li><strong>Хост</strong> - адрес или имя, по которому клиенты найдут сервер; он идёт в строку <code class="language-plaintext highlighter-rouge">Endpoint</code> файлов клиентов. Панель подставляет имя другого интерфейса, домен сертификата панели или публичный IPv4 хоста, если знает их; без хоста включённый интерфейс не сохранится.</li>
+  <li><strong>NAT для клиентов</strong> - включён, чтобы клиенты выходили в интернет под адресом хоста.</li>
+  <li><strong>Порт</strong> и <strong>Порт сервисов</strong> - если брандмауэр хоста закрывает их, форма говорит это под полем и предлагает «Открыть при сохранении».</li>
+  <li><strong>WebSocket прокси</strong> - по желанию, для сетей, где проходит только веб-трафик; если прокси не запустится, панель снимет отметку и назовёт причину.</li>
+</ol>
+
+<p>«Сохранить» кладёт интерфейс в ядро. Поля подробно - <a href="panel/interfaces.ru.html">Интерфейсы</a>.</p>
+
+<h2 id="первый-клиент">Первый клиент</h2>
+
+<p>«Клиенты» &gt; «Добавить»: имя, интерфейс, адрес из сети интерфейса (первый свободный уже подставлен), ключи сгенерированы. После «Сохранить» клиент открывается на вкладке «Экспорт»: файл <code class="language-plaintext highlighter-rouge">.conf</code>, ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> и адрес подписки, каждый QR-кодом, с копированием и скачиванием. Подробно - <a href="panel/clients.ru.html">Клиенты</a>.</p>
+
+<p>На устройстве конфигурацию принимает клиент AmneziaGeo для Windows, Linux и Android, он описан на <a href="https://bor-project.github.io/amneziageo/index.ru.html">своём сайте</a>, или любое другое приложение AmneziaWG. Одна конфигурация - одно устройство: два устройства с одним ключом отбирают сессию друг у друга, каждому человеку на каждое устройство заводится свой клиент.</p>
+
+<h2 id="dns-для-клиентов">DNS для клиентов</h2>
+
+<p>Свежая панель держит резолвер выключенным: клиенты получают в конфигурации серверы имён и спрашивают их через туннель открытым DNS. Пункт 29 меню <code class="language-plaintext highlighter-rouge">DNS for Clients</code>, команда <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> или отметка «Отвечать клиентам» на странице <a href="panel/dns.ru.html">DNS</a> включают резолвер панели: клиенты спрашивают имена у сервера, сервер спрашивает внешние серверы по HTTPS, и правила маршрутизации по доменам начинают работать.</p>
+
+<h2 id="проверка">Проверка</h2>
+
+<p><code class="language-plaintext highlighter-rouge">systemctl status amneziageo-server</code> показывает <code class="language-plaintext highlighter-rouge">active (running)</code>; <code class="language-plaintext highlighter-rouge">amneziageo-server status</code> (пункт 18 меню) печатает службу, ответ панели и версию, модуль, пересылку и строку служб. В панели карточка «Службы» на <a href="panel/overview.ru.html#службы">Обзоре</a> перечисляет подписки, каждый интерфейс, резолвер и сертификаты с тем, что мешает им работать. Интерфейс на хосте: <code class="language-plaintext highlighter-rouge">ip -d link show type amneziawg</code> и <code class="language-plaintext highlighter-rouge">amneziageo-server device list</code>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

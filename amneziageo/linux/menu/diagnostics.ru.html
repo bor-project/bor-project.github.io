@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Диагностика · Linux · AmneziaGeo</title>
+    <meta name="description" content="Журнал и текущая конфигурация">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/menu/diagnostics.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/menu/diagnostics.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/menu/diagnostics.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/linux/menu/diagnostics.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/menu/diagnostics.ru.html">Windows</a>
+  <a href="/amneziageo/linux/menu/diagnostics.ru.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/menu/diagnostics.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.ru.html" aria-current="page">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/index.ru.html">Linux</a></li>
+    <li><a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a></li>
+  </ol>
+</nav>
+
+        <h1 id="диагностика">Диагностика</h1>
+
+<h2 id="журнал">Журнал</h2>
+
+<p>«Журнал» выбирает, что показывать: журнал агента, журнал резолвера, журнал маршрутов, активные подключения и текущую конфигурацию. У журналов агента и резолвера есть «Уровень» записи: none, error, warning, info, debug, trace; он же <code class="language-plaintext highlighter-rouge">amneziageo settings set log-level</code>. У журнала маршрутов - переключатель «Записывать подключения в журнал»: маршруты и найденные адреса доменов попадают в журнал только с ним. «Обновлять» подтягивает новые записи; пока нажат Ctrl, обновление стоит. Поиск находит строки по тексту, «Загрузить ранее» листает назад. «Очистить» стирает журнал, «Копировать видимое» кладёт показанные строки в буфер обмена, «Экспорт» сохраняет журнал в файл. Строка журнала: время · [уровень] · компонент · сообщение.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/diag-routes.png" alt="Журнал маршрутов с поиском youtube: разрешённые адреса и решение по правилу" width="984" height="752" loading="lazy" /><figcaption>Журнал маршрутов, поиск по youtube.</figcaption></figure>
+
+<p>Активные подключения показывают каждый адрес, который решает туннель, и почему: туннель, напрямую или блок - по диапазону, по имени, по приложению, «весь UDP», адрес домена, из конфига, служебный или вне правил. «Куда» отбирает по решению, а сводка считает адреса: через туннель, напрямую, заблокировано, вне правил. Из консоли то же показывает <code class="language-plaintext highlighter-rouge">amneziageo sessions</code>.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/diag-active.png" alt="Активные подключения с поиском youtube: адрес, домен, путь и причина" width="984" height="752" loading="lazy" /><figcaption>Активные подключения, поиск по youtube.</figcaption></figure>
+
+<p>«Собрать архив» складывает журналы, настройки и состояние туннеля в один zip-архив для поддержки; ключи и пароли в нём скрыты. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo diag collect</code>.</p>
+
+<h2 id="проверка-маршрута-и-скорости">Проверка маршрута и скорости</h2>
+
+<p>Проба отвечает на вопрос «куда на самом деле пошло соединение». Укажите домен или адрес и путь: <strong>авто</strong> - как решат правила, <strong>туннель</strong> или <strong>мимо</strong> - принудительно.</p>
+
+<p>В отчёте: каким путём ушёл трафик и по какому правилу (<code class="language-plaintext highlighter-rouge">туннель по правилу</code>, <code class="language-plaintext highlighter-rouge">мимо по умолчанию</code>, <code class="language-plaintext highlighter-rouge">блок по правилу</code>), отклик, джиттер, потери, размер проходящих пакетов, скорость приёма и отдачи. Скорость меряется против сервиса замера, по умолчанию <code class="language-plaintext highlighter-rouge">https://speed.cloudflare.com/__up</code>, адрес меняется в настройках пробы.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/diag-probe.png" alt="Проба www.youtube.com через туннель: отклик, приём и отдача, все проверки в норме" width="984" height="752" loading="lazy" /><figcaption>Проба: куда ушло соединение и какая скорость.</figcaption></figure>
+
+<p>Сервер AmneziaGeo меряет скорость сам. Там, где он это предлагает, проба и замер канала меряют против него, внутри туннеля или мимо него, и настройки пробы говорят об этом под полем. Адрес, вписанный в поле, главнее.</p>
+
+<h3 id="настройки-пробы">Настройки пробы</h3>
+
+<p>«Сервис для проверки скорости передачи данных» - адрес, против которого меряется скорость. Пустое поле значит умолчание: <code class="language-plaintext highlighter-rouge">https://speed.cloudflare.com/__up</code> или сервер AmneziaGeo выбранной конфигурации, если он предлагает замер.</p>
+
+<h2 id="текущая-конфигурация">Текущая конфигурация</h2>
+
+<p>Текст конфигурации, которую возьмёт следующее подключение, как его собрал агент: адреса, MTU, резолверы и <code class="language-plaintext highlighter-rouge">AllowedIPs</code>. Это чтение, не редактор; истории у вкладки нет, она обновляется сама.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/diag-config.png" alt="Текущая конфигурация: состояние, маршрутизация и транспорт" width="984" height="752" loading="lazy" /><figcaption>Текущая конфигурация. Адреса в туннеле скрыты.</figcaption></figure>
+
+<p>Из консоли то же показывает <code class="language-plaintext highlighter-rouge">amneziageo runtime</code>, см. <a href="../cli.ru.html">Командная строка</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Channel group with a fallback · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Several channels under one name: by priority, round robin, per client.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/recipes/channel-group.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/recipes/channel-group.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/recipes/channel-group.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/recipes/channel-group.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/recipes/channel-group.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/recipes/channel-group.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/recipes/channel-group.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html" aria-current="page">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="channel-group-with-a-fallback">Channel group with a fallback</h1>
+
+<p>The task: the traffic of a rule leaves through one of several servers, and when one fails, the rule moves to another by itself. Several channels are gathered into a group, and the rule names the group.</p>
+
+<h2 id="1-channels">1. Channels</h2>
+
+<p>Make two or more channels, as in the recipe <a href="another-server.html">Exit through another server</a>, for example <code class="language-plaintext highlighter-rouge">awg-de</code> and <code class="language-plaintext highlighter-rouge">awg-nl</code>, each with its own reachability check: a name server and a period. Without a check a channel counts as alive by the age of its handshake, with it by the answer to a question through the tunnel, and two misses in a row take the channel out of the group, one answer brings it back.</p>
+
+<h2 id="2-group">2. Group</h2>
+
+<p>“Routing” &gt; “Channels” &gt; “Groups” &gt; “Add”:</p>
+
+<ol>
+  <li>“Name” <code class="language-plaintext highlighter-rouge">europe</code>; the name cannot be the same as the name of a channel.</li>
+  <li>“Strategy”:
+    <ul>
+      <li>“Priority”: the first live channel of the list, and when it falls silent the next one; a main one and a spare;</li>
+      <li>“Round”: new connections over the live channels in turn; spreading the load;</li>
+      <li>“By client”: a channel by the address of the client: one client keeps one channel until the set of live ones changes; for services that care that the sessions of one person come from one address.</li>
+    </ul>
+  </li>
+  <li>“Channels”: <code class="language-plaintext highlighter-rouge">awg-de</code>, <code class="language-plaintext highlighter-rouge">awg-nl</code> in the order of choice.</li>
+  <li>“Enabled”, “Save”.</li>
+</ol>
+
+<p>In the list of the group the live members are marked “on the host”.</p>
+
+<h2 id="3-rule">3. Rule</h2>
+
+<p>In a “Through a channel” rule choose the group <code class="language-plaintext highlighter-rouge">europe</code> in the “Channel” field; in the list of rules such a channel is marked “group”. When no member carries, the traffic of the rule is dropped.</p>
+
+<h2 id="what-happens-on-a-failure">What happens on a failure</h2>
+
+<p>The group reads its live members every fifteen seconds, and when the set changes, the rule set goes on the host again: the traffic of the rule moves to the next channel without anyone’s help. A connection opened through the failed channel does not move: the decision was made on its first packet, and the client opens a new one. When no member carries, the rule shows “traffic held” with “No channel of the group answers”. A change in the panel does not wait for the round: a channel turned off or taken out of the group leaves the set at once.</p>
+
+<p>The resolver can ask through a group too: “Ask through the channel” on the DNS page takes the first live member of a “Priority” group and hands out the questions in turn for a “Round” group.</p>
+
+<h2 id="check">Check</h2>
+
+<p>“Routing” &gt; “Test” with a name from the rule shows “Through europe” and the members of the group with the marks “carries”, “spare”, “down”, “off” and which one is picked. Take one channel down (turn it off with its switch) and repeat: another member is picked.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

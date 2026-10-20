@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>First run · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="The first administrator, the address of the panel, signing in, the first interface and client, DNS for the clients.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/first-run.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/first-run.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/first-run.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/first-run.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/first-run.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/first-run.html">Service</a>
+  <a href="/amneziageo_server/docker/first-run.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html" aria-current="page">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+  </ol>
+</nav>
+
+        <h1 id="first-run">First run</h1>
+
+<p>If <code class="language-plaintext highlighter-rouge">amneziageo-server install</code> put the panel on, the administrator, the interface and the first client are already there, and at the end it printed the address of the panel, the login and the temporary password: go on to <a href="#signing-in">signing in</a>. Here is the same path by hand for a panel installed with your own <code class="language-plaintext highlighter-rouge">compose.yaml</code>.</p>
+
+<h2 id="the-first-administrator">The first administrator</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /opt/amneziageo-docker
+docker compose exec panel amneziageo-server init --user admin
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">--user</code> key is required in the container: the accounts of the host do not reach into it.</p>
+
+<p>The utility asks for the password twice. With the <code class="language-plaintext highlighter-rouge">--generate</code> key it makes up a password itself and prints it once as a line <code class="language-plaintext highlighter-rouge">password: ...</code>. The password is temporary: at the first sign-in the panel asks to replace it; <code class="language-plaintext highlighter-rouge">--permanent</code> keeps the password as it is. <code class="language-plaintext highlighter-rouge">init</code> works only while the panel has no enabled administrator; after that accounts are made in the panel or with <code class="language-plaintext highlighter-rouge">user add</code>, see <a href="panel/users.html">Users and roles</a>.</p>
+
+<p>The last line of the utility names the port and the path of the panel.</p>
+
+<h2 id="where-the-panel-answers">Where the panel answers</h2>
+
+<p>By default the panel listens only on <code class="language-plaintext highlighter-rouge">127.0.0.1:8443</code> without TLS and cannot be seen in the network of the host. At its first start it makes up a path like <code class="language-plaintext highlighter-rouge">/&lt;16 letters and digits&gt;/</code>, so that the sign-in cannot be guessed, and writes it to its log and its database:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose logs | grep "the panel answers"
+</code></pre></div></div>
+
+<p>The panel takes its address, port and path from <code class="language-plaintext highlighter-rouge">server.env</code> only before its first start: at the first start it writes them to the database and reads them from there afterwards, see <a href="panel/server.html#first-start">Server</a>. To put the panel at the root before the first start, add the line <code class="language-plaintext highlighter-rouge">Web__Path=/</code> to <code class="language-plaintext highlighter-rouge">server.env</code>; later the path is changed by menu item 10 or the “Server” tab.</p>
+
+<p>The panel can be opened in two ways.</p>
+
+<ul>
+  <li><strong>Through an SSH tunnel, without a certificate.</strong> On your computer <code class="language-plaintext highlighter-rouge">ssh -N -L 8443:127.0.0.1:8443 root@&lt;server address&gt;</code>, in the browser <code class="language-plaintext highlighter-rouge">http://localhost:8443/&lt;path&gt;/</code>.</li>
+  <li><strong>In the network over TLS.</strong> Menu item 22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code> gets a Let’s Encrypt certificate for the name of the server (the name must point at the host, TCP 80 must be free) or takes ready files, puts them on the panel and offers to open it on every address of the host; after that the panel answers at <code class="language-plaintext highlighter-rouge">https://&lt;name&gt;:8443/&lt;path&gt;/</code>. The same by hand: the <a href="panel/certificates.html">Certificates</a> tab, then <a href="panel/server.html">Server</a> &gt; “Listen addresses” &gt; “Every address”; or the lines <code class="language-plaintext highlighter-rouge">Web__Listen__0=*:8443</code>, <code class="language-plaintext highlighter-rouge">Web__Certificate</code> and <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code> in <code class="language-plaintext highlighter-rouge">server.env</code> before the first start.</li>
+</ul>
+
+<p>The port of the panel in the firewall of the host is opened by menu item 23 or the “Open” button under the port field on the “Server” tab, see <a href="panel/interfaces.html#ports-in-the-firewall">Ports in the firewall</a>.</p>
+
+<h2 id="signing-in">Signing in</h2>
+
+<p>The sign-in page asks for the name and the password; above the form stand the theme and language switches, so that a browser with neither Russian nor English is not left with nothing. The panel asks to replace a temporary password at once: “The password came from an administrator, replace it”. Ten misses close the sign-in for fifteen minutes. What you see after signing in: <a href="panel/index.html">Panel</a>.</p>
+
+<h2 id="the-first-interface">The first interface</h2>
+
+<p>“Interfaces” &gt; “Add”. The panel offers a draft that already fits together: the name <code class="language-plaintext highlighter-rouge">awg0</code>, UDP port 51820 or the first free one above it, the network <code class="language-plaintext highlighter-rouge">10.8.0.1/24</code>, MTU 1420, keepalive 25, DNS <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>, a new key pair and random obfuscation. Check four things.</p>
+
+<ol>
+  <li><strong>Host</strong>: the address or name at which the clients find the server; it goes into the <code class="language-plaintext highlighter-rouge">Endpoint</code> line of the client files. The panel fills in the name of another interface, the domain of the certificate of the panel or the public IPv4 of the host when it knows them; an enabled interface without a host is not saved.</li>
+  <li><strong>NAT for clients</strong>: on, so that the clients go out to the internet under the address of the host.</li>
+  <li><strong>Port</strong> and <strong>Services port</strong>: if the firewall of the host closes them, the form says so under the field and offers “Open on save”.</li>
+  <li><strong>WebSocket proxy</strong>: optional, for networks that let only web traffic through; if the proxy does not start, the panel clears the box and names the reason.</li>
+</ol>
+
+<p>“Save” puts the interface into the kernel. The fields in detail: <a href="panel/interfaces.html">Interfaces</a>.</p>
+
+<h2 id="the-first-client">The first client</h2>
+
+<p>“Clients” &gt; “Add”: a name, an interface, an address from the network of the interface (the first free one is already filled in), the keys are generated. After “Save” the client opens on the “Export” tab: the <code class="language-plaintext highlighter-rouge">.conf</code> file, the <code class="language-plaintext highlighter-rouge">vpn://</code> link and the subscription address, each as a QR code, with copying and downloading. In detail: <a href="panel/clients.html">Clients</a>.</p>
+
+<p>On the device the configuration is taken by the AmneziaGeo client for Windows, Linux and Android, described on <a href="https://bor-project.github.io/amneziageo/">its own site</a>, or by any other AmneziaWG app. One configuration, one device: two devices with one key take the session from each other, so every person gets a client of their own for every device.</p>
+
+<h2 id="dns-for-the-clients">DNS for the clients</h2>
+
+<p>A fresh panel keeps the resolver off: the clients get name servers in their configuration and ask them through the tunnel in plain DNS. Menu item 29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>, the command <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> or “Answer the clients” on the <a href="panel/dns.html">DNS</a> page turn the resolver of the panel on: the clients ask the server for names, the server asks upstream servers over HTTPS, and routing rules by domains start to work.</p>
+
+<h2 id="check">Check</h2>
+
+<p><code class="language-plaintext highlighter-rouge">docker compose ps</code> shows the container <code class="language-plaintext highlighter-rouge">healthy</code>; <code class="language-plaintext highlighter-rouge">amneziageo-server status</code> (menu item 18) prints the service, the answer of the panel and its version, the module, forwarding and the services line. In the panel the “Services” card on the <a href="panel/overview.html#services">Overview</a> lists the subscriptions, every interface, the resolver and the certificates with what keeps them from working. The interface on the host: <code class="language-plaintext highlighter-rouge">ip -d link show type amneziawg</code> and <code class="language-plaintext highlighter-rouge">amneziageo-server device list</code>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

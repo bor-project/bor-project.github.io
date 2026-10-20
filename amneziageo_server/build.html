@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>For developers · AmneziaGeo Server</title>
+    <meta name="description" content="The layout of the repository, building the server, the panel and the submodules, the release archive and the image, releases, the documentation site.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/build.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/build.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/build.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/build.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/build.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-nav" aria-label="Installation">
+  <p class="sidebar-label">Installation</p>
+  <a href="/amneziageo_server/service/">Service</a>
+  <a href="/amneziageo_server/docker/">Docker</a></nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html" aria-current="page">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="for-developers">For developers</h1>
+
+<p>The repository is <a href="https://github.com/bor-project/amneziageo_server">bor-project/amneziageo_server</a>. The server is written in .NET, the panel in React; the kernel module and the WebSocket proxy are submodules.</p>
+
+<h2 id="what-is-where">What is where</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Path</th>
+      <th>What</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Core</code></td>
+      <td>domain types, interfaces, rules</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Dal</code></td>
+      <td>EF Core over SQLite, account stores and migrations</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Awg</code></td>
+      <td>driving the kernel through generic netlink</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Auth</code></td>
+      <td>accounts, roles as claims, passwords and tokens</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Api</code></td>
+      <td>the HTTP API and the built web interface</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Cli</code></td>
+      <td>the console utility</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-web</code></td>
+      <td>the interface of the panel, React and Vite</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-tests</code></td>
+      <td>tests</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziawg</code></td>
+      <td>the kernel module as a submodule</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">wstunnel</code></td>
+      <td>the WebSocket proxy as a submodule</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">deploy</code></td>
+      <td>the systemd service, the installer of the service, the console menu, the container</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">docs</code></td>
+      <td>the English reference by section and this site</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tools</code></td>
+      <td>the generator of netlink constants and the site preview</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The English reference lies in <code class="language-plaintext highlighter-rouge">docs/*.md</code>, one file per section, linked from the README. It is written together with the code and describes the API routes, the refusal codes and how the parts work; this site retells it for an administrator.</p>
+
+<h2 id="submodules">Submodules</h2>
+
+<p>Both submodules are forks in <code class="language-plaintext highlighter-rouge">bor-project</code>, pinned to a commit:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule update --init --recursive
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Submodule</th>
+      <th>What for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziawg/amneziawg-linux-kernel-module</code></td>
+      <td><code class="language-plaintext highlighter-rouge">src/uapi/wireguard.h</code> is the source of the C# constants, and the module tree itself for kernels the Amnezia PPA lacks</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">wstunnel/wstunnel</code></td>
+      <td>carries the UDP of an interface inside WebSocket</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>After the module submodule moves, the constants are regenerated: <code class="language-plaintext highlighter-rouge">python3 tools/generate-uapi.py</code>.</p>
+
+<p>Building and loading the module from the tree:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make -C amneziawg/amneziawg-linux-kernel-module/src -j"$(nproc)"
+sudo cp amneziawg/amneziawg-linux-kernel-module/src/amneziawg.ko /lib/modules/"$(uname -r)"/updates/
+sudo depmod -a &amp;&amp; sudo modprobe amneziawg
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">insmod</code> on the built file fails with <code class="language-plaintext highlighter-rouge">Unknown symbol</code>: the module needs <code class="language-plaintext highlighter-rouge">libcurve25519</code> and <code class="language-plaintext highlighter-rouge">udp_tunnel</code>, and only <code class="language-plaintext highlighter-rouge">modprobe</code> pulls them in. The <code class="language-plaintext highlighter-rouge">amneziawg-tools</code> package is not needed: the server talks to the kernel over netlink itself, and <code class="language-plaintext highlighter-rouge">ip link add dev &lt;name&gt; type amneziawg</code> needs iproute2 alone.</p>
+
+<p><code class="language-plaintext highlighter-rouge">wstunnel</code> builds like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo build --release --manifest-path wstunnel/wstunnel/Cargo.toml -p wstunnel-cli
+</code></pre></div></div>
+
+<p>The release archive takes a static musl build of it (<code class="language-plaintext highlighter-rouge">x86_64-unknown-linux-musl</code> or <code class="language-plaintext highlighter-rouge">aarch64-unknown-linux-musl</code>), so that the binary runs on any glibc of the host: this needs the target (<code class="language-plaintext highlighter-rouge">rustup target add x86_64-unknown-linux-musl</code>) and <code class="language-plaintext highlighter-rouge">musl-gcc</code> from <code class="language-plaintext highlighter-rouge">musl-tools</code>. The image builds its own against the glibc of the image.</p>
+
+<h2 id="building">Building</h2>
+
+<p>You need the .NET 10 SDK and Node.js 22.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet build AmneziaGeo.Server.slnx
+npm --prefix amneziageo-web install
+npm --prefix amneziageo-web run build
+</code></pre></div></div>
+
+<p>The build of the panel puts it into <code class="language-plaintext highlighter-rouge">wwwroot</code> of the API project, and the server serves it from the same port.</p>
+
+<h2 id="running">Running</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet run --project amneziageo-server/AmneziaGeo.Server.Api
+</code></pre></div></div>
+
+<p>The panel is at <code class="language-plaintext highlighter-rouge">http://&lt;address&gt;:8443/</code>. While the interface is being edited, Vite runs next to it: it reloads the page on every change and passes <code class="language-plaintext highlighter-rouge">/api</code> to the server.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm --prefix amneziageo-web run dev
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>What answers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://&lt;host&gt;:8443/</code></td>
+      <td>the server with the built interface</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://&lt;host&gt;:5173/</code></td>
+      <td>Vite, <code class="language-plaintext highlighter-rouge">/api</code> goes to port 8443</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The first administrator is made from the console, once:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet run --project amneziageo-server/AmneziaGeo.Server.Cli -- init
+</code></pre></div></div>
+
+<p>The same utility reads and changes the interfaces in the kernel; reading and writing want <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo dotnet run --project amneziageo-server/AmneziaGeo.Server.Cli -- device show
+</code></pre></div></div>
+
+<p>The data paths are set by the variables <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_DB</code> (the database, <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/server.db</code> by default) and <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_SIGNING_KEY</code> (the token signing key, <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/signing.pem</code>).</p>
+
+<p>The strings of the interface lie in <code class="language-plaintext highlighter-rouge">amneziageo-web/src/i18n/en.ts</code> and <code class="language-plaintext highlighter-rouge">ru.ts</code>; a string added without its Russian pair breaks the build. The server answers a refusal with a code, not a phrase, and the panel translates the code itself.</p>
+
+<h2 id="archive-and-image">Archive and image</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./deploy/publish.sh
+</code></pre></div></div>
+
+<p>It builds the panel, publishes the server and the utility for <code class="language-plaintext highlighter-rouge">linux-x64</code> with the runtime inside and writes <code class="language-plaintext highlighter-rouge">out/amneziageo-server.tar.gz</code>, about 50 MB; <code class="language-plaintext highlighter-rouge">./deploy/publish.sh --ui</code> builds the web interface alone into <code class="language-plaintext highlighter-rouge">out/amneziageo-web.tar.gz</code>. The archive goes on the host with its <code class="language-plaintext highlighter-rouge">install.sh</code>, see <a href="/amneziageo_server/service/install.html#by-hand">Installation</a>.</p>
+
+<p>The image for amd64 and arm64:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker buildx build -f deploy/docker/Dockerfile --platform linux/amd64,linux/arm64 -t amneziageo-server:&lt;version&gt; .
+</code></pre></div></div>
+
+<p>The layers of the image go from those that change rarely to those every release changes, so an update pulls only the top ones.</p>
+
+<h2 id="releases">Releases</h2>
+
+<p>A release is a <code class="language-plaintext highlighter-rouge">vX.Y.Z.W</code> tag on a commit of the <code class="language-plaintext highlighter-rouge">master</code> branch; a tag outside <code class="language-plaintext highlighter-rouge">master</code> builds nothing. The workflow <code class="language-plaintext highlighter-rouge">.github/workflows/release.yml</code> builds archives for x64 and arm64, next to each of them its files one by one (<code class="language-plaintext highlighter-rouge">.pack</code>) and their list (<code class="language-plaintext highlighter-rouge">.files</code>), the image <code class="language-plaintext highlighter-rouge">ghcr.io/bor-project/amneziageo-server</code> for both platforms and the manifest <code class="language-plaintext highlighter-rouge">update.json</code> with the version, the image by digest and the digests of the archives; <code class="language-plaintext highlighter-rouge">update.json.sig</code> signs the manifest with the release key. A tag with a fourth number above zero or with a suffix makes a pre-release. The panel checks the signature of the manifest with the key it carries inside and offers a release only with a valid signature, see <a href="/amneziageo_server/service/panel/overview.html#updates">Updates</a>.</p>
+
+<h2 id="this-site">This site</h2>
+
+<p>Jekyll builds the site from <code class="language-plaintext highlighter-rouge">docs/</code> the same way as the client site: the shared text of the pages lies in <code class="language-plaintext highlighter-rouge">docs/_includes/en/</code> and <code class="language-plaintext highlighter-rouge">docs/_includes/ru/</code>, the wrapper pages for each way of installation and language (<code class="language-plaintext highlighter-rouge">&lt;topic&gt;.md</code> and <code class="language-plaintext highlighter-rouge">&lt;topic&gt;.ru.md</code>) in <code class="language-plaintext highlighter-rouge">docs/service/</code> and <code class="language-plaintext highlighter-rouge">docs/docker/</code>, the table of contents in <code class="language-plaintext highlighter-rouge">docs/_data/toc.yml</code>, the ways of installation in <code class="language-plaintext highlighter-rouge">docs/_data/kinds.yml</code>. Text that differs branches on Liquid conditions by the <code class="language-plaintext highlighter-rouge">page.kind</code> field of the wrapper page (<code class="language-plaintext highlighter-rouge">service</code> or <code class="language-plaintext highlighter-rouge">docker</code>). Screenshots come in through <code class="language-plaintext highlighter-rouge">shot.html</code> from <code class="language-plaintext highlighter-rouge">docs/assets/img/&lt;language&gt;/</code>; when there is no shot in the language of the page, the English one is taken, and the check counts it.</p>
+
+<p>Preview: <code class="language-plaintext highlighter-rouge">tools/docs-site.sh serve</code> builds the site as GitHub Pages does and serves it at <code class="language-plaintext highlighter-rouge">http://127.0.0.1:4001/amneziageo_server/</code>, rebuilding on save; in VS Code this is F5 “Docs Site”. On Windows the script runs in WSL, takes the <code class="language-plaintext highlighter-rouge">github-pages</code> and <code class="language-plaintext highlighter-rouge">webrick</code> gems from <code class="language-plaintext highlighter-rouge">~/ag-docs</code> (the <code class="language-plaintext highlighter-rouge">AG_DOCS_GEMS</code> variable) and keeps the built site in <code class="language-plaintext highlighter-rouge">~/ag-server-docs</code> (<code class="language-plaintext highlighter-rouge">AG_SERVER_DOCS_HOME</code>). <code class="language-plaintext highlighter-rouge">tools/docs-site.sh check</code> checks the built site: links, anchors, Liquid leftovers, placeholders, shots in another language and long dashes in the sources.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

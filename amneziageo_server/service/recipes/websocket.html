@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tunnel inside WebSocket · Service · AmneziaGeo Server</title>
+    <meta name="description" content="For networks that let only web traffic through.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/recipes/websocket.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/recipes/websocket.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/recipes/websocket.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/recipes/websocket.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/recipes/websocket.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/recipes/websocket.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/recipes/websocket.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html" aria-current="page">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="tunnel-inside-websocket">Tunnel inside WebSocket</h1>
+
+<p>The task: the client sits in a network where UDP does not pass or only web traffic passes. The interface also carries the tunnel inside WebSocket on its TCP port; the AmneziaGeo app learns this way in from the server, and whether to turn WebSocket on is up to the owner of the device.</p>
+
+<h2 id="1-interface">1. Interface</h2>
+
+<p>“Interfaces” &gt; the interface &gt; “Settings”:</p>
+
+<ol>
+  <li>“WebSocket proxy” on.</li>
+  <li>“Services port”: the TCP port on which WebSocket, hello and the speed test answer. Empty means the number of the UDP port of the interface. For the tunnel to look like an ordinary site, set 443; several interfaces can share one services port, and the panel can answer on it too, if you name the same port on the <a href="../panel/server.html">Server</a> tab.</li>
+  <li>“WebSocket path”: the part of the address under which WebSocket comes; a new interface has one made up, and there is no need to pick it. The path must not be the same as the path of the panel, of subscriptions or of the WebSocket of another interface on the same port.</li>
+  <li>“Save”. If the front did not come up or another program holds the port, the panel clears the box and names the reason under it.</li>
+</ol>
+
+<p>The front is the service <code class="language-plaintext highlighter-rouge">amneziageo-proxy@&lt;interface&gt;</code>; item 26 of the console menu shows the fronts, restarts them and reads their logs. The TCP services port must be open in the firewall: the “Open” button under the field or item 23 of the menu, sub-item 6.</p>
+
+<h2 id="2-client">2. Client</h2>
+
+<p>Nothing needs changing for the client: the AmneziaGeo app asks the hello of the interface and learns the port and path of WebSocket from it. If the services port is moved, the file of the client carries the line <code class="language-plaintext highlighter-rouge"># AmneziaGeo Services = &lt;port&gt;</code>, and the client gets a new file from the “Export” tab or through the subscription. On the device WebSocket is turned on with the “Proxy” switch in the transport settings of the configuration, as described on the <a href="https://bor-project.github.io/amneziageo/">client site</a>.</p>
+
+<p>Another AmneziaWG app does not open WebSocket by itself: it needs a <code class="language-plaintext highlighter-rouge">wstunnel</code> of its own on the device that dials <code class="language-plaintext highlighter-rouge">wss://&lt;host&gt;:&lt;services port&gt;/&lt;path&gt;</code> and puts a local UDP port in place of the server. A client whose front was written by hand passes the same way: WebSocket lets in by the path, not by the file of the panel.</p>
+
+<h2 id="3-check">3. Check</h2>
+
+<p>The “Services” card on the <a href="../panel/overview.html#services">Overview</a> shows the “WebSocket” part on the interface; “the WebSocket front does not run”, “fell over” or “does not listen” name a trouble with the front, “the firewall of the host keeps <port> closed" one with the firewall. On a device in a network without UDP the tunnel comes up over TCP.</port></p>
+
+<p>The same port and path take a WebSocket channel of another AmneziaGeo server: there it is a channel of the “WebSocket” type with the proxy <code class="language-plaintext highlighter-rouge">wss://&lt;host&gt;:&lt;services port&gt;/&lt;path&gt;</code>, see <a href="another-server.html">Exit through another server</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

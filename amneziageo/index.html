@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overview · AmneziaGeo</title>
+    <meta name="description" content="AmneziaWG VPN client for Windows, Linux and Android that routes by geosite and geoip databases - site categories, countries, domains, address ranges and applications. Multiple simultaneous VPN connections on Windows.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/index.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/index.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/index.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Devices">
+  <p class="sidebar-label">Devices</p>
+  <a href="/amneziageo/windows/">Windows</a>
+  <a href="/amneziageo/linux/">Linux</a>
+  <a href="/amneziageo/android/">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="amneziageo">AmneziaGeo</h1>
+
+<p>A cross-platform VPN client for Windows, Linux and Android on the AmneziaWG engine - a WireGuard fork that resists blocking. It connects to your own server, brings up a network interface, installs routes and applies the DNS from the configuration: everything behind the server is reachable as if you were on its network.</p>
+
+<p>Split tunneling decides what goes through the VPN: site categories and countries from the geo databases, individual domains, address ranges or applications. The rest keeps going direct. On Windows, you can connect to multiple VPN servers simultaneously and send different routing rules through different servers.</p>
+
+<h2 id="choose-your-device">Choose your device</h2>
+
+<ul class="device-cards">
+  <li>
+    <a class="device-card-title" href="/amneziageo/windows/">Windows</a>
+    <span>Windows 7, 10 and 11, x64 and ARM64</span>
+    <span class="device-card-links"><a href="/amneziageo/windows/install.html">Installation</a> · <a href="/amneziageo/windows/first-config.html">First configuration</a></span>
+  </li>
+  <li>
+    <a class="device-card-title" href="/amneziageo/linux/">Linux</a>
+    <span>deb packages for amd64 and arm64, desktop and server</span>
+    <span class="device-card-links"><a href="/amneziageo/linux/install.html">Installation</a> · <a href="/amneziageo/linux/first-config.html">First configuration</a></span>
+  </li>
+  <li>
+    <a class="device-card-title" href="/amneziageo/android/">Android</a>
+    <span>Android 7.0 or newer, phones, tablets and TVs</span>
+    <span class="device-card-links"><a href="/amneziageo/android/install.html">Installation</a> · <a href="/amneziageo/android/first-config.html">First configuration</a></span>
+  </li>
+</ul>
+
+<h2 id="geo-databases">Geo databases</h2>
+
+<p>A geo database is a <code class="language-plaintext highlighter-rouge">geosite.dat</code> or <code class="language-plaintext highlighter-rouge">geoip.dat</code> file in the v2ray and Xray format. <code class="language-plaintext highlighter-rouge">geosite</code> holds domain categories: services and topics such as <code class="language-plaintext highlighter-rouge">youtube</code>, <code class="language-plaintext highlighter-rouge">telegram</code> or <code class="language-plaintext highlighter-rouge">category-ads-all</code>. <code class="language-plaintext highlighter-rouge">geoip</code> holds the address ranges of countries and networks: <code class="language-plaintext highlighter-rouge">ru</code>, <code class="language-plaintext highlighter-rouge">telegram</code>. A rule names a category, and one line in the list stands for thousands of domains and addresses.</p>
+
+<ul>
+  <li><strong>Ready databases from the first launch</strong> - the install adds <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a>, the <a href="https://github.com/runetfreedom/russia-blocked-geosite">runetfreedom</a> databases, <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a> and our own <a href="https://github.com/bor-project/amneziageo-geo">amneziageo-geo</a>. The runetfreedom databases ship with the app, so the rules work before the first download.</li>
+  <li><strong>Your own databases</strong> - any <code class="language-plaintext highlighter-rouge">geosite.dat</code> or <code class="language-plaintext highlighter-rouge">geoip.dat</code> is added by its direct link. Databases stack: a category comes from the last database in the list that has it, so your own database adds to the common ones instead of replacing them.</li>
+  <li><strong>Updates</strong> - auto-update checks the databases on a schedule and tells you when new versions are out. The check compares the checksum and headers without downloading the file, and the download fetches only the databases that changed. The Windows installer updates the databases during setup.</li>
+  <li><strong>Domains and addresses in one rule</strong> - a category name expands across all databases at once: <code class="language-plaintext highlighter-rouge">geosite:telegram</code> takes both the Telegram domains and its networks from <code class="language-plaintext highlighter-rouge">geoip</code>. A country also takes its own domain zones: <code class="language-plaintext highlighter-rouge">geoip:ru</code> covers the addresses of Russia and sites under <code class="language-plaintext highlighter-rouge">.ru</code>, <code class="language-plaintext highlighter-rouge">.su</code> and <code class="language-plaintext highlighter-rouge">.рф</code>.</li>
+  <li><strong>See what is inside</strong> - the rule editor suggests categories as you type and shows the contents of any of them. In the console, <code class="language-plaintext highlighter-rouge">amneziageo geo list --filter &lt;text&gt;</code> and <code class="language-plaintext highlighter-rouge">amneziageo geo show &lt;rule&gt;</code> do the same.</li>
+  <li><strong>Databases from the server</strong> - an AmneziaGeo server sends its geo databases with the configuration answer, and the client adds and downloads them itself.</li>
+</ul>
+
+<p>Our own database fills gaps in the common ones: <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code> - YouTube addresses together with video caches, <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code> - Discord voice servers, <code class="language-plaintext highlighter-rouge">geoip:ag-tiktok</code> and <code class="language-plaintext highlighter-rouge">geosite:ag-tiktok</code> - TikTok.</p>
+
+<p>See Geo sources: <a href="/amneziageo/windows/menu/geo-sources.html">Windows</a>, <a href="/amneziageo/linux/menu/geo-sources.html">Linux</a>, <a href="/amneziageo/android/menu/geo-sources.html">Android</a>.</p>
+
+<h2 id="how-the-traffic-is-chosen">How the traffic is chosen</h2>
+
+<p>Plain WireGuard routes by IP address and knows nothing about domain names. Expanding a list of domains into addresses once is not enough: large sites live on CDNs and their addresses change constantly. The app reaches an address that is not in the routes yet, and the connection leaks past the VPN.</p>
+
+<p>AmneziaGeo watches the DNS answers. The moment the system learns the address of a domain from the rules - named on its own or from a <code class="language-plaintext highlighter-rouge">geosite</code> category - the client adds it to the tunnel before the app opens the connection. <code class="language-plaintext highlighter-rouge">geoip</code> ranges and address rules apply at connect time.</p>
+
+<p>Every rule has one of three roles: through the tunnel, direct or block. Rules are grouped into lists, and lists attach to VPN configurations.</p>
+
+<h2 id="ready-made-lists">Ready-made lists</h2>
+
+<p>A list does not have to be built from scratch: creating one starts from a template.</p>
+
+<ul>
+  <li><strong>Unavailable sites</strong> - the sites of a ready-made list take the VPN, the rest goes direct.</li>
+  <li><strong>Everything except the chosen region</strong> - everything takes the VPN except the sites and addresses of the countries you mark.</li>
+  <li><strong>Everything through VPN</strong> - all traffic through the tunnel except the home network.</li>
+  <li><strong>Block ads</strong> - adds to any template and blocks the ad domains of <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code>.</li>
+</ul>
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li><strong>Split tunnel</strong> - traffic goes direct by default, and only connections that match your rules take the VPN.</li>
+  <li><strong>Full tunnel</strong> - all traffic through the VPN, with the local network still reachable direct. The kill switch cuts internet access if the tunnel stops working.</li>
+  <li><strong>Application routing</strong> - all traffic of a chosen program and its child processes takes the tunnel, whatever addresses it reaches for; in a full tunnel a program can instead be kept direct. See Routing: <a href="/amneziageo/windows/menu/routing.html#application-routing">Windows</a>, <a href="/amneziageo/linux/menu/routing.html#application-routing">Linux</a>, <a href="/amneziageo/android/menu/routing.html#application-routing">Android</a>.</li>
+  <li><strong>Multiple simultaneous VPN connections (Windows)</strong> - keep several tunnels up, choose a main server and reserve servers, and select a server and fallback for each routing rule. See <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>.</li>
+  <li><strong>Holding traffic when the tunnel drops</strong> - while the tunnel reconnects, what the rules send to the VPN waits instead of going direct. See <a href="/amneziageo/windows/menu/home.html#holding-traffic-when-the-tunnel-drops">Windows</a>, <a href="/amneziageo/linux/menu/home.html#holding-traffic-when-the-tunnel-drops">Linux</a>, <a href="/amneziageo/android/menu/home.html#holding-traffic-when-the-tunnel-drops">Android</a>.</li>
+  <li><strong>Rules without reconnecting</strong> - domain and country list edits take effect on the fly.</li>
+  <li><strong>All UDP through the tunnel</strong> - for calls, voice chats and games that may learn server addresses without DNS.</li>
+  <li><strong>WebSocket over TCP</strong> - connects on networks where UDP does not get through.</li>
+  <li><strong>Subscriptions and import</strong> - a configuration is added as a <code class="language-plaintext highlighter-rouge">.conf</code> file, pasted text, a <code class="language-plaintext highlighter-rouge">vpn://</code> link, a subscription address or a QR code, and subscriptions refresh themselves. Configurations and routing lists move between devices in one file.</li>
+  <li><strong>AmneziaGeo server</strong> - the client works with any AmneziaWG server, and from an AmneziaGeo server it also gets geo databases, routing lists and a WebSocket entry; a client switched off in the panel is disconnected by the server. See <a href="/amneziageo/windows/menu/configurations.html#what-the-server-offers">What the server offers</a>.</li>
+  <li><strong>Access to a remote network</strong> - the office network, a home NAS, cameras and a printer behind the server are reachable through the full tunnel or through an address-range rule, and the DNS from the configuration resolves internal names.</li>
+  <li><strong>Proxy for the local network</strong> - built-in SOCKS5 and HTTP proxies let TVs, phones, consoles and other devices use the tunnel without a VPN client. Ports, accounts or password-free access are configurable, and connected clients are listed.</li>
+  <li><strong>Wi-Fi hotspot (Windows, Linux)</strong> - the computer shares Wi-Fi, and connected devices reach the internet through the tunnel. See <a href="/amneziageo/windows/recipes/hotspot.html">Windows</a>, <a href="/amneziageo/linux/recipes/hotspot.html">Linux</a>.</li>
+  <li><strong>Route and speed check</strong> - a probe by domain or address shows whether the traffic takes the tunnel or goes direct and which rule applied. It also measures latency, jitter, packet loss, download and upload speed.</li>
+  <li><strong>Console</strong> - the <code class="language-plaintext highlighter-rouge">amneziageo</code> command manages configurations, lists, geo databases and diagnostics on all three platforms. See <a href="/amneziageo/windows/cli.html">Windows</a>, <a href="/amneziageo/linux/cli.html">Linux</a>, <a href="/amneziageo/android/cli.html">Android</a>.</li>
+</ul>
+
+<h2 id="supported-platforms">Supported platforms</h2>
+
+<ul>
+  <li>Windows 7, 10 and 11 - x64 and ARM64</li>
+  <li>Linux - deb packages for amd64 and arm64</li>
+  <li>Android</li>
+</ul>
+
+<p>The multiple-VPN mode is currently available on Windows, the Wi-Fi hotspot on Windows and Linux. Linux and Android use one active VPN connection; the client, the geo databases and routing are available on all three platforms.</p>
+
+<p>Ready-made builds are on the <a href="https://github.com/bor-project/amneziageo/releases">Releases</a> page.</p>
+
+<h2 id="for-developers">For developers</h2>
+
+<p>Windows, Linux and Android: <a href="/amneziageo/build.html">Building from source</a>.</p>
+
+<h2 id="support-the-project">Support the project</h2>
+
+<p>If AmneziaGeo is useful to you and you would like to support its development, you can donate in one of the crypto networks:</p>
+
+<ul>
+  <li><strong>TRON (TRC20):</strong> <code class="language-plaintext highlighter-rouge">TNHcrYqUv2pUfW7BEzYJyXfVk9wEJrs4FR</code></li>
+</ul>
+
+<p>Thank you for your support!</p>
+
+<h2 id="license">License</h2>
+
+<p>GPL-3.0 or later, see <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">LICENSE</a>. The project uses the AmneziaWG engine under its authors’ license.</p>
+
+<h2 id="code-signing">Code signing</h2>
+
+<p>Windows builds are not signed yet: the code signing certificate is being issued. Until then SmartScreen warns about an unknown publisher.</p>
+
+<!--
+Windows builds are signed through SignPath.io, see [code signing policy](/amneziageo/CODE_SIGNING.html).
+
+Free code signing provided by [SignPath.io](https://signpath.io/), certificate by [SignPath Foundation](https://signpath.org/).
+-->
+
+<h2 id="privacy">Privacy</h2>
+
+<p>AmneziaGeo collects no user data, see <a href="/amneziageo/PRIVACY.html">privacy policy</a>.</p>
+
+<h2 id="credits">Credits</h2>
+
+<p>Built on the <a href="https://github.com/amnezia-vpn">Amnezia VPN</a> ecosystem: the AmneziaWG protocol and engines. AmneziaGeo adds choosing traffic by geo databases.</p>
+
+<p>Default geo databases: <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a>, <a href="https://github.com/runetfreedom">runetfreedom</a>, <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a>.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

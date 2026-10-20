@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Geo sources · Linux · AmneziaGeo</title>
+    <meta name="description" content="geosite and geoip databases">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/menu/geo-sources.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/menu/geo-sources.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/menu/geo-sources.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/linux/menu/geo-sources.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/linux/menu/geo-sources.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/menu/geo-sources.html">Windows</a>
+  <a href="/amneziageo/linux/menu/geo-sources.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/menu/geo-sources.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.html" aria-current="page">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/">Linux</a></li>
+    <li><a href="/amneziageo/linux/menu/">Menu</a></li>
+    <li><a href="/amneziageo/linux/menu/routing.html">Routing</a></li>
+  </ol>
+</nav>
+
+        <h1 id="geo-sources">Geo sources</h1>
+
+<p>The databases for <code class="language-plaintext highlighter-rouge">geosite:</code> rules - domain categories - and <code class="language-plaintext highlighter-rouge">geoip:</code> rules - countries and networks. The section opens from a link in <a href="routing.html">Routing</a>.</p>
+
+<h2 id="default-databases">Default databases</h2>
+
+<p>A fresh installation gets its sources by itself: <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a> (<code class="language-plaintext highlighter-rouge">geosite</code> and <code class="language-plaintext highlighter-rouge">geoip</code>), <a href="https://github.com/runetfreedom/russia-blocked-geosite">runetfreedom</a> (<code class="language-plaintext highlighter-rouge">geosite-ru-only</code> and <code class="language-plaintext highlighter-rouge">geoip-ru-only</code>), <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a> (<code class="language-plaintext highlighter-rouge">geoip</code>) and the project’s own databases <a href="https://github.com/bor-project/amneziageo-geo">amneziageo-geo</a> (<code class="language-plaintext highlighter-rouge">geoip</code> and <code class="language-plaintext highlighter-rouge">geosite</code>; their keys start with <code class="language-plaintext highlighter-rouge">ag-</code>, so they do not cover the keys of other databases). Copies of the runetfreedom databases come with the application, so rules on them work before the first download. The other databases are fetched with “Update all” or with the “Update now” button on the home screen when the check found what is missing; from the console it is <code class="language-plaintext highlighter-rouge">sudo amneziageo geo download</code>. A source added to the default set later appears with an update of the application; one you removed does not come back.</p>
+
+<h2 id="database-list">Database list</h2>
+
+<p>Each database is a row: the name, the type, the number of categories and the time of the download, “not loaded” or “error” when there is no file, and the megabytes received while it downloads. Databases of one type stack in order: a category is taken from the last database in the list that has it, so a database of your own adds to the common ones instead of replacing them. A right click or ⋮ on a row: “Update”, “Edit” the address or the type, “Delete”. “Update all” fetches again the databases whose files changed: the server is asked with the ETag and the date of the file, and a file that did not change is not downloaded.</p>
+
+<h2 id="add-a-database">Add a database</h2>
+
+<p>Paste a direct link to a <code class="language-plaintext highlighter-rouge">geosite.dat</code> or <code class="language-plaintext highlighter-rouge">geoip.dat</code> file and press “Add”. The type is taken from the file name in the link when it has <code class="language-plaintext highlighter-rouge">geosite</code> or <code class="language-plaintext highlighter-rouge">geoip</code> in it; otherwise pick it yourself. The link has to lead to the file itself (raw), not to the page of a repository: a page is not read as a database, and the application says so. An added database is downloaded at once.</p>
+
+<h2 id="auto-update">Auto-update</h2>
+
+<p>The “Auto-update” switch checks once a day whether new versions of the databases are out, without downloading them: by the <code class="language-plaintext highlighter-rouge">.sha256sum</code> checksum published beside the file, and where there is none, by the headers and the size of the file. A database with a new version is marked “Update available”, and the home screen shows “Geo list updates available”: “Update now” fetches them, “Later” hides the bar until the next check. On by default.</p>
+
+<p>An AmneziaGeo server sends its sources with the answer for a configuration, see <a href="configurations.html#what-the-server-offers">What the server offers</a>.</p>
+
+<h2 id="from-the-console">From the console</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo <span class="nb">source </span>list
+amneziageo <span class="nb">source </span>add geosite|geoip &lt;url&gt;
+amneziageo <span class="nb">source </span>edit &lt;name&gt; geosite|geoip &lt;url&gt;
+amneziageo <span class="nb">source </span>remove &lt;name&gt;
+amneziageo geo list <span class="nt">--filter</span> telegram   <span class="c"># categories of the loaded databases</span>
+amneziageo geo show geosite:telegram    <span class="c"># what a category holds</span>
+amneziageo geo check                    <span class="c"># whether new versions are out, without downloading</span>
+amneziageo geo update <span class="o">[</span>&lt;<span class="nb">source</span><span class="o">&gt;]</span>        <span class="c"># download again</span>
+amneziageo geo download                 <span class="c"># add the default sources and download them</span>
+</code></pre></div></div>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>О проекте · AmneziaGeo</title>
+    <meta name="description" content="VPN-клиент AmneziaWG для Windows, Linux и Android с маршрутизацией по гео-базам geosite и geoip - категории сайтов, страны, домены, диапазоны адресов и приложения. Несколько VPN одновременно на Windows.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/index.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Устройства">
+  <p class="sidebar-label">Устройства</p>
+  <a href="/amneziageo/windows/index.ru.html">Windows</a>
+  <a href="/amneziageo/linux/index.ru.html">Linux</a>
+  <a href="/amneziageo/android/index.ru.html">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="amneziageo">AmneziaGeo</h1>
+
+<p>Кроссплатформенный VPN-клиент для Windows, Linux и Android на движке AmneziaWG - доработанном WireGuard, устойчивом к блокировкам. Подключается к вашему серверу, поднимает сетевой интерфейс, ставит маршруты и применяет DNS из конфигурации: всё, что находится за сервером, доступно как из локальной сети.</p>
+
+<p>Раздельное туннелирование (split tunneling) выбирает, что идёт через VPN: категории сайтов и страны из гео-баз, отдельные домены, диапазоны адресов или приложения. Остальное идёт напрямую. На Windows можно подключить несколько VPN одновременно и направлять разные правила через разные серверы.</p>
+
+<h2 id="выберите-устройство">Выберите устройство</h2>
+
+<ul class="device-cards">
+  <li>
+    <a class="device-card-title" href="/amneziageo/windows/index.ru.html">Windows</a>
+    <span>Windows 7, 10 и 11, x64 и ARM64</span>
+    <span class="device-card-links"><a href="/amneziageo/windows/install.ru.html">Установка</a> · <a href="/amneziageo/windows/first-config.ru.html">Первая конфигурация</a></span>
+  </li>
+  <li>
+    <a class="device-card-title" href="/amneziageo/linux/index.ru.html">Linux</a>
+    <span>пакеты deb для amd64 и arm64, рабочий стол и сервер</span>
+    <span class="device-card-links"><a href="/amneziageo/linux/install.ru.html">Установка</a> · <a href="/amneziageo/linux/first-config.ru.html">Первая конфигурация</a></span>
+  </li>
+  <li>
+    <a class="device-card-title" href="/amneziageo/android/index.ru.html">Android</a>
+    <span>Android 7.0 или новее, телефоны, планшеты и телевизоры</span>
+    <span class="device-card-links"><a href="/amneziageo/android/install.ru.html">Установка</a> · <a href="/amneziageo/android/first-config.ru.html">Первая конфигурация</a></span>
+  </li>
+</ul>
+
+<h2 id="гео-базы">Гео-базы</h2>
+
+<p>Гео-база - файл <code class="language-plaintext highlighter-rouge">geosite.dat</code> или <code class="language-plaintext highlighter-rouge">geoip.dat</code> в формате v2ray и Xray. В <code class="language-plaintext highlighter-rouge">geosite</code> лежат категории доменов: сервисы и темы вроде <code class="language-plaintext highlighter-rouge">youtube</code>, <code class="language-plaintext highlighter-rouge">telegram</code> или <code class="language-plaintext highlighter-rouge">category-ads-all</code>. В <code class="language-plaintext highlighter-rouge">geoip</code> - диапазоны адресов стран и сетей: <code class="language-plaintext highlighter-rouge">ru</code>, <code class="language-plaintext highlighter-rouge">telegram</code>. Правило ссылается на категорию по имени, и вместо тысяч доменов и адресов в списке остаётся одна строка.</p>
+
+<ul>
+  <li><strong>Готовые базы с первого запуска</strong> - установка подключает <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a>, базы <a href="https://github.com/runetfreedom/russia-blocked-geosite">runetfreedom</a>, <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a> и собственную базу <a href="https://github.com/bor-project/amneziageo-geo">amneziageo-geo</a>. Базы runetfreedom лежат в комплекте, поэтому правила работают ещё до первой загрузки.</li>
+  <li><strong>Свои базы</strong> - любой <code class="language-plaintext highlighter-rouge">geosite.dat</code> или <code class="language-plaintext highlighter-rouge">geoip.dat</code> добавляется по прямой ссылке. Базы складываются: категория берётся из последней базы в списке, где она есть, поэтому своя база дополняет общие, а не заменяет их.</li>
+  <li><strong>Обновление</strong> - автообновление проверяет базы по расписанию и сообщает о новых версиях. Проверка сверяет контрольную сумму и заголовки, не скачивая файл, а загрузка берёт только изменившиеся базы. Установщик Windows обновляет базы при установке.</li>
+  <li><strong>Домены и адреса одним правилом</strong> - имя категории раскрывается во всех базах сразу: <code class="language-plaintext highlighter-rouge">geosite:telegram</code> берёт и домены Telegram, и его сети из <code class="language-plaintext highlighter-rouge">geoip</code>. Страна забирает ещё свои доменные зоны: <code class="language-plaintext highlighter-rouge">geoip:ru</code> - это адреса России и сайты в <code class="language-plaintext highlighter-rouge">.ru</code>, <code class="language-plaintext highlighter-rouge">.su</code> и <code class="language-plaintext highlighter-rouge">.рф</code>.</li>
+  <li><strong>Видно, что внутри</strong> - редактор правил подсказывает категории по мере ввода и показывает содержимое любой из них. В консоли то же делают <code class="language-plaintext highlighter-rouge">amneziageo geo list --filter &lt;текст&gt;</code> и <code class="language-plaintext highlighter-rouge">amneziageo geo show &lt;правило&gt;</code>.</li>
+  <li><strong>Базы от сервера</strong> - сервер AmneziaGeo присылает свои гео-базы вместе с ответом конфигурации, и клиент подключает и скачивает их сам.</li>
+</ul>
+
+<p>Собственная база закрывает то, чего нет в общих: <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code> - адреса YouTube вместе с видеокешами, <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code> - голосовые серверы Discord, <code class="language-plaintext highlighter-rouge">geoip:ag-tiktok</code> и <code class="language-plaintext highlighter-rouge">geosite:ag-tiktok</code> - TikTok.</p>
+
+<p>Подробнее - в разделе «Источники geo»: <a href="/amneziageo/windows/menu/geo-sources.ru.html">Windows</a>, <a href="/amneziageo/linux/menu/geo-sources.ru.html">Linux</a>, <a href="/amneziageo/android/menu/geo-sources.ru.html">Android</a>.</p>
+
+<h2 id="как-выбирается-трафик">Как выбирается трафик</h2>
+
+<p>WireGuard маршрутизирует по IP-адресам и ничего не знает о доменных именах. Однократно развернуть список доменов в адреса недостаточно: крупные сайты живут на CDN, и адреса у них постоянно меняются. Приложение обращается к адресу, которого ещё нет в маршрутах, и соединение уходит мимо VPN.</p>
+
+<p>AmneziaGeo отслеживает ответы DNS. Как только система получила адрес домена из правил - заданного отдельно или из категории <code class="language-plaintext highlighter-rouge">geosite</code>, - клиент добавляет его в туннель до того, как приложение установит соединение. Диапазоны <code class="language-plaintext highlighter-rouge">geoip</code> и правила по адресам применяются сразу при подключении.</p>
+
+<p>У каждого правила одна из трёх ролей: через туннель, напрямую или блок. Правила собираются в списки, а список подключается к конфигурациям.</p>
+
+<h2 id="готовые-списки">Готовые списки</h2>
+
+<p>Список не нужно собирать с нуля: при создании выбирается шаблон.</p>
+
+<ul>
+  <li><strong>Недоступные сайты</strong> - через VPN идут сайты из готового списка, остальное идёт напрямую.</li>
+  <li><strong>Всё, кроме выбранного региона</strong> - через VPN идёт всё, кроме сайтов и адресов отмеченных стран.</li>
+  <li><strong>Всё через VPN</strong> - весь трафик через туннель, кроме домашней сети.</li>
+  <li><strong>Блокировать рекламу</strong> - добавляется к любому шаблону и закрывает рекламные домены <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code>.</li>
+</ul>
+
+<h2 id="возможности">Возможности</h2>
+
+<ul>
+  <li><strong>Раздельный туннель (split tunneling)</strong> - по умолчанию трафик идёт напрямую, через VPN уходят только соединения, подошедшие под правила.</li>
+  <li><strong>Полный туннель</strong> - весь трафик через VPN, локальная сеть остаётся доступной напрямую. Kill switch перекрывает выход в интернет, если туннель перестал работать.</li>
+  <li><strong>Маршрутизация приложений</strong> - весь трафик выбранной программы и её дочерних процессов идёт через туннель, к каким бы адресам она ни обращалась; в полном туннеле программу можно, наоборот, оставить напрямую. Подробности - в разделе «Маршрутизация»: <a href="/amneziageo/windows/menu/routing.ru.html#маршрутизация-приложений">Windows</a>, <a href="/amneziageo/linux/menu/routing.ru.html#маршрутизация-приложений">Linux</a>, <a href="/amneziageo/android/menu/routing.ru.html#маршрутизация-приложений">Android</a>.</li>
+  <li><strong>Несколько VPN одновременно (Windows)</strong> - несколько активных туннелей, основной и резервные серверы, выбор сервера и запасного маршрута для каждого правила. Подробнее: <a href="/amneziageo/windows/recipes/multiple-vpn.ru.html">Несколько VPN одновременно</a>.</li>
+  <li><strong>Удержание трафика при обрыве туннеля</strong> - пока туннель переподключается, выбранное правилами для VPN ждёт и не уходит напрямую. Подробнее: <a href="/amneziageo/windows/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Windows</a>, <a href="/amneziageo/linux/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Linux</a>, <a href="/amneziageo/android/menu/home.ru.html#удержание-трафика-при-обрыве-туннеля">Android</a>.</li>
+  <li><strong>Правила без переподключения</strong> - изменения доменов и списков стран вступают в силу на лету.</li>
+  <li><strong>Весь UDP через туннель</strong> - для звонков, голосовых чатов и игр, которые узнают адреса серверов не через DNS.</li>
+  <li><strong>WebSocket поверх TCP</strong> - подключение в сетях, где не проходит UDP.</li>
+  <li><strong>Подписки и импорт</strong> - конфигурация добавляется файлом <code class="language-plaintext highlighter-rouge">.conf</code>, текстом, ссылкой <code class="language-plaintext highlighter-rouge">vpn://</code>, адресом подписки или QR-кодом, подписки обновляются сами. Конфигурации и списки маршрутизации переносятся между устройствами одним файлом.</li>
+  <li><strong>Сервер AmneziaGeo</strong> - клиент работает с любым сервером AmneziaWG, а от сервера AmneziaGeo ещё получает гео-базы, списки маршрутизации и вход WebSocket; клиента, выключенного в панели, сервер отключает сам. Подробнее: <a href="/amneziageo/windows/menu/configurations.ru.html#что-предлагает-сервер">Что предлагает сервер</a>; сам сервер - <a href="https://github.com/bor-project/amneziageo_server">amneziageo_server</a>.</li>
+  <li><strong>Доступ в удалённую сеть</strong> - рабочая сеть, домашний NAS, камеры и принтер за сервером доступны через полный туннель или правилом по диапазону адресов, а DNS из конфигурации резолвит внутренние имена.</li>
+  <li><strong>Прокси для локальной сети</strong> - встроенные SOCKS5 и HTTP подключают телевизоры, телефоны, приставки и другие устройства без установки клиента. Настраиваются порты, учётные записи или доступ без пароля, виден список подключённых.</li>
+  <li><strong>Точка доступа Wi-Fi (Windows, Linux)</strong> - компьютер раздаёт Wi-Fi, и подключённые устройства выходят в интернет через туннель. Подробнее: <a href="/amneziageo/windows/recipes/hotspot.ru.html">Windows</a>, <a href="/amneziageo/linux/recipes/hotspot.ru.html">Linux</a>.</li>
+  <li><strong>Проверка маршрута и скорости</strong> - диагностика по домену или адресу показывает, ушло соединение в туннель или напрямую и по какому правилу, и измеряет задержку, джиттер, потери, скорость приёма и отдачи.</li>
+  <li><strong>Консоль</strong> - команда <code class="language-plaintext highlighter-rouge">amneziageo</code> управляет конфигурациями, списками, гео-базами и диагностикой на всех трёх платформах. Подробнее: <a href="/amneziageo/windows/cli.ru.html">Windows</a>, <a href="/amneziageo/linux/cli.ru.html">Linux</a>, <a href="/amneziageo/android/cli.ru.html">Android</a>.</li>
+</ul>
+
+<h2 id="поддерживаемые-платформы">Поддерживаемые платформы</h2>
+
+<ul>
+  <li>Windows 7, 10 и 11 - x64 и ARM64</li>
+  <li>Linux - пакеты deb для amd64 и arm64</li>
+  <li>Android</li>
+</ul>
+
+<p>Режим нескольких VPN сейчас доступен на Windows, точка доступа Wi-Fi - на Windows и Linux. На Linux и Android используется одно активное VPN-подключение; сам клиент, гео-базы и маршрутизация доступны на всех трёх платформах.</p>
+
+<p>Готовые сборки - на странице <a href="https://github.com/bor-project/amneziageo/releases">Releases</a>.</p>
+
+<h2 id="разработчикам">Разработчикам</h2>
+
+<p>Windows, Linux и Android: <a href="/amneziageo/build.ru.html">Сборка из исходников</a>.</p>
+
+<h2 id="поддержать-проект">Поддержать проект</h2>
+
+<p>Если AmneziaGeo оказался вам полезен и вы хотите поддержать его развитие, можно сделать пожертвование в криптовалюте:</p>
+
+<ul>
+  <li><strong>TRON (TRC20):</strong> <code class="language-plaintext highlighter-rouge">TNHcrYqUv2pUfW7BEzYJyXfVk9wEJrs4FR</code></li>
+</ul>
+
+<p>Спасибо за поддержку!</p>
+
+<h2 id="лицензия">Лицензия</h2>
+
+<p>GPL-3.0 или новее, см. <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">LICENSE</a>. Проект использует движок AmneziaWG на условиях лицензии его авторов.</p>
+
+<h2 id="подпись-кода">Подпись кода</h2>
+
+<p>Сборки для Windows пока не подписаны: работа по выпуску сертификата идёт. До неё SmartScreen предупреждает о неизвестном издателе.</p>
+
+<!--
+Сборки для Windows подписываются через SignPath.io, см. [политику подписи кода](/amneziageo/CODE_SIGNING.html).
+
+Free code signing provided by [SignPath.io](https://signpath.io/), certificate by [SignPath Foundation](https://signpath.org/).
+-->
+
+<h2 id="конфиденциальность">Конфиденциальность</h2>
+
+<p>AmneziaGeo не собирает пользовательские данные, см. <a href="/amneziageo/PRIVACY.html">политику конфиденциальности</a>.</p>
+
+<h2 id="благодарности">Благодарности</h2>
+
+<p>Построено на экосистеме <a href="https://github.com/amnezia-vpn">Amnezia VPN</a>: протокол и движки AmneziaWG. AmneziaGeo добавляет к ним выбор трафика по гео-базам.</p>
+
+<p>Гео-базы по умолчанию: <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a>, <a href="https://github.com/runetfreedom">runetfreedom</a>, <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a>.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

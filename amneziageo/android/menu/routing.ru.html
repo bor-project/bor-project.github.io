@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Маршрутизация · Android · AmneziaGeo</title>
+    <meta name="description" content="Списки правил и трафик">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/android/menu/routing.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/android/menu/routing.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/android/menu/routing.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/android/menu/routing.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/menu/routing.ru.html">Windows</a>
+  <a href="/amneziageo/linux/menu/routing.ru.html">Linux</a>
+  <a href="/amneziageo/android/menu/routing.ru.html" aria-current="page">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/android/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/routing.ru.html" aria-current="page">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/android/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/android/index.ru.html">Android</a></li>
+    <li><a href="/amneziageo/android/menu/index.ru.html">Разделы меню</a></li>
+  </ol>
+</nav>
+
+        <h1 id="маршрутизация">Маршрутизация</h1>
+
+<h2 id="режимы">Режимы</h2>
+
+<ul>
+  <li><strong>Полный туннель.</strong> Всё уходит через VPN, локальная сеть остаётся доступной напрямую. Аварийная блокировка (kill switch) перекрывает выход в интернет, если туннель упал.</li>
+  <li><strong>Раздельный туннель (split tunneling).</strong> По умолчанию трафик идёт напрямую, через VPN уходит только то, что подошло под правила. Домены добавляются сами, как только для них приходит ответ DNS.</li>
+</ul>
+
+<p>Режим задаётся у списка маршрутизации, а не у конфигурации: один и тот же список подключается к разным серверам.</p>
+
+<p>В свежей установке списков нет, и весь трафик идёт через VPN, пока не выбран список: добавленный владельцем или присланный сервером, см. <a href="configurations.ru.html#что-предлагает-сервер">Что предлагает сервер</a>.</p>
+
+<p>В приложении режим называется «Режим VPN для приложений» и выбирается при создании списка: «Только выбранное» - раздельный туннель, через VPN подключаются сайты и приложения из списка, остальные напрямую; «Всё, кроме выбранного» - полный, через VPN подключается всё, кроме записей из «Напрямую» и «Блок». Режим выбранного списка стоит в заголовке раздела. На главном экране переключатель «Маршрутизация» включает и выключает список целиком: с выключенным туннель идёт по <code class="language-plaintext highlighter-rouge">AllowedIPs</code> конфигурации.</p>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-modes.png" alt="Выбор режима VPN для приложений при создании списка: «Только выбранное» и «Всё, кроме выбранного»" width="360" height="724" loading="lazy" /><figcaption>Режим выбирается при создании списка.</figcaption></figure>
+
+<h2 id="списки-правил">Списки правил</h2>
+
+<p>Правило - это тип и значение:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Тип</th>
+      <th>Что означает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">domain:</code></td>
+      <td>домен и его поддомены</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geosite:</code></td>
+      <td>категория сайтов из общей базы</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geoip:</code></td>
+      <td>страна</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cidr:</code></td>
+      <td>диапазон адресов</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">app:</code></td>
+      <td>приложение</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>У каждого правила одна из трёх ролей: <strong>прокси</strong> - направить через туннель, <strong>директ</strong> - оставить напрямую, <strong>блок</strong> - запретить. Правила собираются в списки, список выбирается для подключения.</p>
+
+<p>Правки доменов и стран применяются на лету, переподключаться не нужно.</p>
+
+<p>Базы для <code class="language-plaintext highlighter-rouge">geosite:</code> и <code class="language-plaintext highlighter-rouge">geoip:</code> - в разделе <a href="geo-sources.ru.html">Источники geo</a>.</p>
+
+<h3 id="новый-список">Новый список</h3>
+
+<p>«Добавить» открывает «Режим VPN для приложений» и «Выбор шаблона». В «Выборе шаблона» стоят готовые шаблоны режима, а с ними «Вручную» - свои правила с нуля - и «Импорт» - готовый список из файла, буфера обмена или QR-кода.</p>
+
+<p>Для режима «Только выбранное» готовый шаблон один - «Недоступные сайты»: через VPN идут сайты из готового списка, остальное напрямую, и включён «Весь UDP через туннель». Для режима «Всё, кроме выбранного» их два: «Всё, кроме выбранного региона», где в «Выборе региона» отмечаются одна или несколько стран, чьи адреса и сайты пойдут напрямую, и «Всё через VPN», где напрямую остаётся только домашняя сеть. Регион по умолчанию - страна устройства. Переключатель «Блокировать рекламу» добавляется к любому шаблону и закрывает домены категории <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code>. После «Добавить» список открывается в редакторе, где правила можно поправить.</p>
+
+<p>Импорт: «Загрузить файл», «Вставить» из буфера обмена или «Сканировать QR-код». Список без имени просит его перед сохранением; список с занятым именем сохраняется под новым.</p>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-new.png" alt="Новый список: режим VPN для приложений, выбор шаблона «Недоступные сайты», блокировка рекламы" width="360" height="724" loading="lazy" /><figcaption>Новый список: режим, шаблон и «Блокировать рекламу».</figcaption></figure>
+
+<h3 id="карточка-списка">Карточка списка</h3>
+
+<p>Карточка показывает имя, число правил по ролям («N прокси», «N напрямую», «N блок»), метку «Весь UDP через туннель», откуда список - имя конфигурации, с которой он пришёл от сервера, или «Локальный», - и отметку «Выбран» у выбранного. Переключатель «Используется» выбирает список для подключений. У списка с сервера, который сервер с тех пор изменил, появляется «Обновить», см. <a href="configurations.ru.html#что-предлагает-сервер">Что предлагает сервер</a>. «Настройки» открывает редактор правил, «Дополнительно» - настройки трафика и экспорт, «Удалить список» спрашивает подтверждение; вернуть удалённый список нельзя.</p>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-cards.png" alt="Карточки списков маршрутизации: имя, режим, число правил по ролям, метка «Весь UDP через туннель», переключатель «Используется»" width="360" height="724" loading="lazy" /><figcaption>Карточки списков.</figcaption></figure>
+
+<h3 id="редактор-правил">Редактор правил</h3>
+
+<p>Вверху «Имя списка». «Группа правил» переключает корзину: «Через VPN», «Напрямую», «Блокировка», у каждой подпись, куда идёт её трафик. «Что добавить» выбирает тип записи. «Адрес» - домен, категория <code class="language-plaintext highlighter-rouge">geosite</code>, страна <code class="language-plaintext highlighter-rouge">geoip</code> или диапазон адресов одной строкой, например <code class="language-plaintext highlighter-rouge">youtube</code> или <code class="language-plaintext highlighter-rouge">geoip:ru</code>; по мере ввода подсказки предлагают «Точное совпадение домена», «Домены категории …», «IP-диапазоны региона …» и «Диапазон адресов». «Приложение» добавляет программу из окна выбора приложений, см. <a href="#маршрутизация-приложений">Маршрутизация приложений</a>. Записи помечены типом: «Домен», «GeoSite», «GeoIP», «CIDR», «Файл», «Папка», «Пакет», «Служба». Категория, которой нет в загруженных базах, помечена «Записей нет». Кнопка сортировки упорядочивает записи по имени, «Очистить» удаляет все записи списка, «Копировать» кладёт список в буфер обмена. Правки вступают в силу после «Сохранить».</p>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-editor.png" alt="Редактор правил: «Используется», имя списка, группа правил, что добавить, записи" width="360" height="724" loading="lazy" /><figcaption>Редактор правил.</figcaption></figure>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-suggest.png" alt="Подсказки при вводе netflix: точный домен, IP-диапазоны и домены категории" width="360" height="724" loading="lazy" /><figcaption>Подсказки при вводе: домен, диапазоны региона, категория.</figcaption></figure>
+
+<h2 id="маршрутизация-приложений">Маршрутизация приложений</h2>
+
+<p>Добавьте программу - браузер, игру, мессенджер - и через туннель пойдёт только её трафик, куда бы она ни обращалась. Клиент следит за самим процессом и за его дочерними процессами.</p>
+
+<p>Приватные адреса такое правило не подхватывает: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, CGNAT и link-local всегда остаются вне туннеля. Чтобы отправить приложение в чужую локальную сеть, нужно правило по диапазону адресов.</p>
+
+<p>В списке полного туннеля программу добавляют с ролью директ: туннель несёт всю машину, а трафик этой программы уходит мимо него. Адрес, который список блокирует или сам отправляет через туннель, идёт по правилу списка и для неё.</p>
+
+<p>Программа с ролью директ не попадает в туннель при любом режиме списка.</p>
+
+<h3 id="выбор-приложений">Выбор приложений</h3>
+
+<p>Окно выбора приложений перечисляет программы со значком запуска и все программы, которые просят доступ в сеть; системные без значка запуска открывает переключатель «Системные», а поиск находит их и без него. Правило на программу, которой в окне нет, окно не трогает. Изменение применяется при следующем подключении.</p>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-apps.png" alt="Выбор приложений: поиск youtube, переключатель «Системные», «Отмена» и «Сохранить»" width="360" height="724" loading="lazy" /><figcaption>Окно выбора приложений.</figcaption></figure>
+
+<h2 id="дополнительно">Дополнительно</h2>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/routing-advanced.png" alt="Дополнительно: весь UDP через туннель, время жизни маршрута, экспорт списка" width="360" height="724" loading="lazy" /><figcaption>«Дополнительно» у списка.</figcaption></figure>
+
+<h3 id="весь-udp-через-туннель">Весь UDP через туннель</h3>
+
+<p>Звонки и игры обычно узнают адреса своих серверов не через DNS, поэтому правило по домену их не ловит. Тумблер отправляет в туннель весь исходящий UDP, кроме локальной сети и самого VPN-сервера. У списка «Всё, кроме выбранного» тумблера нет: UDP там идёт через туннель и без него.</p>
+
+<h3 id="время-жизни-маршрута">Время жизни маршрута</h3>
+
+<p>«Сколько адрес хранится в кеше». Адрес, который правила отправили в туннель или мимо него, остаётся на своём маршруте столько секунд после последнего обращения; потом маршрут снимается и ставится заново при следующем обращении. По умолчанию 300. Настройка одна на все списки. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo settings set route-ttl-seconds &lt;секунды&gt;</code>.</p>
+
+<h3 id="экспорт-списка">Экспорт списка</h3>
+
+<p>В «Дополнительно» список экспортируется как «QR» или «Конфиг» - текст списка. «Копировать» кладёт текст в буфер обмена, «Сохранить в файл…» пишет файл, «Отправить…» передаёт в другое приложение. Длинный список в QR-код не помещается, тогда остаётся текст. На другом устройстве список принимает «Добавить» - «Импорт».</p>
+
+<h2 id="ограничения">Ограничения</h2>
+
+<ul>
+  <li>Назначение выбирается по именам, которые запрашивает машина, поэтому приложение со своим резолвером поверх DoH решается только по адресу.</li>
+  <li>
+    <p>Пока туннель не несёт IPv6, адрес по нему не выдаётся именам, которые правила отправляют в туннель: иначе они ушли бы физическим путём.</p>
+  </li>
+  <li>Список, который разворачивается в слишком много маршрутов, устройство не принимает: редактор называет предел, и список нужно сократить или убрать диапазоны из туннеля.</li>
+</ul>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

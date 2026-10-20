@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Channels · Service · AmneziaGeo Server</title>
+    <meta name="description" content="Outbound connections through the host or a tunnel to another server, and their groups.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/channels.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/channels.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/channels.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/service/panel/channels.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/service/panel/channels.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/panel/channels.html" aria-current="page">Service</a>
+  <a href="/amneziageo_server/docker/panel/channels.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.html" aria-current="page">Channels</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/">Service</a></li>
+    <li><a href="/amneziageo_server/service/panel/">Panel</a></li>
+    <li><a href="/amneziageo_server/service/panel/routing.html">Routing</a></li>
+  </ol>
+</nav>
+
+        <h1 id="channels">Channels</h1>
+
+<p>A channel is a way by which traffic leaves the host: through the host itself, through an AmneziaWG tunnel the host keeps as a client of another server, or through the same tunnel inside WebSocket to a <code class="language-plaintext highlighter-rouge">wstunnel</code> proxy. Each channel has its own mark: a packet with the mark leaves through this channel. A group gathers several channels under one name. A rule names a channel or a group in the “Channel” field.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/channels.png" alt="List of channels: the direct channel through the host, ready" width="1440" height="900" loading="lazy" /><figcaption>The direct channel through the host.</figcaption></figure>
+
+<p>The “Channels” page is split into “Channels” and “Groups”. The list of channels names the type, the server, “fwmark / table”, the status (“ready”, “not up”, “refused” with the reason, “no handshake yet”, “the check does not get through”, “off”) and the traffic both ways; a channel through the host has no traffic, because it has no interface of its own. Channels are moved with the arrows, and “Apply” puts all the channels and rules on the host again. A fresh panel starts with one channel through the host named <code class="language-plaintext highlighter-rouge">direct</code>.</p>
+
+<h2 id="channel">Channel</h2>
+
+<h3 id="types">Types</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>What it carries</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Through the host</td>
+      <td>the way out of the host itself, without an interface of its own</td>
+    </tr>
+    <tr>
+      <td>AmneziaWG</td>
+      <td>an AmneziaWG interface the host raises as a client of another server</td>
+    </tr>
+    <tr>
+      <td>WebSocket</td>
+      <td>the same interface, whose UDP goes inside WebSocket to a <code class="language-plaintext highlighter-rouge">wstunnel</code> proxy</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="fields">Fields</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enabled</td>
+      <td>whether the channel works; the rules through a channel that is off hold their traffic</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>the name of the interface, up to 15 characters; a group cannot take the name of a channel and the other way round</td>
+    </tr>
+    <tr>
+      <td>Address, Port</td>
+      <td>where to reach the server; for WebSocket, the server behind the proxy and the port the proxy hands the tunnel to</td>
+    </tr>
+    <tr>
+      <td>Websocket proxy</td>
+      <td>the proxy as <code class="language-plaintext highlighter-rouge">proxy.example.net</code> or <code class="language-plaintext highlighter-rouge">wss://user:secret@proxy.example.net:8443/token</code>; a bare name takes the port of the server, an address carries the port, the path and the credentials</td>
+    </tr>
+    <tr>
+      <td>Interface address</td>
+      <td>the ranges the interface carries, as the server handed them out</td>
+    </tr>
+    <tr>
+      <td>Name servers</td>
+      <td>servers reachable through the tunnel</td>
+    </tr>
+    <tr>
+      <td>MTU, Keepalive</td>
+      <td>the packet size and how often to keep the path open</td>
+    </tr>
+    <tr>
+      <td>Close private networks</td>
+      <td>do not let the clients through the tunnel into private networks (<code class="language-plaintext highlighter-rouge">10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">172.16.0.0/12</code>, <code class="language-plaintext highlighter-rouge">192.168.0.0/16</code> and others), where the tunnel network of the server and what is behind it live; on for a new channel</td>
+    </tr>
+    <tr>
+      <td>Reachability check: Name server, Every, seconds</td>
+      <td>the server to which the channel sends a question over UDP under its mark, and how often (5 to 3600 s); empty means no check</td>
+    </tr>
+    <tr>
+      <td>Private key, Public key, New keys</td>
+      <td>the keys of the interface; the public one is computed from the private one and given to the server</td>
+    </tr>
+    <tr>
+      <td>Server public key</td>
+      <td>the key the server is known by</td>
+    </tr>
+    <tr>
+      <td>Preshared key</td>
+      <td>a key on top of the handshake, if the server asks for one</td>
+    </tr>
+    <tr>
+      <td>Obfuscation</td>
+      <td>the AmneziaWG profile, which must match the server exactly</td>
+    </tr>
+    <tr>
+      <td>Client configuration</td>
+      <td>a field at the bottom of the form: paste the <code class="language-plaintext highlighter-rouge">.conf</code> an AmneziaWG server gave a client, and “Read” fills the form with the keys, addresses, obfuscation and the server</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/channel-form.png" alt="Form of a new AmneziaWG channel: name, reachability check, address and port of the server, interface address, MTU, keepalive" width="1440" height="900" loading="lazy" /><figcaption>An AmneziaWG channel to another server being filled in.</figcaption></figure>
+
+<p>A tunnel without obfuscation is plain WireGuard. A WebSocket channel to another AmneziaGeo server is written as <code class="language-plaintext highlighter-rouge">wss://&lt;host&gt;:&lt;services port&gt;/&lt;WebSocket path of the interface&gt;</code>: without credentials the proxy gets a token from the keys of the channel and the server and accepts any certificate of the front; without a path it takes <code class="language-plaintext highlighter-rouge">v1</code>, the path of interfaces of earlier releases. Changing the proxy opens a new carrying WebSocket, turning the channel off closes it.</p>
+
+<h3 id="reachability-check">Reachability check</h3>
+
+<p>A question about <code class="language-plaintext highlighter-rouge">example.com</code> goes to the named name server under the mark of the channel, that is by the same way as the traffic of the rules, and an answer within two seconds means the way is open. Two misses in a row take the channel out of its groups, one answer brings it back. While a channel has not been checked, the age of the handshake counts instead of the check: a channel through the host always carries, a tunnel while its handshake is younger than three minutes. “Check now” in the row menu sends the question now. A check that could not be marked (without <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>) leaves the verdict as it was.</p>
+
+<p>A channel “carries” traffic when it is alive and the check gets through; a rule straight into a channel that carries nothing does not go on the host, with the reason “The channel of the rule carries nothing”.</p>
+
+<h3 id="on-the-host">On the host</h3>
+
+<p>A channel gets the first free mark from <code class="language-plaintext highlighter-rouge">0xA601</code> and a routing table of its own from <code class="language-plaintext highlighter-rouge">42601</code>; a channel through the host looks into the main table. On the host go an <code class="language-plaintext highlighter-rouge">ip rule</code> with the mark for the table above the main rule, a default route into the interface in that table, an <code class="language-plaintext highlighter-rouge">unreachable</code> rule for marked packets whose channel is off, gone or without an interface, so that they do not leak through the host, and the table <code class="language-plaintext highlighter-rouge">inet amneziageo_out</code>: masquerading what leaves through enabled channels, fitting TCP to the size of the path and filtering what comes out of the tunnels. While the interface of a tunnel is down, its table is empty and the check does not get through: the channel stops carrying, a holding rule holds the traffic, a group moves to another channel, and the client gets <code class="language-plaintext highlighter-rouge">network unreachable</code> instead of a leak under the address of the server.</p>
+
+<p>The server at the other end of a tunnel is trusted with what the host sent into it, and nothing more: from the tunnel only answers to connections the host opened or let through are taken, and a new connection from the tunnel is dropped. “Close private networks” also refuses a client a new connection through the tunnel into private ranges; with the box cleared, a rule that sends such a range into the tunnel brings the client there under the address of the tunnel.</p>
+
+<p>Adding, changing, turning on, turning off and removing go on the host at once. A channel a rule, a group or the resolver leaves through is not removed: “A rule, a group or the resolver leaves through the channel”. The panel watches the interfaces of channels as it watches interfaces: one taken down it raises, one that vanished it puts again with its keys, addresses, route and carrying WebSocket; <code class="language-plaintext highlighter-rouge">ip rule</code> rules dropped by a restart of a network manager (<code class="language-plaintext highlighter-rouge">systemd-networkd</code> with <code class="language-plaintext highlighter-rouge">ManageForeignRoutingPolicyRules=yes</code>) it puts back and writes so in the log. Raising an interface and routing rules need <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>; without it the panel answers with a channel with a reason, not with a failed request.</p>
+
+<h2 id="groups">Groups</h2>
+
+<p>A group is several channels under one name; a rule names it the same way as a channel, and the traffic leaves through one of the members.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What it sets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enabled</td>
+      <td>whether the group works; the rules through a group that is off hold their traffic</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>up to 32 characters, in one list of names with the channels</td>
+    </tr>
+    <tr>
+      <td>Strategy</td>
+      <td>“Priority”: the first live channel of the list, and when it falls silent the next one; “Round”: new connections over the live channels in turn; “By client”: a channel by the address of the client, so one client keeps one channel until the set of live ones changes</td>
+    </tr>
+    <tr>
+      <td>Channels</td>
+      <td>up to 16 channels in the order of choice</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Live members are marked “on the host”. A group reads the live ones every fifteen seconds and, when the set changes, puts the whole rule set again, so a channel that fell silent is replaced without anyone’s help; a change in the panel does not wait for this round. A rule through a group without live members holds its traffic, with the reason “No channel of the group answers”, and through a group that is off, “The group is off”: the traffic of the rule is dropped until a channel carries again. A group a rule or the resolver leaves through is not removed: “A rule or the resolver leaves through the group”. The scenario: <a href="../recipes/channel-group.html">Channel group with a fallback</a>.</p>
+
+<h2 id="refusals">Refusals</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What stands behind it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The name takes lower case letters, digits, dash and underscore, and starts with a letter; The name is already taken</td>
+      <td>the name of the channel</td>
+    </tr>
+    <tr>
+      <td>The address is neither an address nor a host name; The port is outside 1 to 65535</td>
+      <td>the server</td>
+    </tr>
+    <tr>
+      <td>The interface address is not an address range; The name server is not an address; MTU is outside 576 to 9000; Keepalive is outside 0 to 65535</td>
+      <td>network</td>
+    </tr>
+    <tr>
+      <td>The private key is not 32 bytes in base64; The public key of the server is not 32 bytes in base64; The preshared key is not 32 bytes in base64</td>
+      <td>keys</td>
+    </tr>
+    <tr>
+      <td>The configuration carries no key, no server, or nothing at all</td>
+      <td>the client configuration did not read</td>
+    </tr>
+    <tr>
+      <td>The mark is outside the range the panel holds; The routing table does not go with the mark; The panel holds as many channels as it can</td>
+      <td>marks and tables</td>
+    </tr>
+    <tr>
+      <td>A rule, a group or the resolver leaves through the channel</td>
+      <td>the channel is not removed</td>
+    </tr>
+    <tr>
+      <td>The name of the group does not hold; There is no such strategy; No channel is picked; More channels than a group takes; One channel is named twice; A rule or the resolver leaves through the group</td>
+      <td>the group</td>
+    </tr>
+    <tr>
+      <td>The host refused the change</td>
+      <td><code class="language-plaintext highlighter-rouge">ip</code> or <code class="language-plaintext highlighter-rouge">nft</code> did not take a rule, the reason is in the log</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

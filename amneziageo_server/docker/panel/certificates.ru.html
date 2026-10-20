@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сертификаты · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Сертификат панели: домен Let&#39;s Encrypt или свои файлы.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/certificates.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/certificates.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/certificates.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/panel/certificates.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/certificates.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/panel/certificates.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html" aria-current="page">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a></li>
+  </ol>
+</nav>
+
+        <h1 id="сертификаты">Сертификаты</h1>
+
+<p>Вкладка «Сертификаты» задаёт сертификат, под которым панель отвечает по HTTPS. С ним отвечают по TLS и TCP-порты сервисов интерфейсов и подписки на порту панели. Без сертификата панель отвечает открытым HTTP, а порты сервисов - под сертификатом, который панель делает себе при старте.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/certificates.png" alt="Вкладка «Сертификаты»: домен сертификата и пути к сертификату и ключу" width="1440" height="900" loading="lazy" /><figcaption>Панель без своего сертификата.</figcaption></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Домен сертификата</td>
+      <td>каталог из <code class="language-plaintext highlighter-rouge">/etc/letsencrypt/live</code>: выбор домена заполняет два пути ниже его <code class="language-plaintext highlighter-rouge">fullchain.pem</code> и <code class="language-plaintext highlighter-rouge">privkey.pem</code>; «Без сертификата» снимает сертификат; «Свой путь» открывает поля для своих файлов</td>
+    </tr>
+    <tr>
+      <td>Путь к сертификату</td>
+      <td>цепочка в PEM</td>
+    </tr>
+    <tr>
+      <td>Путь к ключу</td>
+      <td>закрытый ключ этой цепочки, берётся вместе с ней</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Сохранение читает оба файла и отказывает тому, который не загружается, с кодом, который называет файл; в силу сертификат вступает после «Перезапустить». Каталог доменов задаёт <code class="language-plaintext highlighter-rouge">Web__CertificateRoot</code>, <code class="language-plaintext highlighter-rouge">/etc/letsencrypt/live</code> по умолчанию. Файл перечитывается всякий раз, когда меняется на диске, так что продлённый сертификат берётся без перезапуска. Сертификат, которого при старте нет на диске, останавливает сервер. Сертификат читается внутри контейнера, поэтому его каталог должен быть в <code class="language-plaintext highlighter-rouge">volumes</code>: <code class="language-plaintext highlighter-rouge">/etc/letsencrypt:/etc/letsencrypt:ro</code>; меню добавляет эту строку само.</p>
+
+<h2 id="lets-encrypt">Let’s Encrypt</h2>
+
+<p>Сертификат на имя сервера выпускает пункт 22 консольного <a href="../menu.ru.html">меню</a> <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>: он проверяет, что имя разрешается и TCP 80 свободен, ставит <code class="language-plaintext highlighter-rouge">certbot</code>, открывает 80 в ufw, выпускает сертификат с ключом RSA 2048 проверкой HTTP-01, включает таймер продления <code class="language-plaintext highlighter-rouge">certbot.timer</code>, ставит сертификат панели и предлагает открыть её на всех адресах хоста. То же делает вопрос об имени сервера при установке.</p>
+
+<p>Ключ RSA нужен Android до 14-й версии: цепочка такого сертификата идёт до корня ISRG Root X1. <code class="language-plaintext highlighter-rouge">certbot</code> 2 по умолчанию выпускает ключ ECDSA с цепочкой до ISRG Root X2, этого корня в старых Android нет, и подписка там не скачивается. Сертификат того же имени с ключом ECDSA меню выпускает заново с RSA (<code class="language-plaintext highlighter-rouge">--force-renewal</code>); <code class="language-plaintext highlighter-rouge">certbot</code> старше 1.10 ключа <code class="language-plaintext highlighter-rouge">--key-type</code> не знает и выпускает RSA сам. Руками - <code class="language-plaintext highlighter-rouge">certbot certonly --standalone --preferred-challenges http --key-type rsa --rsa-key-size 2048 --cert-name &lt;имя&gt; -d &lt;имя&gt;</code>. Файлы берутся по путям из <code class="language-plaintext highlighter-rouge">live</code>, не копиями: при продлении <code class="language-plaintext highlighter-rouge">certbot</code> обновляет ссылки в <code class="language-plaintext highlighter-rouge">live</code>, а панель перечитывает файл сама. Для продления имя должно указывать на сервер, а TCP 80 оставаться доступным снаружи: <code class="language-plaintext highlighter-rouge">certbot</code> слушает его только во время проверки.</p>
+
+<p>Карточка «Службы» на <a href="overview.ru.html#службы">Обзоре</a> показывает каждый файл сертификата с датой окончания и предупреждает за 14 дней: «Истекает через N дн.».</p>
+
+<p>Те же настройки в окружении панели: <code class="language-plaintext highlighter-rouge">Web__Certificate</code> и <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code>; они действуют, пока панель не записала свой путь, см. <a href="server.ru.html#первый-старт">Первый старт</a>.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Сертификат берётся парой путей: цепочка и ключ</td>
+      <td>задан один путь из двух</td>
+    </tr>
+    <tr>
+      <td>Путь к файлу сертификата не существует; Файл сертификата не найден; Путь к сертификату указывает на каталог, а не на файл; Нет доступа к файлу сертификата; Файл сертификата не читается; Файл сертификата пуст; Указанный файл не содержит действительный сертификат</td>
+      <td>цепочка</td>
+    </tr>
+    <tr>
+      <td>Путь к файлу ключа не существует; Файл ключа не найден; Путь к ключу указывает на каталог, а не на файл; Нет доступа к файлу ключа; Файл ключа не читается; Файл ключа пуст; Указанный файл не содержит действительный закрытый ключ; Закрытый ключ защищён паролем; Закрытый ключ не подходит к сертификату</td>
+      <td>ключ</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

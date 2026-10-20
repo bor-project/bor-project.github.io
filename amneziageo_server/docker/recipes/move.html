@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moving to another server · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="A backup of the database and an installation on a new host from it.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/recipes/move.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/recipes/move.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/recipes/move.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/recipes/move.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/recipes/move.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/recipes/move.html">Service</a>
+  <a href="/amneziageo_server/docker/recipes/move.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html" aria-current="page">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="moving-to-another-server">Moving to another server</h1>
+
+<p>The task: move the panel with its clients, interfaces and settings to a new host so that the clients go on connecting with their configurations. A copy of the database carries everything except the certificate, the token signing key and the geo files.</p>
+
+<h2 id="1-a-copy-on-the-old-host">1. A copy on the old host</h2>
+
+<p>“Overview” &gt; “Backup” &gt; “Download a copy” (the “Download backups” permission). The file <code class="language-plaintext highlighter-rouge">amneziageo-&lt;name&gt;-&lt;time&gt;.db</code> carries the accounts and tokens, the interfaces with their keys, the clients, templates, rules, channels and the settings of the panel. From the console a copy is taken by item 5 of the menu, sub-item 5, into the <code class="language-plaintext highlighter-rouge">backup</code> directory next to the database.</p>
+
+<h2 id="2-the-panel-on-the-new-host">2. The panel on the new host</h2>
+
+<p>Copy the file to the new host and install the panel there:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server install --restore /root/amneziageo-&lt;name&gt;-&lt;time&gt;.db
+</code></pre></div></div>
+
+<p>The script checks the file, installs the panel as a container, puts the fresh database aside into <code class="language-plaintext highlighter-rouge">backup</code> and starts the panel on the copy; it makes no administrator and no interface, since they are already in the copy. If the panel is already on the new host, the same is done by <code class="language-plaintext highlighter-rouge">amneziageo-server restore &lt;file&gt;</code> or “Restore from a file” on “Overview” (a copy with addresses the host does not have does not go in from the panel, while the console command fits it to the host).</p>
+
+<h2 id="3-the-name">3. The name</h2>
+
+<p>The clients reach the server by the name in their configurations, the <code class="language-plaintext highlighter-rouge">Endpoint</code> line. Move the name in DNS to the address of the new host; the configurations of the clients need no change. If <code class="language-plaintext highlighter-rouge">Endpoint</code> held an address rather than a name, the clients will need new files: the subscription hands them out by itself as soon as the host of the interface is corrected to the new address.</p>
+
+<h2 id="4-certificate-and-ports">4. Certificate and ports</h2>
+
+<p>The certificate of the panel is not in the copy. The script offers to get a Let’s Encrypt certificate for the same name once the name already points at the new host; otherwise the panel answers without a certificate until item 22 of the menu puts one on. The addresses of the old host the panel listened on are dropped by the script. The ports of the interfaces, the panel and subscriptions the panel kept open, it opens in the firewall of the new host by itself at the start; ufw on the new host is turned on by the installation or item 23 of the menu. The panel in the container does not reach the ufw of the host: on a host with ufw on, the ports are opened by item 23 of the menu on the host or <code class="language-plaintext highlighter-rouge">ufw allow &lt;port&gt;</code>.</p>
+
+<h2 id="5-check">5. Check</h2>
+
+<p>The “Services” card on “Overview”: the interfaces came up, the subscriptions and the resolver answer, the certificate is in place. A client connects from its device without edits. The panel downloads the geo sources by itself after the start.</p>
+
+<h2 id="6-the-old-host">6. The old host</h2>
+
+<p>Stop the panel on the old host (<code class="language-plaintext highlighter-rouge">amneziageo-server stop</code> and <code class="language-plaintext highlighter-rouge">disable</code>), so that clients whose cached name is not updated yet do not go to both servers. The token signing key on the new host is new: the sessions in browsers and the session tokens end, and you sign in again; long-lived tokens for scripts (<code class="language-plaintext highlighter-rouge">agt_...</code>) live in the database and keep working.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

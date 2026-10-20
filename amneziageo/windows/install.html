@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Installation · Windows · AmneziaGeo</title>
+    <meta name="description" content="The AmneziaGeo installer for Windows 7, 10 and 11, updates and uninstalling.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/install.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/install.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/install.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/windows/install.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/windows/install.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/install.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/install.html">Linux</a>
+  <a href="/amneziageo/android/install.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.html" aria-current="page">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.html">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/">Windows</a></li>
+  </ol>
+</nav>
+
+        <h1 id="installation">Installation</h1>
+
+<p>You need Windows 7, 10 or 11 (x64 or arm64) and administrator rights: the installer sets up a system service.</p>
+
+<ol>
+  <li>Download the installer for your architecture from the <a href="https://github.com/bor-project/amneziageo/releases">Releases</a> page. The regular build carries everything it needs; the smaller variant (<code class="language-plaintext highlighter-rouge">-fdd</code>) requires the <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET 10 Desktop Runtime</a> already installed. The x64 installer does install on an ARM64 computer, but the tunnel will not work there; the installer warns about it.</li>
+  <li>Run it. “Installation options”: “Desktop shortcut”, “Start menu shortcut”, “Download geo database updates” - fetch the geo databases that are missing or out of date, “Launch AmneziaGeo after install” and “Connect on launch”. The agent service and the application are installed: the files go to <code class="language-plaintext highlighter-rouge">Program Files\AmneziaGeo</code>, the data to <code class="language-plaintext highlighter-rouge">ProgramData\AmneziaGeo</code>.</li>
+</ol>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/install-options.png" alt="Update options: geo databases, launch after install, connecting, shortcuts, reset settings" width="504" height="502" loading="lazy" /><figcaption>The options of an update; a new installation shows the same boxes.</figcaption></figure>
+
+<p>Next: <a href="/amneziageo/windows/first-config.html">first configuration</a>.</p>
+
+<p>Running the installer again over the installed version offers “Update”, “Repair” or “Remove”; the “Reset settings” box then wipes the configurations and the data, see <a href="#uninstalling">Uninstalling</a>. An earlier version is installed as a rollback: the installer removes the installed one first, then installs its own.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/install-actions.png" alt="The installer over the installed version: Remove, Repair, Update" width="504" height="502" loading="lazy" /><figcaption>Running the installer again.</figcaption></figure>
+
+<h2 id="smartscreen-and-smart-app-control">SmartScreen and Smart App Control</h2>
+
+<p>The installer and the files of the application are not signed yet: the work on getting a certificate is under way. Until then SmartScreen warns about an unknown publisher and Smart App Control on Windows 11 may block the launch. What to do about it: <a href="/amneziageo/CODE_SIGNING.html">code signing policy</a>.</p>
+
+<!--
+The installer and the files of the application are signed through SignPath.io with a SignPath Foundation certificate, see the [code signing policy](/amneziageo/CODE_SIGNING.html). Releases before 1.5.x carry no signature: for them SmartScreen warns about an unknown publisher, and Smart App Control on Windows 11 may block the launch.
+-->
+
+<h2 id="update">Update</h2>
+
+<p>The app updates itself: it offers the new version and, when the installed copy is the release before it, fetches one patch with the files that changed against that copy, a changed file as a delta from the installed one, and runs the installer on them; from an older version, or where the patch does not fit, it downloads the whole installer for its own architecture. A download that broke off carries on from where it stopped. The buttons are in the <a href="/amneziageo/windows/menu/general.html#update">General</a> section.</p>
+
+<h2 id="uninstalling">Uninstalling</h2>
+
+<p>It is removed from Windows “Apps” (“Add or remove programs”) or by running the installer again and pressing “Remove”. The agent service is stopped and taken away, and the application in <code class="language-plaintext highlighter-rouge">Program Files\AmneziaGeo</code>, the shortcuts and the temporary tunnel services are removed. The data - the state database, the configurations, the geo databases and the logs in <code class="language-plaintext highlighter-rouge">ProgramData\AmneziaGeo</code> - stays so that a new installation picks it up; the “Delete configuration and cache” box in the removal options wipes it too.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/install-remove.png" alt="Removal: the Delete configuration and cache box" width="504" height="502" loading="lazy" /><figcaption>Removal: the configurations and the cache stay unless the box is ticked.</figcaption></figure>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

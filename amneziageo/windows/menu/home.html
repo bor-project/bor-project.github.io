@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home screen · Windows · AmneziaGeo</title>
+    <meta name="description" content="Connecting, the server and the routing list">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/menu/home.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/menu/home.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/menu/home.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo/windows/menu/home.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/">AmneziaGeo <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo/releases">Download</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/">Server</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo/windows/menu/home.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Device">
+  <a href="/amneziageo/windows/menu/home.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/menu/home.html">Linux</a>
+  <a href="/amneziageo/android/menu/home.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/">Overview</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.html">First configuration</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/">Menu</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.html" aria-current="page">Home screen</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.html">Configurations</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.html">Geo sources</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.html">Connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.html">Diagnostics</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.html">General</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.html">Discord where UDP is blocked</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.html">Access to a remote network</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.html">Devices on the network through the proxy</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.html">Sharing the VPN over Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.html">Command line</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/PRIVACY.html">Privacy</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo/">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/">Windows</a></li>
+    <li><a href="/amneziageo/windows/menu/">Menu</a></li>
+  </ol>
+</nav>
+
+        <h1 id="home-screen">Home screen</h1>
+
+<p>In the middle of the screen stands the connect button, with the state under it: “Disconnected”, “Connecting”, “Connected”. Under the state stands the hint “Select a configuration” while no configuration is selected, and “Establishing connection…” while the tunnel comes up. What a click does is said by the tooltip of the button: “Click to connect” or “Click to disconnect”. While the connect is being repeated, “Attempt N” and “Click to cancel” stand under the button: a click cancels the attempts. Beside a connected tunnel stand the latency of the server, the received and sent speed and the loss in the tunnel. An orange button reading “The server has stopped answering” means the tunnel is held until the server answers, see below. The orange line “another program resolves site addresses” means name lookups do not reach the client: another program takes them, and the sites of the rules open slower than usual.</p>
+
+<p>When the tunnel is up under another Windows account, the button offers “Switch to yours”.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/home-connected.png" alt="Home screen: the tunnel is connected, latency, speed and loss under the button" width="984" height="752" loading="lazy" /><figcaption>The tunnel is connected: the latency of the server, received and sent, loss.</figcaption></figure>
+
+<p>“Server” picks the configuration to connect; while there are no configurations, “Add configuration” stands in its place, see <a href="configurations.html#adding-a-configuration">Adding a configuration</a>. “Routing” shows the name of the selected list or “No list”: a click on the name opens the <a href="routing.html">Routing</a> section, and the switch beside it turns routing on and off. With routing off the addresses of the original configuration, its <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, are used.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/home-disconnected.png" alt="Home screen: the tunnel is disconnected, a server and a routing list are selected" width="984" height="752" loading="lazy" /><figcaption>The tunnel is disconnected: Server and Routing under the button.</figcaption></figure>
+
+<h2 id="servers">Servers</h2>
+
+<p>In the multiple-VPN mode the home screen shows the “Servers” block instead of the server pick: the servers that are up, each with its place - “Primary”, “Reserve 1”, “Reserve 2” and on, or “Neutral” - its latency in milliseconds, the received and sent speed and the loss; the heading says how many servers are connected. A click on the place opens its choice. “More” leads into the configuration catalogue, where servers are connected and disconnected with the “In use” switch.</p>
+
+<p>The mode as a whole: the <a href="../recipes/multiple-vpn.html">Multiple VPN connections</a> recipe.</p>
+
+<h2 id="holding-traffic-when-the-tunnel-drops">Holding traffic when the tunnel drops</h2>
+
+<p>While the switch “Hold traffic when the tunnel drops” in the settings of a configuration is on, a tunnel whose server stops answering is not taken down: it stays up while it reconnects on its own, what the rules send through it is held back instead of leaving by the physical path, and what the rules send directly keeps going. The state reads “connecting” until the server answers again, however long that takes. The switch is on by default. With it off such a tunnel is taken down and raised again, and while it is down what the rules send through it leaves by the physical path. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config hold &lt;name&gt; on|off</code>; <code class="language-plaintext highlighter-rouge">config list</code> shows it in the HOLD column and <code class="language-plaintext highlighter-rouge">status</code> in the <code class="language-plaintext highlighter-rouge">hold traffic</code> row.</p>
+
+<p>A switch flipped while the tunnel is connected applies at once.</p>
+
+<ul>
+  <li>A disconnect of yours (the button, the menu of the tray or of the notification, the console) takes the tunnel down, and so does a switch to another configuration on Linux and Windows.</li>
+  <li>An AmneziaGeo server takes the tunnel down as well when the client is turned off in its panel: it sends a signal through the tunnel, and the application disconnects the way a disconnect of yours does, so a machine that was reached through the tunnel comes back on its own network. On Windows with several servers only the tunnel of that server goes down, and the rest of the set stands. The application takes the signal on Linux, Windows and Android, on a TCP port the server names, at the address of the tunnel; on Linux and Windows it lets that port in from the server alone, whatever the access from the tunnel says. On Linux a firewall of the machine itself that drops incoming connections drops the signal too.</li>
+  <li>The signal is taken while the configuration lets the server take the tunnel down, and by default it does. The switch “Allow the server to disconnect the tunnel” stands in the settings of a configuration whose server sends the signal and leaves the choice to its client; in the console it is <code class="language-plaintext highlighter-rouge">amneziageo config signal &lt;name&gt; on|off</code>, and <code class="language-plaintext highlighter-rouge">config list</code> prints the state in the SIGNAL column. With the switch off the application does not listen for the signal and says so to the server the next time it asks it, and the server sends none. The change stands from the next connect. On Windows with several servers the switch of each configuration stands for its own tunnel alone: a signal one configuration takes leaves the tunnels of the others up.</li>
+  <li>The protection covers a tunnel the server answered at least once after you connected. A connect the server never answered is given up.</li>
+  <li>A tunnel whose engine or tunnel service died is raised again at once, and for that moment there is no tunnel. On Android the system setting “Block connections without VPN” closes it.</li>
+  <li>A failure another attempt does not get past ends the hold: the tunnel goes down and says why.</li>
+  <li>A tunnel that carries everything does not look the name of its server up again while it is held.</li>
+</ul>
+
+<h2 id="reconnecting">Reconnecting</h2>
+
+<p>A dropped or failed connect is dialled again whatever auto reconnect says: at once, then in 5, 10 and 20 s, then every 60 s. With the setting on, the longest pause is its interval instead of 60 s, and <code class="language-plaintext highlighter-rouge">amneziageo status</code> says <code class="language-plaintext highlighter-rouge">always</code> either way. The setting is on the <a href="connections.html#tunnel">Tunnel</a> tab of Connections.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Report an issue</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

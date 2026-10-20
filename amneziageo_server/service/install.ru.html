@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Установка · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Служба одной командой меню или вручную, обновление и откат, что лежит на хосте, удаление.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/install.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/install.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/install.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/install.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/install.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/install.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html" aria-current="page">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+  </ol>
+</nav>
+
+        <h1 id="установка">Установка</h1>
+
+<p>Нужны Debian 12 и новее или Ubuntu на amd64 или arm64, права root, публичный адрес и около 2 ГБ свободного места на диске. Панель поднимает интерфейсы туннеля через модуль ядра <code class="language-plaintext highlighter-rouge">amneziawg</code>, поэтому модуль ставится первым; консольное меню делает это само. Docker на этом хосте не нужен. Если он уже стоит, он переводит политику пересылки <code class="language-plaintext highlighter-rouge">FORWARD</code> в <code class="language-plaintext highlighter-rouge">DROP</code>, и клиенты не выходят дальше сервера: установка дописывает <code class="language-plaintext highlighter-rouge">"ip-forward-no-drop": true</code> в <code class="language-plaintext highlighter-rouge">/etc/docker/daemon.json</code>, если версия Docker это знает, и снимает уже поставленный <code class="language-plaintext highlighter-rouge">DROP</code>, если цепочку не держит ufw.</p>
+
+<h2 id="одной-командой">Одной командой</h2>
+
+<p>Каждый релиз несёт скрипт <code class="language-plaintext highlighter-rouge">amneziageo-server</code> - <a href="/amneziageo_server/service/menu.ru.html">консольное меню</a>, которое ставит панель на чистый хост и дальше обслуживает её. От root:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fsSL https://github.com/bor-project/amneziageo_server/releases/latest/download/amneziageo-server \
+  -o /usr/local/bin/amneziageo-server
+chmod 755 /usr/local/bin/amneziageo-server
+amneziageo-server install
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">install</code> сначала осматривает хост и печатает, что на нём есть: система и ядро, ждущие обновления, модуль <code class="language-plaintext highlighter-rouge">amneziawg</code>, память и диск, Docker и его контейнеры, пересылка и BBR, ufw, занятые порты со службами за ними, интерфейсы AmneziaWG и WireGuard, сертификаты Let’s Encrypt. На том, с чем панель не уживётся, он останавливается: нет релиза для архитектуры, контейнерный хост без модуля. Потом задаёт все вопросы сразу, с ответами по умолчанию из осмотра, печатает план и после согласия делает всё по списку.</p>
+
+<h3 id="вопросы">Вопросы</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Вопрос</th>
+      <th>По умолчанию</th>
+      <th>Ключ файла ответов</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Install as</code>: <code class="language-plaintext highlighter-rouge">1. Package</code> (служба), <code class="language-plaintext highlighter-rouge">2. Docker</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code>, если на хосте нет Docker</td>
+      <td><code class="language-plaintext highlighter-rouge">kind</code>: <code class="language-plaintext highlighter-rouge">package</code> или <code class="language-plaintext highlighter-rouge">docker</code></td>
+    </tr>
+    <tr>
+      <td>Поставить короткую команду меню? Её имя</td>
+      <td>спрашивается только с терминала; <code class="language-plaintext highlighter-rouge">ag-s</code> или первое свободное имя с номером</td>
+      <td><code class="language-plaintext highlighter-rouge">shortcut</code>: имя, пусто без неё</td>
+    </tr>
+    <tr>
+      <td>Обновить систему первой (<code class="language-plaintext highlighter-rouge">apt full-upgrade</code>)?</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">upgrade</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Channel</code>: 1 обычные релизы, 2 предварительные</td>
+      <td>обычные</td>
+      <td><code class="language-plaintext highlighter-rouge">channel</code>: <code class="language-plaintext highlighter-rouge">stable</code> или <code class="language-plaintext highlighter-rouge">test</code></td>
+    </tr>
+    <tr>
+      <td>Файл резервной копии, пусто для новой панели</td>
+      <td>пусто</td>
+      <td><code class="language-plaintext highlighter-rouge">restore</code></td>
+    </tr>
+    <tr>
+      <td>Включить BBR?</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">bbr</code></td>
+    </tr>
+    <tr>
+      <td>Логин первого администратора</td>
+      <td><code class="language-plaintext highlighter-rouge">admin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">login</code></td>
+    </tr>
+    <tr>
+      <td>Логин совпадает с пользователем хоста: сделать его администратором панели?</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">host_admin</code></td>
+    </tr>
+    <tr>
+      <td>Придумать временный пароль, сменяемый при первом входе?</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">generate</code></td>
+    </tr>
+    <tr>
+      <td>Имя сервера для сертификата Let’s Encrypt, пусто без него</td>
+      <td>имя, на которое у хоста уже есть сертификат</td>
+      <td><code class="language-plaintext highlighter-rouge">domain</code></td>
+    </tr>
+    <tr>
+      <td>Почта для Let’s Encrypt; согласие с его условиями</td>
+      <td>пусто; да</td>
+      <td><code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">terms</code></td>
+    </tr>
+    <tr>
+      <td>Порт панели</td>
+      <td>8443 или первый свободный выше</td>
+      <td><code class="language-plaintext highlighter-rouge">port</code></td>
+    </tr>
+    <tr>
+      <td>Без имени: отвечать на всех адресах хоста без TLS?</td>
+      <td>нет</td>
+      <td><code class="language-plaintext highlighter-rouge">everywhere</code></td>
+    </tr>
+    <tr>
+      <td>Сделать первый интерфейс?</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">endpoint</code></td>
+    </tr>
+    <tr>
+      <td>Имя интерфейса; UDP-порт, сервисы на TCP того же номера; адрес для клиентов</td>
+      <td><code class="language-plaintext highlighter-rouge">awg0</code>; 51820 или первый свободный; имя сервера или публичный адрес хоста</td>
+      <td><code class="language-plaintext highlighter-rouge">endpoint_name</code>, <code class="language-plaintext highlighter-rouge">endpoint_port</code>, <code class="language-plaintext highlighter-rouge">endpoint_host</code></td>
+    </tr>
+    <tr>
+      <td>Нести туннель и внутри WebSocket на TCP того же номера?</td>
+      <td>нет</td>
+      <td><code class="language-plaintext highlighter-rouge">websocket</code></td>
+    </tr>
+    <tr>
+      <td>Имя первого клиента, пусто без него; показать его конфигурацию QR-кодом?</td>
+      <td><code class="language-plaintext highlighter-rouge">client1</code>; да</td>
+      <td><code class="language-plaintext highlighter-rouge">client</code>, <code class="language-plaintext highlighter-rouge">qr</code></td>
+    </tr>
+    <tr>
+      <td>Отвечать клиентам на DNS на этом сервере, спрашивая наружу по HTTPS?</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">resolver</code></td>
+    </tr>
+    <tr>
+      <td>(не спрашивается) диапазон IPv6 клиентов первого интерфейса, его первый адрес - адрес интерфейса</td>
+      <td>на хосте с глобальным адресом IPv6 свой случайный <code class="language-plaintext highlighter-rouge">fdXX:XXXX:XXXX::1/64</code>, иначе без IPv6</td>
+      <td><code class="language-plaintext highlighter-rouge">ipv6_range</code>: как <code class="language-plaintext highlighter-rouge">fd3a:4b5c:6d7e::1/64</code>, пусто без него</td>
+    </tr>
+    <tr>
+      <td>Открыть порты в ufw, или включить ufw, впустив ssh и то, что уже слушает?</td>
+      <td>да, если ufw не стоит</td>
+      <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ufw keeps the clients of &lt;интерфейсы&gt; from the resolver of the panel: let them reach it?</code>, в конце, если ufw не пускает клиентов интерфейсов к резолверу</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">resolver_ufw</code></td>
+    </tr>
+    <tr>
+      <td>Перезагрузить после обновления с новым ядром?</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">reboot</code></td>
+    </tr>
+    <tr>
+      <td>Идти дальше по плану?</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">go</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ответы можно заранее положить в файл строками <code class="language-plaintext highlighter-rouge">ключ=значение</code> и дать его командой <code class="language-plaintext highlighter-rouge">amneziageo-server install --answers &lt;файл&gt;</code>: скрипт спросит только то, чего в файле нет, а со всеми ключами пройдёт без вопросов.</p>
+
+<h3 id="что-делает">Что делает</h3>
+
+<ul>
+  <li>обновляет систему; если пришло новое ядро, перезагружает хост, и та же команда после перезагрузки продолжает с теми же ответами;</li>
+  <li>ставит модуль из PPA Amnezia (<code class="language-plaintext highlighter-rouge">amneziawg-dkms</code>), если ядро его не несёт, включает пересылку пакетов сейчас и при загрузке и BBR; интерфейсу, через который хост получает маршрут IPv6 из объявлений маршрутизатора, ставит <code class="language-plaintext highlighter-rouge">accept_ra = 2</code>, иначе с пересылкой ядро этот маршрут сразу снимет;</li>
+  <li>если на хосте стоит Docker, пропускает пакеты клиентов мимо его <code class="language-plaintext highlighter-rouge">DROP</code>, как сказано выше;</li>
+  <li>скачивает архив последнего релиза канала, сверяет его с ключом, которым подписаны релизы, и ставит его <code class="language-plaintext highlighter-rouge">install.sh</code>;</li>
+  <li>заводит первого администратора; временный пароль печатает один раз в конце;</li>
+  <li>выпускает сертификат Let’s Encrypt на имя сервера (<code class="language-plaintext highlighter-rouge">certbot</code> с ключом RSA, проверка HTTP-01 на TCP 80, продление таймером <code class="language-plaintext highlighter-rouge">certbot.timer</code>, см. <a href="/amneziageo_server/service/panel/certificates.ru.html#lets-encrypt">Сертификаты</a>) или берёт тот, что у хоста уже есть, и открывает панель на всех адресах хоста;</li>
+  <li>заводит первый интерфейс и клиента через API панели: конфигурация клиента ложится в <code class="language-plaintext highlighter-rouge">/root</code>, по желанию печатается QR-кодом; на хосте с глобальным адресом IPv6 интерфейс получает диапазон уникальных локальных адресов IPv6, и клиенты ходят по IPv6 через сервер;</li>
+  <li>включает резолвер для клиентов, если согласились;</li>
+  <li>открывает порты в ufw или включает ufw, оставив открытыми ssh и то, что уже слушало;</li>
+  <li>если ufw не пускает клиентов какого-то интерфейса к резолверу панели, предлагает пустить их правилом <code class="language-plaintext highlighter-rouge">allow in on &lt;интерфейс&gt; to any port 53</code>, см. <a href="/amneziageo_server/service/panel/dns.ru.html#как-это-работает">DNS</a>;</li>
+  <li>ставит короткую команду меню, если согласились: ссылку <code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code> на <code class="language-plaintext highlighter-rouge">amneziageo-server</code> или с именем, которое назвали; имя, которое уже занято другой командой, не берёт и спрашивает другое;</li>
+  <li>проверяет службу, панель, сертификат и интерфейс и печатает адрес панели, логин и пароль, порты панели и интерфейса, адрес IPv6 хоста и команду меню с короткой командой.</li>
+</ul>
+
+<p>Короткую команду на хосте, поставленном без неё, ставит <code class="language-plaintext highlighter-rouge">ln -s /usr/local/bin/amneziageo-server /usr/local/bin/ag-s</code>; обновление ссылку не трогает, удаление панели её убирает.</p>
+
+<p>Дальше - <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>: вход, смена пароля, первый интерфейс и клиент, если их не завёл скрипт.</p>
+
+<h3 id="перенос-с-другого-сервера">Перенос с другого сервера</h3>
+
+<p>На старой панели «Обзор» &gt; «Резервная копия» &gt; «Скачать копию», файл копируется на новый хост:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server install --restore /root/amneziageo-&lt;имя&gt;-&lt;время&gt;.db
+</code></pre></div></div>
+
+<p>Скрипт проверяет файл, ставит панель и запускает её на базе из копии: учётные записи и токены, интерфейсы с ключами, клиенты, правила и настройки переезжают как есть, администратора и интерфейс он не заводит. Клиенты ходят на сервер по имени из своих конфигураций, поэтому имя в DNS переводится на новый хост. Сертификат, ключ подписи и файлы гео в копию не входят: сертификат на то же имя скрипт предложит выпустить, когда имя уже указывает на новый хост, адреса старого хоста из настроек панели отбросит, гео-источники панель скачает после запуска. На работающей панели то же делает <code class="language-plaintext highlighter-rouge">amneziageo-server restore &lt;файл&gt;</code>. Подробнее - <a href="/amneziageo_server/service/panel/overview.ru.html#резервная-копия">Резервная копия</a>.</p>
+
+<h2 id="вручную">Вручную</h2>
+
+<p>Тот же путь по шагам руками описан в репозитории: <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/ru/install-debian12.md">Панель AmneziaGeo на Debian 12 без Docker</a>. Коротко:</p>
+
+<ol>
+  <li>Обновить систему и перезагрузиться; поставить заголовки ядра, <code class="language-plaintext highlighter-rouge">nftables</code>, <code class="language-plaintext highlighter-rouge">dkms</code>, <code class="language-plaintext highlighter-rouge">gcc</code>, <code class="language-plaintext highlighter-rouge">make</code>.</li>
+  <li>Поставить <code class="language-plaintext highlighter-rouge">amneziawg-dkms</code> из PPA Amnezia и загрузить модуль: <code class="language-plaintext highlighter-rouge">modprobe amneziawg</code>, строка <code class="language-plaintext highlighter-rouge">amneziawg</code> в <code class="language-plaintext highlighter-rouge">/etc/modules-load.d/amneziawg.conf</code>. Пакет <code class="language-plaintext highlighter-rouge">amneziawg-tools</code> не нужен: панель говорит с модулем сама.</li>
+  <li>Включить пересылку: <code class="language-plaintext highlighter-rouge">net.ipv4.ip_forward = 1</code> и <code class="language-plaintext highlighter-rouge">net.ipv6.conf.all.forwarding = 1</code> в <code class="language-plaintext highlighter-rouge">/etc/sysctl.d/90-amneziageo.conf</code>, <code class="language-plaintext highlighter-rouge">sysctl --system</code>. Если хост берёт IPv6 из объявлений маршрутизатора (SLAAC), первой строкой того же файла - <code class="language-plaintext highlighter-rouge">net/ipv6/conf/&lt;внешний интерфейс&gt;/accept_ra = 2</code>: с включённой пересылкой ядро сразу снимает такой маршрут и новых объявлений не принимает.</li>
+  <li>Скачать со страницы <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a> архив <code class="language-plaintext highlighter-rouge">amneziageo-server-&lt;версия&gt;-linux-x64.tar.gz</code> (для arm64 - <code class="language-plaintext highlighter-rouge">-arm64</code>) и <code class="language-plaintext highlighter-rouge">update.json</code> того же релиза, сверить <code class="language-plaintext highlighter-rouge">sha256</code> архива с манифестом, распаковать и запустить установщик:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tar xzf /root/amneziageo-server-&lt;версия&gt;-linux-x64.tar.gz -C /root
+/root/amneziageo-server/install.sh
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">install.sh</code> кладёт релиз в <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/releases/&lt;релиз&gt;</code>, веб-интерфейс в <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/web/&lt;релиз&gt;</code> и ставит на них ссылки <code class="language-plaintext highlighter-rouge">current</code> и <code class="language-plaintext highlighter-rouge">wwwroot</code>; создаёт <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server</code> для базы и <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server</code> с заготовкой <code class="language-plaintext highlighter-rouge">server.env</code>, где все строки закомментированы; ставит службы <code class="language-plaintext highlighter-rouge">amneziageo-server.service</code> и <code class="language-plaintext highlighter-rouge">amneziageo-proxy@.service</code>; кладёт меню в <code class="language-plaintext highlighter-rouge">/usr/local/bin/amneziageo-server</code>; включает автозапуск службы, но не запускает её: сначала нужен администратор, см. <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>. В конце он пишет <code class="language-plaintext highlighter-rouge">&lt;релиз&gt; is on the host, the server is not running</code> и две следующие команды.</p>
+
+<p>Служба работает от root: чтение и запись интерфейса требуют <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>, а файлы интерфейсов принадлежат root. Отдельная учётная запись с <code class="language-plaintext highlighter-rouge">AmbientCapabilities=CAP_NET_ADMIN</code> и переданными ей файлами делает то же.</p>
+
+<h2 id="обновление">Обновление</h2>
+
+<p>Панель ставит новый релиз сама. Раз в 12 часов она спрашивает GitHub о релизах, проверяет подпись манифеста <code class="language-plaintext highlighter-rouge">update.json</code> ключом релизов и, если релиз новее, показывает его в шапке «Обзора» рядом со своей версией. Кнопка «Обновить» для роли с правом «Обновление панели» собирает архив для архитектуры хоста: файлы, которые у хоста уже есть, копирует, остальные докачивает из релиза по частям (обычно это мегабайт-другой из примерно 55), сверяет каждый с дайджестом и запускает <code class="language-plaintext highlighter-rouge">install.sh</code> архива отдельно от себя, через <code class="language-plaintext highlighter-rouge">systemd-run</code>. Страница следит за шагами «Загрузка», «Установка», «Перезапуск», «Готово» и сама загружает новую панель, когда та ответит; неудачное обновление остаётся в шапке с журналом, пока его не скроют крестиком «Скрыть» или не пройдёт следующее. Подробнее - <a href="/amneziageo_server/service/panel/overview.ru.html#обновление">Обновление</a>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">install.sh</code> нового релиза кладёт его рядом с рабочим, останавливает службу, копирует базу в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code>, переводит <code class="language-plaintext highlighter-rouge">current</code> на новый релиз и запускает службу. Он ждёт, пока сервер скажет, что поднялся, и смотрит за ним ещё пять секунд: релиз, который не поднялся или упал за это время, откатывается сам: копия базы возвращается, <code class="language-plaintext highlighter-rouge">current</code> указывает на прежний релиз, служба стартует на нём, и скрипт кончается ошибкой. Остановленная до обновления служба остаётся остановленной.</p>
+
+<p>Интерфейсы и их клиенты живут в ядре и через обновление не рвутся:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Что</th>
+      <th>Во время перезапуска</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>интерфейсы и клиенты</td>
+      <td>остаются в ядре с рукопожатиями и счётчиками</td>
+    </tr>
+    <tr>
+      <td>каналы</td>
+      <td>держат сервер как пир, с рукопожатием и счётчиками; канал внутри WebSocket несёт сам сервер, он ждёт его</td>
+    </tr>
+    <tr>
+      <td>правила маршрутизации и таблицы брандмауэра</td>
+      <td>остаются на хосте и кладутся заново одним шагом при старте</td>
+    </tr>
+    <tr>
+      <td>адреса, которые резолвер положил в наборы</td>
+      <td>читаются с хоста при старте и кладутся снова с правилами</td>
+    </tr>
+    <tr>
+      <td>резолвер</td>
+      <td>не отвечает те секунды, пока сервер стартует; клиенты спрашивают снова</td>
+    </tr>
+    <tr>
+      <td>фронты WebSocket</td>
+      <td>работают: фронт перезапускается, только если его файлы изменились</td>
+    </tr>
+    <tr>
+      <td>панель и подписки</td>
+      <td>не отвечают, пока сервер стартует</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Из консоли то же делают <code class="language-plaintext highlighter-rouge">amneziageo-server update</code> и <code class="language-plaintext highlighter-rouge">amneziageo-server update beta</code> (пункты 2 и 3 меню): скрипт просит панель обновиться и ждёт, пока она ответит новой версией. Предварительные выпуски панель берёт после отметки «Получать предварительные версии» на вкладке <a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a> настроек. Вручную: новый архив распаковать и запустить его <code class="language-plaintext highlighter-rouge">install.sh</code>, как в первый раз; архив, который хост уже несёт, повторно не ставится без <code class="language-plaintext highlighter-rouge">--force</code>.</p>
+
+<p>Один веб-интерфейс, пока сервер работает, ставит <code class="language-plaintext highlighter-rouge">install.sh --ui</code> архива или архив <code class="language-plaintext highlighter-rouge">amneziageo-web.tar.gz</code>: скрипт кладёт интерфейс рядом с тем, что отдаёт сервер, переводит на него <code class="language-plaintext highlighter-rouge">wwwroot</code>, и следующая открытая страница уже новая; открытая страница продолжает работать, потому что файлы, которые она ещё может спросить, скопированы из прежнего интерфейса. Архив знает, для какого сервера собран, и отказывает хосту с другим; <code class="language-plaintext highlighter-rouge">--force</code> ставит всё равно.</p>
+
+<h2 id="откат">Откат</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-server rollback
+</code></pre></div></div>
+
+<p>Пункт 4 меню или <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/current/install.sh --rollback</code> переводит <code class="language-plaintext highlighter-rouge">current</code> на прежний релиз и запускает службу на нём, с веб-интерфейсом того релиза; та же команда снова возвращает на новый. База остаётся как есть: перед каждым обновлением и восстановлением она копируется в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code>, где лежат пять последних копий, и меню после отката предлагает вернуть одну из них. <code class="language-plaintext highlighter-rouge">install.sh --list</code> печатает релизы на хосте.</p>
+
+<h2 id="что-лежит-на-хосте">Что лежит на хосте</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Путь</th>
+      <th>Что</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/releases/&lt;релиз&gt;</code></td>
+      <td>релиз сервера и утилиты</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/web/&lt;релиз&gt;</code></td>
+      <td>релиз веб-интерфейса</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/current</code></td>
+      <td>рабочий релиз; <code class="language-plaintext highlighter-rouge">AmneziaGeo.Server.Api</code> и <code class="language-plaintext highlighter-rouge">AmneziaGeo.Server.Cli</code> в <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server</code> ведут в него</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/previous</code></td>
+      <td>предыдущий релиз, куда идёт откат</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/wwwroot</code></td>
+      <td>веб-интерфейс, который отдаёт сервер</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-server/current/wstunnel</code></td>
+      <td>WebSocket-прокси релиза; свой <code class="language-plaintext highlighter-rouge">/usr/local/bin/wstunnel</code> хоста установка не трогает</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/server.db</code></td>
+      <td>база: учётные записи, интерфейсы, клиенты, правила, настройки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/geo</code></td>
+      <td>файлы гео-баз</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code></td>
+      <td>пять последних копий базы, перед обновлениями и восстановлением</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/update</code></td>
+      <td>загрузки, журналы и запись последнего обновления</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/journal.db</code>, <code class="language-plaintext highlighter-rouge">access.db</code></td>
+      <td>журнал событий и журнал подключений, в копии базы не входят</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/server.env</code></td>
+      <td>переменные запуска: адрес до первого старта, сертификат, <code class="language-plaintext highlighter-rouge">Update__*</code> и прочие</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/signing.pem</code></td>
+      <td>ключ, которым подписаны токены входа</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/proxy-&lt;интерфейс&gt;.env</code>, <code class="language-plaintext highlighter-rouge">.yaml</code></td>
+      <td>аргументы и список целей фронта WebSocket интерфейса</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amnezia/amneziawg/&lt;интерфейс&gt;.conf</code></td>
+      <td>файлы интерфейсов, которые панель читает и пишет</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/systemd/system/amneziageo-server.service</code>, <code class="language-plaintext highlighter-rouge">amneziageo-proxy@.service</code></td>
+      <td>служба панели и служба фронта</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/usr/local/bin/amneziageo-server</code></td>
+      <td>консольное меню, приходит с каждым релизом</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code></td>
+      <td>короткая команда меню, ссылка на <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, если её поставили</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Хост держит рабочий релиз и предыдущий, каждый со своим веб-интерфейсом, и интерфейс, который отдавался до последнего; остальное удаляется, в том числе релиз, который не поднялся. Панель, поставленная до появления релизов, при первом обновлении переезжает в релиз <code class="language-plaintext highlighter-rouge">legacy-&lt;дата&gt;</code>.</p>
+
+<h2 id="удаление">Удаление</h2>
+
+<p>Пункт 6 меню <code class="language-plaintext highlighter-rouge">Uninstall</code> спрашивает, убрать ли панель и убрать ли вместе с ней базу и настройки. Он останавливает и снимает службу панели и фронтов, удаляет <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server</code>, убирает с хоста интерфейсы панели, её таблицы nftables и правила ufw с её пометкой, удаляет меню и его короткие команды из <code class="language-plaintext highlighter-rouge">/usr/local/bin</code>. База в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server</code> и настройки в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server</code> остаются, если не согласиться убрать их; с ними уходят и файлы интерфейсов. На хосте остаются модуль <code class="language-plaintext highlighter-rouge">amneziawg</code> и файл пересылки <code class="language-plaintext highlighter-rouge">/etc/sysctl.d/90-amneziageo.conf</code>.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

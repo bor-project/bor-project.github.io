@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Routing on the client device · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Presets and geo sources for the AmneziaGeo app through a template.">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/recipes/client-routing.html">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/recipes/client-routing.ru.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/recipes/client-routing.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        // An English page opens in Russian for a reader who chose Russian or whose browser asks for it first.
+        try {
+          var chosen = localStorage.getItem(key);
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          if (chosen === 'ru' || (!chosen && /^ru(-|$)/i.test(browser))) {
+            location.replace("/amneziageo_server/docker/recipes/client-routing.ru.html");
+            return;
+          }
+        } catch (e) {}
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/">AmneziaGeo Server <span>Documentation</span></a>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Releases</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/">Client</a>
+        <a class="language" lang="ru" hreflang="ru" href="/amneziageo_server/docker/recipes/client-routing.ru.html">Русский</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Installation">
+  <a href="/amneziageo_server/service/recipes/client-routing.html">Service</a>
+  <a href="/amneziageo_server/docker/recipes/client-routing.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Contents</summary>
+  <nav class="toc" aria-label="Contents">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/">Start</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.html">Installation</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.html">First run</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.html">Console menu</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/">Panel</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.html">Overview</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.html">Interfaces</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.html">Clients</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.html">Templates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.html">Routing presets</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.html">Routing</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.html">Rules</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.html">Basic</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.html">Test</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.html">Channels</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.html">Geo lists</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.html">Settings</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.html">Server</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.html">Certificates</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.html">Users and roles</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.html">Diagnostics</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/">Recipes</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.html">Exit through another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.html">Channel group with a fallback</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.html">Tunnel inside WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.html">One subscription for several devices</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.html">Reaching a device behind a client</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.html" aria-current="page">Routing on the client device</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.html">Moving to another server</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.html">Utility</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.html">HTTP API</a>
+          <a href="/amneziageo_server/build.html">For developers</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+  <ol>
+    <li><a href="/amneziageo_server/">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/recipes/">Recipes</a></li>
+  </ol>
+</nav>
+
+        <h1 id="routing-on-the-client-device">Routing on the client device</h1>
+
+<p>The task: the clients get a list of sites that go through the VPN, the rest goes directly for them, and the server keeps this list. There are two ways: <code class="language-plaintext highlighter-rouge">AllowedIPs</code> in the client file, which any AmneziaWG app understands, and routing presets, which the AmneziaGeo app understands.</p>
+
+<h2 id="through-allowedips-a-template">Through AllowedIPs: a template</h2>
+
+<p>“Clients” &gt; “Templates” &gt; “Add”: the name <code class="language-plaintext highlighter-rouge">split</code>, and under “Routing” entries like <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code>, <code class="language-plaintext highlighter-rouge">geosite:telegram</code>, <code class="language-plaintext highlighter-rouge">example.com</code>. The panel unfolds the entries into address ranges, and this goes into <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of the file of every client of the template; “Addresses: N” under the entries says how many came out. “Save”, then set “Template” to <code class="language-plaintext highlighter-rouge">split</code> for the clients that need it.</p>
+
+<p>Any WireGuard client works this way: it sends into the tunnel only the addresses from the file. But the addresses of services change, while the file holds the ones of the last pass over the template: the panel computes it again once a day, after the geo databases change and with the “Refresh” button, and the client gets the new file through the subscription. Services behind a CDN with thousands of addresses give a long list: the panel warns about slowing down after 12000 ranges and does not save the template after 16000. More in <a href="../panel/templates.html">Templates</a>.</p>
+
+<p>For such services a template has the “Route by name” switch: the names of the template are not unfolded into addresses, the resolver of the panel answers the clients about them with stand-in addresses out of <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>, and the server leads the connections to the real addresses, whichever cache answered. The file carries the resolver of the panel as its only name server, so this works with any AmneziaWG app; it needs the resolver of the panel answering on port 53 and the firewall of the server letting the clients reach it, and the form of the template tells by itself what keeps it from working. More in <a href="../panel/templates.html#route-by-name">Route by name</a>.</p>
+
+<h2 id="through-presets-the-amneziageo-app">Through presets: the AmneziaGeo app</h2>
+
+<p>The AmneziaGeo app watches the DNS answers itself and puts the addresses from its lists into the tunnel on the fly. The list for it is kept on the server as a preset.</p>
+
+<ol>
+  <li>“Clients” &gt; “Routing presets” &gt; “Add”: the name <code class="language-plaintext highlighter-rouge">Blocked sites</code>, and under “Through the VPN” the same entries, <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">geoip:ag-youtube</code>, <code class="language-plaintext highlighter-rouge">geosite:telegram</code>; under “Block” you can put <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code>. “On by default”, so that the app puts the list in use when it adds it. “All UDP through the tunnel” for calls and games that learn their addresses not through DNS. “Save”.</li>
+  <li>“Clients” &gt; “Templates” &gt; the template of the clients &gt; “Routing presets”: check the preset, “Save”. Leave the entries of the template under “Routing” empty: <code class="language-plaintext highlighter-rouge">AllowedIPs</code> stays <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code>, and the app decides by the list what goes into the tunnel.</li>
+  <li>At the next hello the app adds the list and puts it in use. Together with the preset it gets the geo sources of the panel from the <a href="../panel/geo.html">Geo lists</a> page, so it has the <code class="language-plaintext highlighter-rouge">ag-</code> keys of the own database too.</li>
+</ol>
+
+<p>Editing the preset changes its time of change, and the card of the list in the app offers an update; the owner of the device accepts it or keeps their own. A list the owner removed comes back at the next hello. More in <a href="../panel/presets.html">Routing presets</a>.</p>
+
+<h2 id="which-to-choose">Which to choose</h2>
+
+<p>Presets are for the AmneziaGeo app: the list is live, updates by itself and does not swell the file. A template with entries is for any other client and for cases where routing must be built into the file. Both ways can be combined: a template with entries for other apps, a preset for our own, but then <code class="language-plaintext highlighter-rouge">AllowedIPs</code> limits the AmneziaGeo app too to what is in the file.</p>
+
+<p>Routing on the server, the rules of the <a href="../panel/routing.html">Routing</a> section, decides another thing: where the traffic goes after the server.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Report an issue</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

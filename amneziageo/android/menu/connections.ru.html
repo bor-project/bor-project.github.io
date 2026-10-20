@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Подключения · Android · AmneziaGeo</title>
+    <meta name="description" content="Прокси">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/android/menu/connections.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/android/menu/connections.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/android/menu/connections.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/android/menu/connections.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/menu/connections.ru.html">Windows</a>
+  <a href="/amneziageo/linux/menu/connections.ru.html">Linux</a>
+  <a href="/amneziageo/android/menu/connections.ru.html" aria-current="page">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/android/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/android/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/android/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/connections.ru.html" aria-current="page">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/android/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/android/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/android/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/android/index.ru.html">Android</a></li>
+    <li><a href="/amneziageo/android/menu/index.ru.html">Разделы меню</a></li>
+  </ol>
+</nav>
+
+        <h1 id="подключения">Подключения</h1>
+
+<h2 id="прокси">Прокси</h2>
+
+<p>Приложение поднимает SOCKS5- и HTTP-прокси, через которые в туннель ходят устройства без своего клиента: телевизор, телефон, приставка.</p>
+
+<ul>
+  <li>«Разрешить подключения» включает прокси: им пользуются программы на этом компьютере и устройства локальной сети.</li>
+  <li>Порты задаются отдельно: «Порт SOCKS5» и «Порт HTTP». Адрес, по которому прокси доступен в сети, стоит рядом, кнопка копирует его.</li>
+  <li>Доступ - по «Учётным записям» («Пользователь» и «Пароль», подходит любая из них) либо через «Подключение без пароля»: тогда прокси открыт любому устройству в сети. Без учётной записи и без этого переключателя подключиться не сможет никто.</li>
+  <li>«Клиенты» показывает, кто подключён и сколько соединений держит.</li>
+</ul>
+
+<figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/connections-proxy.png" alt="Подключения: разрешить подключения, порты SOCKS5 и HTTP, клиенты, подключение без пароля" width="360" height="724" loading="lazy" /><figcaption>Прокси выключен: порты и доступ.</figcaption></figure>
+
+<p>В списке адресов стоит и адрес телефона в сети, которую он раздаёт сам: точка доступа Wi-Fi, USB-модем, Bluetooth («Раздача этого телефона»). Устройству, подключённому к раздаче, этот адрес и порт HTTP вписывают как прокси в настройках его сети Wi-Fi: без root Android не пускает трафик раздачи в VPN, а через прокси он идёт в туннель. Адреса мобильной сети в списке нет: соседей в ней нет.</p>
+
+<p>Прокси из настроек сети слушаются браузер и программы, которые ходят в сеть через систему. Telegram на телефоне к ним не относится: адрес телефона и порт SOCKS5 вписывают в самом Telegram («Настройки» - «Данные и память» - «Настройки прокси», тип SOCKS5). Прокси несёт соединения TCP; датаграммы (UDP) соседних устройств через него не идут.</p>
+
+<p>Трафик уходит в туннель только при поднятом туннеле.</p>
+
+<p>Пошагово - в рецепте <a href="../recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo proxy show</code>, <code class="language-plaintext highlighter-rouge">amneziageo proxy on [--socks &lt;порт&gt;] [--http &lt;порт&gt;] [--anon on|off] [--auth &lt;пользователь:пароль&gt;]... [--auth off]</code>, <code class="language-plaintext highlighter-rouge">amneziageo proxy off</code>.</p>
+
+<h2 id="автообновление-подписок">Автообновление подписок</h2>
+
+<p>Конфигурации из подписок обновляются сами: агент перечитывает подписки раз в 12 часов, если панель не задала свой срок, а изменённая в панели конфигурация применяется при следующем подключении. Отдельной настройки в окне нет. Обновить все подписки сейчас - кнопка «Обновить конфиги» в каталоге <a href="configurations.ru.html#каталог">конфигураций</a>. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo settings set subscription-auto-refresh-enabled on|off</code> включает и выключает обновление, <code class="language-plaintext highlighter-rouge">amneziageo settings set subscription-refresh-interval-hours &lt;1-168&gt;</code> задаёт срок в часах; подписки ведут <code class="language-plaintext highlighter-rouge">amneziageo sub list</code>, <code class="language-plaintext highlighter-rouge">amneziageo sub add &lt;url&gt; [&lt;имя&gt;]</code>, <code class="language-plaintext highlighter-rouge">amneziageo sub refresh [&lt;имя&gt;]</code>, <code class="language-plaintext highlighter-rouge">amneziageo sub remove &lt;имя&gt; [--configs]</code>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

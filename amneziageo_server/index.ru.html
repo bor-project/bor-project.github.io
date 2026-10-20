@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>О проекте · AmneziaGeo Server</title>
+    <meta name="description" content="Панель управления сервером AmneziaWG на Linux - интерфейсы, клиенты с конфигурациями и подписками, шаблоны, маршрутизация по гео-базам и доменам через другие серверы, резолвер для клиентов, обновления и резервные копии. Службой или в Docker.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/index.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-nav" aria-label="Способ установки">
+  <p class="sidebar-label">Способ установки</p>
+  <a href="/amneziageo_server/service/index.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/index.ru.html">Docker</a></nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="amneziageo-server">AmneziaGeo Server</h1>
+
+<p>Сервер AmneziaGeo - панель управления сервером AmneziaWG на Linux. Она сама поднимает интерфейсы туннеля в ядре, ведёт клиентов и выдаёт им конфигурации файлом, QR-кодом, ссылкой <code class="language-plaintext highlighter-rouge">vpn://</code> и подпиской, считает трафик, а трафик клиентов умеет направлять дальше: по гео-базам и доменам через другие серверы, через сам хост или в блок. Работает на Debian и Ubuntu с модулем <code class="language-plaintext highlighter-rouge">amneziawg</code> в ядре, службой или в Docker, на amd64 и arm64.</p>
+
+<h2 id="выберите-способ-установки">Выберите способ установки</h2>
+
+<ul class="kind-cards">
+  <li>
+    <a class="kind-card-title" href="/amneziageo_server/service/index.ru.html">Служба</a>
+    <span>systemd на хосте, Debian 12 и Ubuntu, amd64 и arm64</span>
+    <span class="kind-card-links"><a href="/amneziageo_server/service/install.ru.html">Установка</a> · <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a></span>
+  </li>
+  <li>
+    <a class="kind-card-title" href="/amneziageo_server/docker/index.ru.html">Docker</a>
+    <span>контейнер в сети хоста, образ для amd64 и arm64</span>
+    <span class="kind-card-links"><a href="/amneziageo_server/docker/install.ru.html">Установка</a> · <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a></span>
+  </li>
+</ul>
+
+<p>Оба способа делают одно и то же: контейнер работает в сети хоста, и интерфейсы, правила брандмауэра и порты у него те же, что у службы. Поставить любой из них умеет одна команда - консольное меню <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, оно же потом обслуживает сервер: обновления и откат, копии базы, сертификаты, брандмауэр, пользователи и токены.</p>
+
+<h2 id="что-умеет">Что умеет</h2>
+
+<ul>
+  <li><strong>Интерфейсы.</strong> Серверные интерфейсы AmneziaWG с ключами, портом, адресами и всей обфускацией профиля 3.1. Панель кладёт их в ядро сама, без <code class="language-plaintext highlighter-rouge">awg</code> и <code class="language-plaintext highlighter-rouge">awg-quick</code>, следит за ними и поднимает заново, если хост их потерял. Интерфейсы, поднятые <code class="language-plaintext highlighter-rouge">awg-quick</code>, переезжают в панель целиком, вместе с клиентами.</li>
+  <li><strong>Клиенты.</strong> Пара ключей, адреса в туннеле, включение и выключение, заметка, ограничение трафика в день, доступ к клиенту из туннеля. Конфигурация выдаётся файлом <code class="language-plaintext highlighter-rouge">.conf</code>, QR-кодом и ссылкой <code class="language-plaintext highlighter-rouge">vpn://</code>, имя конфигурации собирается по шаблону. Список показывает, кто в сети, скорость и трафик за день. Выключенному клиенту приложение AmneziaGeo само опускает туннель по сигналу сервера.</li>
+  <li><strong>Шаблоны и подписки.</strong> Шаблон задаёт клиентам <code class="language-plaintext highlighter-rouge">AllowedIPs</code> из гео-ключей, сетей и доменов, DNS, MTU и keepalive, а сервисы за CDN ведёт по именам через подставные адреса резолвера; правка шаблона меняет файлы всех его клиентов. Подписка отдаёт конфигурации нескольких устройств по одному адресу, клиентские приложения перечитывают её сами.</li>
+  <li><strong>Маршрутизация на сервере.</strong> Правила по странам и категориям сайтов из гео-баз, доменам, адресам, портам и клиентам. Трафик уходит через канал (туннель AmneziaWG к другому серверу, в том числе внутри WebSocket), через хост или блокируется. Группы каналов: по приоритету, по кругу или по клиенту. Проверка маршрута по имени и порту.</li>
+  <li><strong>Резолвер для клиентов.</strong> Сервер отвечает клиентам на DNS-запросы сам, спрашивает внешние серверы по HTTPS или TLS и кладёт увиденные адреса в наборы правил: так правила по доменам работают на уровне ядра.</li>
+  <li><strong>WebSocket.</strong> Туннель внутри WebSocket на TCP-порту интерфейса для сетей, где проходит только веб-трафик.</li>
+  <li><strong>Для приложения AmneziaGeo.</strong> Клиентскому приложению сервер отдаёт свои гео-источники, списки маршрутизации (пресеты), адрес подписки и замер скорости; клиент AmneziaGeo для Windows, Linux и Android читает всё это сам. Любое другое приложение AmneziaWG работает с сервером как с обычным сервером AmneziaWG.</li>
+  <li><strong>Обслуживание.</strong> Обновления из панели с откатом при сбое, резервная копия базы одной кнопкой и перенос на другой сервер из неё, журнал событий и журнал подключений, консольное меню для всего, что делается на хосте.</li>
+</ul>
+
+<h2 id="что-потребуется">Что потребуется</h2>
+
+<ul>
+  <li>Linux с модулем <code class="language-plaintext highlighter-rouge">amneziawg</code> в ядре на amd64 или arm64: Debian 12 и новее, Ubuntu. Консольное меню ставит модуль из PPA Amnezia, если ядро его не несёт.</li>
+  <li>Публичный адрес или имя, по которому клиенты найдут сервер. Для панели по HTTPS нужны имя и сертификат Let’s Encrypt, его тоже выпускает меню.</li>
+  <li>Права root на сервере.</li>
+</ul>
+
+<h2 id="клиент">Клиент</h2>
+
+<p>Клиент AmneziaGeo для Windows, Linux и Android описан на своём сайте: <a href="https://bor-project.github.io/amneziageo/index.ru.html">документация клиента</a>. Что сервер предлагает клиенту, рассказано там в разделе «Что предлагает сервер».</p>
+
+<h2 id="разработчикам">Разработчикам</h2>
+
+<p><a href="/amneziageo_server/build.ru.html">Сборка и устройство репозитория</a>, <a href="/amneziageo_server/api.ru.html">HTTP API</a>.</p>
+
+<h2 id="лицензия-и-благодарности">Лицензия и благодарности</h2>
+
+<p>Сервер построен на экосистеме <a href="https://github.com/amnezia-vpn">Amnezia VPN</a>: модуль ядра AmneziaWG. Туннель внутри WebSocket несёт <a href="https://github.com/erebe/wstunnel">wstunnel</a>. Гео-базы по умолчанию: <a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a>, <a href="https://github.com/runetfreedom">runetfreedom</a>, <a href="https://github.com/jameszeroX/zkeen-ip">zkeen-ip</a> и собственная <a href="https://github.com/bor-project/amneziageo-geo">amneziageo-geo</a>.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

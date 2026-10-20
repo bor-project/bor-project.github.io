@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сборка из исходников · AmneziaGeo</title>
+    <meta name="description" content="Cross-platform AmneziaWG VPN client with split tunneling and traffic routing for Windows, Linux and Android. Multiple simultaneous VPN connections on Windows.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/build.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/build.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/build.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/build.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-nav" aria-label="Устройства">
+  <p class="sidebar-label">Устройства</p>
+  <a href="/amneziageo/windows/index.ru.html">Windows</a>
+  <a href="/amneziageo/linux/index.ru.html">Linux</a>
+  <a href="/amneziageo/android/index.ru.html">Android</a>
+</nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html" aria-current="page">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="сборка-из-исходников">Сборка из исходников</h1>
+
+<p>Каждая платформа собирается отдельно. Движок туннеля везде идёт первым: приложение подхватывает уже собранный бинарник.</p>
+
+<h2 id="windows">Windows</h2>
+
+<p>Понадобятся <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET 10 SDK</a>, <a href="https://wixtoolset.org">WiX</a> для установщика и git.</p>
+
+<h3 id="1-забрать-сабмодули">1. Забрать сабмодули</h3>
+
+<p>Две нужные сборке вещи подключены git-сабмодулями и в основной репозиторий не входят: движок AmneziaWG для Windows (<code class="language-plaintext highlighter-rouge">amneziawg-windows</code>) и <code class="language-plaintext highlighter-rouge">sing-tun</code> - пользовательский сетевой стек, на котором стоит шлюз точки доступа:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span><span class="w"> </span><span class="nx">submodule</span><span class="w"> </span><span class="nx">update</span><span class="w"> </span><span class="nt">--init</span><span class="w"> </span><span class="nt">--recursive</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="2-собрать-движок-туннеля">2. Собрать движок туннеля</h3>
+
+<p>Чтобы туннель работал и на Windows 7, движок собирается версией Go с поддержкой Windows 7:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">amneziageo-windows\tools\build-engine-win7.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Первый запуск сам скачивает всё необходимое - Go, llvm-mingw и wintun через <code class="language-plaintext highlighter-rouge">build.cmd</code> сабмодуля, плюс отдельный Go для Windows 7, - проверяет загрузку по контрольной сумме и кладёт готовый <code class="language-plaintext highlighter-rouge">tunnel.dll</code> туда, откуда его берёт приложение. Ключи:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-Arch x64|x86|arm64</code> - целевая архитектура, по умолчанию <code class="language-plaintext highlighter-rouge">x64</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">-Upstream</code> - собрать стоковым Go, без поддержки Windows 7;</li>
+  <li><code class="language-plaintext highlighter-rouge">-Force</code> - перекачать и пересобрать тулчейн.</li>
+</ul>
+
+<h3 id="3-собрать-шлюз-точки-доступа">3. Собрать шлюз точки доступа</h3>
+
+<p><code class="language-plaintext highlighter-rouge">gateway.exe</code> проводит клиентов точки доступа через пользовательский стек, чтобы отправленное ими уходило с машины так же, как её собственный трафик. Это Go-модуль в <code class="language-plaintext highlighter-rouge">amneziageo-windows\gateway</code>, стоящий на соседнем сабмодуле <code class="language-plaintext highlighter-rouge">sing-tun</code>:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">amneziageo-windows\tools\build-gateway.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Go берётся из <code class="language-plaintext highlighter-rouge">PATH</code>, а если там его нет - из тулчейна, скачанного на шаге 2 в <code class="language-plaintext highlighter-rouge">amneziawg-windows\.deps</code>. Результат кладётся в <code class="language-plaintext highlighter-rouge">gateway\bin\&lt;арх&gt;\gateway.exe</code>, откуда его берёт приложение; без него сборка приложения останавливается и называет этот шаг. Ключи:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-Arch x64|arm64|both</code> - целевая архитектура, по умолчанию обе.</li>
+</ul>
+
+<h3 id="4-собрать-приложение-и-установщик">4. Собрать приложение и установщик</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># приложение и служба</span><span class="w">
+</span><span class="n">dotnet</span><span class="w"> </span><span class="nx">build</span><span class="w"> </span><span class="nx">amneziageo-windows\AmneziaGeo.Windows.Ui\AmneziaGeo.Windows.Ui.csproj</span><span class="w"> </span><span class="nt">-c</span><span class="w"> </span><span class="nx">Release</span><span class="w">
+
+</span><span class="c"># установщик -&gt; dist\AmneziaGeo-&lt;версия&gt;-win-&lt;арх&gt;-&lt;payload&gt;.exe</span><span class="w">
+</span><span class="n">amneziageo-windows\installer\AmneziaGeo.Windows.Installer.Bundle\build-installer.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Если дать сборщику установщики предыдущего выпуска (<code class="language-plaintext highlighter-rouge">-b, -Earlier &lt;каталог&gt;</code>), рядом с каждым установщиком он кладёт его дельту (<code class="language-plaintext highlighter-rouge">.patch</code>, её делает <code class="language-plaintext highlighter-rouge">amneziageo-lib/AmneziaGeo.Deltas</code>): файлы предыдущего выпуска достаются из его установщика, и дельта несёт то, чего нет на машине с ним, изменившийся файл - разностью от установленного. Обновление приложения на машине с тем выпуском качает дельту вместо установщика, любая другая машина качает установщик целиком. Выпуск строит дельты от предыдущего выпуска: бета - от новейшего, стабильный - от прежнего стабильного.</p>
+
+<p>По умолчанию собирается один вариант: <code class="language-plaintext highlighter-rouge">x64</code>, framework-dependent - на целевой машине нужен установленный .NET 10 Desktop Runtime. Ключи сборщика, у каждого есть короткий алиас, <code class="language-plaintext highlighter-rouge">-h</code> покажет весь список:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-v, -Version N.N.N.N</code> - версия бандла и бинарей, иначе <code class="language-plaintext highlighter-rouge">0.0.1.&lt;число коммитов&gt;</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">-a, -Arch x64,arm64</code> - архитектуры списком или <code class="language-plaintext highlighter-rouge">all</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">-p, -Payload fdd,scd</code> - тип поставки: <code class="language-plaintext highlighter-rouge">fdd</code> требует установленного runtime и легче, <code class="language-plaintext highlighter-rouge">scd</code> несёт runtime внутри;</li>
+  <li><code class="language-plaintext highlighter-rouge">-c, -Configuration Debug|Release</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">-pre, -Prerelease</code> - вшить бета-канал обновлений;</li>
+  <li><code class="language-plaintext highlighter-rouge">-b, -Earlier &lt;каталог&gt;</code> - установщики предыдущего выпуска, каждый вариант получает дельту от них;</li>
+  <li><code class="language-plaintext highlighter-rouge">-r, -Rebuild</code> - очистить перед сборкой;</li>
+  <li><code class="language-plaintext highlighter-rouge">-l, -ListOnly</code> - показать матрицу сборки и выйти.</li>
+</ul>
+
+<h3 id="запуск-в-отладке">Запуск в отладке</h3>
+
+<p>Лаунчер одной командой поднимает бэкенд-агент и интерфейс в одном процессе. Запускать из консоли от имени администратора - он ставит службу и правила WFP и поднимает туннель; нужны собранные на шагах 2 и 3 <code class="language-plaintext highlighter-rouge">tunnel.dll</code> и <code class="language-plaintext highlighter-rouge">gateway.exe</code>.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dotnet</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="nt">--project</span><span class="w"> </span><span class="nx">amneziageo-windows\tools\AmneziaGeo.Windows.Launcher</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Без флагов поднимаются обе части. Флаги: <code class="language-plaintext highlighter-rouge">--service</code> - только агент, <code class="language-plaintext highlighter-rouge">--ui</code> - только интерфейс, <code class="language-plaintext highlighter-rouge">--target &lt;имя&gt;</code> - сразу выбрать конфигурацию, <code class="language-plaintext highlighter-rouge">--config &lt;путь.conf&gt;</code> - зарегистрировать wg-quick конфиг и запуститься на нём.</p>
+
+<h2 id="linux">Linux</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule update <span class="nt">--init</span> <span class="nt">--recursive</span>
+amneziageo-linux/tools/build-deb.sh <span class="nt">--arch</span> amd64,arm64
+</code></pre></div></div>
+
+<p>Нужны .NET SDK и Go, целевой машине - ничего: пакеты self-contained. Результат кладётся в <code class="language-plaintext highlighter-rouge">dist/</code>; с ключом <code class="language-plaintext highlighter-rouge">--earlier &lt;каталог&gt;</code>, где лежат пакеты предыдущего выпуска, рядом с каждым пакетом появляется его дельта (<code class="language-plaintext highlighter-rouge">.patch</code>), которую обновление агента качает вместо пакета на машине с тем выпуском, как у установщиков. Ключи: <code class="language-plaintext highlighter-rouge">--version N.N.N.N</code> (иначе <code class="language-plaintext highlighter-rouge">0.0.1.&lt;число коммитов&gt;</code>), <code class="language-plaintext highlighter-rouge">--arch amd64,arm64</code>, <code class="language-plaintext highlighter-rouge">--out &lt;каталог&gt;</code>, <code class="language-plaintext highlighter-rouge">--no-gui</code>, <code class="language-plaintext highlighter-rouge">--debug</code>.</p>
+
+<p>Список альтернатив <code class="language-plaintext highlighter-rouge">libicu</code> в скрипте перечисляет ICU-пакеты, которые могут оказаться в целевом дистрибутиве: новый выпуск дистрибутива добавляет туда одну запись.</p>
+
+<h2 id="android">Android</h2>
+
+<p>Сначала нативный движок, потом APK:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amneziageo-android/tools/build-engine-android.sh
+amneziageo-android/tools/build-apk.sh <span class="nt">--abi</span> android-arm64
+</code></pre></div></div>
+
+<p>Движок собирается тулчейном Android NDK в <code class="language-plaintext highlighter-rouge">AmneziaGeo.Android.Engine/native/&lt;abi&gt;/libamneziawg-go.so</code>; сабмодуль <code class="language-plaintext highlighter-rouge">amneziawg-go</code> при этом не правится - точки входа c-shared лежат в отдельном модуле рядом. Ключи <code class="language-plaintext highlighter-rouge">build-apk.sh</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--config Release|Debug</code> - по умолчанию <code class="language-plaintext highlighter-rouge">Release</code>, он AOT-компилируется и на слабом телевизоре стартует вдвое быстрее;</li>
+  <li><code class="language-plaintext highlighter-rouge">--version N.N.N.N</code> - версия пакета, все четыре числа складываются в versionCode;</li>
+  <li><code class="language-plaintext highlighter-rouge">--abi android-arm,android-arm64,android-x64</code> - список ABI, по умолчанию все объявленные проектом; с одним ABI
+APK называется по нему (<code class="language-plaintext highlighter-rouge">AmneziaGeo-&lt;версия&gt;-android-arm64.apk</code>);</li>
+  <li><code class="language-plaintext highlighter-rouge">--update-url &lt;url&gt;</code> - адрес манифеста обновлений, вшиваемый в пакет;</li>
+  <li><code class="language-plaintext highlighter-rouge">--prerelease</code> - оставить сборку на бета-канале.</li>
+</ul>
+
+<p>Подпись берёт отладочный ключ SDK, если не задан <code class="language-plaintext highlighter-rouge">ANDROID_KEYSTORE</code>; вместе с ним нужны <code class="language-plaintext highlighter-rouge">ANDROID_KEY_ALIAS</code>, <code class="language-plaintext highlighter-rouge">ANDROID_STORE_PASS</code> и <code class="language-plaintext highlighter-rouge">ANDROID_KEY_PASS</code>.</p>
+
+<p>Скрипт движка собирает библиотеку так, что память, освобождённая её средой Go, уходит из процесса сразу, а не числится за ним, пока система не попросит её назад; строка <code class="language-plaintext highlighter-rouge">freed memory</code> в итоге скрипта говорит, вошло ли это в сборку.</p>
+
+<p>На Windows те же скрипты есть в варианте PowerShell: <code class="language-plaintext highlighter-rouge">build-engine-android.ps1</code> и <code class="language-plaintext highlighter-rouge">build-apk.ps1</code>.</p>
+
+<h2 id="тесты">Тесты</h2>
+
+<p>Тесты собраны в один проект и покрывают общие библиотеки, консоль и приложение Windows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet <span class="nb">test </span>amneziageo-tests/AmneziaGeo.Tests/AmneziaGeo.Tests.csproj
+</code></pre></div></div>
+
+<p>Проект собирается под Windows, поэтому прогон на Linux или macOS требует <code class="language-plaintext highlighter-rouge">-p:EnableWindowsTargeting=true</code> и при
+сборке, и при запуске. Те несколько тестов, которые читают то, за что отвечает только Windows - профиль
+текущего пользователя, службу туннеля, сокет ретранслятора точки доступа, - там пропускаются с указанием
+причины, остальное проходит так же, как на Windows.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Установка · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Контейнер одной командой меню или своим compose.yaml, обновление и откат, что лежит на хосте, чем отличается от службы, удаление.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/install.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/install.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/install.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/install.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/install.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/install.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html" aria-current="page">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+  </ol>
+</nav>
+
+        <h1 id="установка">Установка</h1>
+
+<p>Контейнер приносит только панель, утилиту, WebSocket-прокси и меню. Хост даёт ему остальное:</p>
+
+<ul>
+  <li>модуль <code class="language-plaintext highlighter-rouge">amneziawg</code> в ядре: <code class="language-plaintext highlighter-rouge">modprobe amneziawg</code>, строка <code class="language-plaintext highlighter-rouge">amneziawg</code> в <code class="language-plaintext highlighter-rouge">/etc/modules-load.d/</code>, чтобы он поднимался с хостом;</li>
+  <li>Docker с плагином compose и работающей службой;</li>
+  <li>
+    <p>пересылку пакетов в обоих семействах: контейнер не пишет в <code class="language-plaintext highlighter-rouge">/proc/sys</code> хоста, поэтому без неё ни один интерфейс не поднимется, и применение интерфейса ответит <code class="language-plaintext highlighter-rouge">forwarding is off in /proc/sys/...</code>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>printf 'net.ipv4.ip_forward = 1\nnet.ipv6.conf.all.forwarding = 1\n' &gt; /etc/sysctl.d/90-amneziageo.conf
+sysctl --system
+</code></pre></div>    </div>
+
+    <p>Если хост берёт IPv6 из объявлений маршрутизатора (SLAAC), первой строкой того же файла - <code class="language-plaintext highlighter-rouge">net/ipv6/conf/&lt;внешний интерфейс&gt;/accept_ra = 2</code>: с включённой пересылкой ядро сразу снимает такой маршрут и новых объявлений не принимает;</p>
+  </li>
+  <li>цепочку <code class="language-plaintext highlighter-rouge">FORWARD</code>, которая пропускает пакеты: Docker при старте включает пересылку сам и переводит политику цепочки в <code class="language-plaintext highlighter-rouge">drop</code>, и клиенты туннеля не выходят дальше хоста. Демон не трогает политику с <code class="language-plaintext highlighter-rouge">"ip-forward-no-drop": true</code> в <code class="language-plaintext highlighter-rouge">/etc/docker/daemon.json</code> и перезапуском <code class="language-plaintext highlighter-rouge">docker</code>. Опция только не даёт поставить <code class="language-plaintext highlighter-rouge">drop</code>, уже поставленный снимает один раз <code class="language-plaintext highlighter-rouge">iptables -P FORWARD ACCEPT</code>, для IPv6 - <code class="language-plaintext highlighter-rouge">ip6tables -P FORWARD ACCEPT</code>. Старый Docker опции не знает; ему не даёт поставить <code class="language-plaintext highlighter-rouge">drop</code> пересылка, включённая с загрузки: Docker ставит его, только когда включает пересылку сам.</li>
+</ul>
+
+<p>Что из этого хосту не хватает, контейнер называет в своём журнале при старте. Нужны Debian 12 и новее или Ubuntu на amd64 или arm64, права root, публичный адрес и около 2 ГБ свободного места на диске.</p>
+
+<h2 id="одной-командой">Одной командой</h2>
+
+<p>Каждый релиз несёт скрипт <code class="language-plaintext highlighter-rouge">amneziageo-server</code> - <a href="/amneziageo_server/docker/menu.ru.html">консольное меню</a>, которое ставит панель на чистый хост и дальше обслуживает её. От root:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fsSL https://github.com/bor-project/amneziageo_server/releases/latest/download/amneziageo-server \
+  -o /usr/local/bin/amneziageo-server
+chmod 755 /usr/local/bin/amneziageo-server
+amneziageo-server install
+</code></pre></div></div>
+
+<p>Скрипт осматривает хост, задаёт все вопросы сразу, печатает план и после согласия делает всё по списку. На первый вопрос, <code class="language-plaintext highlighter-rouge">Install as</code>, ответьте <code class="language-plaintext highlighter-rouge">2</code> (Docker). Если на хосте нет Docker, его плагина compose или служба Docker не отвечает, скрипт печатает команды, которые ставят недостающее из репозитория Docker, и выходит, ничего не меняя; после их установки та же команда идёт дальше. Вопросы, ключи файла ответов для <code class="language-plaintext highlighter-rouge">install --answers &lt;файл&gt;</code> и шаги общие со службой, см. <a href="/amneziageo_server/service/install.ru.html#вопросы">Установка службы</a>; для Docker к ним добавляются два:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Вопрос</th>
+      <th>По умолчанию</th>
+      <th>Ключ файла ответов</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Directory for compose.yaml</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-docker</code></td>
+      <td><code class="language-plaintext highlighter-rouge">docker_dir</code>: новый или пустой каталог</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Put the command amneziageo-server on the host</code>: меню и утилита с хоста, без входа в контейнер</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">host_menu</code>: <code class="language-plaintext highlighter-rouge">yes</code> или <code class="language-plaintext highlighter-rouge">no</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Короткую команду меню (<code class="language-plaintext highlighter-rouge">shortcut</code>) установка спрашивает, только если команда идёт на хост. Для Docker скрипт ещё:</p>
+
+<ul>
+  <li>дописывает <code class="language-plaintext highlighter-rouge">"ip-forward-no-drop": true</code> в <code class="language-plaintext highlighter-rouge">/etc/docker/daemon.json</code>, если версия Docker это знает, и снимает <code class="language-plaintext highlighter-rouge">drop</code>, который Docker уже поставил на пересылку, если цепочку не держит ufw; Docker не перезапускает;</li>
+  <li>пишет <code class="language-plaintext highlighter-rouge">compose.yaml</code> в названный каталог с образом последнего релиза канала из <code class="language-plaintext highlighter-rouge">ghcr.io/bor-project/amneziageo-server</code>, каталогами хоста для базы и настроек и сокетом Docker для обновлений, запускает контейнер и заводит первого администратора в нём;</li>
+  <li>на хосте под ufw даёт ufw то, что панель из контейнера дать не может: порты панели и интерфейса, проход клиентов первого интерфейса (<code class="language-plaintext highlighter-rouge">route allow in</code> и <code class="language-plaintext highlighter-rouge">out on &lt;интерфейс&gt;</code>) и, с резолвером, их DNS к серверу (порт 53 по UDP и TCP);</li>
+  <li>с ответом да на <code class="language-plaintext highlighter-rouge">Put the command amneziageo-server on the host</code> кладёт меню релиза в <code class="language-plaintext highlighter-rouge">/usr/local/bin/amneziageo-server</code>: оно ведёт контейнер снаружи теми же пунктами меню, в том числе теми, что меняют сам хост, а команды утилиты передаёт в контейнер (<code class="language-plaintext highlighter-rouge">amneziageo-server user list</code>); проект находит в названном каталоге или по меткам контейнера. С ответом нет команды на хосте не остаётся, и меню открывается в контейнере: <code class="language-plaintext highlighter-rouge">docker compose -f &lt;каталог&gt;/compose.yaml exec panel amneziageo-server</code>;</li>
+  <li>в конце печатает каталог <code class="language-plaintext highlighter-rouge">compose.yaml</code>, порты панели и интерфейса, адрес IPv6 хоста и команду меню.</li>
+</ul>
+
+<p>Дальше - <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>.</p>
+
+<h3 id="перенос-с-другого-сервера">Перенос с другого сервера</h3>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo-server install --restore &lt;файл&gt;</code> ставит контейнер и, пока он остановлен, кладёт копию базы, скачанную с другой панели, на место базы; <code class="language-plaintext highlighter-rouge">amneziageo-server restore &lt;файл&gt;</code> делает то же на работающей панели. Подробнее - <a href="/amneziageo_server/service/install.ru.html#перенос-с-другого-сервера">Установка службы</a> и <a href="/amneziageo_server/docker/panel/overview.ru.html#резервная-копия">Резервная копия</a>.</p>
+
+<h2 id="вручную">Вручную</h2>
+
+<p>Тот же путь по шагам руками описан в репозитории: <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/ru/install-debian12-docker.md">Панель AmneziaGeo на Debian 12 в Docker</a>. Коротко: модуль из PPA Amnezia, пересылка и Docker с <code class="language-plaintext highlighter-rouge">ip-forward-no-drop</code>, как выше, затем проект compose. Версия образа - версия релиза, тег <code class="language-plaintext highlighter-rouge">latest</code> ведёт на последний обычный релиз; образ собран для amd64 и arm64.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VER=&lt;версия&gt;
+mkdir -p /opt/amneziageo-docker /var/lib/amneziageo-server /etc/amneziageo-server /etc/amnezia/amneziawg
+cd /opt/amneziageo-docker
+printf 'AMNEZIAGEO_TAG=%s\n' "$VER" &gt; .env
+cat &gt; compose.yaml &lt;&lt;'EOF'
+name: amneziageo-server
+
+services:
+  panel:
+    image: ghcr.io/bor-project/amneziageo-server:${AMNEZIAGEO_TAG:-latest}
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - path: server.env
+        required: false
+    volumes:
+      - /var/lib/amneziageo-server:/var/lib/amneziageo-server
+      - /etc/amneziageo-server:/etc/amneziageo-server
+      - /etc/amnezia/amneziawg:/etc/amnezia/amneziawg
+      - /var/run/docker.sock:/var/run/docker.sock
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    restart: unless-stopped
+EOF
+docker compose pull
+docker compose up -d
+docker compose exec panel amneziageo-server init --user admin
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">network_mode: host</code> и <code class="language-plaintext highlighter-rouge">NET_ADMIN</code>: панель поднимает интерфейсы и пишет правила в ядре хоста, поэтому сеть у неё хостовая.</li>
+  <li>Каталоги хоста вместо томов: база и ключ подписи лежат на виду, копировать и возвращать их просто. <code class="language-plaintext highlighter-rouge">deploy/docker/compose.yaml</code> репозитория, который собирает образ из исходников, держит их в томах <code class="language-plaintext highlighter-rouge">data</code> и <code class="language-plaintext highlighter-rouge">settings</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">/var/run/docker.sock</code>: через него панель обновляет себя кнопкой, пересоздавая свой контейнер на новом образе. Сокет даёт контейнеру хост целиком: кто владеет панелью, владеет и хостом. Без этой строки обновление остаётся ручным.</li>
+  <li>Версия берётся из <code class="language-plaintext highlighter-rouge">.env</code> рядом с <code class="language-plaintext highlighter-rouge">compose.yaml</code>: обновление кнопкой пишет туда новый тег, и <code class="language-plaintext highlighter-rouge">docker compose up -d</code> руками потом поднимает ту же версию.</li>
+  <li><code class="language-plaintext highlighter-rouge">server.env</code> рядом с <code class="language-plaintext highlighter-rouge">compose.yaml</code> принимает те же переменные, что <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/server.env</code> у службы. Сертификат читается внутри контейнера, поэтому его каталог тоже идёт в <code class="language-plaintext highlighter-rouge">volumes</code>: <code class="language-plaintext highlighter-rouge">/etc/letsencrypt:/etc/letsencrypt:ro</code>; меню добавляет эту строку в <code class="language-plaintext highlighter-rouge">compose.override.yaml</code> само.</li>
+  <li><code class="language-plaintext highlighter-rouge">init --user</code> в контейнере обязателен: учётные записи хоста в него не заходят.</li>
+</ul>
+
+<p>Проверка здоровья спрашивает <code class="language-plaintext highlighter-rouge">/api/health</code> по адресу, который панель пишет в файл <code class="language-plaintext highlighter-rouge">health</code> рядом с базой при старте, так что следует за панелью на другой порт, путь и TLS; <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_HEALTH</code> в окружении задаёт другой адрес.</p>
+
+<h2 id="обновление">Обновление</h2>
+
+<p>Панель ставит новый релиз сама, когда <code class="language-plaintext highlighter-rouge">compose.yaml</code> даёт ей сокет демона. Раз в 12 часов она спрашивает GitHub о релизах, проверяет подпись манифеста <code class="language-plaintext highlighter-rouge">update.json</code> и показывает новый релиз в шапке «Обзора» рядом со своей версией. Кнопка «Обновить» тянет образ релиза по дайджесту, копирует базу в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code>, пишет <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_TAG=&lt;версия&gt;</code> в <code class="language-plaintext highlighter-rouge">.env</code> проекта, останавливает панель и пересоздаёт свой контейнер на новом образе с теми же настройками: меняется только образ. Прежний контейнер ждёт под своим именем: если новый не станет здоровым за три минуты, база и <code class="language-plaintext highlighter-rouge">.env</code> возвращаются, и снова работает он. Файлы compose при этом не читаются, поэтому обновление проходит, где бы они ни лежали; <code class="language-plaintext highlighter-rouge">.env</code> берёт тег, чтобы <code class="language-plaintext highlighter-rouge">docker compose up -d</code> руками потом поднял тот же образ. Подробнее - <a href="/amneziageo_server/docker/panel/overview.ru.html#обновление">Обновление</a>.</p>
+
+<p>Слои образа идут от тех, что меняются реже, к тем, что меняет каждый релиз, поэтому демон тянет мегабайт-другой. Интерфейсы и клиенты живут в ядре и через обновление не рвутся; прокси, резолвер, панель и подписки отсутствуют те секунды, пока контейнер стартует.</p>
+
+<p>Из консоли то же делают <code class="language-plaintext highlighter-rouge">amneziageo-server update</code> и <code class="language-plaintext highlighter-rouge">amneziageo-server update beta</code> (пункты 2 и 3 меню); из контейнера сеанс меню при этом кончается, снова его открывает <code class="language-plaintext highlighter-rouge">docker exec -it &lt;контейнер&gt; amneziageo-server</code>. Предварительные выпуски - отметка «Получать предварительные версии» на вкладке <a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a>. Вручную: копия базы, новый тег, перезапуск:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /opt/amneziageo-docker
+cp -a /var/lib/amneziageo-server /root/amneziageo-db-$(date -u +%Y%m%d-%H%M%S)
+printf 'AMNEZIAGEO_TAG=%s\n' "&lt;версия&gt;" &gt; .env
+docker compose pull
+docker compose up -d
+</code></pre></div></div>
+
+<p>Ручное обновление базу в сторону не копирует, поэтому копия берётся руками.</p>
+
+<h2 id="откат">Откат</h2>
+
+<p><code class="language-plaintext highlighter-rouge">amneziageo-server rollback</code> (пункт 4 меню, с хоста) поднимает контейнер на ближайшем более старом образе того же имени, который остался на хосте, и предлагает вернуть копию базы из <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code>. Руками - тот же приём с прежним тегом в <code class="language-plaintext highlighter-rouge">.env</code> и <code class="language-plaintext highlighter-rouge">docker compose up -d</code>; образы прежних версий остаются на хосте (<code class="language-plaintext highlighter-rouge">docker images | grep amneziageo</code>). База остаётся такой, какой её оставила новая панель, вернуть её можно копией, пока контейнер остановлен.</p>
+
+<h2 id="что-лежит-на-хосте">Что лежит на хосте</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Путь</th>
+      <th>Что</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-docker/compose.yaml</code></td>
+      <td>описание контейнера, в каталоге, который назвали при установке; рядом <code class="language-plaintext highlighter-rouge">.env</code> с тегом, <code class="language-plaintext highlighter-rouge">server.env</code> и <code class="language-plaintext highlighter-rouge">compose.override.yaml</code> меню</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/server.db</code></td>
+      <td>база: учётные записи, интерфейсы, клиенты, правила, настройки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/geo</code></td>
+      <td>файлы гео-баз</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/backup</code></td>
+      <td>копии базы перед обновлениями и восстановлением</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/update</code></td>
+      <td>загрузки, журналы и запись последнего обновления</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/journal.db</code>, <code class="language-plaintext highlighter-rouge">access.db</code></td>
+      <td>журнал событий и журнал подключений, в копии базы не входят</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/signing.pem</code></td>
+      <td>ключ, которым подписаны токены входа</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/proxy-&lt;интерфейс&gt;.env</code>, <code class="language-plaintext highlighter-rouge">.yaml</code></td>
+      <td>аргументы и список целей фронта WebSocket интерфейса</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amnezia/amneziawg/&lt;интерфейс&gt;.conf</code></td>
+      <td>файлы интерфейсов, которые панель читает и пишет</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/var/run/docker.sock</code></td>
+      <td>сокет демона, через который панель обновляет себя</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/usr/local/bin/amneziageo-server</code></td>
+      <td>меню на хосте, если при установке согласились его поставить; в образе то же меню: <code class="language-plaintext highlighter-rouge">docker compose exec panel amneziageo-server</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code></td>
+      <td>короткая команда меню, ссылка на <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, если её поставили</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>В образе: <code class="language-plaintext highlighter-rouge">/opt/amneziageo-server</code> с сервером, утилитой и веб-интерфейсом, <code class="language-plaintext highlighter-rouge">/usr/local/bin/wstunnel</code>, скрипты контейнера и меню релиза.</p>
+
+<h2 id="чем-отличается-от-службы">Чем отличается от службы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Что</th>
+      <th>В контейнере</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>фронты WebSocket</td>
+      <td>панель запускает <code class="language-plaintext highlighter-rouge">wstunnel</code> сама и перезапускает через три секунды после падения; фронты гаснут и поднимаются вместе с контейнером</td>
+    </tr>
+    <tr>
+      <td>брандмауэр</td>
+      <td>в образе нет ufw, панель кладёт свои таблицы nftables; на хосте с включённым ufw его <code class="language-plaintext highlighter-rouge">drop</code> сильнее: порты и проход клиентов первого интерфейса открывает в ufw установка, а то, что заведено потом, открывается в ufw хоста руками; панель называет такой порт закрытым и печатает команду <code class="language-plaintext highlighter-rouge">ufw allow &lt;порт&gt;</code></td>
+    </tr>
+    <tr>
+      <td>учётные записи хоста</td>
+      <td>выключены: панель входит только своими учётными записями и не заводит пользователей системы</td>
+    </tr>
+    <tr>
+      <td>перезапуск из панели</td>
+      <td>сервер завершается, и политика перезапуска compose поднимает контейнер снова</td>
+    </tr>
+    <tr>
+      <td>один веб-интерфейс</td>
+      <td>отдельно не обновляется: каждый образ несёт сервер и интерфейс вместе</td>
+    </tr>
+    <tr>
+      <td>пункты меню, которые меняют хост</td>
+      <td>из контейнера откат на старый образ, удаление и сертификат Let’s Encrypt отвечают, что контейнер не достаёт до хоста, а правила ufw, BBR и пересылка печатают команду для хоста; меню на хосте делает всё само</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="удаление">Удаление</h2>
+
+<p>Пункт 6 меню <code class="language-plaintext highlighter-rouge">Uninstall</code> с хоста спрашивает, убрать ли панель и убрать ли вместе с ней базу и настройки, затем останавливает проект compose (<code class="language-plaintext highlighter-rouge">down</code>, с томами при согласии), по желанию удаляет образы панели, убирает с хоста интерфейсы панели, её таблицы nftables и правила ufw с её пометкой и удаляет меню и его короткие команды из <code class="language-plaintext highlighter-rouge">/usr/local/bin</code>. База в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server</code>, настройки в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server</code> и каталог проекта остаются, если не согласиться убрать их. На хосте остаются Docker, модуль <code class="language-plaintext highlighter-rouge">amneziawg</code> и файл пересылки <code class="language-plaintext highlighter-rouge">/etc/sysctl.d/90-amneziageo.conf</code>.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Шаблоны · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Что клиент получает в файле: AllowedIPs из гео-ключей и доменов, маршрутизация по именам, DNS, MTU, keepalive.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/panel/templates.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/panel/templates.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/panel/templates.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/panel/templates.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/templates.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/panel/templates.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html" aria-current="page">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="шаблоны">Шаблоны</h1>
+
+<p>Шаблон несёт то, что в файле клиента не принадлежит одному клиенту: <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, серверы имён, размер пакета и keepalive, а ещё пресеты маршрутизации, которые получает приложение AmneziaGeo. Клиент указывает на шаблон, а не держит копию: правка шаблона меняет файлы всех его клиентов, и подписка отдаёт новый файл сразу, потому что файл собирается в момент запроса. Свежая панель начинает с шаблона <code class="language-plaintext highlighter-rouge">default</code>.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/templates.png" alt="Список шаблонов: шаблон с гео-ключами и шаблон по умолчанию, число адресов в файле и клиентов" width="1440" height="900" loading="lazy" /><figcaption>Шаблоны сервера.</figcaption></figure>
+
+<p>Вкладка «Шаблоны» страницы «Клиенты» перечисляет шаблоны с их <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, DNS, MTU, keepalive и числом клиентов; имя ведёт в настройки, «Добавить» открывает новый, «Дублировать» в меню строки делает копию «<имя> копия». Поле «Шаблон» в настройках клиента выбирает его шаблон, «По умолчанию» оставляет клиенту настройки интерфейса.</имя></p>
+
+<h2 id="основное">Основное</h2>
+
+<p>«Имя» - до 64 знаков, одно на панель.</p>
+
+<h2 id="маршрутизация">Маршрутизация</h2>
+
+<p>Записи шаблона - то, что клиент отправляет в туннель. Диапазоны не пишутся руками: шаблон держит список записей, как списки клиента AmneziaGeo, и сам разворачивает их в адреса.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Запись</th>
+      <th>Пишется</th>
+      <th>Даёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GeoIP</td>
+      <td><code class="language-plaintext highlighter-rouge">geoip:ru</code></td>
+      <td>диапазоны страны или сети из гео-баз</td>
+    </tr>
+    <tr>
+      <td>GeoSite</td>
+      <td><code class="language-plaintext highlighter-rouge">geosite:youtube</code></td>
+      <td>адреса, в которые разрешаются домены категории</td>
+    </tr>
+    <tr>
+      <td>Сеть</td>
+      <td><code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code></td>
+      <td>себя</td>
+    </tr>
+    <tr>
+      <td>Адрес</td>
+      <td><code class="language-plaintext highlighter-rouge">cidr:203.0.113.10</code></td>
+      <td>себя</td>
+    </tr>
+    <tr>
+      <td>Домен</td>
+      <td><code class="language-plaintext highlighter-rouge">domain:example.com</code></td>
+      <td>адреса, в которые разрешается имя</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Сеть, адрес или имя, набранные без приставки, получают её при добавлении; ссылка оставляет свой хост. Имена спрашиваются в обоих семействах через внешние серверы резолвера панели; из категории geosite спрашиваются только домены и точные имена, у ключевых слов и выражений адреса нет. Один проход спрашивает до 4000 имён и кончается через минуту; имя без ответа считается не найденным. Адреса, в которые пакет через туннель не пойдёт (петля, нулевой, link-local, групповые, широковещательный), отбрасываются; частный адрес остаётся, потому что имя внутреннего резолвера может вести к хосту за сервером.</p>
+
+<p>Что дали записи, сворачивается в наименьшее число диапазонов и хранится с шаблоном вместе с записями, которые ничего не дали, и временем прохода: «Обновлено <время>», «Не нашлось адресов: <список>». Это и идёт в `AllowedIPs` каждого клиента шаблона; пустой список даёт `0.0.0.0/0`, а клиенту с адресом IPv6 ещё `::/0`. Сервер имён файла внутри сети интерфейса, в том числе резолвер панели, отвечает только через туннель: если диапазоны его не покрывают, он добавляется в `AllowedIPs` одним адресом. Список пересчитывается при сохранении, кнопкой «Обновить», сам раз в сутки и сразу после изменения гео-баз: имена переезжают и гео-базы обновляются, а файлы клиентов меняются только после пересчёта. Если серверы имён не ответили, панель оставляет прежний список и пробует снова через час.</список></время></p>
+
+<p>Пока шаблон правится, панель считает, что даёт каждая запись: «Адресов: N» у записи и у шаблона целиком, «Показать содержимое» раскрывает первые адреса или имена категории («Записей нет: категории нет в загруженных базах»). Больше 12000 диапазонов - «возможно замедление скорости», больше 16000 - «слишком много адресов, сохранить нельзя». Шаблон не больше 256 записей.</p>
+
+<p>«Пресеты маршрутизации» - списки, которые получает приложение AmneziaGeo клиента шаблона, в порядке выдачи, пока маршрутизация идёт на клиенте, см. <a href="presets.ru.html">Пресеты маршрутизации</a>; «Пресетов нет: добавьте их во вкладке «Пресеты маршрутизации»», пока их не завели.</p>
+
+<h2 id="маршрутизация-по-именам">Маршрутизация по именам</h2>
+
+<p>Клиент, у которого есть только <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, не может следовать за именем. Сервис за CDN отвечает адресом кэша, ближайшего к тому, кто спрашивает; кэши стоят в сетях провайдеров и меняются, и их не покрывают ни адреса, найденные проходом, ни гео-диапазоны сервиса. С переключателем «Маршрутизация по именам» в части «Маршрутизация» имена шаблона (<code class="language-plaintext highlighter-rouge">geosite:</code> и <code class="language-plaintext highlighter-rouge">domain:</code>) в адреса не разворачиваются, и у таких записей вместо числа адресов стоит «по имени». Резолвер панели отвечает клиенту шаблона об этих именах подставным адресом из <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>: один адрес на имя, тот же, пока имя спрашивают, и тот же на каждом сервере, пока два имени не попали на один адрес. Хост ведёт соединение к подставному адресу на настоящий адрес, который резолвер получил для имени, и решает его по настоящему, так что правила сервера видят такое соединение, как любое другое, см. <a href="dns.ru.html#подставные-адреса">Подставные адреса</a>.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/template-form.png" alt="Форма шаблона: записи geosite с отметкой «по имени» и включённый переключатель «Маршрутизация по именам»" width="1440" height="900" loading="lazy" /><figcaption>Шаблон с маршрутизацией по именам.</figcaption></figure>
+
+<p>Файл такого клиента несёт резолвер панели единственным сервером имён (поле «DNS» части «Сеть» показывает его адреса и не правится), а в <code class="language-plaintext highlighter-rouge">AllowedIPs</code> - сети и адреса шаблона, <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> и адрес резолвера. Гео-ключ адресов (<code class="language-plaintext highlighter-rouge">geoip:</code>) остаётся диапазоном: он нужен приложениям, которые идут на адреса, не спрашивая имени, в том числе Telegram и звонкам.</p>
+
+<p>Переключатель работает, пока резолвер панели отвечает клиентам на порту 53 и брандмауэр хоста пускает их к нему. Шаблон сохраняется с включённым переключателем в любом случае, а форма под ним называет, что мешает, с командой, которая это чинит:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>Что сделать</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Не заработает: резолвер панели выключен</td>
+      <td>включить резолвер на странице <a href="dns.ru.html">DNS</a>, командой <code class="language-plaintext highlighter-rouge">sudo amneziageo-server dns on</code> или пунктом 29 меню</td>
+    </tr>
+    <tr>
+      <td>Не заработает: резолвер панели отвечает на порту N, а клиенты спрашивают на 53</td>
+      <td>поставить порт 53 на странице DNS</td>
+    </tr>
+    <tr>
+      <td>Не заработает: брандмауэр сервера (ufw) не пускает клиентов <интерфейсы> к резолверу панели (порт 53)</интерфейсы></td>
+      <td>на сервере <code class="language-plaintext highlighter-rouge">sudo amneziageo-server dns open</code>, пункт 23 меню, подпункт 13, или <code class="language-plaintext highlighter-rouge">sudo ufw allow in on &lt;интерфейс&gt; to any port 53</code> для каждого интерфейса</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Приложение со своими серверами имён идёт мимо подставных адресов; защита резолвера сбрасывает клиентам известные публичные серверы DoT и DoH, см. <a href="dns.ru.html#вопросы-клиентов">Вопросы клиентов</a>. Имя с подставным адресом не получает ответа IPv6 и записи <code class="language-plaintext highlighter-rouge">HTTPS</code>, поэтому клиент идёт к нему по IPv4. Подставной адрес, который никуда не ведёт (клиент пришёл с другого сервера или имя неделю никто не спрашивал), сразу отказывает, и клиент спрашивает имя снова.</p>
+
+<h2 id="сеть">Сеть</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DNS</td>
+      <td>серверы имён клиента; пусто - резолвер панели, когда он отвечает внутри туннеля, иначе <code class="language-plaintext highlighter-rouge">1.1.1.1</code> и <code class="language-plaintext highlighter-rouge">1.0.0.1</code>; с маршрутизацией по именам - адреса резолвера панели, поле не правится</td>
+    </tr>
+    <tr>
+      <td>MTU</td>
+      <td>576-9000; пусто - 1420</td>
+    </tr>
+    <tr>
+      <td>Keepalive</td>
+      <td>0-65535 секунд, 0 выключает; пусто - 25</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ключи, адрес клиента, адрес интерфейса и обфускация всегда идут от интерфейса: они должны сходиться с сервером.</p>
+
+<h2 id="удаление">Удаление</h2>
+
+<p>Шаблон, который взял хотя бы один клиент, не удаляется: «Шаблон уже используется». Сначала клиентам выбирается другой шаблон.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Имя шаблона пустое или длиннее 64 знаков</td>
+      <td>имя</td>
+    </tr>
+    <tr>
+      <td>Это не ключ гео, не сеть, не адрес и не домен; В шаблоне не больше 256 записей</td>
+      <td>записи</td>
+    </tr>
+    <tr>
+      <td>Это не адрес сервера имён; MTU вне диапазона 576-9000; Keepalive вне диапазона 0-65535</td>
+      <td>сеть</td>
+    </tr>
+    <tr>
+      <td>Такого пресета маршрутизации нет</td>
+      <td>шаблон называет пресет, которого нет</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

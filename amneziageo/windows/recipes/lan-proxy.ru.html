@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Устройства в сети через прокси · Windows · AmneziaGeo</title>
+    <meta name="description" content="Телевизор, приставка, телефон без своего клиента">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/recipes/lan-proxy.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/recipes/lan-proxy.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/recipes/lan-proxy.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/windows/recipes/lan-proxy.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/recipes/lan-proxy.ru.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/recipes/lan-proxy.ru.html">Linux</a>
+  <a href="/amneziageo/android/recipes/lan-proxy.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.ru.html" aria-current="page">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.ru.html">Несколько VPN одновременно</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/index.ru.html">Windows</a></li>
+    <li><a href="/amneziageo/windows/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="устройства-в-сети-через-прокси">Устройства в сети через прокси</h1>
+
+<ol>
+  <li>В разделе «Подключения» на вкладке «Прокси» включите «Разрешить подключения».</li>
+  <li>Задайте доступ: добавьте учётную запись («Пользователь» и «Пароль») или включите «Подключение без пароля». Без того и другого никто не подключится, а без пароля прокси открыт любому устройству в сети.</li>
+  <li>При необходимости поменяйте «Порт SOCKS5» и «Порт HTTP», затем сохраните.</li>
+  <li>
+    <p>Запомните адрес машины в сети: он стоит рядом с портами, кнопка копирует его.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/ru/connections-proxy.png" alt="Подключения, вкладка «Прокси»: разрешить подключения, адреса, порты, клиенты и учётные записи" width="984" height="752" loading="lazy" /><figcaption>Прокси включён. Адреса в сети скрыты.</figcaption></figure>
+  </li>
+  <li>На устройстве впишите прокси в настройки сети Wi-Fi: адрес машины и порт HTTP. Телевизор, приставка и телефон берут его оттуда; Telegram - в своих настройках: «Настройки» - «Данные и память» - «Настройки прокси», тип SOCKS5, порт SOCKS5.</li>
+  <li>Поднимите туннель: прокси работает, только пока он подключён.</li>
+</ol>
+
+<p>Подробнее: <a href="../menu/connections.ru.html#прокси">Прокси</a>.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

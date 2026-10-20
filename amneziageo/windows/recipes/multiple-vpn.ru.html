@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Несколько VPN одновременно · Windows · AmneziaGeo</title>
+    <meta name="description" content="Основной и резервные серверы, сервер для каждого правила">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/windows/recipes/multiple-vpn.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/windows/recipes/multiple-vpn.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/windows/recipes/multiple-vpn.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/windows/recipes/multiple-vpn.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/recipes/multiple-vpn.ru.html" aria-current="page">Windows</a>
+  <a href="/amneziageo/linux/recipes/index.ru.html">Linux</a>
+  <a href="/amneziageo/android/recipes/index.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/windows/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/windows/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/menu/general.ru.html">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/windows/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/multiple-vpn.ru.html" aria-current="page">Несколько VPN одновременно</a>
+          </li>
+          <li>
+            <a href="/amneziageo/windows/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/windows/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/windows/index.ru.html">Windows</a></li>
+    <li><a href="/amneziageo/windows/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="несколько-vpn-одновременно">Несколько VPN одновременно</h1>
+
+<p>На Windows можно держать несколько VPN-туннелей одновременно. В настройках включите <strong>Разрешить несколько VPN</strong>, затем подключите нужные конфигурации серверов. Подключение следующего сервера добавляет туннель, сохраняя уже работающие подключения.</p>
+
+<ul>
+  <li>Выберите <strong>основной</strong> сервер и порядок <strong>резервных</strong>. <strong>Нейтральный</strong> сервер находится вне этого порядка и обслуживает явно назначенный ему трафик.</li>
+  <li>Для правила маршрутизации доступны <strong>Авто</strong>, <strong>Лучший</strong>, <strong>Напрямую</strong>, <strong>Блок</strong> или конкретный сервер. Можно задать и запасной маршрут для правила.</li>
+  <li>Так раздельное туннелирование сочетается с несколькими подключениями: например, рабочая подсеть идёт через VPN офиса, выбранные сайты - через другой VPN, а остальной трафик в раздельном режиме остаётся прямым.</li>
+</ul>
+
+<p>Сейчас этот режим доступен только на Windows. На Linux и Android используется одно активное VPN-подключение. Примеры команд - в <a href="../cli.ru.html#несколько-vpn-одновременно">справочнике CLI</a>.</p>
+
+<h2 id="по-шагам-в-окне">По шагам в окне</h2>
+
+<ol>
+  <li>
+    <p>В разделе «Подключения» на вкладке «Туннель» включите «Разрешить несколько VPN».</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/ru/connections-multi.png" alt="Вкладка «Туннель»: «Разрешить несколько VPN» включён, под ним интервал проверки, проверки перед переключением и порог" width="984" height="752" loading="lazy" /><figcaption>Несколько VPN и переход правил между серверами.</figcaption></figure>
+  </li>
+  <li>В каталоге конфигураций включите «Используется» у каждого сервера, который должен быть поднят: каждый добавляет свой туннель, уже работающие остаются.</li>
+  <li>
+    <p>На главном экране в блоке «Серверы» нажмите место сервера и выберите «Основной», «Резервный 1», «Резервный 2» и дальше или «Нейтральный».</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/ru/home-servers.png" alt="Главный экран в режиме нескольких VPN: блок «Серверы», два поднятых сервера и их места" width="984" height="752" loading="lazy" /><figcaption>Блок «Серверы» на главном экране.</figcaption></figure>
+  </li>
+  <li>
+    <p>В редакторе списка у записи «Через VPN» выберите «Маршрут» - «Авто», «Лучший», «Напрямую», «Блок» или сервер - и «Запасной»: куда уйдёт трафик, когда выбранный сервер молчит.</p>
+
+    <figure class="shot"><img src="/amneziageo/assets/img/windows/ru/routing-route.png" alt="Редактор списка в режиме нескольких VPN: раскрытая запись, в ней «Маршрут» и «Запасной»" width="984" height="752" loading="lazy" /><figcaption>Маршрут и запасной у записей списка.</figcaption></figure>
+  </li>
+</ol>
+
+<p>Переход правил между серверами настраивается под переключателем «Разрешить несколько VPN»: «Интервал проверки», «Проверок перед переключением», «Порог переключения». Когда сервер, на котором работал туннель, пропадает, туннель переходит на другой, и окно пишет об этом.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

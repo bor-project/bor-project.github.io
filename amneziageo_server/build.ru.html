@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Для разработчика · AmneziaGeo Server</title>
+    <meta name="description" content="Устройство репозитория, сборка сервера, панели и подмодулей, архив и образ, релизы, сайт документации.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/build.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/build.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/build.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/build.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-nav" aria-label="Способ установки">
+  <p class="sidebar-label">Способ установки</p>
+  <a href="/amneziageo_server/service/index.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/index.ru.html">Docker</a></nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html" aria-current="page">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="для-разработчика">Для разработчика</h1>
+
+<p>Репозиторий <a href="https://github.com/bor-project/amneziageo_server">bor-project/amneziageo_server</a>. Сервер на .NET, панель на React, модуль ядра и WebSocket-прокси подмодулями.</p>
+
+<h2 id="что-где">Что где</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Путь</th>
+      <th>Что</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Core</code></td>
+      <td>типы предметной области, интерфейсы, правила</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Dal</code></td>
+      <td>EF Core над SQLite, хранилища учётных записей и миграции</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Awg</code></td>
+      <td>управление ядром через generic netlink</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Auth</code></td>
+      <td>учётные записи, роли как утверждения, пароли и токены</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Api</code></td>
+      <td>HTTP API и собранный веб-интерфейс</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-server/AmneziaGeo.Server.Cli</code></td>
+      <td>консольная утилита</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-web</code></td>
+      <td>интерфейс панели, React и Vite</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-tests</code></td>
+      <td>тесты</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziawg</code></td>
+      <td>модуль ядра подмодулем</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">wstunnel</code></td>
+      <td>WebSocket-прокси подмодулем</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">deploy</code></td>
+      <td>служба systemd, установщик службы, консольное меню, контейнер</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">docs</code></td>
+      <td>справка на английском по разделам и этот сайт</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tools</code></td>
+      <td>генератор констант netlink и просмотр сайта</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Справка на английском лежит в <code class="language-plaintext highlighter-rouge">docs/*.md</code>, по файлу на раздел, со ссылками из README. Она пишется вместе с кодом и описывает маршруты API, коды отказов и устройство частей; этот сайт пересказывает её для администратора.</p>
+
+<h2 id="подмодули">Подмодули</h2>
+
+<p>Оба подмодуля - форки в <code class="language-plaintext highlighter-rouge">bor-project</code>, закреплены коммитом:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule update --init --recursive
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Подмодуль</th>
+      <th>Зачем</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amneziawg/amneziawg-linux-kernel-module</code></td>
+      <td><code class="language-plaintext highlighter-rouge">src/uapi/wireguard.h</code> - источник констант C#, и само дерево модуля для ядер, которых нет в PPA Amnezia</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">wstunnel/wstunnel</code></td>
+      <td>переносит UDP интерфейса внутри WebSocket</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>После сдвига подмодуля модуля константы пересобираются: <code class="language-plaintext highlighter-rouge">python3 tools/generate-uapi.py</code>.</p>
+
+<p>Собрать и загрузить модуль из дерева:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make -C amneziawg/amneziawg-linux-kernel-module/src -j"$(nproc)"
+sudo cp amneziawg/amneziawg-linux-kernel-module/src/amneziawg.ko /lib/modules/"$(uname -r)"/updates/
+sudo depmod -a &amp;&amp; sudo modprobe amneziawg
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">insmod</code> на собранный файл падает с <code class="language-plaintext highlighter-rouge">Unknown symbol</code>: модулю нужны <code class="language-plaintext highlighter-rouge">libcurve25519</code> и <code class="language-plaintext highlighter-rouge">udp_tunnel</code>, их подтягивает только <code class="language-plaintext highlighter-rouge">modprobe</code>. Пакет <code class="language-plaintext highlighter-rouge">amneziawg-tools</code> не нужен: сервер говорит с ядром по netlink сам, а <code class="language-plaintext highlighter-rouge">ip link add dev &lt;имя&gt; type amneziawg</code> требует только iproute2.</p>
+
+<p><code class="language-plaintext highlighter-rouge">wstunnel</code> собирается так:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo build --release --manifest-path wstunnel/wstunnel/Cargo.toml -p wstunnel-cli
+</code></pre></div></div>
+
+<p>Архив релиза берёт его статической сборкой под musl (<code class="language-plaintext highlighter-rouge">x86_64-unknown-linux-musl</code> или <code class="language-plaintext highlighter-rouge">aarch64-unknown-linux-musl</code>), чтобы бинарник шёл на любой glibc хоста: нужны цель (<code class="language-plaintext highlighter-rouge">rustup target add x86_64-unknown-linux-musl</code>) и <code class="language-plaintext highlighter-rouge">musl-gcc</code> из <code class="language-plaintext highlighter-rouge">musl-tools</code>. Образ собирает свой под glibc образа.</p>
+
+<h2 id="сборка">Сборка</h2>
+
+<p>Нужны .NET 10 SDK и Node.js 22.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet build AmneziaGeo.Server.slnx
+npm --prefix amneziageo-web install
+npm --prefix amneziageo-web run build
+</code></pre></div></div>
+
+<p>Сборка панели кладёт её в <code class="language-plaintext highlighter-rouge">wwwroot</code> проекта API, и сервер отдаёт её с того же порта.</p>
+
+<h2 id="запуск">Запуск</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet run --project amneziageo-server/AmneziaGeo.Server.Api
+</code></pre></div></div>
+
+<p>Панель на <code class="language-plaintext highlighter-rouge">http://&lt;адрес&gt;:8443/</code>. Пока интерфейс правится, рядом запускается Vite: он перезагружает страницу на каждом изменении и передаёт <code class="language-plaintext highlighter-rouge">/api</code> серверу.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm --prefix amneziageo-web run dev
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Адрес</th>
+      <th>Что отвечает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://&lt;хост&gt;:8443/</code></td>
+      <td>сервер с собранным интерфейсом</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://&lt;хост&gt;:5173/</code></td>
+      <td>Vite, <code class="language-plaintext highlighter-rouge">/api</code> уходит на порт 8443</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Первый администратор заводится из консоли, один раз:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet run --project amneziageo-server/AmneziaGeo.Server.Cli -- init
+</code></pre></div></div>
+
+<p>Интерфейсы в ядре читает и меняет та же утилита, чтение и запись хотят <code class="language-plaintext highlighter-rouge">CAP_NET_ADMIN</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo dotnet run --project amneziageo-server/AmneziaGeo.Server.Cli -- device show
+</code></pre></div></div>
+
+<p>Пути данных задают переменные <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_DB</code> (база, по умолчанию <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-server/server.db</code>) и <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_SIGNING_KEY</code> (ключ подписи токенов, <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/signing.pem</code>).</p>
+
+<p>Строки интерфейса лежат в <code class="language-plaintext highlighter-rouge">amneziageo-web/src/i18n/en.ts</code> и <code class="language-plaintext highlighter-rouge">ru.ts</code>; строка, добавленная без русской пары, ломает сборку. Сервер отвечает на отказ кодом, а не фразой, и панель переводит код сама.</p>
+
+<h2 id="архив-и-образ">Архив и образ</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./deploy/publish.sh
+</code></pre></div></div>
+
+<p>Собирает панель, публикует сервер и утилиту для <code class="language-plaintext highlighter-rouge">linux-x64</code> со средой внутри и пишет <code class="language-plaintext highlighter-rouge">out/amneziageo-server.tar.gz</code>, около 50 МБ; <code class="language-plaintext highlighter-rouge">./deploy/publish.sh --ui</code> собирает один веб-интерфейс в <code class="language-plaintext highlighter-rouge">out/amneziageo-web.tar.gz</code>. Архив ставится на хост его <code class="language-plaintext highlighter-rouge">install.sh</code>, см. <a href="/amneziageo_server/service/install.ru.html#вручную">Установка</a>.</p>
+
+<p>Образ для amd64 и arm64:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker buildx build -f deploy/docker/Dockerfile --platform linux/amd64,linux/arm64 -t amneziageo-server:&lt;версия&gt; .
+</code></pre></div></div>
+
+<p>Слои образа идут от тех, что меняются реже, к тем, что меняет каждый релиз, поэтому обновление тянет только верхние.</p>
+
+<h2 id="релизы">Релизы</h2>
+
+<p>Релиз - тег <code class="language-plaintext highlighter-rouge">vX.Y.Z.W</code> на коммите ветки <code class="language-plaintext highlighter-rouge">master</code>; тег вне <code class="language-plaintext highlighter-rouge">master</code> ничего не собирает. Workflow <code class="language-plaintext highlighter-rouge">.github/workflows/release.yml</code> собирает архивы для x64 и arm64, рядом с каждым его файлы по одному (<code class="language-plaintext highlighter-rouge">.pack</code>) и их список (<code class="language-plaintext highlighter-rouge">.files</code>), образ <code class="language-plaintext highlighter-rouge">ghcr.io/bor-project/amneziageo-server</code> для обеих платформ и манифест <code class="language-plaintext highlighter-rouge">update.json</code> с версией, образом по дайджесту и дайджестами архивов; <code class="language-plaintext highlighter-rouge">update.json.sig</code> подписывает манифест ключом релизов. Тег с четвёртым числом больше нуля или с суффиксом даёт предварительный выпуск. Панель проверяет подпись манифеста ключом, который несёт в себе, и предлагает релиз только с верной подписью, см. <a href="/amneziageo_server/service/panel/overview.ru.html#обновление">Обновление</a>.</p>
+
+<h2 id="этот-сайт">Этот сайт</h2>
+
+<p>Сайт собирает Jekyll из <code class="language-plaintext highlighter-rouge">docs/</code> так же, как сайт клиента: общий текст страниц лежит в <code class="language-plaintext highlighter-rouge">docs/_includes/ru/</code> и <code class="language-plaintext highlighter-rouge">docs/_includes/en/</code>, страницы-обёртки для каждого способа установки и языка (<code class="language-plaintext highlighter-rouge">&lt;тема&gt;.ru.md</code> и <code class="language-plaintext highlighter-rouge">&lt;тема&gt;.md</code>) - в <code class="language-plaintext highlighter-rouge">docs/service/</code> и <code class="language-plaintext highlighter-rouge">docs/docker/</code>, оглавление - в <code class="language-plaintext highlighter-rouge">docs/_data/toc.yml</code>, способы установки - в <code class="language-plaintext highlighter-rouge">docs/_data/kinds.yml</code>. Текст, который различается, ветвится условиями Liquid по полю <code class="language-plaintext highlighter-rouge">page.kind</code> страницы-обёртки (<code class="language-plaintext highlighter-rouge">service</code> или <code class="language-plaintext highlighter-rouge">docker</code>). Кадры экрана подключает <code class="language-plaintext highlighter-rouge">shot.html</code> из <code class="language-plaintext highlighter-rouge">docs/assets/img/&lt;язык&gt;/</code>; кадра на языке страницы нет - берётся английский, и проверка это считает.</p>
+
+<p>Просмотр: <code class="language-plaintext highlighter-rouge">tools/docs-site.sh serve</code> собирает сайт как GitHub Pages и отдаёт его на <code class="language-plaintext highlighter-rouge">http://127.0.0.1:4001/amneziageo_server/</code>, пересобирая при сохранении; в VS Code это F5 «Docs Site». На Windows скрипт идёт в WSL, гемы <code class="language-plaintext highlighter-rouge">github-pages</code> и <code class="language-plaintext highlighter-rouge">webrick</code> берёт из <code class="language-plaintext highlighter-rouge">~/ag-docs</code> (переменная <code class="language-plaintext highlighter-rouge">AG_DOCS_GEMS</code>), собранный сайт держит в <code class="language-plaintext highlighter-rouge">~/ag-server-docs</code> (<code class="language-plaintext highlighter-rouge">AG_SERVER_DOCS_HOME</code>). <code class="language-plaintext highlighter-rouge">tools/docs-site.sh check</code> проверяет собранный сайт: ссылки, якоря, остатки Liquid, заглушки, кадры на чужом языке и длинные тире в исходниках.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

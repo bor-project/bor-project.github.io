@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Общие · Linux · AmneziaGeo</title>
+    <meta name="description" content="Оформление и сведения">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo/linux/menu/general.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo/linux/menu/general.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo/linux/menu/general.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo/index.ru.html">AmneziaGeo <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo/releases">Скачать</a>
+        <a href="https://github.com/bor-project/amneziageo">GitHub</a>
+        <a href="/amneziageo_server/index.ru.html">Сервер</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo/linux/menu/general.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="device-switch" aria-label="Устройство">
+  <a href="/amneziageo/windows/menu/general.ru.html">Windows</a>
+  <a href="/amneziageo/linux/menu/general.ru.html" aria-current="page">Linux</a>
+  <a href="/amneziageo/android/menu/general.ru.html">Android</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo/linux/index.ru.html">Обзор</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/first-config.ru.html">Первая конфигурация</a>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/menu/home.ru.html">Главный экран</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/configurations.ru.html">Конфигурации</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo/linux/menu/geo-sources.ru.html">Источники geo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/connections.ru.html">Подключения</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/diagnostics.ru.html">Диагностика</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/menu/general.ru.html" aria-current="page">Общие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/remote-network.ru.html">Доступ в удалённую сеть</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/lan-proxy.ru.html">Устройства в сети через прокси</a>
+          </li>
+          <li>
+            <a href="/amneziageo/linux/recipes/hotspot.ru.html">Раздача VPN по Wi-Fi</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo/linux/cli.ru.html">Командная строка</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
+          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo/index.ru.html">AmneziaGeo</a></li>
+    <li><a href="/amneziageo/linux/index.ru.html">Linux</a></li>
+    <li><a href="/amneziageo/linux/menu/index.ru.html">Разделы меню</a></li>
+  </ol>
+</nav>
+
+        <h1 id="общие">Общие</h1>
+
+<h2 id="оформление">Оформление</h2>
+
+<p>«Тема оформления» - «Системная», «Светлая» или «Тёмная». «Язык интерфейса» - «Системный», «Русский» или «English»; язык консоли задаётся отдельно, ключом <code class="language-plaintext highlighter-rouge">--lang</code> или переменной <code class="language-plaintext highlighter-rouge">AMNEZIAGEO_LANG</code>.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/general.png" alt="Раздел «Общие»: тема, язык интерфейса, версии и обновление" width="984" height="752" loading="lazy" /><figcaption>Раздел «Общие».</figcaption></figure>
+
+<h2 id="о-приложении">О приложении</h2>
+
+<p>«Версия приложения», «Версия движка Amnezia» - версия AmneziaWG в комплекте, «Тип сборки» - вариант сборки, если он задан, и «Репозиторий проекта» - ссылка на GitHub.</p>
+
+<h2 id="обновление">Обновление</h2>
+
+<p>«Проверить обновления» спрашивает сервер релизов; найденная версия пишется рядом, «Скачать» качает её, «Установить» запускает установку, «Отмена» останавливает скачивание. «Проверять предварительные версии» включает в проверку бета-сборки. Проверка идёт и сама: о новой версии сообщает полоса «Доступно обновление» вверху окна. Скачанный файл сверяется с опубликованной контрольной суммой.</p>
+
+<p>Как приложение обновляется - в разделе <a href="../install.ru.html#обновление">Обновление</a> установки.</p>
+
+<h2 id="импорт--экспорт">Импорт / экспорт</h2>
+
+<p>Перенос конфигураций и списков маршрутизации на другое устройство одним файлом. «Экспорт…» открывает окно «Экспорт конфигураций и списков маршрутизации»: отметьте конфигурации и списки, у списка - отдельные правила, которые стоит перенести (правила на приложения этого компьютера на другом не нужны), затем «Скопировать содержимое», «Сохранить в файл…». Файл несёт ключи конфигураций. «Импорт…» принимает такой файл: «Выбрать файл…» или вставка из буфера обмена, затем «При совпадении имён» - «Добавить как новое», «Заменить», «Пропустить» или «Объединить» - и «Сохранить». Файл, созданный более новой версией приложения, не читается: обновите приложение. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo bundle export --all --out &lt;файл&gt;</code> и <code class="language-plaintext highlighter-rouge">amneziageo bundle import --file &lt;файл&gt; [--policy new|replace|skip|merge]</code>.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/general-export.png" alt="Экспорт: отмеченные конфигурация и список маршрутизации с правилами" width="984" height="752" loading="lazy" /><figcaption>Экспорт: что войдёт в файл.</figcaption></figure>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/ru/general-import.png" alt="Импорт: поведение при совпадении имён, поле для вставки, выбор файла" width="984" height="752" loading="lazy" /><figcaption>Импорт.</figcaption></figure>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo/issues">Сообщить о проблеме</a>
+          <a href="https://github.com/bor-project/amneziageo/blob/master/LICENSE">GPL-3.0</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

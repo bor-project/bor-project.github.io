@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Группа каналов с резервом · Служба · AmneziaGeo Server</title>
+    <meta name="description" content="Несколько каналов под одним именем: приоритет, по кругу, по клиенту.">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/service/recipes/channel-group.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/service/recipes/channel-group.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/service/recipes/channel-group.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/service/recipes/channel-group.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/recipes/channel-group.ru.html" aria-current="page">Служба</a>
+  <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/service/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/service/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/service/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/service/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/service/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/service/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/service/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/service/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/channel-group.ru.html" aria-current="page">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/service/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/service/index.ru.html">Служба</a></li>
+    <li><a href="/amneziageo_server/service/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="группа-каналов-с-резервом">Группа каналов с резервом</h1>
+
+<p>Задача: трафик правила уходит через один из нескольких серверов, и когда один падает, правило само переходит на другой. Несколько каналов собираются в группу, а правило называет группу.</p>
+
+<h2 id="1-каналы">1. Каналы</h2>
+
+<p>Заведите два и больше каналов, как в рецепте <a href="another-server.ru.html">Выход через другой сервер</a>, например <code class="language-plaintext highlighter-rouge">awg-de</code> и <code class="language-plaintext highlighter-rouge">awg-nl</code>, каждый со своей проверкой доступности: сервер имён и период. Без проверки канал считается живым по возрасту рукопожатия, с ней - по ответу на вопрос через туннель, и два промаха подряд снимают канал с группы, один ответ возвращает.</p>
+
+<h2 id="2-группа">2. Группа</h2>
+
+<p>«Маршрутизация» &gt; «Каналы» &gt; «Группы» &gt; «Добавить»:</p>
+
+<ol>
+  <li>«Название» <code class="language-plaintext highlighter-rouge">europe</code>; имя не может совпасть с именем канала.</li>
+  <li>«Стратегия»:
+    <ul>
+      <li>«Приоритет» - первый живой канал списка, при его молчании следующий; основной и резервный;</li>
+      <li>«По кругу» - новые соединения по живым каналам по очереди; распределение нагрузки;</li>
+      <li>«По клиенту» - канал по адресу клиента: один клиент держится одного канала, пока набор живых не изменился; для сервисов, которым важно, чтобы сессии одного человека шли с одного адреса.</li>
+    </ul>
+  </li>
+  <li>«Каналы»: <code class="language-plaintext highlighter-rouge">awg-de</code>, <code class="language-plaintext highlighter-rouge">awg-nl</code> в порядке выбора.</li>
+  <li>«Включено», «Сохранить».</li>
+</ol>
+
+<p>В списке группы живые члены отмечены «на хосте».</p>
+
+<h2 id="3-правило">3. Правило</h2>
+
+<p>В правиле «Через канал» выберите в поле «Канал» группу <code class="language-plaintext highlighter-rouge">europe</code>; в списке правил такой канал отмечен «группа». Когда ни один член не несёт, трафик правила отбрасывается.</p>
+
+<h2 id="что-происходит-при-отказе">Что происходит при отказе</h2>
+
+<p>Группа читает живых членов каждые пятнадцать секунд, и когда набор меняется, набор правил ложится на хост заново: трафик правила переходит на следующий канал без участия человека. Соединение, открытое через упавший канал, не переезжает: решение принято на его первом пакете, клиент открывает новое. Когда ни один член не несёт, правило показывает «трафик заперт» с «Ни один канал не отвечает». Изменение в панели круга не ждёт: выключенный или убранный из группы канал уходит из набора сразу.</p>
+
+<p>Резолвер тоже может спрашивать через группу: «Спрашивать через канал» на странице DNS берёт первого живого члена группы «Приоритет» и раздаёт вопросы по кругу у группы «По кругу».</p>
+
+<h2 id="проверка">Проверка</h2>
+
+<p>«Маршрутизация» &gt; «Проверка» с именем из правила показывает «Через канал europe» и члены группы с отметками «несёт», «в резерве», «недоступен», «выключен» и тем, какой выбран. Опустите один канал (выключите его переключателем) и повторите: выбран другой член.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>
