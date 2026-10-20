@@ -1,0 +1,1 @@
+Sitemap: https://bor-project.github.io/amneziageo_server/sitemap.xml
