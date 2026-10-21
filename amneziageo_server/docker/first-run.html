@@ -265,7 +265,7 @@ docker compose exec panel amneziageo-server init --user admin
 
 <h2 id="dns-for-the-clients">DNS for the clients</h2>
 
-<p>A fresh panel keeps the DNS server off: the clients get name servers in their configuration and ask them through the tunnel in plain DNS. Menu item 29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>, the command <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code> or the “Enabled” switch on the <a href="panel/dns.html">DNS</a> page turn the DNS server of the panel on: the clients ask the server for names, the server asks upstream servers over HTTPS, and routing rules by domains start to work.</p>
+<p>The DNS server of the panel turns on by itself as soon as a rule by sites or a template with Route by name appears: the clients ask the server for names, the server asks upstream servers over HTTPS, and routing by domains works. Until then the clients get name servers in their configuration and ask them through the tunnel in plain DNS. To keep the DNS server off: the “Mode” field on the <a href="panel/dns.html">DNS</a> page, menu item 29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code> or the command <code class="language-plaintext highlighter-rouge">amneziageo-server dns off</code>.</p>
 
 <h2 id="check">Check</h2>
 

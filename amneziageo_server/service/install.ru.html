@@ -310,7 +310,7 @@ amneziageo-server install
       <td><code class="language-plaintext highlighter-rouge">client</code>, <code class="language-plaintext highlighter-rouge">qr</code></td>
     </tr>
     <tr>
-      <td>Отвечать клиентам на DNS на этом сервере, спрашивая наружу по HTTPS?</td>
+      <td>вопроса нет: DNS-сервер для клиентов работает, пока нужен маршрутизации; <code class="language-plaintext highlighter-rouge">no</code> в файле ответов держит его выключенным</td>
       <td>да</td>
       <td><code class="language-plaintext highlighter-rouge">resolver</code></td>
     </tr>
@@ -354,7 +354,7 @@ amneziageo-server install
   <li>заводит первого администратора; временный пароль печатает один раз в конце;</li>
   <li>выпускает сертификат Let’s Encrypt на имя сервера (<code class="language-plaintext highlighter-rouge">certbot</code> с ключом RSA, проверка HTTP-01 на TCP 80, продление таймером <code class="language-plaintext highlighter-rouge">certbot.timer</code>, см. <a href="/amneziageo_server/service/panel/certificates.ru.html#lets-encrypt">Сертификаты</a>) или берёт тот, что у хоста уже есть, и открывает панель на всех адресах хоста;</li>
   <li>заводит первый интерфейс и клиента через API панели: конфигурация клиента ложится в <code class="language-plaintext highlighter-rouge">/root</code>, по желанию печатается QR-кодом; на хосте с глобальным адресом IPv6 интерфейс получает диапазон уникальных локальных адресов IPv6, и клиенты ходят по IPv6 через сервер;</li>
-  <li>включает DNS-сервер для клиентов, если согласились;</li>
+  <li>оставляет DNS-сервер для клиентов в режиме «Автоматически» или выключает его, если в файле ответов <code class="language-plaintext highlighter-rouge">resolver</code> стоит <code class="language-plaintext highlighter-rouge">no</code>;</li>
   <li>открывает порты в ufw или включает ufw, оставив открытыми ssh и то, что уже слушало;</li>
   <li>если ufw не пускает клиентов какого-то интерфейса к DNS-серверу панели, предлагает пустить их правилом <code class="language-plaintext highlighter-rouge">allow in on &lt;интерфейс&gt; to any port 53</code>, см. <a href="/amneziageo_server/service/panel/dns.ru.html#как-это-работает">DNS</a>;</li>
   <li>ставит короткую команду меню, если согласились: ссылку <code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code> на <code class="language-plaintext highlighter-rouge">amneziageo-server</code> или с именем, которое назвали; имя, которое уже занято другой командой, не берёт и спрашивает другое;</li>

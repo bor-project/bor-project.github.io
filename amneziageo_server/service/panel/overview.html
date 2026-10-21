@@ -270,19 +270,19 @@
 
 <h2 id="services">Services</h2>
 
-<p>The “Services” card lists what the server keeps for the clients and the ports of each service, with the mark “checked <time>":</time></p>
+<p>The “Services” card lists what the server keeps for the clients and the ports of each service, with the mark “checked &lt;time&gt;”:</p>
 
 <ul>
   <li>“Panel”: the TCP port the panel answers on;</li>
   <li>“Subscriptions”: on their own port or “on the ports of the interfaces”, while subscriptions are on;</li>
-  <li>“Interface <name>" for each enabled interface, with the parts its TCP port serves: hello, speed, WebSocket, subscription;</name></li>
-  <li>“DNS”: the DNS server, while it is on;</li>
-  <li>“Certificate <name>" for each certificate file the panel and subscriptions answer under, with "until <date>".</date></name></li>
+  <li>“Interface &lt;name&gt;” for each enabled interface, with the parts its TCP port serves: hello, speed, WebSocket, subscription;</li>
+  <li>“DNS”: the DNS server, while it runs;</li>
+  <li>“Certificate &lt;name&gt;” for each certificate file the panel and subscriptions answer under, with “until &lt;date&gt;”.</li>
 </ul>
 
 <p>The “Change” link in a row leads to where the port and the settings of the service change: the panel - <a href="server.html">Server</a>, the subscriptions - <a href="subscriptions.html">Subscriptions</a>, an interface - <a href="interfaces.html">its page</a>, DNS - <a href="dns.html">DNS</a>, a certificate - <a href="certificates.html">Certificates</a>. A user who may change those settings sees it.</p>
 
-<p>A service that is down carries “Down since <time>: <reason>":</reason></time></p>
+<p>A service that is down carries “Down since &lt;time&gt;: &lt;reason&gt;”:</p>
 
 <table>
   <thead>
@@ -321,7 +321,7 @@
       <td>the DNS server did not come up or no upstream server answers</td>
     </tr>
     <tr>
-      <td>The file does not read, Ran out on <date></date></td>
+      <td>The file does not read, Ran out on &lt;date&gt;</td>
       <td>the certificate file does not read or the certificate has run out</td>
     </tr>
     <tr>
@@ -337,7 +337,7 @@
 
 <p>A minute after the start and every 12 hours the panel asks GitHub about the releases of <code class="language-plaintext highlighter-rouge">bor-project/amneziageo_server</code>: the latest release, and with pre-releases the five newest. It takes the newest of its channel that has an <code class="language-plaintext highlighter-rouge">update.json</code> manifest and an <code class="language-plaintext highlighter-rouge">update.json.sig</code> signature, checks the signature with the key it carries inside and offers the release if it is newer than itself. A manifest with a bad signature is not offered, and the panel names the reason. A request without an answer is repeated up to five times within a minute, after which the header says “updates not checked”, and the next check starts over.</p>
 
-<p>The “Update” button, for a role with the “Update the panel” permission, leads through the steps “Download”, “Install”, “Restart”, “Done” with notes: “downloading <version>", "putting the release on", "the panel restarts, waiting for it", "the panel runs <version>, the page reloads itself". The page waits for the new panel to answer and loads it; if there is no answer for long, it says "the panel has not answered for N min". A failed update, one whose script ended with an error or that left the panel on its former version, stays in the header as "the update to <version> failed" with its log until the next update goes through or a role with the "Update the panel" permission hides it with the "Hide" cross next to it; once hidden, it is hidden for every account. An update neither of whose two versions the panel runs any more (it was put on another way: the menu, `install.sh`, another image tag) is not shown in the header. The `update` directory keeps the logs and exit codes of the last five updates; older ones go at the next look at the releases.</version></version></version></p>
+<p>The “Update” button, for a role with the “Update the panel” permission, leads through the steps “Download”, “Install”, “Restart”, “Done” with notes: “downloading &lt;version&gt;”, “putting the release on”, “the panel restarts, waiting for it”, “the panel runs &lt;version&gt;, the page reloads itself”. The page waits for the new panel to answer and loads it; if there is no answer for long, it says “the panel has not answered for N min”. A failed update, one whose script ended with an error or that left the panel on its former version, stays in the header as “the update to &lt;version&gt; failed” with its log until the next update goes through or a role with the “Update the panel” permission hides it with the “Hide” cross next to it; once hidden, it is hidden for every account. An update neither of whose two versions the panel runs any more (it was put on another way: the menu, <code class="language-plaintext highlighter-rouge">install.sh</code>, another image tag) is not shown in the header. The <code class="language-plaintext highlighter-rouge">update</code> directory keeps the logs and exit codes of the last five updates; older ones go at the next look at the releases.</p>
 
 <p>The service updates through the <code class="language-plaintext highlighter-rouge">install.sh</code> of the new release: the panel assembles the archive for the architecture of the host in <code class="language-plaintext highlighter-rouge">update/stage-&lt;version&gt;</code> next to the database, taking the files it already has from the working release and downloading the rest from the release in parts, each checked against the digest from the file list of the release; between two releases this is usually a megabyte or two out of about 55. If the list does not match, the files are not served in parts or more than three quarters of the archive changed, the panel downloads the whole archive. Then it runs <code class="language-plaintext highlighter-rouge">install.sh</code> apart from itself, through <code class="language-plaintext highlighter-rouge">systemd-run</code>, as the service <code class="language-plaintext highlighter-rouge">amneziageo-server-update-&lt;version&gt;</code>: that stops the server, copies the database, moves <code class="language-plaintext highlighter-rouge">current</code> to the new release and brings the previous one back if the new one did not come up. The output of the script goes to <code class="language-plaintext highlighter-rouge">update/&lt;version&gt;.log</code>, the result to <code class="language-plaintext highlighter-rouge">update/&lt;version&gt;.rc</code>.</p>
 

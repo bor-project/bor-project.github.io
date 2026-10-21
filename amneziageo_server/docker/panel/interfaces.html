@@ -393,7 +393,7 @@ ufw allow 8443/tcp comment 'amneziageo panel'
 
 <p>Before each change it reads <code class="language-plaintext highlighter-rouge">ufw show added</code>, adds what is missing and removes only its own rules that nobody needs any more; a rule written by hand stays. A ufw that is off takes the rules and holds them until it is turned on, so <code class="language-plaintext highlighter-rouge">ufw enable</code> on a working server does not break the tunnels; the panel does not undertake turning ufw on and off. Where there is no ufw, the panel puts the table <code class="language-plaintext highlighter-rouge">inet amneziageo_open</code> with the same ports and interfaces: on a host that closes nothing this changes nothing, and on a host with ports closed in a table of its own they are opened there by hand. The port of the DNS server on an interface whose ports the panel does not hold is let in to ufw by sub-item 13 of menu item 23 and by <code class="language-plaintext highlighter-rouge">amneziageo-server dns open</code>, see <a href="dns.html#how-it-works">DNS</a>.</p>
 
-<p>The image has no ufw, so the panel in the container puts its own nftables table. On a host with ufw on, its <code class="language-plaintext highlighter-rouge">drop</code> is stronger: the panel calls such a port closed with the hint “Port <port> is closed by the server firewall (ufw), which the panel in its container does not reach. Open it on the server: sudo ufw allow <port>", and the `amneziageo-server` menu on the host opens it with item 23.</port></port></p>
+<p>The image has no ufw, so the panel in the container puts its own nftables table. On a host with ufw on, its <code class="language-plaintext highlighter-rouge">drop</code> is stronger: the panel calls such a port closed with the hint “Port &lt;port&gt; is closed by the server firewall (ufw), which the panel in its container does not reach. Open it on the server: sudo ufw allow &lt;port&gt;”, and the <code class="language-plaintext highlighter-rouge">amneziageo-server</code> menu on the host opens it with item 23.</p>
 
 <p>The form names a closed port under the field. If the panel can change the firewall and the role has the permission for the section (interfaces: “Manage interfaces”; the panel and subscriptions: “Manage access”), a button stands next to it: “Open” for a saved port keeps it open at once; “Open on save” for a new or moved port opens it together with the save, “Do not open” cancels that. A new port on the “Server” and “Subscriptions” tabs that the firewall closes is not saved until it is opened, so that the panel does not move to where nobody reaches it; an interface is saved anyway. When the firewall refused, the form writes “The firewall of the host refused the port”, and the switch stays on until the next apply.</p>
 
@@ -424,7 +424,7 @@ systemctl start amneziageo-server
 
 <h2 id="removing">Removing</h2>
 
-<p>Removing stands on the page of the interface: “Remove <name>?". It takes the interface off the host together with its clients. An interface named by routing rules stays in them by name: such a rule does not go on the host, with the reason "The panel holds none of the interfaces the rule names".</name></p>
+<p>Removing stands on the page of the interface: “Remove &lt;name&gt;?”. It takes the interface off the host together with its clients. An interface named by routing rules stays in them by name: such a rule does not go on the host, with the reason “The panel holds none of the interfaces the rule names”.</p>
 
 <h2 id="refusals">Refusals</h2>
 
@@ -477,7 +477,7 @@ systemctl start amneziageo-server
       <td>the interface file did not read</td>
     </tr>
     <tr>
-      <td>The kernel has no amneziawg module; The panel lacks the rights to change the host network; The host keeps packet forwarding off; The interface did not come up: <reason>; The WebSocket proxy did not start: <reason></reason></reason></td>
+      <td>The kernel has no amneziawg module; The panel lacks the rights to change the host network; The host keeps packet forwarding off; The interface did not come up: &lt;reason&gt;; The WebSocket proxy did not start: &lt;reason&gt;</td>
       <td>the host did not take the interface</td>
     </tr>
     <tr>

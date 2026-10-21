@@ -240,7 +240,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DNS</code></td>
-      <td>the DNS server for the clients: off, on, and whether it encrypts the queries going out</td>
+      <td>the DNS server for the clients: off or <code class="language-plaintext highlighter-rouge">automatic</code> (runs while routing needs it), and whether it encrypts the queries going out</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Services</code></td>
@@ -433,7 +433,7 @@
 
 <p><strong>28 <code class="language-plaintext highlighter-rouge">Update Geo Files</code>.</strong> Downloads the enabled geo sources of the panel now, like “Update all” on the <a href="panel/geo.html">Geo lists</a> page.</p>
 
-<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Prints the settings of the DNS server (<code class="language-plaintext highlighter-rouge">dns show</code>) and offers to turn it on or off; if the upstream servers are asked in plain DNS, it offers to replace them with those a fresh panel starts with, over HTTPS. When the DNS server is on and ufw keeps the clients of some interfaces from it, the item offers to let them in, as sub-item 13 of item 23 does. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> with a question, <code class="language-plaintext highlighter-rouge">dns open</code>. More in <a href="panel/dns.html">DNS</a>.</p>
+<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Prints the settings of the DNS server (<code class="language-plaintext highlighter-rouge">dns show</code>) and offers to turn it off or, when it is off, to let it run while routing needs it; if the upstream servers are asked in plain DNS, it offers to replace them with those a fresh panel starts with, over HTTPS. When the DNS server is on and ufw keeps the clients of some interfaces from it, the item offers to let them in, as sub-item 13 of item 23 does. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> with a question, <code class="language-plaintext highlighter-rouge">dns open</code>. More in <a href="panel/dns.html">DNS</a>.</p>
 
 <h2 id="commands">Commands</h2>
 

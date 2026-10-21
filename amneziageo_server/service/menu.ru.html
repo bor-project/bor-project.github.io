@@ -229,7 +229,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DNS</code></td>
-      <td>DNS-сервер для клиентов: выключен, включён и шифрует ли запросы наружу</td>
+      <td>DNS-сервер для клиентов: выключен или <code class="language-plaintext highlighter-rouge">automatic</code> (работает, пока нужен маршрутизации) и шифрует ли запросы наружу</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Services</code></td>
@@ -422,7 +422,7 @@
 
 <p><strong>28 <code class="language-plaintext highlighter-rouge">Update Geo Files</code>.</strong> Скачивает включённые гео-источники панели сейчас, как «Обновить все» на странице <a href="panel/geo.ru.html">Списки Geo</a>.</p>
 
-<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Печатает настройки DNS-сервера (<code class="language-plaintext highlighter-rouge">dns show</code>) и предлагает включить или выключить его; если внешние серверы спрашиваются открытым DNS, предлагает заменить их на те, с которых начинает свежая панель, по HTTPS. Включённый DNS-сервер, к которому ufw не пускает клиентов каких-то интерфейсов, пункт предлагает открыть им, как подпункт 13 пункта 23. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> с вопросом, <code class="language-plaintext highlighter-rouge">dns open</code>. Подробнее - <a href="panel/dns.ru.html">DNS</a>.</p>
+<p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Печатает настройки DNS-сервера (<code class="language-plaintext highlighter-rouge">dns show</code>) и предлагает выключить его или, если он выключен, дать ему работать, пока он нужен маршрутизации; если внешние серверы спрашиваются открытым DNS, предлагает заменить их на те, с которых начинает свежая панель, по HTTPS. Включённый DNS-сервер, к которому ufw не пускает клиентов каких-то интерфейсов, пункт предлагает открыть им, как подпункт 13 пункта 23. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> с вопросом, <code class="language-plaintext highlighter-rouge">dns open</code>. Подробнее - <a href="panel/dns.ru.html">DNS</a>.</p>
 
 <h2 id="команды">Команды</h2>
 

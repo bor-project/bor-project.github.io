@@ -319,7 +319,7 @@ amneziageo-server install
       <td><code class="language-plaintext highlighter-rouge">client</code>, <code class="language-plaintext highlighter-rouge">qr</code></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Answer the DNS of its clients on this server, asking outside over HTTPS?</code></td>
+      <td>no question: the DNS server for the clients runs while routing needs it; <code class="language-plaintext highlighter-rouge">no</code> in a file of answers keeps it off</td>
       <td>yes</td>
       <td><code class="language-plaintext highlighter-rouge">resolver</code></td>
     </tr>
@@ -363,7 +363,7 @@ amneziageo-server install
   <li>makes the first administrator; the temporary password is printed once at the end;</li>
   <li>gets a Let’s Encrypt certificate for the name of the server (<code class="language-plaintext highlighter-rouge">certbot</code> with an RSA key, an HTTP-01 check on TCP 80, renewal by the <code class="language-plaintext highlighter-rouge">certbot.timer</code> timer, see <a href="/amneziageo_server/service/panel/certificates.html#lets-encrypt">Certificates</a>) or takes the one the host already holds, and opens the panel on every address of the host;</li>
   <li>makes the first interface and client through the API of the panel: the configuration of the client goes to <code class="language-plaintext highlighter-rouge">/root</code> and, when asked, is printed as a QR code; on a host with a global IPv6 address the interface gets a range of unique local IPv6 addresses, and the clients go over IPv6 through the server;</li>
-  <li>turns the DNS server for the clients on, if you agreed;</li>
+  <li>leaves the DNS server for the clients automatic, or turns it off when <code class="language-plaintext highlighter-rouge">resolver</code> is <code class="language-plaintext highlighter-rouge">no</code> in a file of answers;</li>
   <li>opens the ports in ufw or turns ufw on, keeping ssh and what already listened open;</li>
   <li>if ufw keeps the clients of some interface from the DNS server of the panel, offers to let them in with the rule <code class="language-plaintext highlighter-rouge">allow in on &lt;interface&gt; to any port 53</code>, see <a href="/amneziageo_server/service/panel/dns.html#how-it-works">DNS</a>;</li>
   <li>puts the short command of the menu on, if you agreed: a link <code class="language-plaintext highlighter-rouge">/usr/local/bin/ag-s</code> to <code class="language-plaintext highlighter-rouge">amneziageo-server</code>, or with the name you gave; a name another command already holds is not taken, and the script asks for another one;</li>

@@ -264,7 +264,7 @@
   </tbody>
 </table>
 
-<p>The first column chooses clients, and “Choose every client shown” takes the whole filtered list. The bar above the list counts the chosen ones and carries “Turn on”, “Turn off”, “Remove”; the result comes as a line “Turned on N of M.”, “Not done: <list>." with the reasons and "The interfaces did not take the change: <list>." if the kernel did not take the peers. The list reads the host every two seconds.</list></list></p>
+<p>The first column chooses clients, and “Choose every client shown” takes the whole filtered list. The bar above the list counts the chosen ones and carries “Turn on”, “Turn off”, “Remove”; the result comes as a line “Turned on N of M.”, “Not done: &lt;list&gt;.” with the reasons and “The interfaces did not take the change: &lt;list&gt;.” if the kernel did not take the peers. The list reads the host every two seconds.</p>
 
 <p>“Add” opens a new client. Clients from ready files are moved over by the <a href="#import">import</a> through the API or the console.</p>
 
@@ -302,7 +302,7 @@
     </tr>
     <tr>
       <td>Address</td>
-      <td>one address out of each network of the interface; the panel fills in the first free number and hints at a taken one: “Taken by <name>"</name></td>
+      <td>one address out of each network of the interface; the panel fills in the first free number and hints at a taken one: “Taken by &lt;name&gt;”</td>
     </tr>
     <tr>
       <td>Private and public keys</td>
@@ -345,7 +345,7 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/client-settings.png" alt="Settings tab of a client: enabled, interface, name, preshared key, address, note, template" width="1440" height="900" loading="lazy" /><figcaption>A client with a template.</figcaption></figure>
 
-<p>Removing stands at the bottom of the page: “Remove <name>?". The client is taken off the interface, and the routing rules that named it no longer find it.</name></p>
+<p>Removing stands at the bottom of the page: “Remove &lt;name&gt;?”. The client is taken off the interface, and the routing rules that named it no longer find it.</p>
 
 <h2 id="access-to-the-client">Access to the client</h2>
 
@@ -375,7 +375,7 @@
 
 <p>A configuration carries one private key, and the server keeps one peer for it: one session and one address to answer to. Two devices with one configuration take the peer from each other with every packet, and each falls silent until it repeats the handshake, that is for 15 seconds; on a test stand two devices with one key lost 69 to 77% of their packets. Every device of a person gets a client of its own, and a subscription gathers the several clients of one person, see <a href="../recipes/family.html">One subscription for several devices</a>.</p>
 
-<p>The guard against a second device is off until the environment of the panel carries <code class="language-plaintext highlighter-rouge">Guard__IsEnabled=true</code>. When on, it notices a peer taken by two addresses under one key, keeps the device whose turn it is and cuts the others off in the firewall by the source address and port (the table <code class="language-plaintext highlighter-rouge">inet amneziageo_guard</code>); the list of clients writes “Second device cut off: <list>". The cut holds while the device that was kept is online and is lifted when it is silent longer than "Client online for". The guard reads the interfaces and changes the firewall, so it runs as root; a device that moves between networks is left alone.</list></p>
+<p>The guard against a second device is off until the environment of the panel carries <code class="language-plaintext highlighter-rouge">Guard__IsEnabled=true</code>. When on, it notices a peer taken by two addresses under one key, keeps the device whose turn it is and cuts the others off in the firewall by the source address and port (the table <code class="language-plaintext highlighter-rouge">inet amneziageo_guard</code>); the list of clients writes “Second device cut off: &lt;list&gt;”. The cut holds while the device that was kept is online and is lifted when it is silent longer than “Client online for”. The guard reads the interfaces and changes the firewall, so it runs as root; a device that moves between networks is left alone.</p>
 
 <h2 id="import">Import</h2>
 
