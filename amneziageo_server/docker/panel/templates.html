@@ -214,11 +214,17 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/templates.png" alt="List of templates: a template with geo keys and the default one, the number of addresses in the file and of clients" width="1440" height="900" loading="lazy" /><figcaption>Templates of the server.</figcaption></figure>
 
-<p>The “Templates” tab of the “Clients” page lists the templates with their <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, DNS, MTU, keepalive and the number of clients; the name leads to the settings, “Add” opens a new one, “Duplicate” in the row menu makes a copy “&lt;name&gt; copy”; an icon at the name - the DNS settings of the template contradict, see <a href="dns.html#contradictions">Contradictions</a>. The “Template” field in the settings of a client picks its template, “Default” leaves the client the settings of the interface.</p>
+<p>The “Templates” tab of the “Clients” page lists the templates with their <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, DNS, MTU, keepalive and the number of clients, the row “Default” with the clients without a template first; the number leads to the list of the clients of the template, the name to the settings, the choice “Every preset” keeps the templates with one preset, “Add” opens a new one, “Duplicate” in the row menu makes a copy “&lt;name&gt; copy”; an icon at the name - the DNS settings of the template contradict, see <a href="dns.html#contradictions">Contradictions</a>. The “Template” field in the settings of a client picks its template, “Default” leaves the client the settings of the interface.</p>
 
 <h2 id="main">Main</h2>
 
 <p>“Name”: up to 64 characters, one of a kind in the panel.</p>
+
+<h2 id="clients">Clients</h2>
+
+<p>The “Clients” part names the clients of the template, a name leads to the settings of the client. The field adds a client: the offer names its present template in grey beside it, and the client leaves that template for this one. The cross takes a client off the template, and the client stays on “Default”. The changes are kept with the template by “Save”.</p>
+
+<p>The “Default” page names the clients without a template. The field adds a client and takes its template off; a client is not taken off here: it gets another template in the settings of that template.</p>
 
 <h2 id="routing">Routing</h2>
 
@@ -267,7 +273,7 @@
 
 <p>While a template is being edited, the panel counts what each entry gives: “Addresses: N” on the entry and on the whole template, “Show what it holds” unfolds the first addresses or names of a category (“No entries: the category is absent from the downloaded databases”). Over 12000 ranges means “the speed may drop”, over 16000 “too many addresses to save”. A template holds no more than 256 entries.</p>
 
-<p>“Routing presets” are the lists the AmneziaGeo app of a client of the template gets, in the order of handing out, while routing happens on the client, see <a href="presets.html">Routing presets</a>; “No presets: add them in the tab Routing presets” while none are made.</p>
+<p>“Routing presets” are the lists the AmneziaGeo app of a client of the template gets, in the order of handing out, while routing happens on the client; the name of a preset leads to its settings, see <a href="presets.html">Routing presets</a>; “No presets: add them in the tab Routing presets” while none are made.</p>
 
 <h2 id="route-by-name">Route by name</h2>
 
@@ -333,7 +339,7 @@
 
 <h2 id="removing">Removing</h2>
 
-<p>A template taken by at least one client is not removed: “The template is in use”. First the clients get another template.</p>
+<p>A template taken by at least one client is not removed: “The template is in use”. The removal page names these clients; first they are taken off the template in its settings.</p>
 
 <h2 id="refusals">Refusals</h2>
 

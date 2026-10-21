@@ -215,7 +215,7 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/clients.png" alt="List of clients: the interface filter, search and the Online only switch; switch, name, interface, template, address, speed, traffic and the time last online" width="1440" height="900" loading="lazy" /><figcaption>Clients of two interfaces.</figcaption></figure>
 
-<p>The “Configs” tab shows the clients of every interface or of one, as chosen with “Every interface” above the list, with a search by name. The “Online only” switch next to them keeps the clients that are online now. The columns:</p>
+<p>The “Configs” tab shows the clients of every interface or of one, as chosen with “Every interface” above the list, with a choice of template (“Every template”, “Default” for the clients without one) and a search by name. The “Online only” switch next to them keeps the clients that are online now. The columns:</p>
 
 <table>
   <thead>
@@ -235,7 +235,7 @@
     </tr>
     <tr>
       <td>Interface</td>
-      <td>the interface of the client</td>
+      <td>the interface of the client, leads to its settings</td>
     </tr>
     <tr>
       <td>Template</td>
@@ -298,7 +298,7 @@
     </tr>
     <tr>
       <td>Interface</td>
-      <td>the interface the client goes on; a new client starts on the default interface, see <a href="interfaces.html#general">Interfaces</a></td>
+      <td>the interface the client goes on; a new client starts on the default interface, see <a href="interfaces.html#general">Interfaces</a>; “Open” under the field leads to the settings of the interface</td>
     </tr>
     <tr>
       <td>Address</td>
@@ -314,7 +314,7 @@
     </tr>
     <tr>
       <td>Template</td>
-      <td>the template of the client or “Default”</td>
+      <td>the template of the client or “Default”; “Open” under the field leads to its settings</td>
     </tr>
     <tr>
       <td>DNS</td>
@@ -349,7 +349,11 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/client-settings.png" alt="Settings tab of a client: enabled, interface, name, preshared key, address, note, template, DNS and the line on the name servers of the file" width="1440" height="900" loading="lazy" /><figcaption>A client with a template.</figcaption></figure>
 
-<p>Removing stands at the bottom of the page: “Remove &lt;name&gt;?”. The client is taken off the interface, and the routing rules that named it no longer find it.</p>
+<h3 id="routing">Routing</h3>
+
+<p>The “Routing” part names the rules that name the client, a name leads to the rule. The field adds a rule: the name of the client is written into the “Clients” of the rule, the offer names the clients of the rule in grey. The cross takes the name off; a rule the client is the last one of has no cross. A rule ruled to another interface carries a grey “not on &lt;interface&gt;”. Below, under “For every client”, the rules without clients on the interface of the client, to read only. The changes are kept with the client; without the “Manage routing” permission the part only shows the rules.</p>
+
+<p>Removing stands at the bottom of the page: “Remove &lt;name&gt;?”. The client is taken off the interface, its name leaves the rules that name other clients too, and a rule it was the last one of goes off; the removal page names these rules.</p>
 
 <h2 id="access-to-the-client">Access to the client</h2>
 

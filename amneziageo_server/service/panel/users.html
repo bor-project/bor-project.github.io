@@ -238,7 +238,7 @@
     </tr>
     <tr>
       <td>Role</td>
-      <td>the role or “no role”</td>
+      <td>the role or “no role”, a link to its settings</td>
     </tr>
     <tr>
       <td>Status</td>
@@ -300,7 +300,7 @@
   </tbody>
 </table>
 
-<p>The “Roles” table shows the code, the name, the rights and the number of accounts. The built-in <code class="language-plaintext highlighter-rouge">admin</code> role carries all the permissions and is neither removed nor cut down: at every start its permissions are lined up with those of the release, so a new permission reaches the administrator by itself. Roles of your own are made with “Add”: a code (like the name of an account), a name and the checked permissions. A role given to accounts (“The role is given to accounts”) or carrying tokens (“Tokens act by this role”) is not removed.</p>
+<p>The “Roles” table shows the code, the name, the rights, the number of accounts and of tokens. The built-in <code class="language-plaintext highlighter-rouge">admin</code> role carries all the permissions and is neither removed nor cut down: at every start its permissions are lined up with those of the release, so a new permission reaches the administrator by itself. Roles of your own are made with “Add”: a code (like the name of an account), a name and the checked permissions. The settings of a role name its accounts and tokens. The field “Give the role to an account” gives the role to an account in place of its old one, the offer names its present role in grey; there is no cross: an account has one role, another one is given in another role or in the settings of the account. The bans are those of the settings of an account: you do not take the rights off yourself, the last administrator stays. A role given to accounts (“The role is given to accounts”) or carrying tokens (“Tokens act by this role”) is not removed; the removal page names them.</p>
 
 <h2 id="tokens">Tokens</h2>
 
@@ -320,7 +320,7 @@
     </tr>
     <tr>
       <td>Role</td>
-      <td>the role on behalf of which the token acts</td>
+      <td>the role on behalf of which the token acts, a link to its settings</td>
     </tr>
     <tr>
       <td>Created, Valid until</td>

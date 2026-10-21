@@ -210,13 +210,17 @@
 
         <h1 id="routing-presets">Routing presets</h1>
 
-<p>A routing preset is a routing list of the AmneziaGeo client that is kept on the panel and handed to the app through the hello of the interface. The template of a client names the presets its clients get; routing by them happens on the device, not on the server. The “Routing presets” tab of the “Clients” page lists the presets with the time of the change and the number of templates that hand them out.</p>
+<p>A routing preset is a routing list of the AmneziaGeo client that is kept on the panel and handed to the app through the hello of the interface. The template of a client names the presets its clients get; routing by them happens on the device, not on the server. The “Routing presets” tab of the “Clients” page lists the presets with the time of the change and the number of templates that hand them out; the number leads to the list of templates with the preset picked.</p>
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/preset-form.png" alt="Form of a new routing preset: name, On by default, the lists Through the VPN, Directly and Block" width="1440" height="900" loading="lazy" /><figcaption>An empty form of a preset.</figcaption></figure>
 
 <h2 id="main">Main</h2>
 
 <p>“Name”: up to 64 characters, one of a kind in the panel; this is what the list is called on the client. “On by default”: the client puts the list in use when it adds it, unless another list is in use already.</p>
+
+<h2 id="templates">Templates</h2>
+
+<p>The “Templates” part names the templates that hand the preset out, a name leads to the settings of the template. The field adds a template: the offer names its present presets in grey beside it, and the preset comes last in the template. The cross takes the preset off the template. The changes are kept with the preset by “Save”; a copy of a preset takes no templates.</p>
 
 <h2 id="lists">Lists</h2>
 
@@ -268,7 +272,7 @@
 
 <h2 id="removing">Removing</h2>
 
-<p>A preset a template names is not removed: “A template hands the preset out”; first it is taken out of the templates. Clients that already got the list keep it.</p>
+<p>A preset a template names is not removed: “A template hands the preset out”; the removal page names these templates, first they are taken off in the “Templates” part. Clients that already got the list keep it.</p>
 
 <h2 id="refusals">Refusals</h2>
 

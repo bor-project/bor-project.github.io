@@ -279,14 +279,16 @@
     </tr>
     <tr>
       <td>Clients</td>
-      <td>clients of the panel by name: the rule compares the traffic from their addresses and is put on the host again at every change of a client, so a new address of the client is picked up by itself</td>
+      <td>clients of the panel by name: the rule compares the traffic from their addresses and is put on the host again at every change of a client, so a new address of the client is picked up by itself; a name leads to the settings of the client</td>
     </tr>
     <tr>
       <td>Interfaces</td>
-      <td>interfaces of the panel by name: the rule compares only traffic that came to one of them</td>
+      <td>interfaces of the panel by name: the rule compares only traffic that came to one of them; a name leads to the settings of the interface</td>
     </tr>
   </tbody>
 </table>
+
+<p>The settings of a client and of an interface name the rule too, in the “Routing” part, and the rule is added and taken off there as well, see <a href="clients.html#routing">Clients</a>. A rule for everyone is not narrowed this way, and the last name of a rule is not taken off: without names the rule would match everyone. Removing a client or an interface takes its name off the rules that name others too and turns off a rule it was the last one of, keeping the name; the removal page names both.</p>
 
 <p>A target is read by its look: <code class="language-plaintext highlighter-rouge">geoip:ru</code> is a country, <code class="language-plaintext highlighter-rouge">geosite:youtube</code> a category, <code class="language-plaintext highlighter-rouge">203.0.113.0/24</code> and <code class="language-plaintext highlighter-rouge">198.51.100.7</code> ranges, anything else with a dot a domain. A domain is also taken as <code class="language-plaintext highlighter-rouge">domain:example.com</code> and a range as <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, in the form of the lists of the AmneziaGeo client, so a list moves from one side to the other without edits. <code class="language-plaintext highlighter-rouge">keyword:ads</code> fits every name that has the word in it; a keyword has no addresses of its own, and the addresses of such a rule come only from the answers the DNS server sees. Ranges come from <code class="language-plaintext highlighter-rouge">geoip:</code> and networks in the targets, names from <code class="language-plaintext highlighter-rouge">geosite:</code>, domains and keywords. A rule without targets fits any address, without “Clients” any client, without “Interfaces” any interface.</p>
 
