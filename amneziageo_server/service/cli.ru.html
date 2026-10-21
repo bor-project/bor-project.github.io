@@ -378,15 +378,15 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns show</code></td>
-      <td>настройки DNS-сервера</td>
+      <td>настройки DNS-сервера; строка <code class="language-plaintext highlighter-rouge">files</code> - сколько включённых клиентов держат файлы, где он назван</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">dns get enabled</code>, <code class="language-plaintext highlighter-rouge">port</code>, <code class="language-plaintext highlighter-rouge">upstreams</code>, <code class="language-plaintext highlighter-rouge">encrypted</code>, <code class="language-plaintext highlighter-rouge">outbound</code></td>
-      <td>одно значение; <code class="language-plaintext highlighter-rouge">encrypted</code> - <code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">none</code> или <code class="language-plaintext highlighter-rouge">partly</code>, спрашиваются ли внешние серверы шифрованно</td>
+      <td><code class="language-plaintext highlighter-rouge">dns get enabled</code>, <code class="language-plaintext highlighter-rouge">port</code>, <code class="language-plaintext highlighter-rouge">upstreams</code>, <code class="language-plaintext highlighter-rouge">encrypted</code>, <code class="language-plaintext highlighter-rouge">outbound</code>, <code class="language-plaintext highlighter-rouge">holders</code></td>
+      <td>одно значение; <code class="language-plaintext highlighter-rouge">encrypted</code> - <code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">none</code> или <code class="language-plaintext highlighter-rouge">partly</code>, спрашиваются ли внешние серверы шифрованно; <code class="language-plaintext highlighter-rouge">holders</code> - сколько включённых клиентов держат файлы с DNS-сервером, см. <a href="panel/dns.ru.html#выданные-файлы">Выданные файлы</a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns set --enabled auto | off [--upstreams &lt;серверы&gt; | default]</code></td>
-      <td>дать DNS-серверу работать, пока он нужен маршрутизации (<code class="language-plaintext highlighter-rouge">auto</code> или <code class="language-plaintext highlighter-rouge">on</code>), или выключить его, задать внешние серверы или вернуть те, с которых начинает свежая панель</td>
+      <td>дать DNS-серверу работать, пока он нужен маршрутизации (<code class="language-plaintext highlighter-rouge">auto</code> или <code class="language-plaintext highlighter-rouge">on</code>), или выключить его, задать внешние серверы или вернуть те, с которых начинает свежая панель; выключение называет, сколько клиентов с файлами, где назван DNS-сервер, останутся без ответов на имена</td>
     </tr>
   </tbody>
 </table>

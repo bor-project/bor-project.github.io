@@ -214,7 +214,7 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/templates.png" alt="List of templates: a template with geo keys and the default one, the number of addresses in the file and of clients" width="1440" height="900" loading="lazy" /><figcaption>Templates of the server.</figcaption></figure>
 
-<p>The “Templates” tab of the “Clients” page lists the templates with their <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, DNS, MTU, keepalive and the number of clients; the name leads to the settings, “Add” opens a new one, “Duplicate” in the row menu makes a copy “&lt;name&gt; copy”. The “Template” field in the settings of a client picks its template, “Default” leaves the client the settings of the interface.</p>
+<p>The “Templates” tab of the “Clients” page lists the templates with their <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, DNS, MTU, keepalive and the number of clients; the name leads to the settings, “Add” opens a new one, “Duplicate” in the row menu makes a copy “&lt;name&gt; copy”; an icon at the name - the DNS settings of the template contradict, see <a href="dns.html#contradictions">Contradictions</a>. The “Template” field in the settings of a client picks its template, “Default” leaves the client the settings of the interface.</p>
 
 <h2 id="main">Main</h2>
 
@@ -275,7 +275,7 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/template-form.png" alt="Form of a template: geosite entries marked by name and the Route by name switch on" width="1440" height="900" loading="lazy" /><figcaption>A template with routing by name.</figcaption></figure>
 
-<p>The file of such a client carries the DNS server of the panel as its only name server (the “DNS” field of the “Network” part shows its addresses and cannot be edited), and in <code class="language-plaintext highlighter-rouge">AllowedIPs</code> the networks and addresses of the template, <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> and the address of the DNS server. A geo key of addresses (<code class="language-plaintext highlighter-rouge">geoip:</code>) stays a range: it serves the applications that go to addresses without asking a name, Telegram and calls among them.</p>
+<p>The file of such a client carries the DNS server of the panel as its only name server (the “DNS” field of the “Network” part stands at “Panel DNS server” and cannot be edited), and in <code class="language-plaintext highlighter-rouge">AllowedIPs</code> the networks and addresses of the template, <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> and the address of the DNS server. A geo key of addresses (<code class="language-plaintext highlighter-rouge">geoip:</code>) stays a range: it serves the applications that go to addresses without asking a name, Telegram and calls among them.</p>
 
 <p>The switch works while the DNS server of the panel answers the clients on port 53 and the firewall of the host lets them reach it. The template is saved with the switch on in any case, and the form under it names what keeps it from working, with the command that mends it:</p>
 
@@ -316,7 +316,7 @@
   <tbody>
     <tr>
       <td>DNS</td>
-      <td>the name servers of the client; empty means the DNS server of the panel when it answers inside the tunnel, otherwise <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>; with routing by name, the addresses of the DNS server of the panel, and the field cannot be edited</td>
+      <td>where the name servers of the clients of the template come from: “Automatic” - as the interface picks, “Panel DNS server”, “Own servers” - from the “Servers” field; under the field - what the clients of the template will get and what contradicts; with Route by name the field stands at “Panel DNS server” and cannot be edited, see <a href="dns.html#name-servers-in-the-file">Name servers in the file</a></td>
     </tr>
     <tr>
       <td>MTU</td>
@@ -354,7 +354,7 @@
       <td>the entries</td>
     </tr>
     <tr>
-      <td>The name server is not an address; MTU is outside 576 to 9000; Keepalive is outside 0 to 65535</td>
+      <td>Name the addresses of the name servers: the list is empty or holds something else; Unknown DNS choice; MTU is outside 576 to 9000; Keepalive is outside 0 to 65535</td>
       <td>network</td>
     </tr>
     <tr>

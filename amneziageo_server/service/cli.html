@@ -387,15 +387,15 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns show</code></td>
-      <td>the settings of the DNS server</td>
+      <td>the settings of the DNS server; the <code class="language-plaintext highlighter-rouge">files</code> line - how many clients that are on hold files naming it</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">dns get enabled</code>, <code class="language-plaintext highlighter-rouge">port</code>, <code class="language-plaintext highlighter-rouge">upstreams</code>, <code class="language-plaintext highlighter-rouge">encrypted</code>, <code class="language-plaintext highlighter-rouge">outbound</code></td>
-      <td>one value; <code class="language-plaintext highlighter-rouge">encrypted</code> is <code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">none</code> or <code class="language-plaintext highlighter-rouge">partly</code>: whether the upstream servers are asked encrypted</td>
+      <td><code class="language-plaintext highlighter-rouge">dns get enabled</code>, <code class="language-plaintext highlighter-rouge">port</code>, <code class="language-plaintext highlighter-rouge">upstreams</code>, <code class="language-plaintext highlighter-rouge">encrypted</code>, <code class="language-plaintext highlighter-rouge">outbound</code>, <code class="language-plaintext highlighter-rouge">holders</code></td>
+      <td>one value; <code class="language-plaintext highlighter-rouge">encrypted</code> is <code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">none</code> or <code class="language-plaintext highlighter-rouge">partly</code>: whether the upstream servers are asked encrypted; <code class="language-plaintext highlighter-rouge">holders</code> - how many clients that are on hold files naming the DNS server, see <a href="panel/dns.html#files-handed-out">Files handed out</a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns set --enabled auto | off [--upstreams &lt;servers&gt; | default]</code></td>
-      <td>let the DNS server run while routing needs it (<code class="language-plaintext highlighter-rouge">auto</code> or <code class="language-plaintext highlighter-rouge">on</code>) or keep it off, set the upstream servers or bring back those a fresh panel starts with</td>
+      <td>let the DNS server run while routing needs it (<code class="language-plaintext highlighter-rouge">auto</code> or <code class="language-plaintext highlighter-rouge">on</code>) or keep it off, set the upstream servers or bring back those a fresh panel starts with; turning it off says how many clients with files naming the DNS server are left without answers to names</td>
     </tr>
   </tbody>
 </table>

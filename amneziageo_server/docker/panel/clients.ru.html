@@ -222,7 +222,7 @@
     </tr>
     <tr>
       <td>Имя</td>
-      <td>имя, под ним «в сети», «выключен», «нет на интерфейсе» (пир не найден в ядре: интерфейс опущен или панели не хватает прав), «ограничение на сегодня исчерпано», «Сигнал не доставлен»</td>
+      <td>имя, под ним «в сети», «выключен», «нет на интерфейсе» (пир не найден в ядре: интерфейс опущен или панели не хватает прав), «ограничение на сегодня исчерпано», «Сигнал не доставлен»; значок рядом - настройки DNS клиента противоречат, по нажатию причины, см. <a href="dns.ru.html#противоречия">Противоречия</a></td>
     </tr>
     <tr>
       <td>Интерфейс</td>
@@ -269,7 +269,7 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-export.png" alt="Вкладка «Экспорт» клиента: QR-коды подписки, файла .conf и ссылки vpn:// с кнопками копирования и скачивания" width="1440" height="900" loading="lazy" /><figcaption>QR-коды выдуманной конфигурации.</figcaption></figure>
 
-<p>Файл несёт приватный ключ клиента, адреса, серверы имён, размер пакета и обфускацию интерфейса, а под <code class="language-plaintext highlighter-rouge">[Peer]</code> публичный ключ интерфейса, общий ключ, <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, <code class="language-plaintext highlighter-rouge">Endpoint</code> с хостом интерфейса и keepalive. Клиент с шаблоном берёт <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, серверы имён, размер пакета и keepalive из шаблона. Интерфейс без хоста отдаёт файл без строки <code class="language-plaintext highlighter-rouge">Endpoint</code>, и такому клиенту некуда подключаться. Пока DNS-сервер панели отвечает на адресах интерфейсов, строка <code class="language-plaintext highlighter-rouge">DNS</code> несёт адрес интерфейса клиента вместо публичных серверов, а <code class="language-plaintext highlighter-rouge">AllowedIPs</code> - и этот адрес, если диапазоны его не покрывают, см. <a href="dns.ru.html">DNS</a>. Клиент шаблона с <a href="templates.ru.html#маршрутизация-по-именам">маршрутизацией по именам</a> получает DNS-сервер панели единственным сервером имён и <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> в <code class="language-plaintext highlighter-rouge">AllowedIPs</code>.</p>
+<p>Файл несёт приватный ключ клиента, адреса, серверы имён, размер пакета и обфускацию интерфейса, а под <code class="language-plaintext highlighter-rouge">[Peer]</code> публичный ключ интерфейса, общий ключ, <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, <code class="language-plaintext highlighter-rouge">Endpoint</code> с хостом интерфейса и keepalive. Клиент с шаблоном берёт <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, серверы имён, размер пакета и keepalive из шаблона. Интерфейс без хоста отдаёт файл без строки <code class="language-plaintext highlighter-rouge">Endpoint</code>, и такому клиенту некуда подключаться. Какие серверы имён несёт строка <code class="language-plaintext highlighter-rouge">DNS</code>, выбирает поле «DNS»; когда это DNS-сервер панели, строка несёт адрес интерфейса клиента, а <code class="language-plaintext highlighter-rouge">AllowedIPs</code> - и этот адрес, если диапазоны его не покрывают, см. <a href="dns.ru.html#серверы-имён-в-файле">Серверы имён в файле</a>. Клиент шаблона с <a href="templates.ru.html#маршрутизация-по-именам">маршрутизацией по именам</a> получает DNS-сервер панели единственным сервером имён и <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> в <code class="language-plaintext highlighter-rouge">AllowedIPs</code>.</p>
 
 <p>Имя конфигурации в файле, ссылке и подписке собирается по шаблону имени с вкладки <a href="server.ru.html#шаблон-имени-конфигурации">Сервер</a>, по умолчанию <code class="language-plaintext highlighter-rouge">{HOST}-{INTERFACE}-{CLIENT}</code>.</p>
 
@@ -308,6 +308,10 @@
       <td>шаблон клиента или «По умолчанию»</td>
     </tr>
     <tr>
+      <td>DNS</td>
+      <td>откуда серверы имён файла: «Автоматически» - как у шаблона или интерфейса, «DNS-сервер панели» - всегда он, «Свои серверы» - из поля «Серверы»; под полем - что будет в файле и что противоречит, см. <a href="dns.ru.html#серверы-имён-в-файле">Серверы имён в файле</a></td>
+    </tr>
+    <tr>
       <td>Подписка</td>
       <td>имя подписки, под которым клиент отдаётся по ссылке; одно имя у нескольких клиентов собирает их в одну подписку, пусто выводит клиента из подписок, кнопка рядом делает новое имя, см. <a href="subscriptions.ru.html">Подписки</a></td>
     </tr>
@@ -334,7 +338,7 @@
   </tbody>
 </table>
 
-<figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-settings.png" alt="Вкладка «Настройки» клиента: включение, интерфейс, имя, общий ключ, адрес, заметка, шаблон" width="1440" height="900" loading="lazy" /><figcaption>Клиент с шаблоном.</figcaption></figure>
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-settings.png" alt="Вкладка «Настройки» клиента: включение, интерфейс, имя, общий ключ, адрес, заметка, шаблон, DNS и строка о серверах имён в файле" width="1440" height="900" loading="lazy" /><figcaption>Клиент с шаблоном.</figcaption></figure>
 
 <p>Удаление стоит внизу страницы: «Удалить &lt;имя&gt;?». Клиент снимается с интерфейса, и правила маршрутизации, которые называли его по имени, его больше не находят.</p>
 
@@ -409,6 +413,10 @@
     <tr>
       <td>Доступ к клиенту: закрыт, только сервер, вся сеть туннеля или как у интерфейса</td>
       <td>доступ</td>
+    </tr>
+    <tr>
+      <td>Укажите адреса серверов имён: список пуст или в нём не адрес</td>
+      <td>«Свои серверы» без серверов или не адрес в «Серверы»</td>
     </tr>
     <tr>
       <td>Такого клиента нет; Такого интерфейса нет; Такого шаблона нет</td>

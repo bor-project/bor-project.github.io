@@ -213,13 +213,13 @@
 
 <h2 id="list">List</h2>
 
-<p>The list names the name, the host, the connection address <code class="language-plaintext highlighter-rouge">&lt;host&gt;:&lt;port&gt;</code>, the number of clients and the state. Under the address of an enabled interface the closed ports are named if the firewall of the host does not let in its UDP port or TCP services port: “51820 is closed in the firewall of the host” or “51820 and 8446 are closed in the firewall of the host”, with the “Open” button when the panel can change the firewall. The name leads to the settings of the interface, “Add” opens the form of a new one. The “default” badge at the name marks the interface a new client goes on when no interface is named.</p>
+<p>The list names the name, the host, the connection address <code class="language-plaintext highlighter-rouge">&lt;host&gt;:&lt;port&gt;</code>, the number of clients and the state. Under the address of an enabled interface the closed ports are named if the firewall of the host does not let in its UDP port or TCP services port: “51820 is closed in the firewall of the host” or “51820 and 8446 are closed in the firewall of the host”, with the “Open” button when the panel can change the firewall. The name leads to the settings of the interface, “Add” opens the form of a new one. The “default” badge at the name marks the interface a new client goes on when no interface is named; an icon - the DNS settings of the interface or of its clients contradict, see <a href="dns.html#contradictions">Contradictions</a>.</p>
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/interfaces.png" alt="List of interfaces: two interfaces with the connection address, the interface address and the number of clients, the default one marked" width="1440" height="900" loading="lazy" /><figcaption>Two interfaces of one server.</figcaption></figure>
 
 <h2 id="form">Form</h2>
 
-<p>A new interface comes as a draft that already fits together: port 51820 or the first free one above it, the network <code class="language-plaintext highlighter-rouge">10.8.0.1/24</code>, MTU 1420, keepalive 25, DNS <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>, AllowedIPs <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> and <code class="language-plaintext highlighter-rouge">::/0</code>, a fresh key pair and random obfuscation. The name is the first free one like <code class="language-plaintext highlighter-rouge">awgN</code>; the host is the one another interface names, otherwise the domain of the certificate of the panel, otherwise the address the request came to if the clients reach it from outside, otherwise the public IPv4 of the host. The draft is not written until the form is saved.</p>
+<p>A new interface comes as a draft that already fits together: port 51820 or the first free one above it, the network <code class="language-plaintext highlighter-rouge">10.8.0.1/24</code>, MTU 1420, keepalive 25, DNS “Automatic” with the servers <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>, AllowedIPs <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> and <code class="language-plaintext highlighter-rouge">::/0</code>, a fresh key pair and random obfuscation. The name is the first free one like <code class="language-plaintext highlighter-rouge">awgN</code>; the host is the one another interface names, otherwise the domain of the certificate of the panel, otherwise the address the request came to if the clients reach it from outside, otherwise the public IPv4 of the host. The draft is not written until the form is saved.</p>
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/interface-form.png" alt="Form of an interface: enabled, default, name, host, port, interface address, NAT, access to the clients, WebSocket proxy" width="1440" height="900" loading="lazy" /><figcaption>An interface on port 443 with WebSocket.</figcaption></figure>
 
@@ -308,7 +308,7 @@
     </tr>
     <tr>
       <td>DNS</td>
-      <td>name servers for the client, if the DNS server of the panel does not answer inside the tunnel, see <a href="dns.html">DNS</a></td>
+      <td>where the name servers of the clients of the interface come from: “Automatic” - the DNS server of the panel while routing needs it, “Servers” otherwise; “Panel DNS server” - always it, where it answers; “Own servers” - “Servers”. The clients get “Servers” also when the DNS server of the panel is not handed to them; under the field - what the configurations of the clients name now and what contradicts, see <a href="dns.html#name-servers-in-the-file">Name servers in the file</a></td>
     </tr>
     <tr>
       <td>Keepalive</td>
@@ -447,7 +447,7 @@ systemctl start amneziageo-server
       <td>the UDP port</td>
     </tr>
     <tr>
-      <td>The interface address is not an address range; AllowedIPs is not an address range; The name server is not an address; A closed range is not an address range</td>
+      <td>The interface address is not an address range; AllowedIPs is not an address range; Name the addresses of the name servers: the list is empty or holds something else; Unknown DNS choice; A closed range is not an address range</td>
       <td>networks and addresses</td>
     </tr>
     <tr>

@@ -231,7 +231,7 @@
     </tr>
     <tr>
       <td>Name</td>
-      <td>the name, under it “online”, “off”, “not on the interface” (the peer is not found in the kernel: the interface is down or the panel lacks the rights), “today’s limit is used up”, “Signal not delivered”</td>
+      <td>the name, under it “online”, “off”, “not on the interface” (the peer is not found in the kernel: the interface is down or the panel lacks the rights), “today’s limit is used up”, “Signal not delivered”; an icon beside - the DNS settings of the client contradict, a click shows why, see <a href="dns.html#contradictions">Contradictions</a></td>
     </tr>
     <tr>
       <td>Interface</td>
@@ -278,7 +278,7 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/client-export.png" alt="Export tab of a client: QR codes of the subscription, the .conf file and the vpn:// link with buttons to copy and download" width="1440" height="900" loading="lazy" /><figcaption>QR codes of an invented configuration.</figcaption></figure>
 
-<p>The file carries the private key of the client, its addresses, name servers, the packet size and the obfuscation of the interface, and under <code class="language-plaintext highlighter-rouge">[Peer]</code> the public key of the interface, the preshared key, <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, <code class="language-plaintext highlighter-rouge">Endpoint</code> with the host of the interface and keepalive. A client with a template takes <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, name servers, the packet size and keepalive from the template. An interface without a host gives a file without the <code class="language-plaintext highlighter-rouge">Endpoint</code> line, and such a client has nowhere to connect. While the DNS server of the panel answers at the addresses of the interfaces, the <code class="language-plaintext highlighter-rouge">DNS</code> line carries the address of the interface of the client instead of public servers, and <code class="language-plaintext highlighter-rouge">AllowedIPs</code> carries this address too when the ranges leave it out, see <a href="dns.html">DNS</a>. A client of a template with <a href="templates.html#route-by-name">Route by name</a> gets the DNS server of the panel as its only name server and <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> in <code class="language-plaintext highlighter-rouge">AllowedIPs</code>.</p>
+<p>The file carries the private key of the client, its addresses, name servers, the packet size and the obfuscation of the interface, and under <code class="language-plaintext highlighter-rouge">[Peer]</code> the public key of the interface, the preshared key, <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, <code class="language-plaintext highlighter-rouge">Endpoint</code> with the host of the interface and keepalive. A client with a template takes <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, name servers, the packet size and keepalive from the template. An interface without a host gives a file without the <code class="language-plaintext highlighter-rouge">Endpoint</code> line, and such a client has nowhere to connect. Which name servers the <code class="language-plaintext highlighter-rouge">DNS</code> line names is picked by the “DNS” field; when it is the DNS server of the panel, the line carries the address of the interface of the client, and <code class="language-plaintext highlighter-rouge">AllowedIPs</code> carries this address too when the ranges leave it out, see <a href="dns.html#name-servers-in-the-file">Name servers in the file</a>. A client of a template with <a href="templates.html#route-by-name">Route by name</a> gets the DNS server of the panel as its only name server and <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> in <code class="language-plaintext highlighter-rouge">AllowedIPs</code>.</p>
 
 <p>The name of the configuration in the file, the link and the subscription is built from the name template on the <a href="server.html#config-name-template">Server</a> tab, <code class="language-plaintext highlighter-rouge">{HOST}-{INTERFACE}-{CLIENT}</code> by default.</p>
 
@@ -317,6 +317,10 @@
       <td>the template of the client or “Default”</td>
     </tr>
     <tr>
+      <td>DNS</td>
+      <td>where the name servers of the file come from: “Automatic” - as the template or the interface picks, “Panel DNS server” - always it, “Own servers” - from the “Servers” field; under the field - what the file will name and what contradicts, see <a href="dns.html#name-servers-in-the-file">Name servers in the file</a></td>
+    </tr>
+    <tr>
       <td>Subscription</td>
       <td>the subscription name under which the client is served by link; one name on several clients gathers them into one subscription, empty takes the client out of subscriptions, the button next to it makes a new name, see <a href="subscriptions.html">Subscriptions</a></td>
     </tr>
@@ -343,7 +347,7 @@
   </tbody>
 </table>
 
-<figure class="shot"><img src="/amneziageo_server/assets/img/en/client-settings.png" alt="Settings tab of a client: enabled, interface, name, preshared key, address, note, template" width="1440" height="900" loading="lazy" /><figcaption>A client with a template.</figcaption></figure>
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/client-settings.png" alt="Settings tab of a client: enabled, interface, name, preshared key, address, note, template, DNS and the line on the name servers of the file" width="1440" height="900" loading="lazy" /><figcaption>A client with a template.</figcaption></figure>
 
 <p>Removing stands at the bottom of the page: “Remove &lt;name&gt;?”. The client is taken off the interface, and the routing rules that named it no longer find it.</p>
 
@@ -418,6 +422,10 @@
     <tr>
       <td>The access to the client is closed, the server alone, the whole tunnel network or as the interface says</td>
       <td>access</td>
+    </tr>
+    <tr>
+      <td>Name the addresses of the name servers: the list is empty or holds something else</td>
+      <td>“Own servers” with no servers or not an address in “Servers”</td>
     </tr>
     <tr>
       <td>There is no such client; There is no such interface; There is no such template</td>
