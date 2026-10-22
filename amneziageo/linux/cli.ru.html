@@ -279,7 +279,11 @@ amneziageo tui                      <span class="c"># полноэкранная
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">config dns &lt;имя&gt; [&lt;серверы&gt;]</code></td>
-      <td>свои резолверы; без аргумента - сброс</td>
+      <td>DNS для имён, которые идут напрямую; без аргумента - сброс</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config vpn-dns &lt;имя&gt; default\|network\|server\|own [&lt;серверы&gt;]</code></td>
+      <td>DNS для имён через VPN: что выбрал сервер, DNS сети, DNS-сервер сервера в туннеле или эти серверы, см. <a href="menu/configurations.ru.html#транспорт">Транспорт</a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">config exclusions &lt;имя&gt; (--file &lt;путь&gt; \| --stdin \| --list a,b,c \| --clear)</code></td>

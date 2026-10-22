@@ -219,7 +219,7 @@
 
 <figure class="shot"><img src="/amneziageo/assets/img/windows/en/config-page.png" alt="Configuration page: the name, the configuration text and the transport settings" width="984" height="752" loading="lazy" /><figcaption>Configuration page: the name, the text and the transport.</figcaption></figure>
 
-<p>The text of a configuration, its own resolvers and exclusions are changed from the console: <code class="language-plaintext highlighter-rouge">amneziageo config edit &lt;name&gt; ...</code>, <code class="language-plaintext highlighter-rouge">amneziageo config dns &lt;name&gt; [&lt;servers&gt;]</code> and <code class="language-plaintext highlighter-rouge">amneziageo config exclusions &lt;name&gt; ...</code>; the tunnel takes the new text at the next connect.</p>
+<p>The text of a configuration, its DNS for the names that go directly and exclusions are changed from the console: <code class="language-plaintext highlighter-rouge">amneziageo config edit &lt;name&gt; ...</code>, <code class="language-plaintext highlighter-rouge">amneziageo config dns &lt;name&gt; [&lt;servers&gt;]</code> and <code class="language-plaintext highlighter-rouge">amneziageo config exclusions &lt;name&gt; ...</code>; the tunnel takes the new text at the next connect.</p>
 
 <h3 id="export">Export</h3>
 
@@ -233,10 +233,11 @@
 
 <h2 id="transport">Transport</h2>
 
-<p>The transport settings on the page of a configuration: “Proxy” (WebSocket, see below), “MTU”, “IPv6”, “Routing”, “Hold traffic when the tunnel drops”, “Allow incoming connections from the VPN network”, “Allow the server to disconnect the tunnel”.</p>
+<p>The transport settings on the page of a configuration: “Proxy” (WebSocket, see below), “MTU”, “DNS”, “IPv6”, “Routing”, “Hold traffic when the tunnel drops”, “Allow incoming connections from the VPN network”, “Allow the server to disconnect the tunnel”.</p>
 
 <ul>
   <li>“MTU” - the packet size of the tunnel: “Auto” - the largest that passes the link, but not above the one declared in the configuration, “Config” - exactly the <code class="language-plaintext highlighter-rouge">MTU</code> line of the configuration, “Manual” - a number from 1280 to 1500. The value in force stands as a label on the card. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config mtu &lt;name&gt; auto|config|&lt;number&gt;</code>.</li>
+  <li>“DNS” - who the names that go through the VPN are asked of: “Default” - what the AmneziaGeo server of this configuration picked, the <code class="language-plaintext highlighter-rouge">DNS</code> line of its text otherwise; “Network” - the DNS of the network of the device, past the tunnel; “Server” - the DNS server of the server itself inside the tunnel, available when the server offers it; the choice is known to this client alone, and when the DNS server of the panel stops (the “Automatic” mode with no rules by name), at the next connect the names go as with “Default”; “Custom” - the addresses of the field, one of them IPv4, an empty field means <code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">1.0.0.1</code>. The field beside shows in grey what the choice settles on. It takes effect at the next connect. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config vpn-dns &lt;name&gt; default|network|server|own [&lt;servers&gt;]</code>.</li>
   <li>“IPv6” - whether the tunnel carries IPv6; off by default, see <a href="routing.html#limitations">Limitations</a>.</li>
   <li>“Routing” - whether the selected routing list applies to this configuration. With the switch off the tunnel follows the <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of its text. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config routing &lt;name&gt; on|off</code>.</li>
 </ul>

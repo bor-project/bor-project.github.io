@@ -214,7 +214,7 @@
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/dns.png" alt="DNS page: state, listen addresses, questions, cache, unanswered, the settings of the DNS server" width="1440" height="900" loading="lazy" /><figcaption>The DNS server answers the clients of two interfaces.</figcaption></figure>
 
-<p>The DNS server runs by itself while routing needs it: a rule or a basic list compares by sites, or a template has <a href="templates.html#route-by-name">Route by name</a>. It also runs while clients need it: a client is given the DNS server of the panel (<a href="#name-servers-in-the-file">Name servers in the file</a>) or holds a file handed out with its address (<a href="#files-handed-out">Files handed out</a>). While nobody needs it, it does not run, and the clients get the name servers picked for the client, the template or the interface in their configuration and ask them through the tunnel. This is the “Automatic” mode, which a fresh panel starts with; an update moves to it the panels whose DNS server was off too. The “Off” mode keeps the DNS server off whatever the rules, for example while the host runs a name server of its own: the “Mode” field here, item 29 of the console menu <code class="language-plaintext highlighter-rouge">DNS for Clients</code> or the command <code class="language-plaintext highlighter-rouge">amneziageo-server dns off</code>. A DNS server that is off holds no port and keeps no connections to upstream servers.</p>
+<p>The DNS server runs by itself while routing needs it: a rule or a basic list compares by sites, or a template has <a href="templates.html#route-by-name">Route by name</a>. It also runs while clients need it: a client is given the DNS server of the panel (<a href="#name-servers-in-the-file">Name servers in the file</a>) or holds a file handed out with its address (<a href="#files-handed-out">Files handed out</a>). While nobody needs it, it does not run, and the clients get the name servers picked on this page, for the template or for the client in their configuration. This is the “Automatic” mode, which a fresh panel starts with; an update moves to it the panels whose DNS server was off too. The “Off” mode keeps the DNS server off whatever the rules, for example while the host runs a name server of its own: the “Mode” field here, item 29 of the console menu <code class="language-plaintext highlighter-rouge">DNS for Clients</code> or the command <code class="language-plaintext highlighter-rouge">amneziageo-server dns off</code>. A DNS server that is off holds no port and keeps no connections to upstream servers.</p>
 
 <h2 id="state">State</h2>
 
@@ -282,6 +282,12 @@
 
 <p>“Through a channel” puts the mark of the channel on the questions, so that the answers come from where the traffic will go; without it, where the local network answers about a service differently from the network behind the channel, a rule by name fills up with foreign addresses. The channel is picked for each question: a “Priority” group gives the questions to its first live member, “Round” hands them out in turn, “By client” behaves like “Priority”, because all the questions come from the host. While the chosen channel is off or carries nothing, the DNS server does not ask and answers the clients <code class="language-plaintext highlighter-rouge">SERVFAIL</code>, and the state names the reason; with a channel chosen, the questions never leave through the host. The entries of client templates and the names in the route test are resolved the same way.</p>
 
+<h2 id="dns-in-client-configurations">DNS in client configurations</h2>
+
+<p>The “Preferred DNS” field picks the name servers of the <code class="language-plaintext highlighter-rouge">DNS</code> line of the files of the whole server: “Automatic”, “Panel DNS server”, “Network DNS”, “Own servers” or “Interface DNS”; what each means, see <a href="#name-servers-in-the-file">Name servers in the file</a>. The question mark beside opens what clients of other makes do with the choice. “Own servers” has the “Servers” field beside, and saving waits while it is empty; “Interface DNS” shows the name servers of the interfaces beside. Below, the page says for each interface what the configurations of its clients name now (“Now in the configurations of the clients: DNS = 10.0.0.1” or that they name no DNS), and warns where the choice sends the questions past the tunnel, see <a href="#contradictions">Contradictions</a>. A template or a client with a choice of its own does not take this one.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/dns-files.png" alt="The DNS in client configurations part: the Preferred DNS field with its question mark and the line of the name servers the configurations of the clients of each interface name" width="1190" height="190" loading="lazy" /><figcaption>Automatic: while routing needs the panel DNS server, the files get its addresses.</figcaption></figure>
+
 <h2 id="cache">Cache</h2>
 
 <table>
@@ -309,7 +315,7 @@
 
 <h2 id="name-servers-in-the-file">Name servers in the file</h2>
 
-<p>Where the name servers of the <code class="language-plaintext highlighter-rouge">DNS</code> line of a file come from is picked by the “DNS” field in the settings of a client, in the “Network” part of a template and in the “Clients” part of an interface:</p>
+<p>Where the name servers of the <code class="language-plaintext highlighter-rouge">DNS</code> line of a file come from is picked by the “Preferred DNS” field of this page for the whole server (<a href="#dns-in-client-configurations">DNS in client configurations</a>) and by the “DNS” field in the “Network” part of a template and in the settings of a client. An interface has no choice of its own: its “Interface DNS” field is its name servers.</p>
 
 <table>
   <thead>
@@ -320,23 +326,72 @@
   </thead>
   <tbody>
     <tr>
+      <td>As the level above</td>
+      <td>a template and a client only: a client takes the choice of its template, a template the one of the server; the list names what comes out: “As on the server: Automatic”, “As in the template: Own servers”</td>
+    </tr>
+    <tr>
       <td>Automatic</td>
-      <td>what the level above picks: a client takes the choice of its template, a template the one of the interface, and an interface gives the DNS server of the panel while routing needs it and its own “Servers” otherwise</td>
+      <td>the DNS server of the panel while routing needs it, the interface DNS otherwise; the line changes with the rules by sites. A fresh panel starts with it</td>
     </tr>
     <tr>
       <td>Panel DNS server</td>
       <td>the DNS server of the panel, whether routing needs it or not; while such a client is on, the DNS server runs in the “Automatic” mode with no rules too</td>
     </tr>
     <tr>
+      <td>Network DNS</td>
+      <td>no <code class="language-plaintext highlighter-rouge">DNS</code> line: the device asks the DNS of its network, past the tunnel</td>
+    </tr>
+    <tr>
       <td>Own servers</td>
       <td>the servers of the “Servers” field beside, never the DNS server of the panel</td>
+    </tr>
+    <tr>
+      <td>Interface DNS</td>
+      <td>the “Interface DNS” field in the form of the interface of the client (<code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">1.0.0.1</code> for a new interface)</td>
     </tr>
   </tbody>
 </table>
 
-<p>A template with <a href="templates.html#route-by-name">Route by name</a> always gives the DNS server of the panel, and its field cannot be edited. The DNS server goes into a file only where it answers: the “Automatic” mode, port 53, the address of the interface of the client among the addresses it listens on, and the firewall of the host letting the clients of the interface in; otherwise the file takes the “Servers” of the interface, and a client of a template <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code> when the interface has none. A new client, template and interface start with “Automatic”. The update that brought the choice set “Own servers” for the templates that had name servers written, “Panel DNS server” for the interfaces where the DNS server answered on port 53 while no rule, basic list or template compared by names, and “Automatic” for the rest; the template a fresh panel starts with is “Own servers” with <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>, so the files handed out before the update do not change.</p>
+<p>A template with <a href="templates.html#route-by-name">Route by name</a> always gives the DNS server of the panel, and its field cannot be edited. The DNS server goes into a file only where it answers: the “Automatic” mode, port 53, the address of the interface of the client among the addresses it listens on, and the firewall of the host letting the clients of the interface in; otherwise the file takes the interface DNS, and a client of a template <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code> when the interface has none. A new client and template start with “As the level above”.</p>
 
-<p>Under the field the form of a client says what its file will name (“In the configuration: DNS = 10.0.0.1 (the panel DNS server)”), the form of a template what its clients will get, and the form of an interface what its clients get now.</p>
+<p>The update that brought the choice to this page gave the server the choice of the interface with the most clients (“Automatic” of an interface became “Automatic”, “Own servers” became “Interface DNS”), and gave the clients of the other interfaces that followed the level above the choice of their interface, so the files handed out before the update do not change. The template a fresh panel starts with is “Own servers” with <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code>.</p>
+
+<p>Under the field the form of a client says what its file will name (“In the configuration: DNS = 10.0.0.1 (the panel DNS server)”), the form of a template what its clients will get, and the DNS page and the form of an interface what the clients get now.</p>
+
+<h3 id="what-clients-of-other-makes-do">What clients of other makes do</h3>
+
+<p>The client on the device reads the <code class="language-plaintext highlighter-rouge">DNS</code> line itself, and clients read it differently.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Choice</th>
+      <th>Full tunnel (<code class="language-plaintext highlighter-rouge">0.0.0.0/0</code>)</th>
+      <th>Chosen networks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Panel DNS server</td>
+      <td>the questions go to the panel through the tunnel</td>
+      <td>the same: the address of the DNS server goes into <code class="language-plaintext highlighter-rouge">AllowedIPs</code></td>
+    </tr>
+    <tr>
+      <td>Network DNS</td>
+      <td>the device asks the DNS of its network past the tunnel, in the open; a DNS outside the subnet of the device (mobile data) goes through the tunnel, where the panel DNS server takes the question on port 53 while it answers the interface; AmneziaWG for Windows locks that DNS out in a full tunnel, and names do not resolve</td>
+      <td>the device asks the DNS of its network past the tunnel</td>
+    </tr>
+    <tr>
+      <td>Own servers, Interface DNS, Automatic without the DNS server</td>
+      <td>the questions go through the tunnel, and a question on port 53 reaches the DNS server of the panel while it answers the interface; DNS over TLS, which Android turns on by itself, is reset only while there is a rule by name, see <a href="#questions-of-the-clients">Questions of the clients</a></td>
+      <td>the questions go past the tunnel to those servers</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>AmneziaVPN takes the <code class="language-plaintext highlighter-rouge">DNS</code> line only when it holds two IPv4 addresses. With one address, an IPv6 one or no line, which is what “Panel DNS server” and “Network DNS” write, it asks the name servers of its own settings, <code class="language-plaintext highlighter-rouge">1.1.1.1</code> and <code class="language-plaintext highlighter-rouge">1.0.0.1</code> unless changed: in a full tunnel through the tunnel, and then the question reaches the DNS server of the panel anyway while the interception of client queries is on. Its leak guard, on by itself, lets DNS reach those servers only.</p>
+
+<p>Routing by name on the server sees only the questions that reach the DNS server: with “Network DNS” never, with “Own servers” and “Interface DNS” when the servers lie outside the tunnel of the client.</p>
 
 <h2 id="files-handed-out">Files handed out</h2>
 
@@ -346,7 +401,7 @@
 
 <h2 id="contradictions">Contradictions</h2>
 
-<p>The panel matches the mode of the DNS server, the rules by sites, the templates, the interfaces and the “DNS” choice of the clients and shows with an icon what does not fit: red - something does not work, yellow - the files get other name servers or a rule misses some names. The icon stands on the DNS page beside “Mode”, at a rule in the list of rules, at a template, an interface and a client in their lists; a click on it shows what contradicts and which clients it touches, up to ten lines. The forms of a client, a template, an interface and a rule and the DNS page check what is typed before the save; saving is always possible.</p>
+<p>The panel matches the mode of the DNS server, the rules by sites, the templates, the interfaces and the DNS choice of the server, the templates and the clients and shows with an icon what does not fit: red - something does not work, yellow - the files get other name servers or a rule misses some names. The icon stands on the DNS page beside “Mode”, at a rule in the list of rules, at a template, an interface and a client in their lists; a click on it shows what contradicts and which clients it touches, up to ten lines. The forms of a client, a template, an interface and a rule and the DNS page check what is typed before the save; saving is always possible.</p>
 
 <table>
   <thead>
@@ -370,7 +425,7 @@
     </tr>
     <tr>
       <td>The panel DNS server is off: the configuration will name &lt;servers&gt;</td>
-      <td>a client, a template or an interface is given the DNS server of the panel in the “Off” mode</td>
+      <td>a client, a template or the server is given the DNS server of the panel in the “Off” mode</td>
     </tr>
     <tr>
       <td>The panel DNS server is on port N, not 53; The panel DNS server does not listen on an address of the interface &lt;name&gt;; The server firewall keeps the clients of &lt;interface&gt; from the panel DNS server</td>
@@ -378,12 +433,16 @@
     </tr>
     <tr>
       <td>The rule by sites &lt;name&gt; is unreliable for 2 clients: their DNS is outside the tunnel</td>
-      <td>a client of the rule asks name servers outside its tunnel: the DNS server does not see its questions, and the rule takes only the addresses the DNS server asked itself</td>
+      <td>a client of the rule asks name servers outside its tunnel or the DNS of its network: the DNS server does not see its questions, and the rule takes only the addresses the DNS server asked itself</td>
+    </tr>
+    <tr>
+      <td>Routing by name on the server will not see the questions of &lt;clients&gt; (not in use now)</td>
+      <td>there are no rules by name yet, and the choice of the server or a template sends the questions of the clients past the tunnel; stands on the DNS page and in the form of a template</td>
     </tr>
   </tbody>
 </table>
 
-<p>The form of a client also hints with no rules that its name servers lie outside the tunnel: “DNS &lt;servers&gt; is outside the tunnel: the name queries go past it”. The API gives the same: <code class="language-plaintext highlighter-rouge">GET /api/dns/conflicts</code> and <code class="language-plaintext highlighter-rouge">POST /api/dns/check</code>, see the reference of the repository <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/dns.md#what-contradicts">dns.md</a>.</p>
+<p>The form of a client also hints with no rules that its name servers lie outside the tunnel: “DNS &lt;servers&gt; is outside the tunnel: the name queries go past it”, and with “Network DNS”: “The DNS of the network of the device: the name queries go past the tunnel”. The API gives the same: <code class="language-plaintext highlighter-rouge">GET /api/dns/conflicts</code> and <code class="language-plaintext highlighter-rouge">POST /api/dns/check</code>, see the reference of the repository <a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/dns.md#what-contradicts">dns.md</a>.</p>
 
 <h2 id="questions-of-the-clients">Questions of the clients</h2>
 

@@ -311,8 +311,8 @@
       <td>the networks the client sends into the tunnel: <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> and <code class="language-plaintext highlighter-rouge">::/0</code> is everything. The template of a client replaces this with its own list, see <a href="templates.html">Templates</a></td>
     </tr>
     <tr>
-      <td>DNS</td>
-      <td>where the name servers of the clients of the interface come from: “Automatic” - the DNS server of the panel while routing needs it, “Servers” otherwise; “Panel DNS server” - always it, where it answers; “Own servers” - “Servers”. The clients get “Servers” also when the DNS server of the panel is not handed to them; under the field - what the configurations of the clients name now and what contradicts, see <a href="dns.html#name-servers-in-the-file">Name servers in the file</a></td>
+      <td>Interface DNS</td>
+      <td>the name servers of the interface: the clients get them with the “Interface DNS” choice, with “Automatic” while routing does not need the DNS server, and when the DNS server of the panel is not handed to them. The interface has no choice of its own: under the field - what the configurations of the clients name now and a link to “Preferred DNS” of the DNS page, see <a href="dns.html#name-servers-in-the-file">Name servers in the file</a></td>
     </tr>
     <tr>
       <td>Keepalive</td>

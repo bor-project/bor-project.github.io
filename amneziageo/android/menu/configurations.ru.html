@@ -202,7 +202,7 @@
 
 <figure class="shot shot-phone"><img src="/amneziageo/assets/img/android/ru/config-page.png" alt="Страница конфигурации: «Используется», имя, текст конфигурации и транспорт" width="360" height="724" loading="lazy" /><figcaption>Страница конфигурации: имя, текст и транспорт.</figcaption></figure>
 
-<p>Текст конфигурации, её собственные резолверы и исключения меняются из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config edit &lt;имя&gt; ...</code>, <code class="language-plaintext highlighter-rouge">amneziageo config dns &lt;имя&gt; [&lt;серверы&gt;]</code> и <code class="language-plaintext highlighter-rouge">amneziageo config exclusions &lt;имя&gt; ...</code>; новый текст туннель берёт при следующем подключении. На Android они не действуют: имена определяются внутри туннеля, а исключения задаются в списке маршрутизации.</p>
+<p>Текст конфигурации, её DNS для имён, которые идут напрямую, и исключения меняются из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config edit &lt;имя&gt; ...</code>, <code class="language-plaintext highlighter-rouge">amneziageo config dns &lt;имя&gt; [&lt;серверы&gt;]</code> и <code class="language-plaintext highlighter-rouge">amneziageo config exclusions &lt;имя&gt; ...</code>; новый текст туннель берёт при следующем подключении. На Android они не действуют: имена определяются внутри туннеля, а исключения задаются в списке маршрутизации.</p>
 
 <h3 id="экспорт">Экспорт</h3>
 
@@ -214,10 +214,11 @@
 
 <h2 id="транспорт">Транспорт</h2>
 
-<p>Настройки транспорта на странице конфигурации: «Прокси» (WebSocket, см. ниже), «MTU», «IPv6», «Маршрутизация», «Удерживать трафик при обрыве туннеля», «Разрешить серверу отключать туннель».</p>
+<p>Настройки транспорта на странице конфигурации: «Прокси» (WebSocket, см. ниже), «MTU», «DNS», «IPv6», «Маршрутизация», «Удерживать трафик при обрыве туннеля», «Разрешить серверу отключать туннель».</p>
 
 <ul>
   <li>«MTU» - размер пакета туннеля: «Авто» - наибольший, который проходит по каналу, но не больше объявленного в конфигурации, «Конфиг» - ровно из строки <code class="language-plaintext highlighter-rouge">MTU</code> конфигурации, «Вручную» - число от 1280 до 1500. Действующее значение стоит меткой на карточке. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config mtu &lt;имя&gt; auto|config|&lt;число&gt;</code>.</li>
+  <li>«DNS» - у кого спрашиваются имена, которые идут через VPN: «По умолчанию» - что выбрал сервер AmneziaGeo этой конфигурации, иначе строка <code class="language-plaintext highlighter-rouge">DNS</code> её текста; «Сеть» - DNS сети устройства, мимо туннеля; «Сервер» - DNS-сервер самого сервера внутри туннеля, пункт доступен, когда сервер его даёт; выбор известен только этому клиенту, и когда DNS-сервер панели остановится (режим «Автоматически» без правил по именам), при следующем подключении имена идут как при «По умолчанию»; «Своё значение» - адреса из поля, хотя бы один IPv4, пустое поле - <code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">1.0.0.1</code>. Поле рядом серым показывает, на чём стоит выбор. Берётся при следующем подключении. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config vpn-dns &lt;имя&gt; default|network|server|own [&lt;серверы&gt;]</code>.</li>
   <li>«IPv6» - несёт ли туннель IPv6; по умолчанию выключено, см. <a href="routing.ru.html#ограничения">Ограничения</a>.</li>
   <li>«Маршрутизация» - применять ли к этой конфигурации выбранный список маршрутизации. С выключенным переключателем туннель идёт по <code class="language-plaintext highlighter-rouge">AllowedIPs</code> из её текста. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config routing &lt;имя&gt; on|off</code>.</li>
 </ul>
