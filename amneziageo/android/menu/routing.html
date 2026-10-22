@@ -260,7 +260,21 @@
 
 <p>In a full-tunnel list a program is added with the direct role: the tunnel carries the whole machine and the traffic of that program leaves past it. An address the list blocks or sends through the tunnel itself follows the rule of the list for that program too.</p>
 
-<p>A program with the direct role stays out of the tunnel in either mode of the list.</p>
+<p>A program with the direct role stays out of the tunnel in either mode of the list, and Android shows it a plain network, with no VPN.</p>
+
+<h3 id="who-sees-the-vpn">Who sees the VPN</h3>
+
+<p>An application inside the network of the tunnel is told by Android that its network is a VPN. There is no way around that, and an application that checks for a VPN refuses to work under the tunnel even when its traffic goes past it. Who is inside the network of the tunnel is decided by the list:</p>
+
+<ul>
+  <li>“Everything except selected”: every application but the programs with the direct role.</li>
+  <li>“Selected only” up to 10,000 entries: the list is held by the route table. When the list names applications with the proxy role, only they and AmneziaGeo itself are inside the network of the tunnel: the named applications go through the tunnel entirely, as under an “Everything except selected” list, and the others see no VPN and pass every rule of the list by. Without application rules every application is inside, and only the addresses and names of the rules go through the tunnel.</li>
+  <li>“Selected only” over 10,000 entries or with “All UDP through the tunnel” on: the list is carried by dynamic routing, the client decides every connection itself, by address, name and application. Every application is inside the network of the tunnel and every one sees the VPN; the named applications go through the tunnel on top of the rules. The editor says so in a line above the entries.</li>
+</ul>
+
+<p>Every address range counts as an entry, the ranges of a <code class="language-plaintext highlighter-rouge">geoip:</code> country among them; every name, your own or one of a <code class="language-plaintext highlighter-rouge">geosite:</code> category, counts as eight.</p>
+
+<p>Give an application that does not work under a VPN (a bank, a messenger that checks for a VPN) the direct role: it leaves the network of the tunnel and sees no VPN.</p>
 
 <h3 id="picking-applications">Picking applications</h3>
 
@@ -271,6 +285,8 @@
 <h3 id="all-udp-through-the-tunnel">All UDP through the tunnel</h3>
 
 <p>Calls and games usually learn their server addresses without DNS, so a domain rule never catches them. The toggle sends every outgoing UDP datagram into the tunnel, except the local network and the VPN server itself. A list set to “Everything except selected” has no toggle: UDP rides the tunnel there without it.</p>
+
+<p>With the toggle on, the list is carried by dynamic routing and every application sees the VPN, see <a href="#who-sees-the-vpn">Who sees the VPN</a>. Android 9 and older has no dynamic routing and no toggle: UDP follows the rules of the list.</p>
 
 <h3 id="route-lifetime">Route lifetime</h3>
 
