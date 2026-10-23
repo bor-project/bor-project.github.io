@@ -212,11 +212,11 @@
 
 <p>A routing preset is a routing list of the AmneziaGeo client that is kept on the panel and handed to the app through the hello of the interface. The template of a client names the presets its clients get; routing by them happens on the device, not on the server. The “Routing presets” tab of the “Clients” page lists the presets with the time of the change and the number of templates that hand them out; the number leads to the list of templates with the preset picked.</p>
 
-<figure class="shot"><img src="/amneziageo_server/assets/img/en/preset-form.png" alt="Form of a new routing preset: name, On by default, the lists Through the VPN, Directly and Block" width="1440" height="900" loading="lazy" /><figcaption>An empty form of a preset.</figcaption></figure>
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/preset-form.png" alt="Form of a new routing preset: name, On by default, Read only, the lists Through the VPN, Directly and Block" width="1440" height="900" loading="lazy" /><figcaption>An empty form of a preset.</figcaption></figure>
 
 <h2 id="main">Main</h2>
 
-<p>“Name”: up to 64 characters, one of a kind in the panel; this is what the list is called on the client. “On by default”: the client puts the list in use when it adds it, unless another list is in use already.</p>
+<p>“Name”: up to 64 characters, one of a kind in the panel; this is what the list is called on the client. “On by default”: the client puts the list in use when it adds it, unless another list is in use already. “Read only”: the client keeps the list from being renamed, changed or removed and takes the newer versions of the preset itself, without “Update”; the list can still be turned on and off on the device.</p>
 
 <h2 id="templates">Templates</h2>
 
@@ -255,7 +255,7 @@
   </tbody>
 </table>
 
-<p>The entries are written the same way as in a template: <code class="language-plaintext highlighter-rouge">geoip:ru</code>, <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">domain:example.com</code>, up to 256 in each part.</p>
+<p>The entries are written the same way as in a template: <code class="language-plaintext highlighter-rouge">geoip:ru</code>, <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">domain:example.com</code>, up to 256 in each part. “Through the VPN” and “Directly” also take programs: <code class="language-plaintext highlighter-rouge">app:&lt;name&gt;</code>, for example <code class="language-plaintext highlighter-rouge">app:Telegram</code>: the app of the client finds the program on the device itself (on Windows by the installed programs, the shortcuts of the Start menu and App Paths, on Linux by the <code class="language-plaintext highlighter-rouge">.desktop</code> entries and PATH, on Android by the label and the package) and leaves the line out when it finds none; the older forms with a kind, <code class="language-plaintext highlighter-rouge">app:path=&lt;path&gt;</code>, <code class="language-plaintext highlighter-rouge">app:dir=&lt;folder&gt;</code>, <code class="language-plaintext highlighter-rouge">app:name=&lt;file&gt;</code>, <code class="language-plaintext highlighter-rouge">app:svc=&lt;service&gt;</code>, <code class="language-plaintext highlighter-rouge">app:pkg=&lt;package&gt;</code>, as well. The field shows such entries as “Program”. The line of a program stays one entry, spaces and all; a comma parts it only where another entry follows: <code class="language-plaintext highlighter-rouge">app:Telegram, app:Zoom</code> is two programs, <code class="language-plaintext highlighter-rouge">app:Telegram, geoip:ru</code> a program and a geo key. Hello hands the programs out as they are; they do not go into <code class="language-plaintext highlighter-rouge">AllowedIPs</code>.</p>
 
 <h2 id="how-the-app-takes-a-preset">How the app takes a preset</h2>
 
@@ -264,6 +264,7 @@
 <ul>
   <li>a client without such a list adds it, and puts it in use if the preset is on by default and the client routes by no list;</li>
   <li>a client with the list keeps its own; when the preset is newer, the card of the list on the device offers an update, and the owner of the device, accepting it, gets the name, entries and switches of the preset instead of what the list held, while the list stays in use or not, as it was;</li>
+  <li>the list of a “Read only” preset takes a newer version itself as soon as the client gets it, and gives way to no change on the device; the flag taken off, the list is an ordinary one again and a newer version waits for “Update”; the flag put back, a list changed on the device takes the preset; the preset taken off the template, the list stays with the client as an ordinary one;</li>
   <li>a list the owner removed comes back at the next hello;</li>
   <li>a list added under the name of the preset by an app older than the identifiers gets tied to the preset.</li>
 </ul>
@@ -290,7 +291,7 @@
     </tr>
     <tr>
       <td>Not a geo key, a network, an address or a domain; A template carries at most 256 entries</td>
-      <td>the entries</td>
+      <td>the entries; a program in “Block”, <code class="language-plaintext highlighter-rouge">app:</code> with no name, an unknown kind, a vertical bar or a name longer than 260 characters</td>
     </tr>
     <tr>
       <td>There is no such routing preset</td>

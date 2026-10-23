@@ -362,6 +362,35 @@
 
 <p>Команды <code class="language-plaintext highlighter-rouge">device</code> и <code class="language-plaintext highlighter-rouge">family</code> говорят с ядром, минуя базу панели: что они изменили, панель при следующем применении положит обратно по своим настройкам. Клиенты, правила, каналы и шаблоны из консоли не редактируются: это <a href="../api.ru.html">HTTP API</a> с токеном от <code class="language-plaintext highlighter-rouge">token add</code>.</p>
 
+<h2 id="пресеты-и-шаблоны">Пресеты и шаблоны</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">preset list</code></td>
+      <td>пресеты: сколько записей идёт через туннель, напрямую и в блок, сколько шаблонов их раздают, «по умолчанию» и «только чтение»</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">preset set &lt;имя&gt; --readonly on | off</code></td>
+      <td>флаг «Только чтение», см. <a href="panel/presets.ru.html#основное">Пресеты маршрутизации</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">template list</code></td>
+      <td>шаблоны: сколько клиентов, какие пресеты и <code class="language-plaintext highlighter-rouge">presets only</code> у шаблона с флагом «Только списки сервера»</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">template set &lt;имя&gt; --presets-only on | off</code></td>
+      <td>флаг «Только списки сервера»; у шаблона без пресетов отказ, см. <a href="panel/templates.ru.html#маршрутизация">Шаблоны</a></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="гео-и-dns">Гео и DNS</h2>
 
 <table>

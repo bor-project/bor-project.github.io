@@ -225,7 +225,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">app:</code></td>
-      <td>an application</td>
+      <td>an application: a file, a folder, a package, a service or the name of a program the device finds itself</td>
     </tr>
   </tbody>
 </table>
@@ -246,7 +246,7 @@
 
 <h3 id="list-card">List card</h3>
 
-<p>The card shows the name, the number of rules by role (“N proxy”, “N direct”, “N blocked”), the “All UDP through the tunnel” label, where the list came from - the name of the configuration it arrived with from the server, or “Local” - and the “Selected” mark on the selected one. The “In use” switch picks the list for connections. A list from a server that the server changed since shows “Update”, see <a href="configurations.html#what-the-server-offers">What the server offers</a>. “Settings” opens the rule editor, “Advanced” the traffic settings and the export, and “Delete list” asks for a confirmation; a deleted list cannot be brought back.</p>
+<p>The card shows the name, the number of rules by role (“N proxy”, “N direct”, “N blocked”), the “All UDP through the tunnel” label, where the list came from - the name of the configuration it arrived with from the server, or “Local” - and the “Selected” mark on the selected one. The “In use” switch picks the list for connections. A list from a server that the server changed since shows “Update”, a list the server keeps unchanged shows “Read-only”, see <a href="configurations.html#what-the-server-offers">What the server offers</a>. Such a list has its name grey in the editor and no “Clear”, “What to add”, removal of entries or “Delete list”, and “All UDP through the tunnel” stands the way the server set it. “Settings” opens the rule editor, “Advanced” the traffic settings and the export, and “Delete list” asks for a confirmation; a deleted list cannot be brought back.</p>
 
 <h3 id="rule-editor">Rule editor</h3>
 
@@ -279,6 +279,12 @@
 <h3 id="picking-applications">Picking applications</h3>
 
 <p>The application picker lists the programs with a launcher icon and every program that asks for network access; system programs without a launcher icon come with the “System” switch, and the search finds them without it. A rule on a program the picker does not list is left as it is.</p>
+
+<h3 id="a-program-by-name">A program by name</h3>
+
+<p>The entry <code class="language-plaintext highlighter-rouge">app:&lt;name&gt;</code> with no kind and no folder, for example <code class="language-plaintext highlighter-rouge">app:Telegram</code>, names a program the way people know it, not by its path: such lines usually come in the lists of a server shared by different devices. The client looks for the program among the applications of the device by label and package, in any case: the name equals the label, the file of the program without its extension or the package, else the only label that starts with the name as a word fits (“Telegram” - “Telegram Desktop”). Several equal finds all go.</p>
+
+<p>What was found is kept beside the list and is not written into the line. A connect takes what was found last at once and does not wait for the search: the client searches again in the background after the connect, after an edit of the list and after an answer of the server; a program found or gone applies to the tunnel without reconnecting (Android builds the set of applications of the session again). A line nothing was found for is left out, with a line of the info level in the agent log. The line of the editor shows what was found: “App · found: …”, “found: N” with the paths on hover, “App · not found”, “App · searching” until the search has run once. There is no watch over installs: a program installed later is found at the next search.</p>
 
 <h2 id="advanced">Advanced</h2>
 

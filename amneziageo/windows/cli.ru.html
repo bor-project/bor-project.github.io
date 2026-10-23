@@ -335,7 +335,7 @@ amneziageo tui                      <span class="c"># полноэкранная
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">routing list</code></td>
-      <td>списки</td>
+      <td>списки; <code class="language-plaintext highlighter-rouge">READ-ONLY yes</code> у списка, который сервер держит «Только чтение»: его команды правки и удаления отклоняют; строка под таблицей называет разрешённые списки, пока подключена конфигурация, чей сервер разрешает только свои</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">routing use &lt;id\|имя\|none&gt;</code></td>
@@ -343,7 +343,7 @@ amneziageo tui                      <span class="c"># полноэкранная
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">routing show &lt;id\|имя&gt;</code></td>
-      <td>правила списка</td>
+      <td>правила списка; у <code class="language-plaintext highlighter-rouge">app:&lt;имя&gt;</code> - что нашло устройство: <code class="language-plaintext highlighter-rouge">-&gt; &lt;путь или пакет&gt;</code>, <code class="language-plaintext highlighter-rouge">-&gt; not found</code>, <code class="language-plaintext highlighter-rouge">-&gt; searching</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">routing create &lt;имя&gt; [правило...]</code></td>
@@ -384,7 +384,7 @@ amneziageo tui                      <span class="c"># полноэкранная
   </tbody>
 </table>
 
-<p>Правило - <code class="language-plaintext highlighter-rouge">&lt;роль&gt;|&lt;запись&gt;</code>: роль <code class="language-plaintext highlighter-rouge">proxy</code>, <code class="language-plaintext highlighter-rouge">direct</code> или <code class="language-plaintext highlighter-rouge">block</code>, запись <code class="language-plaintext highlighter-rouge">geosite:&lt;категория&gt;</code>, <code class="language-plaintext highlighter-rouge">geoip:&lt;страна&gt;</code>, <code class="language-plaintext highlighter-rouge">domain:&lt;имя&gt;</code>, <code class="language-plaintext highlighter-rouge">app:&lt;id&gt;</code> либо адрес или диапазон CIDR. Запись без роли считается <code class="language-plaintext highlighter-rouge">proxy</code>.</p>
+<p>Правило - <code class="language-plaintext highlighter-rouge">&lt;роль&gt;|&lt;запись&gt;</code>: роль <code class="language-plaintext highlighter-rouge">proxy</code>, <code class="language-plaintext highlighter-rouge">direct</code> или <code class="language-plaintext highlighter-rouge">block</code>, запись <code class="language-plaintext highlighter-rouge">geosite:&lt;категория&gt;</code>, <code class="language-plaintext highlighter-rouge">geoip:&lt;страна&gt;</code>, <code class="language-plaintext highlighter-rouge">domain:&lt;имя&gt;</code>, <code class="language-plaintext highlighter-rouge">app:&lt;id&gt;</code> или <code class="language-plaintext highlighter-rouge">app:&lt;имя программы&gt;</code> либо адрес или диапазон CIDR. Запись без роли считается <code class="language-plaintext highlighter-rouge">proxy</code>.</p>
 
 <h3 id="гео-базы">Гео-базы</h3>
 

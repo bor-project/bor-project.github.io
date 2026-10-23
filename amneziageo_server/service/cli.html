@@ -371,6 +371,35 @@
 
 <p>The <code class="language-plaintext highlighter-rouge">device</code> and <code class="language-plaintext highlighter-rouge">family</code> commands talk to the kernel past the database of the panel: whatever they changed, the panel puts back by its own settings the next time it applies them. Clients, rules, channels and templates are not edited from the console: that is the <a href="../api.html">HTTP API</a> with a token from <code class="language-plaintext highlighter-rouge">token add</code>.</p>
 
+<h2 id="presets-and-templates">Presets and templates</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">preset list</code></td>
+      <td>the presets: how many entries go through the tunnel, directly and to the block, how many templates hand them out, on by default and read only</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">preset set &lt;name&gt; --readonly on | off</code></td>
+      <td>the “Read only” flag, see <a href="panel/presets.html#main">Routing presets</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">template list</code></td>
+      <td>the templates: how many clients, which presets, and <code class="language-plaintext highlighter-rouge">presets only</code> at a template with the “Server lists only” flag</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">template set &lt;name&gt; --presets-only on | off</code></td>
+      <td>the “Server lists only” flag; a template without presets refuses it, see <a href="panel/templates.html#routing">Templates</a></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="geo-and-dns">Geo and DNS</h2>
 
 <table>

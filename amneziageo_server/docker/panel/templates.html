@@ -275,6 +275,8 @@
 
 <p>“Routing presets” are the lists the AmneziaGeo app of a client of the template gets, in the order of handing out, while routing happens on the client; the name of a preset leads to its settings, see <a href="presets.html">Routing presets</a>; “No presets: add them in the tab Routing presets” while none are made.</p>
 
+<p>“Server lists only” under the presets: while a configuration of a client of the template is connected, the app offers these lists alone: the own lists of the user and no list at all are not offered for it, and the “Routing” switch of the configuration stays on. The flag turns on once a preset is picked and goes off with the last preset. An app that does not know the flag does not see it and picks lists as before.</p>
+
 <h2 id="route-by-name">Route by name</h2>
 
 <p>A client with nothing but <code class="language-plaintext highlighter-rouge">AllowedIPs</code> cannot follow a name. A service behind a CDN answers with the cache nearest to whoever asks; the caches stand in the networks of providers and change, and neither the addresses a pass found nor the geo ranges of the service cover them. With the “Route by name” switch in the “Routing” part, the names of the template (<code class="language-plaintext highlighter-rouge">geosite:</code> and <code class="language-plaintext highlighter-rouge">domain:</code>) are not unfolded into addresses, and such entries show “by name” instead of a number of addresses. The DNS server of the panel answers a client of the template about these names with a stand-in address out of <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>: one address per name, the same for as long as the name is asked about, and the same on every server as long as two names do not land on one address. The host leads a connection to the stand-in to the real address the DNS server got for the name and decides it by the real one, so the rules of the server see such a connection as any other, see <a href="dns.html#stand-in-addresses">Stand-in addresses</a>.</p>
@@ -366,6 +368,10 @@
     <tr>
       <td>There is no such routing preset</td>
       <td>the template names a preset that does not exist</td>
+    </tr>
+    <tr>
+      <td>Server lists only: pick a preset</td>
+      <td>the flag without presets</td>
     </tr>
   </tbody>
 </table>
