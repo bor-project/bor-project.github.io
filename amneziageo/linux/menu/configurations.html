@@ -228,12 +228,12 @@
 
 <ul>
   <li>“MTU” - the packet size of the tunnel: “Auto” - the largest that passes the link, but not above the one declared in the configuration, “Config” - exactly the <code class="language-plaintext highlighter-rouge">MTU</code> line of the configuration, “Manual” - a number from 1280 to 1500. The value in force stands as a label on the card. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config mtu &lt;name&gt; auto|config|&lt;number&gt;</code>.</li>
-  <li>“DNS” - who the names that go through the VPN are asked of: “Default” - what the AmneziaGeo server of this configuration picked, the <code class="language-plaintext highlighter-rouge">DNS</code> line of its text otherwise; “Network” - the DNS of the network of the device, past the tunnel; “Server” - the DNS server of the server itself inside the tunnel, available when the server offers it; the choice is known to this client alone, and when the DNS server of the panel stops (the “Automatic” mode with no rules by name), at the next connect the names go as with “Default”; “Custom” - the addresses of the field, one of them IPv4, an empty field means <code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">1.0.0.1</code>. The field beside shows in grey what the choice settles on. It takes effect at the next connect. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config vpn-dns &lt;name&gt; default|network|server|own [&lt;servers&gt;]</code>.</li>
+  <li>“DNS” <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only with an AmneziaGeo server" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only with an AmneziaGeo server" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only with an AmneziaGeo server</span><span>The Server item asks the DNS server of the AmneziaGeo panel inside the tunnel.</span><a href="/amneziageo/linux/menu/configurations.html#amneziageo-mark">Learn more</a></span></span> - who the names that go through the VPN are asked of: “Default” - what the AmneziaGeo server of this configuration picked, the <code class="language-plaintext highlighter-rouge">DNS</code> line of its text otherwise; “Network” - the DNS of the network of the device, past the tunnel; “Server” - the DNS server of the server itself inside the tunnel, available when the server offers it; the choice is known to this client alone, and when the DNS server of the panel stops (the “Automatic” mode with no rules by name), at the next connect the names go as with “Default”; “Custom” - the addresses of the field, one of them IPv4, an empty field means <code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">1.0.0.1</code>. The field beside shows in grey what the choice settles on. It takes effect at the next connect. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config vpn-dns &lt;name&gt; default|network|server|own [&lt;servers&gt;]</code>.</li>
   <li>“IPv6” - whether the tunnel carries IPv6; off by default, see <a href="routing.html#limitations">Limitations</a>.</li>
-  <li>“Routing” - whether the selected routing list applies to this configuration. With the switch off the tunnel follows the <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of its text. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config routing &lt;name&gt; on|off</code>. For a configuration whose server allows none but its own lists the switch is on and not available, see <a href="#what-the-server-offers">What the server offers</a>.</li>
+  <li>“Routing” <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only with an AmneziaGeo server" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only with an AmneziaGeo server" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only with an AmneziaGeo server</span><span>The AmneziaGeo server keeps this configuration to its own routing lists.</span><a href="/amneziageo/linux/menu/configurations.html#amneziageo-mark">Learn more</a></span></span> - whether the selected routing list applies to this configuration. With the switch off the tunnel follows the <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of its text. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config routing &lt;name&gt; on|off</code>. For a configuration whose server allows none but its own lists the switch is on, not available and marked with the AmneziaGeo sign, see <a href="#what-the-server-offers">What the server offers</a>.</li>
 </ul>
 
-<h3 id="websocket">WebSocket</h3>
+<h3 id="websocket">WebSocket <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only with an AmneziaGeo server" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only with an AmneziaGeo server" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only with an AmneziaGeo server</span><span>An AmneziaGeo server names the WebSocket front itself: no address or port to type.</span><a href="/amneziageo/linux/menu/configurations.html#amneziageo-mark">Learn more</a></span></span></h3>
 
 <p>AmneziaWG runs over UDP, and on some networks - corporate and guest Wi-Fi, some mobile carriers - it does not get through. The whole tunnel can then run over a WebSocket on TCP: from the outside it looks like ordinary HTTPS traffic.</p>
 
@@ -286,9 +286,9 @@ amneziageo config list
 
 <p>The change reaches a running tunnel at once.</p>
 
-<h3 id="allow-the-server-to-disconnect-the-tunnel">Allow the server to disconnect the tunnel</h3>
+<h3 id="allow-the-server-to-disconnect-the-tunnel">Allow the server to disconnect the tunnel <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only with an AmneziaGeo server" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only with an AmneziaGeo server" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only with an AmneziaGeo server</span><span>An AmneziaGeo server takes the tunnel of this device down when the client is turned off in the panel.</span><a href="/amneziageo/linux/menu/configurations.html#amneziageo-mark">Learn more</a></span></span></h3>
 
-<p>The server takes the tunnel down when this client is turned off on the server. How it acts: <a href="home.html#holding-traffic-when-the-tunnel-drops">Holding traffic when the tunnel drops</a>.</p>
+<p>The server takes the tunnel down when this client is turned off on the server. The switch is available while the panel of the AmneziaGeo server of this configuration has turned the signal on for this client; with another server or without the signal it is off and not available, and the choice made before is kept. How it acts: <a href="home.html#holding-traffic-when-the-tunnel-drops">Holding traffic when the tunnel drops</a>.</p>
 
 <h2 id="what-the-server-offers">What the server offers</h2>
 
@@ -304,13 +304,30 @@ amneziageo config list
 
 <p>The “Routing” switch on the page of the configuration stays locked longer: as long as the server holds the flag it is on and not available, with the same hint, connected or not, and <code class="language-plaintext highlighter-rouge">config routing &lt;name&gt; off</code> is refused with the same words. The flag taken off, the switch is free again.</p>
 
-<p>The card of a list names where it came from: the configuration it arrived with, or Local for a list made on the device. A server older than the identifiers has its lists added by name and none of them put in use.</p>
+<p>The card of a list names where it came from: the configuration it arrived with, with the sign <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only with an AmneziaGeo server" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only with an AmneziaGeo server" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only with an AmneziaGeo server</span><span>The list came from the AmneziaGeo server of the configuration named on the card, and new versions come from it too.</span><a href="/amneziageo/linux/menu/configurations.html#amneziageo-mark">Learn more</a></span></span> before it, or Local for a list made on the device. A server older than the identifiers has its lists added by name and none of them put in use.</p>
 
 <p>A server of another kind, or a silent one, changes nothing. A server of ours stays one until it answers as a server of another kind three times in a row, or once when a subscription is refreshed; a port that refuses the connection counts as such an answer. A question that gets no answer (a timeout, a name that does not resolve, a TLS that fails, an error of the server) changes nothing, and the server is asked again after a pause that doubles from a minute up to a day. A server that answered the last question as a server of another kind is asked in the background before a connect, and the connect does not wait for it. A server that never answered is not taken for one of another kind: the next three connects wait for it again, three seconds at most each, and after them it is asked in the background too.</p>
 
 <p>A subscription read at its address is proven by the certificate of its server: by the store of the device, or by the roots of Let’s Encrypt the application carries for a device whose store lacks them.</p>
 
 <p>The server side, the panel, is described in its repository: <a href="https://github.com/bor-project/amneziageo_server/tree/master/docs">amneziageo_server</a>.</p>
+
+<h3 id="amneziageo-mark">AmneziaGeo mark</h3>
+
+<p>A blue disc with the power sign <svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg> stands beside what works only with an AmneziaGeo server:</p>
+
+<ul>
+  <li>“Proxy”: the server names the WebSocket front itself, see <a href="#websocket">WebSocket</a>;</li>
+  <li>“DNS”: the “Server” item, see <a href="#transport">Transport</a>;</li>
+  <li>“Routing”, while the server keeps the configuration to its own lists;</li>
+  <li>“Allow the server to disconnect the tunnel”, see <a href="#allow-the-server-to-disconnect-the-tunnel">Allow the server to disconnect the tunnel</a>;</li>
+  <li>the card of a list that came from the server: the mark stands before the name of the configuration, see <a href="routing.html#list-card">List card</a>;</li>
+  <li>“Data transfer speed test service”, see <a href="diagnostics.html#probe-settings">Probe settings</a>.</li>
+</ul>
+
+<p>The mouse pointer resting on the mark opens a window, a press holds it open: what an AmneziaGeo server gives and how it stands for this configuration - its server is AmneziaGeo with this feature, AmneziaGeo without it, or not AmneziaGeo or has not answered yet. A press on the mark leaves the switch beside it alone.</p>
+
+<p>On the pages of this site the mark stands beside the same settings and opens a window with the same text. The server panel puts the same sign beside what reaches only the AmneziaGeo app, see <a href="https://bor-project.github.io/amneziageo_server/service/panel/#amneziageo-mark">AmneziaGeo mark</a> on the server site.</p>
 
 
         <footer class="article-footer">
@@ -323,6 +340,90 @@ amneziageo config list
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>

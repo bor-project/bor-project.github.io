@@ -375,6 +375,23 @@
 
 <p>A refusal of the server comes as a code, and the form puts it into words in its language under the field or above the buttons: “The port is outside 1 to 65535”, “The name is already taken”. The refusal codes of each section are listed on its page.</p>
 
+<h2 id="amneziageo-mark">AmneziaGeo mark</h2>
+
+<p>A blue disc with the power sign <svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg> stands beside what reaches only the AmneziaGeo app. Other AmneziaWG clients get only the configuration file from the panel, and what the mark stands beside does not work for them. The mouse pointer resting on the mark opens a window: what the app does with it and what other clients get. A press holds the window open, Esc or a press elsewhere closes it. “Learn more” in the window leads here, to the page of the way the panel is installed, in the language of the panel.</p>
+
+<p>Where the mark stands:</p>
+
+<ul>
+  <li>“WebSocket proxy” and “Services port” in the form of an interface, see <a href="interfaces.html">Interfaces</a>;</li>
+  <li>“Routing presets” and “Server lists only” in the form of a template, see <a href="templates.html">Templates</a>;</li>
+  <li>the “Routing presets” tab of “Clients”, see <a href="presets.html">Routing presets</a>;</li>
+  <li>“Subscription” and “Allow the server to disconnect the tunnel” in the form of a client, the QR code of the subscription on the “Export” tab, see <a href="clients.html">Clients</a>;</li>
+  <li>the title of the “Geo lists” page, see <a href="geo.html">Geo lists</a>;</li>
+  <li>the “DNS server for clients” part of the “DNS” page, see <a href="dns.html">DNS</a>;</li>
+  <li>the title of the “Subscriptions” page, see <a href="subscriptions.html">Subscriptions</a>.</li>
+</ul>
+
+<p>On the pages of this site the mark stands beside the same settings and opens the same window. The AmneziaGeo app puts the same sign beside what works only with an AmneziaGeo server, see <a href="https://bor-project.github.io/amneziageo/windows/menu/configurations.html#amneziageo-mark">AmneziaGeo mark</a> on the client site.</p>
 <h2 id="closed-ports">Closed ports</h2>
 
 <p>The port fields on the “Server” and “Subscriptions” tabs and in the form of an enabled interface ask the firewall of the host whether the port is let in. A closed port is named under the field: “Port 8443 is closed in the firewall of the host”. There stands the “Open” button for a saved port or “Open on save” for a new one, if the panel can change the firewall and the role has the permission for this section; otherwise the hint says where to open the port by hand: item 23 of the <code class="language-plaintext highlighter-rouge">amneziageo-server</code> menu. More in <a href="interfaces.html#ports-in-the-firewall">Ports in the firewall</a>.</p>
@@ -395,6 +412,90 @@
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>

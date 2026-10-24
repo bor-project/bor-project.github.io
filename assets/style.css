@@ -101,6 +101,17 @@ blockquote { margin-left: 0; border-left: 3px solid var(--accent); padding-left:
 .article-footer { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1rem; font-size: .85rem; }
 .highlight .c, .highlight .c1, .highlight .cm { color: var(--muted); }
 .highlight .k, .highlight .kd, .highlight .kn, .highlight .nb { color: var(--accent); font-weight: 600; }
+.ag-mark { display: inline-flex; vertical-align: middle; }
+.ag-sign { flex: none; width: 15px; height: 15px; vertical-align: -.12em; }
+.ag-mark-sign { display: inline-flex; align-items: center; margin: 0 0 0 .3em; border: 0; border-radius: 50%; padding: 0; background: none; line-height: 0; cursor: pointer; }
+.ag-mark-sign:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.ag-mark-large .ag-mark-sign { margin-left: .4em; }
+.ag-mark-large .ag-mark-sign .ag-sign { width: 22px; height: 22px; }
+.ag-mark-card { position: fixed; z-index: 3; display: flex; flex-direction: column; gap: .35rem; width: max-content; max-width: min(400px, calc(100vw - 16px)); border: 1px solid var(--border); border-radius: .5rem; padding: .6rem .8rem; background: var(--background); box-shadow: 0 6px 24px rgba(20, 40, 70, .16); color: var(--text); font-size: 14px; font-weight: 400; line-height: 1.5; letter-spacing: normal; text-align: left; white-space: normal; }
+.ag-mark-card[hidden] { display: none; }
+.ag-mark-title { display: flex; align-items: center; gap: .4rem; font-weight: 650; }
+.ag-mark-title .ag-sign { width: 16px; height: 16px; }
+.ag-mark-others { color: var(--muted); }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {

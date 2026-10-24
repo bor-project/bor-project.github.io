@@ -214,6 +214,90 @@
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>

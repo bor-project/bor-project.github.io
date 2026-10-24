@@ -220,12 +220,12 @@
 
 <ul>
   <li>«MTU» - размер пакета туннеля: «Авто» - наибольший, который проходит по каналу, но не больше объявленного в конфигурации, «Конфиг» - ровно из строки <code class="language-plaintext highlighter-rouge">MTU</code> конфигурации, «Вручную» - число от 1280 до 1500. Действующее значение стоит меткой на карточке. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config mtu &lt;имя&gt; auto|config|&lt;число&gt;</code>.</li>
-  <li>«DNS» - у кого спрашиваются имена, которые идут через VPN: «По умолчанию» - что выбрал сервер AmneziaGeo этой конфигурации, иначе строка <code class="language-plaintext highlighter-rouge">DNS</code> её текста; «Сеть» - DNS сети устройства, мимо туннеля; «Сервер» - DNS-сервер самого сервера внутри туннеля, пункт доступен, когда сервер его даёт; выбор известен только этому клиенту, и когда DNS-сервер панели остановится (режим «Автоматически» без правил по именам), при следующем подключении имена идут как при «По умолчанию»; «Своё значение» - адреса из поля, хотя бы один IPv4, пустое поле - <code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">1.0.0.1</code>. Поле рядом серым показывает, на чём стоит выбор. Берётся при следующем подключении. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config vpn-dns &lt;имя&gt; default|network|server|own [&lt;серверы&gt;]</code>.</li>
+  <li>«DNS» <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только с сервером AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только с сервером AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Только с сервером AmneziaGeo</span><span>Пункт «Сервер» спрашивает DNS-сервер панели AmneziaGeo внутри туннеля.</span><a href="/amneziageo/android/menu/configurations.ru.html#значок-amneziageo">Подробнее</a></span></span> - у кого спрашиваются имена, которые идут через VPN: «По умолчанию» - что выбрал сервер AmneziaGeo этой конфигурации, иначе строка <code class="language-plaintext highlighter-rouge">DNS</code> её текста; «Сеть» - DNS сети устройства, мимо туннеля; «Сервер» - DNS-сервер самого сервера внутри туннеля, пункт доступен, когда сервер его даёт; выбор известен только этому клиенту, и когда DNS-сервер панели остановится (режим «Автоматически» без правил по именам), при следующем подключении имена идут как при «По умолчанию»; «Своё значение» - адреса из поля, хотя бы один IPv4, пустое поле - <code class="language-plaintext highlighter-rouge">1.1.1.1</code>, <code class="language-plaintext highlighter-rouge">1.0.0.1</code>. Поле рядом серым показывает, на чём стоит выбор. Берётся при следующем подключении. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config vpn-dns &lt;имя&gt; default|network|server|own [&lt;серверы&gt;]</code>.</li>
   <li>«IPv6» - несёт ли туннель IPv6; по умолчанию выключено, см. <a href="routing.ru.html#ограничения">Ограничения</a>.</li>
-  <li>«Маршрутизация» - применять ли к этой конфигурации выбранный список маршрутизации. С выключенным переключателем туннель идёт по <code class="language-plaintext highlighter-rouge">AllowedIPs</code> из её текста. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config routing &lt;имя&gt; on|off</code>. У конфигурации, чей сервер разрешает только свои списки, переключатель включён и недоступен, см. <a href="#что-предлагает-сервер">Что предлагает сервер</a>.</li>
+  <li>«Маршрутизация» <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только с сервером AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только с сервером AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Только с сервером AmneziaGeo</span><span>Сервер AmneziaGeo оставил этой конфигурации только свои списки маршрутизации.</span><a href="/amneziageo/android/menu/configurations.ru.html#значок-amneziageo">Подробнее</a></span></span> - применять ли к этой конфигурации выбранный список маршрутизации. С выключенным переключателем туннель идёт по <code class="language-plaintext highlighter-rouge">AllowedIPs</code> из её текста. Из консоли: <code class="language-plaintext highlighter-rouge">amneziageo config routing &lt;имя&gt; on|off</code>. У конфигурации, чей сервер разрешает только свои списки, переключатель включён, недоступен и помечен значком AmneziaGeo, см. <a href="#что-предлагает-сервер">Что предлагает сервер</a>.</li>
 </ul>
 
-<h3 id="websocket">WebSocket</h3>
+<h3 id="websocket">WebSocket <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только с сервером AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только с сервером AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Только с сервером AmneziaGeo</span><span>Фронт WebSocket называет сам сервер AmneziaGeo: адрес и порт вводить не надо.</span><a href="/amneziageo/android/menu/configurations.ru.html#значок-amneziageo">Подробнее</a></span></span></h3>
 
 <p>AmneziaWG работает поверх UDP, а в некоторых сетях - корпоративный и гостевой Wi-Fi, часть мобильных операторов - он не проходит. Тогда весь туннель пускается поверх WebSocket по TCP: снаружи это выглядит как обычный HTTPS-трафик.</p>
 
@@ -239,9 +239,9 @@
 
 <p>Пока туннель переподключается, выбранное не идёт напрямую. Как это действует - в разделе <a href="home.ru.html#удержание-трафика-при-обрыве-туннеля">Удержание трафика при обрыве туннеля</a>.</p>
 
-<h3 id="разрешить-серверу-отключать-туннель">Разрешить серверу отключать туннель</h3>
+<h3 id="разрешить-серверу-отключать-туннель">Разрешить серверу отключать туннель <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только с сервером AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB" /><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" /></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только с сервером AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB" /><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" /></svg>Только с сервером AmneziaGeo</span><span>Сервер AmneziaGeo снимает туннель этого устройства, когда клиента выключают в панели.</span><a href="/amneziageo/android/menu/configurations.ru.html#значок-amneziageo">Подробнее</a></span></span></h3>
 
-<p>Сервер снимает туннель, когда этого клиента выключают на сервере. Как это действует - в разделе <a href="home.ru.html#удержание-трафика-при-обрыве-туннеля">Удержание трафика при обрыве туннеля</a>.</p>
+<p>Сервер снимает туннель, когда этого клиента выключают на сервере. Переключатель доступен, пока панель сервера AmneziaGeo этой конфигурации включила сигнал этому клиенту; с другим сервером или без сигнала он выключен и недоступен, а выбор, сделанный раньше, сохраняется. Как это действует - в разделе <a href="home.ru.html#удержание-трафика-при-обрыве-туннеля">Удержание трафика при обрыве туннеля</a>.</p>
 
 <h3 id="роутер">Роутер</h3>
 
@@ -261,7 +261,7 @@
 
 <p>Переключатель «Маршрутизация» на странице конфигурации заперт дольше: пока сервер держит флаг, он включён и недоступен с той же подсказкой, подключена конфигурация или нет, а <code class="language-plaintext highlighter-rouge">config routing &lt;имя&gt; off</code> отказывает тем же текстом. Флаг сняли - переключатель снова доступен.</p>
 
-<p>На карточке списка написано, откуда он: имя конфигурации, с которой он пришёл, или «Локальный» у списка, созданного на устройстве. Списки сервера старше идентификаторов добавляются по имени и сами не выбираются.</p>
+<p>На карточке списка написано, откуда он: имя конфигурации, с которой он пришёл, и перед ним значок <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только с сервером AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только с сервером AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Только с сервером AmneziaGeo</span><span>Список пришёл с сервера AmneziaGeo конфигурации, названной на карточке, новые версии приходят с него же.</span><a href="/amneziageo/android/menu/configurations.ru.html#значок-amneziageo">Подробнее</a></span></span>, или «Локальный» у списка, созданного на устройстве. Списки сервера старше идентификаторов добавляются по имени и сами не выбираются.</p>
 
 <p>Сервер другого вида или молчащий сервер ничего не меняет. Наш сервер остаётся нашим, пока трижды подряд не ответит как сервер другого вида или один раз при обновлении подписки; порт, который отказывает в соединении, считается таким ответом. Вопрос без ответа (время вышло, имя не нашлось, TLS не сошёлся, ошибка сервера) ничего не меняет, и сервер спрашивается снова после паузы, которая растёт вдвое от минуты до суток. Сервер, который на прошлый вопрос ответил как сервер другого вида, перед подключением спрашивается фоном, и подключение его не ждёт. Сервер, который ещё ни разу не ответил, сервером другого вида не считается: три следующих подключения ждут его снова, не дольше трёх секунд каждое, а дальше он тоже спрашивается фоном.</p>
 
@@ -270,6 +270,23 @@
 <p>Подписка, прочитанная по адресу, доказывается сертификатом её сервера: по хранилищу устройства или по корням Let’s Encrypt, которые приложение несёт с собой для устройства, в чьём хранилище их нет.</p>
 
 <p>Сервер со стороны панели описан в его репозитории: <a href="https://github.com/bor-project/amneziageo_server/tree/master/docs">amneziageo_server</a>.</p>
+
+<h3 id="значок-amneziageo">Значок AmneziaGeo</h3>
+
+<p>Синий круг со знаком питания <svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg> стоит у того, что работает только с сервером AmneziaGeo:</p>
+
+<ul>
+  <li>«Прокси»: вход WebSocket называет сам сервер, см. <a href="#websocket">WebSocket</a>;</li>
+  <li>«DNS»: пункт «Сервер», см. <a href="#транспорт">Транспорт</a>;</li>
+  <li>«Маршрутизация», пока сервер оставил конфигурации только свои списки;</li>
+  <li>«Разрешить серверу отключать туннель», см. <a href="#разрешить-серверу-отключать-туннель">Разрешить серверу отключать туннель</a>;</li>
+  <li>карточка списка, который пришёл с сервера: значок стоит перед именем конфигурации, см. <a href="routing.ru.html#карточка-списка">Карточка списка</a>;</li>
+  <li>«Сервис для проверки скорости передачи данных», см. <a href="diagnostics.ru.html#настройки-пробы">Настройки пробы</a>.</li>
+</ul>
+
+<p>Нажатие на значок открывает шторку: что даёт сервер AmneziaGeo и как обстоит дело у этой конфигурации - её сервер AmneziaGeo с этой возможностью, сервер AmneziaGeo без неё или сервер не AmneziaGeo либо ещё не ответил. Нажатие на значок не трогает переключатель рядом.</p>
+
+<p>На страницах этого сайта значок стоит у тех же настроек и открывает окно с тем же текстом. Панель сервера ставит тот же знак у того, что доходит только до приложения AmneziaGeo, см. <a href="https://bor-project.github.io/amneziageo_server/service/panel/index.ru.html#значок-amneziageo">Значок AmneziaGeo</a> на сайте сервера.</p>
 
 
         <footer class="article-footer">
@@ -282,6 +299,90 @@
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>

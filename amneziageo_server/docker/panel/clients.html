@@ -277,7 +277,7 @@
 
 <h3 id="export">Export</h3>
 
-<p>Three cards with a QR code: “QR: .conf file”, the file of the client; “QR: vpn:// link”, the same configuration as an Amnezia link; “QR: subscription”, the subscription address, while subscriptions are on (otherwise “Subscriptions are off”, “The client has no subscription address” or “The client has no private key”). Each has “Copy the text”, “Copy the picture” and “Download”. The picture is copied only over HTTPS or from <code class="language-plaintext highlighter-rouge">localhost</code>, where the browser allows it; the text is copied always. A long <code class="language-plaintext highlighter-rouge">AllowedIPs</code> list may not fit into the QR code of the file: then the panel opens the card on the link, in which it takes far less room, and if that does not fit either, it writes “Does not fit in a QR code”.</p>
+<p>Three cards with a QR code: “QR: .conf file”, the file of the client; “QR: vpn:// link”, the same configuration as an Amnezia link; “QR: subscription” <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only in the AmneziaGeo app" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only in the AmneziaGeo app" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only in the AmneziaGeo app</span><span>The AmneziaGeo app reads this code: it adds every configuration of the subscription and updates them itself.</span><span class="ag-mark-others">Other AmneziaWG clients do not get this: they get only the configuration file.</span><a href="/amneziageo_server/docker/panel/#amneziageo-mark">Learn more</a></span></span>, the subscription address, while subscriptions are on (otherwise “Subscriptions are off”, “The client has no subscription address” or “The client has no private key”). Each has “Copy the text”, “Copy the picture” and “Download”. The picture is copied only over HTTPS or from <code class="language-plaintext highlighter-rouge">localhost</code>, where the browser allows it; the text is copied always. A long <code class="language-plaintext highlighter-rouge">AllowedIPs</code> list may not fit into the QR code of the file: then the panel opens the card on the link, in which it takes far less room, and if that does not fit either, it writes “Does not fit in a QR code”.</p>
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/en/client-export.png" alt="Export tab of a client: QR codes of the subscription, the .conf file and the vpn:// link with buttons to copy and download" width="1440" height="900" loading="lazy" /><figcaption>QR codes of an invented configuration.</figcaption></figure>
 
@@ -324,7 +324,7 @@
       <td>where the name servers of the file come from: “As the level above” - as the template picks, without a template as on the server (the list names what comes out: “As in the template: Own servers”), “Automatic”, “Panel DNS server” - always it, “Network DNS” - no DNS line, “Own servers” - from the “Servers” field, “Interface DNS”; under the field - what the file will name and what contradicts, see <a href="dns.html#name-servers-in-the-file">Name servers in the file</a></td>
     </tr>
     <tr>
-      <td>Subscription</td>
+      <td>Subscription <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only in the AmneziaGeo app" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only in the AmneziaGeo app" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only in the AmneziaGeo app</span><span>The AmneziaGeo app reads the configurations of the client from this address itself and updates them.</span><span class="ag-mark-others">Other AmneziaWG clients do not get this: they get only the configuration file.</span><a href="/amneziageo_server/docker/panel/#amneziageo-mark">Learn more</a></span></span></td>
       <td>the subscription name under which the client is served by link; one name on several clients gathers them into one subscription, empty takes the client out of subscriptions, the button next to it makes a new name, see <a href="subscriptions.html">Subscriptions</a></td>
     </tr>
     <tr>
@@ -340,7 +340,7 @@
       <td>“As the interface says”, “Closed”, “The server alone”, “The whole tunnel network”, see below</td>
     </tr>
     <tr>
-      <td>Allow the server to disconnect the tunnel</td>
+      <td>Allow the server to disconnect the tunnel <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only in the AmneziaGeo app" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only in the AmneziaGeo app" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only in the AmneziaGeo app</span><span>When the client is turned off in the panel, the server sends a signal and the AmneziaGeo app takes the tunnel down on the device.</span><span class="ag-mark-others">Other AmneziaWG clients do not get this: they get only the configuration file.</span><a href="/amneziageo_server/docker/panel/#amneziageo-mark">Learn more</a></span></span></td>
       <td>whether to send the app the signal to take the tunnel down when the client is disabled, yes by default</td>
     </tr>
     <tr>
@@ -455,6 +455,90 @@
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>

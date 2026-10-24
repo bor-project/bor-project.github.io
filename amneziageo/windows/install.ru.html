@@ -184,8 +184,10 @@
 
 <ol>
   <li>Скачайте установщик своей архитектуры со страницы <a href="https://github.com/bor-project/amneziageo/releases">Releases</a>. Обычная сборка несёт в себе всё необходимое, вариант поменьше (<code class="language-plaintext highlighter-rouge">-fdd</code>) требует установленного <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET 10 Desktop Runtime</a>. Установщик x64 на компьютере ARM64 ставится, но туннель на нём не заработает; установщик об этом предупреждает.</li>
-  <li>Запустите его. «Параметры установки»: «Ярлык на рабочем столе», «Ярлык в меню Пуск», «Скачать обновления гео-баз» - скачать гео-базы, которых ещё нет или которые устарели, «Запустить AmneziaGeo после установки» и «Подключиться после запуска». Установятся служба агента и приложение: файлы лежат в <code class="language-plaintext highlighter-rouge">Program Files\AmneziaGeo</code>, данные - в <code class="language-plaintext highlighter-rouge">ProgramData\AmneziaGeo</code>.</li>
+  <li>Запустите его. Если вы ещё не принимали эту версию условий, установка и обновление в окне начинаются с условий использования и сведений о конфиденциальности, на двух вкладках, с версией условий под текстом: «Принимаю» ведёт к параметрам, «Выйти» закрывает установщик, ничего не меняя. Принятые здесь условия приложение второй раз не показывает. Тихая установка (<code class="language-plaintext highlighter-rouge">/quiet</code>) и обновление из приложения идут без этой страницы: новую версию условий покажет первый запуск приложения. «Параметры установки»: «Ярлык на рабочем столе», «Ярлык в меню Пуск», «Скачать обновления гео-баз» - скачать гео-базы, которых ещё нет или которые устарели, «Запустить AmneziaGeo после установки» и «Подключиться после запуска». Установятся служба агента и приложение: файлы лежат в <code class="language-plaintext highlighter-rouge">Program Files\AmneziaGeo</code>, данные - в <code class="language-plaintext highlighter-rouge">ProgramData\AmneziaGeo</code>.</li>
 </ol>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/ru/install-terms.png" alt="Условия при новой установке: вкладки «Условия использования» и «Конфиденциальность», текст, строка версии, «Выйти» и «Принимаю»" width="504" height="502" loading="lazy" /><figcaption>Условия перед параметрами установки.</figcaption></figure>
 
 <figure class="shot"><img src="/amneziageo/assets/img/windows/ru/install-options.png" alt="Параметры обновления: гео-базы, запуск после установки, подключение, ярлыки, сброс настроек" width="504" height="502" loading="lazy" /><figcaption>Параметры при обновлении; новая установка показывает те же отметки.</figcaption></figure>
 
@@ -224,6 +226,90 @@
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>

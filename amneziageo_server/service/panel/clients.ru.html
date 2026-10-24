@@ -268,7 +268,7 @@
 
 <h3 id="экспорт">Экспорт</h3>
 
-<p>Три карточки с QR-кодом: «QR: файл .conf» - файл клиента, «QR: ссылка vpn://» - та же конфигурация ссылкой Amnezia, «QR: подписка» - адрес подписки, пока подписки включены (иначе «Подписки выключены», «У клиента нет адреса подписки» или «У клиента нет закрытого ключа»). У каждой «Копировать текст», «Копировать картинку» и «Скачать». Картинка копируется только по HTTPS или с <code class="language-plaintext highlighter-rouge">localhost</code>, где браузер это разрешает; текст копируется всегда. Длинный список <code class="language-plaintext highlighter-rouge">AllowedIPs</code> может не поместиться в QR-код файла: тогда панель открывает карточку на ссылке, в которой он занимает куда меньше места, а если не помещается и она, пишет «Не помещается в QR-код».</p>
+<p>Три карточки с QR-кодом: «QR: файл .conf» - файл клиента, «QR: ссылка vpn://» - та же конфигурация ссылкой Amnezia, «QR: подписка» <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только в приложении AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только в приложении AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Только в приложении AmneziaGeo</span><span>Этот код читает приложение AmneziaGeo: добавляет все конфигурации подписки и само их обновляет.</span><span class="ag-mark-others">Другие клиенты AmneziaWG этого не получают: им доходит только файл конфигурации.</span><a href="/amneziageo_server/service/panel/index.ru.html#значок-amneziageo">Подробнее</a></span></span> - адрес подписки, пока подписки включены (иначе «Подписки выключены», «У клиента нет адреса подписки» или «У клиента нет закрытого ключа»). У каждой «Копировать текст», «Копировать картинку» и «Скачать». Картинка копируется только по HTTPS или с <code class="language-plaintext highlighter-rouge">localhost</code>, где браузер это разрешает; текст копируется всегда. Длинный список <code class="language-plaintext highlighter-rouge">AllowedIPs</code> может не поместиться в QR-код файла: тогда панель открывает карточку на ссылке, в которой он занимает куда меньше места, а если не помещается и она, пишет «Не помещается в QR-код».</p>
 
 <figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-export.png" alt="Вкладка «Экспорт» клиента: QR-коды подписки, файла .conf и ссылки vpn:// с кнопками копирования и скачивания" width="1440" height="900" loading="lazy" /><figcaption>QR-коды выдуманной конфигурации.</figcaption></figure>
 
@@ -315,7 +315,7 @@
       <td>откуда серверы имён файла: «Как уровнем выше» - как у шаблона, без шаблона - как на сервере (список называет, что выйдет: «Как в шаблоне: Свои серверы»), «Автоматически», «DNS-сервер панели» - всегда он, «DNS сети» - без строки DNS, «Свои серверы» - из поля «Серверы», «DNS интерфейса»; под полем - что будет в файле и что противоречит, см. <a href="dns.ru.html#серверы-имён-в-файле">Серверы имён в файле</a></td>
     </tr>
     <tr>
-      <td>Подписка</td>
+      <td>Подписка <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только в приложении AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только в приложении AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Только в приложении AmneziaGeo</span><span>С этого адреса приложение AmneziaGeo само читает конфигурации клиента и обновляет их.</span><span class="ag-mark-others">Другие клиенты AmneziaWG этого не получают: им доходит только файл конфигурации.</span><a href="/amneziageo_server/service/panel/index.ru.html#значок-amneziageo">Подробнее</a></span></span></td>
       <td>имя подписки, под которым клиент отдаётся по ссылке; одно имя у нескольких клиентов собирает их в одну подписку, пусто выводит клиента из подписок, кнопка рядом делает новое имя, см. <a href="subscriptions.ru.html">Подписки</a></td>
     </tr>
     <tr>
@@ -331,7 +331,7 @@
       <td>«Как у интерфейса», «Закрыт», «Только сервер», «Вся сеть туннеля», см. ниже</td>
     </tr>
     <tr>
-      <td>Разрешить серверу отключать туннель</td>
+      <td>Разрешить серверу отключать туннель <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Только в приложении AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только в приложении AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Только в приложении AmneziaGeo</span><span>Когда клиента выключают в панели, сервер посылает сигнал, и приложение AmneziaGeo снимает туннель на устройстве.</span><span class="ag-mark-others">Другие клиенты AmneziaWG этого не получают: им доходит только файл конфигурации.</span><a href="/amneziageo_server/service/panel/index.ru.html#значок-amneziageo">Подробнее</a></span></span></td>
       <td>слать ли приложению сигнал опустить туннель при выключении клиента, по умолчанию да</td>
     </tr>
     <tr>
@@ -446,6 +446,90 @@
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>

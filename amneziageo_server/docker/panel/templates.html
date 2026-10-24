@@ -276,15 +276,15 @@
 
 <p>While a template is being edited, the panel counts what each entry gives: “Addresses: N” on the entry and on the whole template, “Show what it holds” unfolds the first addresses or names of a category (“No entries: the category is absent from the downloaded databases”). Over 12000 ranges means “the speed may drop”, over 16000 “too many addresses to save”. A template holds no more than 256 entries.</p>
 
-<p>“Routing presets” are the lists the AmneziaGeo app of a client of the template gets, in the order of handing out, while routing happens on the client; the name of a preset leads to its settings, see <a href="presets.html">Routing presets</a>; “No presets: add them in the tab Routing presets” while none are made.</p>
+<p>“Routing presets” <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only in the AmneziaGeo app" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only in the AmneziaGeo app" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only in the AmneziaGeo app</span><span>The AmneziaGeo app takes these routing lists itself and adds them for the user.</span><span class="ag-mark-others">Other AmneziaWG clients do not get this: they get only the configuration file.</span><a href="/amneziageo_server/docker/panel/#amneziageo-mark">Learn more</a></span></span> are the lists the AmneziaGeo app of a client of the template gets, in the order of handing out, while routing happens on the client; the name of a preset leads to its settings, see <a href="presets.html">Routing presets</a>; “No presets: add them in the tab Routing presets” while none are made.</p>
 
-<p>“Server lists only” under the presets: while a configuration of a client of the template is connected, the app offers these lists alone: the own lists of the user and no list at all are not offered for it. The “Routing” switch of such a configuration stays on as long as the template holds the flag, connected or not. The flag turns on once a preset is picked and goes off with the last preset. An app that does not know the flag does not see it and picks lists as before.</p>
+<p>“Server lists only” <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only in the AmneziaGeo app" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only in the AmneziaGeo app" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only in the AmneziaGeo app</span><span>The AmneziaGeo app keeps the restriction: for these configurations it does not let the user pick their own lists or no list at all.</span><span class="ag-mark-others">Other AmneziaWG clients do not get this: they get only the configuration file.</span><a href="/amneziageo_server/docker/panel/#amneziageo-mark">Learn more</a></span></span> under the presets: while a configuration of a client of the template is connected, the app offers these lists alone: the own lists of the user and no list at all are not offered for it. The “Routing” switch of such a configuration stays on as long as the template holds the flag, connected or not. The flag turns on once a preset is picked and goes off with the last preset. An app that does not know the flag does not see it and picks lists as before.</p>
 
 <h2 id="route-by-name">Route by name</h2>
 
 <p>A client with nothing but <code class="language-plaintext highlighter-rouge">AllowedIPs</code> cannot follow a name. A service behind a CDN answers with the cache nearest to whoever asks; the caches stand in the networks of providers and change, and neither the addresses a pass found nor the geo ranges of the service cover them. With the “Route by name” switch in the “Routing” part, the names of the template (<code class="language-plaintext highlighter-rouge">geosite:</code> and <code class="language-plaintext highlighter-rouge">domain:</code>) are not unfolded into addresses, and such entries show “by name” instead of a number of addresses. The DNS server of the panel answers a client of the template about these names with a stand-in address out of <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code>: one address per name, the same for as long as the name is asked about, and the same on every server as long as two names do not land on one address. The host leads a connection to the stand-in to the real address the DNS server got for the name and decides it by the real one, so the rules of the server see such a connection as any other, see <a href="dns.html#stand-in-addresses">Stand-in addresses</a>.</p>
 
-<figure class="shot"><img src="/amneziageo_server/assets/img/en/template-form.png" alt="Form of a template: geosite entries marked by name and the Route by name switch on" width="1440" height="900" loading="lazy" /><figcaption>A template with routing by name.</figcaption></figure>
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/template-form.png" alt="Form of a template: geosite entries marked by name, the Route by name switch on, the Routing presets and Server lists only fields with the AmneziaGeo mark" width="1440" height="900" loading="lazy" /><figcaption>A template with routing by name.</figcaption></figure>
 
 <p>The file of such a client carries the DNS server of the panel as its only name server (the “DNS” field of the “Network” part stands at “Panel DNS server” and cannot be edited), and in <code class="language-plaintext highlighter-rouge">AllowedIPs</code> the networks and addresses of the template, <code class="language-plaintext highlighter-rouge">198.19.0.0/16</code> and the address of the DNS server. A geo key of addresses (<code class="language-plaintext highlighter-rouge">geoip:</code>) stays a range: it serves the applications that go to addresses without asking a name, Telegram and calls among them.</p>
 
@@ -389,6 +389,90 @@
       if (window.matchMedia('(max-width: 800px)').matches) {
         document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
       }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
     </script>
   </body>
 </html>
