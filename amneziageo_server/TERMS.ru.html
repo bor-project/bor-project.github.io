@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Условия использования сервера AmneziaGeo · AmneziaGeo Server</title>
+    <meta name="description" content="Panel for an AmneziaWG server - interfaces, clients, templates and subscriptions, routing by geo databases and domains through other servers, a DNS server for the clients, updates and backups. Debian and Ubuntu, as a service or in Docker.">
+    <link rel="canonical" href="https://bor-project.github.io/amneziageo_server/TERMS.ru.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AmneziaGeo Server">
+    <meta property="og:title" content="Условия использования сервера AmneziaGeo · AmneziaGeo Server">
+    <meta property="og:description" content="Panel for an AmneziaWG server - interfaces, clients, templates and subscriptions, routing by geo databases and domains through other servers, a DNS server for the clients, updates and backups. Debian and Ubuntu, as a service or in Docker.">
+    <meta property="og:url" content="https://bor-project.github.io/amneziageo_server/TERMS.ru.html">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/TERMS.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/TERMS.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/TERMS.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+    <script>
+      try {
+        var theme = localStorage.getItem('amneziageo-theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      } catch (e) {}
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <button class="theme" type="button" hidden data-auto="Тема: как в системе" data-light="Тема: светлая" data-dark="Тема: тёмная">
+          <svg class="theme-auto" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          <svg class="theme-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <script>
+          (function () {
+            var key = 'amneziageo-theme';
+            var order = ['auto', 'light', 'dark'];
+            var root = document.documentElement;
+            var button = document.currentScript.previousElementSibling;
+            function current() {
+              return root.getAttribute('data-theme') || 'auto';
+            }
+            function label() {
+              var text = button.getAttribute('data-' + current());
+              button.title = text;
+              button.setAttribute('aria-label', text);
+            }
+            button.addEventListener('click', function () {
+              var next = order[(order.indexOf(current()) + 1) % order.length];
+              if (next === 'auto') {
+                root.removeAttribute('data-theme');
+              } else {
+                root.setAttribute('data-theme', next);
+              }
+              try {
+                if (next === 'auto') {
+                  localStorage.removeItem(key);
+                } else {
+                  localStorage.setItem(key, next);
+                }
+              } catch (e) {}
+              label();
+            });
+            label();
+            button.hidden = false;
+          })();
+        </script>
+
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/TERMS.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-nav" aria-label="Способ установки">
+  <p class="sidebar-label">Способ установки</p>
+  <a href="/amneziageo_server/service/index.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/index.ru.html">Docker</a></nav>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+          <a href="/amneziageo_server/TERMS.ru.html" aria-current="page">Условия использования</a>
+          <a href="/amneziageo_server/PRIVACY.ru.html">Конфиденциальность</a>
+          <a href="/amneziageo_server/THIRD-PARTY.ru.html">Сторонние компоненты</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <h1 id="условия-использования-сервера-amneziageo">Условия использования сервера AmneziaGeo</h1>
+
+<p>Версия 1 от 24.10.2026</p>
+
+<h2 id="программа-и-лицензия">Программа и лицензия</h2>
+
+<p>Сервер AmneziaGeo (служба, панель и меню установки) - свободная программа с открытым кодом. Она распространяется по лицензии GNU General Public License версии 3 или более поздней (GPL-3.0). Лицензия разрешает запускать, изучать, менять и распространять программу. Эти условия её права не сужают: они говорят, как программа работает и за что отвечаете вы.</p>
+
+<h2 id="как-есть">Как есть</h2>
+
+<p>Программа поставляется «как есть», без каких-либо гарантий, явных или подразумеваемых. В том числе нет гарантии, что она подойдёт для вашей цели, будет работать без сбоев, сохранит данные или будет недоступна посторонним. Авторы не отвечают за ущерб от использования программы или от невозможности ею пользоваться, в той мере, в какой это допускает закон (разделы 15 и 16 GPL-3.0).</p>
+
+<h2 id="ваш-сервер-и-ваши-клиенты">Ваш сервер и ваши клиенты</h2>
+
+<p>Сервер ставите и держите вы. Через него идёт трафик ваших клиентов, и вы видите, к каким адресам и когда они обращаются. Вы сами отвечаете:</p>
+
+<ul>
+  <li>за доступ к серверу и панели, пароли и ключи;</li>
+  <li>за то, кого вы подключаете и что сообщаете им о сервере;</li>
+  <li>за соблюдение законов страны, где стоит сервер, и стран ваших клиентов, в том числе о хранении данных о соединениях.</li>
+</ul>
+
+<h2 id="обновления">Обновления</h2>
+
+<p>Сервер сам спрашивает GitHub (api.github.com) о новых версиях и скачивает их оттуда (github.com, для Docker - образы ghcr.io). Запрос не несёт ничего о вашем сервере и клиентах. GitHub видит то же, что любой сайт: адрес, с которого пришёл запрос, и название программы.</p>
+
+<p>Остальные адреса, к которым сервер обращается сам, перечислены в разделе «Конфиденциальность».</p>
+
+<h2 id="сертификат">Сертификат</h2>
+
+<p>Сертификат Let’s Encrypt меню получает только с вашего согласия, на условиях Let’s Encrypt.</p>
+
+<h2 id="изменения-условий">Изменения условий</h2>
+
+<p>Новая версия условий покажется один раз при первом входе в панель после обновления. Кто и когда принял условия, хранится в базе вашей панели.</p>
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+    </script>
+  </body>
+</html>

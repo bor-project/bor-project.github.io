@@ -174,7 +174,9 @@
 
         <div class="policy-links">
           <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/TERMS.html">Terms of use</a>
           <a href="/amneziageo/PRIVACY.html">Privacy</a>
+          <a href="/amneziageo/THIRD-PARTY.html">Third-party components</a>
         </div>
       </aside>
       <main id="content" class="article" tabindex="-1">
@@ -279,6 +281,8 @@
 <p>Private addresses are never picked up by such a rule: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, CGNAT and link-local always stay off the tunnel. To send an application into a remote local network, use an address-range rule.</p>
 
 <p>In a full-tunnel list a program is added with the direct role: the tunnel carries the whole machine and the traffic of that program leaves past it. An address the list blocks or sends through the tunnel itself follows the rule of the list for that program too.</p>
+
+<p>In an “Only selected” list the tunnel is given to the address the program reached for and the name it looked up, not to the program. While the route of the address lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use, across a reconnect too), every program of the machine reaches it through the tunnel, not only the named one. An address the program looked up by name has its route into the tunnel before the answer reaches the program, even if another program has reached it past the tunnel before: while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client.</p>
 
 <p>The way past the tunnel is given to the address the program reached for, not to the program. An address the program looked up by name has its route past the tunnel before the answer reaches the program, so the first attempt goes through; while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client. The first attempt at an address the program reached without a name lookup is refused, and a second or two later the address has a route past the tunnel. While a route lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use) every program of the machine reaches the address past the tunnel. A UDP socket connected to such an address earlier has to be opened again. A program named by its name, package or service, and a child process whose file lies outside a named folder, is not refused the tunnel: an address it reached without a name lookup goes through the tunnel for the first second or two, then that connection is dropped and opens again past the tunnel. An edit of the set of programs applies without a reconnect.</p>
 

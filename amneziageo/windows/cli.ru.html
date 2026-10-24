@@ -165,7 +165,9 @@
 
         <div class="policy-links">
           <a href="/amneziageo/build.ru.html">Сборка из исходников</a>
-          <a href="/amneziageo/PRIVACY.html">Конфиденциальность (EN)</a>
+          <a href="/amneziageo/TERMS.ru.html">Условия использования</a>
+          <a href="/amneziageo/PRIVACY.ru.html">Конфиденциальность</a>
+          <a href="/amneziageo/THIRD-PARTY.ru.html">Сторонние компоненты</a>
         </div>
       </aside>
       <main id="content" class="article" tabindex="-1">
@@ -257,11 +259,11 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> для передачи</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config import [&lt;имя&gt;] (--file &lt;путь&gt; \| --link &lt;url&gt; \| --text &lt;текст&gt; \| --stdin)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config import [&lt;имя&gt;] (--file &lt;путь&gt; | --link &lt;url&gt; | --text &lt;текст&gt; | --stdin)</code></td>
       <td>добавить; адрес <code class="language-plaintext highlighter-rouge">http(s)</code> читается как подписка</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config edit &lt;имя&gt; (--file &lt;путь&gt; \| --text &lt;текст&gt; \| --stdin)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config edit &lt;имя&gt; (--file &lt;путь&gt; | --text &lt;текст&gt; | --stdin)</code></td>
       <td>заменить текст</td>
     </tr>
     <tr>
@@ -285,39 +287,39 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>DNS для имён, которые идут напрямую; без аргумента - сброс</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config vpn-dns &lt;имя&gt; default\|network\|server\|own [&lt;серверы&gt;]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config vpn-dns &lt;имя&gt; default|network|server|own [&lt;серверы&gt;]</code></td>
       <td>DNS для имён через VPN: что выбрал сервер, DNS сети, DNS-сервер сервера в туннеле или эти серверы, см. <a href="menu/configurations.ru.html#транспорт">Транспорт</a></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config exclusions &lt;имя&gt; (--file &lt;путь&gt; \| --stdin \| --list a,b,c \| --clear)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config exclusions &lt;имя&gt; (--file &lt;путь&gt; | --stdin | --list a,b,c | --clear)</code></td>
       <td>адреса и подсети мимо VPN</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config websocket &lt;имя&gt; on\|off [--host &lt;хост&gt;] [--port &lt;порт&gt;] [--mtu &lt;n&gt;] [--ipv6 on\|off] [--router on\|off]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config websocket &lt;имя&gt; on|off [--host &lt;хост&gt;] [--port &lt;порт&gt;] [--mtu &lt;n&gt;] [--ipv6 on|off] [--router on|off]</code></td>
       <td>транспорт WebSocket и соседние переключатели</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config mtu &lt;имя&gt; auto\|config\|&lt;число&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config mtu &lt;имя&gt; auto|config|&lt;число&gt;</code></td>
       <td>размер пакета: подобранный, из текста или заданный</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config inbound &lt;имя&gt; off\|host\|network</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config inbound &lt;имя&gt; off|host|network</code></td>
       <td>входящие из VPN-сети: никто, сервер или вся сеть туннеля</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config routing &lt;имя&gt; on\|off</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config routing &lt;имя&gt; on|off</code></td>
       <td>применять ли к конфигурации список маршрутизации</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config signal &lt;имя&gt; on\|off</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config signal &lt;имя&gt; on|off</code></td>
       <td>разрешить ли серверу снимать туннель</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config hold &lt;имя&gt; on\|off</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config hold &lt;имя&gt; on|off</code></td>
       <td>удерживать ли трафик, пока туннель переподключается</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config geo &lt;имя&gt; on\|off [правило...]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">config geo &lt;имя&gt; on|off [правило...]</code></td>
       <td>собственные правила раздельного туннеля конфигурации, без ролей</td>
     </tr>
   </tbody>
@@ -338,11 +340,11 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>списки; <code class="language-plaintext highlighter-rouge">READ-ONLY yes</code> у списка, который сервер держит «Только чтение»: его команды правки и удаления отклоняют; строка под таблицей называет разрешённые списки, пока подключена конфигурация, чей сервер разрешает только свои</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing use &lt;id\|имя\|none&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing use &lt;id|имя|none&gt;</code></td>
       <td>выбрать список; <code class="language-plaintext highlighter-rouge">none</code> оставляет решение за <code class="language-plaintext highlighter-rouge">AllowedIPs</code> конфигурации</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing show &lt;id\|имя&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing show &lt;id|имя&gt;</code></td>
       <td>правила списка; у <code class="language-plaintext highlighter-rouge">app:&lt;имя&gt;</code> - что нашло устройство: <code class="language-plaintext highlighter-rouge">-&gt; &lt;путь или пакет&gt;</code>, <code class="language-plaintext highlighter-rouge">-&gt; not found</code>, <code class="language-plaintext highlighter-rouge">-&gt; searching</code></td>
     </tr>
     <tr>
@@ -350,23 +352,23 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>создать</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing set &lt;id\|имя&gt; [правило...]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing set &lt;id|имя&gt; [правило...]</code></td>
       <td>заменить все правила</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing add &lt;id\|имя&gt; &lt;правило...&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing add &lt;id|имя&gt; &lt;правило...&gt;</code></td>
       <td>добавить; правило, которое уже есть, получает новую роль</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing delete-rule &lt;id\|имя&gt; &lt;правило...&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing delete-rule &lt;id|имя&gt; &lt;правило...&gt;</code></td>
       <td>удалить правила</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing remove &lt;id\|имя&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing remove &lt;id|имя&gt;</code></td>
       <td>удалить список</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing update &lt;id\|имя&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing update &lt;id|имя&gt;</code></td>
       <td>взять новую версию списка, которую прислал его сервер</td>
     </tr>
     <tr>
@@ -374,11 +376,11 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>порядок в разделе</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing settings &lt;id\|имя&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing settings &lt;id|имя&gt;</code></td>
       <td>настройки трафика</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing configure &lt;id\|имя&gt; [--exclusions &lt;a,b&gt;] [--exclusions-file &lt;путь&gt;] [--all-udp on\|off] [--global-proxy on\|off]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">routing configure &lt;id|имя&gt; [--exclusions &lt;a,b&gt;] [--exclusions-file &lt;путь&gt;] [--all-udp on|off] [--global-proxy on|off]</code></td>
       <td>исключения, весь UDP через туннель, полный туннель</td>
     </tr>
   </tbody>
@@ -421,11 +423,11 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>источники</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">source add geosite\|geoip &lt;url&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">source add geosite|geoip &lt;url&gt;</code></td>
       <td>добавить источник</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">source edit &lt;имя&gt; geosite\|geoip &lt;url&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">source edit &lt;имя&gt; geosite|geoip &lt;url&gt;</code></td>
       <td>изменить</td>
     </tr>
     <tr>
@@ -451,7 +453,7 @@ amneziageo tui                      <span class="c"># полноэкранная
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">sub add &lt;url&gt; [&lt;имя&gt;]</code></td>
-      <td>прочитать подписку и добавить её конфигурации</td>
+      <td>прочитать подписку и добавить её конфигурации; подписку не от панели AmneziaGeo не добавляет</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">sub refresh [&lt;имя&gt;]</code></td>
@@ -538,7 +540,7 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>где слушает прокси и что спрашивает</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">proxy on [--socks &lt;порт&gt;] [--http &lt;порт&gt;] [--anon on\|off] [--auth &lt;пользователь:пароль&gt;]... [--auth off]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">proxy on [--socks &lt;порт&gt;] [--http &lt;порт&gt;] [--anon on|off] [--auth &lt;пользователь:пароль&gt;]... [--auth off]</code></td>
       <td>включить</td>
     </tr>
     <tr>
@@ -550,7 +552,7 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>что несёт точка доступа и кто к ней подключён</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">hotspot on [--ssid &lt;имя&gt;] [--password &lt;пароль&gt;] [--band auto\|2.4\|5] [--hidden on\|off]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">hotspot on [--ssid &lt;имя&gt;] [--password &lt;пароль&gt;] [--band auto|2.4|5] [--hidden on|off]</code></td>
       <td>включить</td>
     </tr>
     <tr>
@@ -571,7 +573,7 @@ amneziageo tui                      <span class="c"># полноэкранная
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">log tail [--table ageo\|dns\|routes\|checks] [--limit &lt;n&gt;] [--level &lt;уровень&gt;] [--search &lt;текст&gt;]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">log tail [--table ageo|dns|routes|checks] [--limit &lt;n&gt;] [--level &lt;уровень&gt;] [--search &lt;текст&gt;]</code></td>
       <td>хвост журнала: агента, резолвера, маршрутов или проверок</td>
     </tr>
     <tr>
@@ -634,6 +636,10 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td><code class="language-plaintext highlighter-rouge">update check</code></td>
       <td>есть ли новая версия приложения</td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">about</code></td>
+      <td>версия, лицензия и ссылки на условия использования, конфиденциальность и сторонние компоненты</td>
+    </tr>
   </tbody>
 </table>
 
@@ -652,7 +658,7 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>файл с конфигурациями и списками</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">bundle import (--file &lt;путь&gt; \| --stdin) [--policy new\|replace\|skip\|merge]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">bundle import (--file &lt;путь&gt; | --stdin) [--policy new|replace|skip|merge]</code></td>
       <td>принять файл; <code class="language-plaintext highlighter-rouge">--policy</code> решает, что делать при совпадении имён</td>
     </tr>
   </tbody>

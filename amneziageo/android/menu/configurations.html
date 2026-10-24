@@ -168,7 +168,9 @@
 
         <div class="policy-links">
           <a href="/amneziageo/build.html">Building from source</a>
+          <a href="/amneziageo/TERMS.html">Terms of use</a>
           <a href="/amneziageo/PRIVACY.html">Privacy</a>
+          <a href="/amneziageo/THIRD-PARTY.html">Third-party components</a>
         </div>
       </aside>
       <main id="content" class="article" tabindex="-1">
@@ -194,7 +196,7 @@
 
 <ul>
   <li>“Load file” - a <code class="language-plaintext highlighter-rouge">.conf</code> file or a picture with a QR code. The file is picked with the system file picker; on a TV and where there is none, with the built-in browser: “App folder”, “Shared storage”, and files outside the app folder show after “Allow access to all files…”.</li>
-  <li>“Paste” - from the clipboard: the text of a wg-quick configuration, a <code class="language-plaintext highlighter-rouge">vpn://</code> link or an <code class="language-plaintext highlighter-rouge">http(s)</code> subscription address. The application recognises a subscription address itself, reads it and loads the configurations it hands out, and then keeps them fresh, see <a href="connections.html#subscription-auto-refresh">Subscription auto-refresh</a>. An address without encryption is marked with a warning: the keys from the subscription travel as plain text.</li>
+  <li>“Paste” - from the clipboard: the text of a wg-quick configuration, a <code class="language-plaintext highlighter-rouge">vpn://</code> link or an <code class="language-plaintext highlighter-rouge">http(s)</code> subscription address. The application recognises a subscription address itself, reads it and loads the configurations it hands out, and then keeps them fresh, see <a href="connections.html#subscription-auto-refresh">Subscription auto-refresh</a>. An address without encryption is marked with a warning: the keys from the subscription travel as plain text. An address that is not served by an AmneziaGeo panel is not added: the application answers “subscription … is not from an AmneziaGeo panel” and writes a warning to the log.</li>
   <li>“Scan QR code” - with the camera, where there is one.</li>
   <li>“Create manually” - an editor of wg-quick text; the <code class="language-plaintext highlighter-rouge">[Interface]</code> and <code class="language-plaintext highlighter-rouge">[Peer]</code> sections are required.</li>
 </ul>
