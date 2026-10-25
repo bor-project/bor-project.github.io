@@ -140,6 +140,9 @@
         <a href="/amneziageo/windows/recipes/index.ru.html">Рецепты</a>
         <ul>
           <li>
+            <a href="/amneziageo/windows/recipes/browser.ru.html">Браузер через VPN</a>
+          </li>
+          <li>
             <a href="/amneziageo/windows/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
           </li>
           <li>
@@ -380,8 +383,8 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>настройки трафика</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing configure &lt;id|имя&gt; [--exclusions &lt;a,b&gt;] [--exclusions-file &lt;путь&gt;] [--all-udp on|off] [--global-proxy on|off]</code></td>
-      <td>исключения, весь UDP через туннель, полный туннель</td>
+      <td><code class="language-plaintext highlighter-rouge">routing configure &lt;id|имя&gt; [--exclusions &lt;a,b&gt;] [--exclusions-file &lt;путь&gt;] [--all-udp on|off] [--global-proxy off]</code></td>
+      <td>исключения, весь UDP через туннель; <code class="language-plaintext highlighter-rouge">--global-proxy off</code> переводит прежний список «Всё, кроме выбранного» в обычный, включить этот режим нельзя</td>
     </tr>
   </tbody>
 </table>

@@ -149,6 +149,9 @@
         <a href="/amneziageo/windows/recipes/">Recipes</a>
         <ul>
           <li>
+            <a href="/amneziageo/windows/recipes/browser.html">Browser through the VPN</a>
+          </li>
+          <li>
             <a href="/amneziageo/windows/recipes/discord-udp.html" aria-current="page">Discord where UDP is blocked</a>
           </li>
           <li>
@@ -190,7 +193,7 @@
 
         <h1 id="discord-where-udp-is-blocked">Discord where UDP is blocked</h1>
 
-<p>The simplest way is the ready template: a new list, the “Only selected” mode, the “Unavailable sites” template. It already holds <code class="language-plaintext highlighter-rouge">geosite:discord</code> - the domains of Discord - and <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code> - the networks of its voice servers from the project’s own database, and “All UDP through the tunnel” is on.</p>
+<p>The simplest way is the ready template: a new list, the “Unavailable sites” template. It already holds <code class="language-plaintext highlighter-rouge">geosite:discord</code> - the domains of Discord - and <code class="language-plaintext highlighter-rouge">geoip:ag-discord-voice</code> - the networks of its voice servers from the project’s own database. For voice whose addresses are not in the database to go into the tunnel too, turn “All UDP through the tunnel” on in the list, as in step 3 below.</p>
 
 <p>With a list of your own:</p>
 

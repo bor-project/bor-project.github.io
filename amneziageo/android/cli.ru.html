@@ -140,6 +140,9 @@
         <a href="/amneziageo/android/recipes/index.ru.html">Рецепты</a>
         <ul>
           <li>
+            <a href="/amneziageo/android/recipes/browser.ru.html">Браузер через VPN</a>
+          </li>
+          <li>
             <a href="/amneziageo/android/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
           </li>
           <li>
@@ -377,8 +380,8 @@ amneziageo tui                      <span class="c"># полноэкранная
       <td>настройки трафика</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">routing configure &lt;id|имя&gt; [--exclusions &lt;a,b&gt;] [--exclusions-file &lt;путь&gt;] [--all-udp on|off] [--global-proxy on|off]</code></td>
-      <td>исключения, весь UDP через туннель, полный туннель</td>
+      <td><code class="language-plaintext highlighter-rouge">routing configure &lt;id|имя&gt; [--exclusions &lt;a,b&gt;] [--exclusions-file &lt;путь&gt;] [--all-udp on|off] [--global-proxy off]</code></td>
+      <td>исключения, весь UDP через туннель; <code class="language-plaintext highlighter-rouge">--global-proxy off</code> переводит прежний список «Всё, кроме выбранного» в обычный, включить этот режим нельзя</td>
     </tr>
   </tbody>
 </table>
@@ -514,6 +517,10 @@ amneziageo tui                      <span class="c"># полноэкранная
     <tr>
       <td><code class="language-plaintext highlighter-rouge">subscription-refresh-interval-hours</code></td>
       <td>от 1 до 168: как часто, если панель не задала свой интервал</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">split-route-limit</code></td>
+      <td>от 1000 до 100000: сколько записей список держит в таблице маршрутов, прежде чем адреса решает релей; по умолчанию 11000</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">tunnel-notice</code></td>

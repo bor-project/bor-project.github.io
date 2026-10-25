@@ -149,6 +149,9 @@
         <a href="/amneziageo/windows/recipes/">Recipes</a>
         <ul>
           <li>
+            <a href="/amneziageo/windows/recipes/browser.html">Browser through the VPN</a>
+          </li>
+          <li>
             <a href="/amneziageo/windows/recipes/discord-udp.html">Discord where UDP is blocked</a>
           </li>
           <li>
@@ -190,20 +193,24 @@
 
         <h1 id="routing">Routing</h1>
 
-<h2 id="modes">Modes</h2>
+<h2 id="how-traffic-goes">How traffic goes</h2>
+
+<p>A routing list sends through the VPN only what matches its rules, and the rest goes directly (split tunneling). Domains add themselves as soon as a DNS answer arrives for them. The list does not belong to a configuration: the same list attaches to different servers.</p>
+
+<p>A fresh install holds no list, and everything goes through the VPN until one is in use: a list the owner adds, or a list a server hands out, see <a href="configurations.html#what-the-server-offers">What the server offers</a>. On the home screen the “Routing” switch turns the whole list on and off: with it off the tunnel follows the <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of the configuration.</p>
+
+<p><a id="full-mode"></a></p>
+
+<h3 id="why-there-is-no-everything-except-selected-mode">Why there is no “Everything except selected” mode</h3>
+
+<p>A list used to have a second mode, “Everything except selected”: everything went through the VPN but the entries of “Direct”. It is gone because it gives the server away:</p>
 
 <ul>
-  <li><strong>Full tunnel.</strong> Everything goes through the VPN, with the local network still reachable direct. The kill switch cuts internet access if the tunnel drops.</li>
-  <li><strong>Split tunnel.</strong> Traffic goes direct by default, and only what matches the rules takes the VPN. Domains add themselves as soon as a DNS answer arrives for them.</li>
+  <li>in that mode nearly everyone puts the <code class="language-plaintext highlighter-rouge">ru</code> region into “Direct” and leaves it at that, while Russian apps (Ozon, for one) check blocked sites from the device themselves: those requests go through the tunnel, the app sees the address of the server and gives it away;</li>
+  <li>the <code class="language-plaintext highlighter-rouge">ru</code> region is about 25,000 addresses and does not fit into a configuration whole, so the client has to turn dynamic routing on; other apps see it and know the device runs a VPN, even when their traffic does not leave the country.</li>
 </ul>
 
-<p>The mode belongs to the routing list, not to the configuration: the same list attaches to different servers.</p>
-
-<p>A fresh install holds no list, and everything goes through the VPN until one is in use: a list the owner adds, or a list a server hands out, see <a href="configurations.html#what-the-server-offers">What the server offers</a>.</p>
-
-<p>In the app the mode is called “VPN mode for apps” and is chosen when a list is created: “Only selected” is the split tunnel, the sites and apps of the list connect through the VPN and the rest directly; “Everything except selected” is the full one, everything connects through the VPN except the entries of “Direct” and “Block”. The mode of the selected list stands in the heading of the section. On the home screen the “Routing” switch turns the whole list on and off: with it off the tunnel follows the <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of the configuration.</p>
-
-<figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-modes.png" alt="Choosing the VPN mode for apps when a list is created" width="984" height="752" loading="lazy" /><figcaption>The mode is chosen when a list is created.</figcaption></figure>
+<p>A list made in that mode before - your own, imported or sent by a server - works as it did, but the home screen, its card and the open list warn “Unsafe” with a “Learn more” link here. Delete such a list and create a new one with the sites and apps you need. When everything has to go through the VPN, see the <a href="../recipes/browser.html">Browser through the VPN</a> recipe.</p>
 
 <h2 id="rule-lists">Rule lists</h2>
 
@@ -248,19 +255,19 @@
 
 <h3 id="new-list">New list</h3>
 
-<p>“Add” opens “VPN mode for apps” and “Choose a template”. “Choose a template” holds the ready templates of the mode, and with them “By hand” - your own rules from scratch - and “Import” - a ready list from a file, the clipboard or a QR code.</p>
+<p>“Add” opens “Choose a template”: the ready “Unavailable apps” and “Unavailable sites” templates, “By hand” - your own rules from scratch - and “Import” - a ready list from a file, the clipboard or a QR code.</p>
 
-<p>For the “Only selected” mode there is one ready template, “Unavailable sites”: the sites of a ready list go through the VPN, the rest directly, and “All UDP through the tunnel” is on. For the “Everything except selected” mode there are two: “Everything but the selected region”, where “Pick a region” ticks one or more countries whose addresses and sites go directly, and “Everything through VPN”, where only the home network stays direct. The default region is the country of the device. The “Block ads” switch adds to any template and closes the domains of the <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code> category. After “Add” the list opens in the editor, where the rules can be adjusted.</p>
+<p>In “Unavailable apps” the apps YouTube, Instagram, Facebook, WhatsApp, X, Discord, ChatGPT and Telegram go through the VPN entirely. The rule names the app (<code class="language-plaintext highlighter-rouge">app:YouTube</code>), and the device finds it itself; the rule of an app the device does not have does nothing. In “Unavailable sites” the sites of a ready list go through the VPN, the rest directly. “All UDP through the tunnel” is off in both templates. The “Block ads” switch adds to the template and closes the domains of the <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code> category. After “Add” the list opens in the editor, where the rules can be adjusted.</p>
 
-<p>Import: “Load file”, “Paste” from the clipboard or “Scan QR code”. A list without a name asks for one before it is saved; a list whose name is taken is saved under a new one.</p>
+<p>Import: “Load file”, “Paste” from the clipboard or “Scan QR code”. A list without a name asks for one before it is saved; a list whose name is taken is saved under a new one. A list exported in the “Everything except selected” mode comes in in that mode and with the “Unsafe” warning, see <a href="#full-mode">Why there is no “Everything except selected” mode</a>.</p>
 
 <figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-new.png" alt="New list: choosing a template - Unavailable sites, By hand, Import" width="984" height="752" loading="lazy" /><figcaption>A ready template, By hand and Import in one list.</figcaption></figure>
 
 <h3 id="list-card">List card</h3>
 
-<p>The card shows the name, the number of rules by role (“N proxy”, “N direct”, “N blocked”), the “All UDP through the tunnel” label, where the list came from - the name of the configuration it arrived with from the server, with the sign <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only with an AmneziaGeo server" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only with an AmneziaGeo server" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only with an AmneziaGeo server</span><span>The list came from the AmneziaGeo server of the configuration named on the card, and new versions come from it too.</span><a href="/amneziageo/windows/menu/configurations.html#amneziageo-mark">Learn more</a></span></span> before it, or “Local” - and the “Selected” mark on the selected one. The “In use” switch picks the list for connections. A list from a server that the server changed since shows “Update”, a list the server keeps unchanged shows “Read-only”, see <a href="configurations.html#what-the-server-offers">What the server offers</a>. Such a list has its name grey in the editor and no “Clear”, “What to add”, removal of entries or “Delete list”, and “All UDP through the tunnel” stands the way the server set it. “Settings” opens the rule editor, “Advanced” the traffic settings and the export, and “Delete list” asks for a confirmation; a deleted list cannot be brought back.</p>
+<p>The card shows the name, the number of rules by role (“N proxy”, “N direct”, “N blocked”), the “All UDP through the tunnel” label, where the list came from - the name of the configuration it arrived with from the server, with the sign <span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Only with an AmneziaGeo server" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Only with an AmneziaGeo server" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB"></circle><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>Only with an AmneziaGeo server</span><span>The list came from the AmneziaGeo server of the configuration named on the card, and new versions come from it too.</span><a href="/amneziageo/windows/menu/configurations.html#amneziageo-mark">Learn more</a></span></span> before it, or “Local” - and the “Selected” mark on the selected one. A list made before in the “Everything except selected” mode carries “Unsafe”: a press opens <a href="#full-mode">the explanation on the site</a>. The “In use” switch picks the list for connections. A list from a server that the server changed since shows “Update”, a list the server keeps unchanged shows “Read-only”, see <a href="configurations.html#what-the-server-offers">What the server offers</a>. Such a list has its name grey in the editor and no “Clear”, “What to add”, removal of entries or “Delete list”, and “All UDP through the tunnel” stands the way the server set it. “Settings” opens the rule editor, “Advanced” the traffic settings and the export, and “Delete list” asks for a confirmation; a deleted list cannot be brought back.</p>
 
-<figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-cards.png" alt="A routing list card: the name, the mode, the number of rules by role, the All UDP through the tunnel label" width="984" height="752" loading="lazy" /><figcaption>A list card.</figcaption></figure>
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-cards.png" alt="A routing list card: the name, the number of rules by role, the All UDP through the tunnel label" width="984" height="752" loading="lazy" /><figcaption>A list card.</figcaption></figure>
 
 <h3 id="rule-editor">Rule editor</h3>
 
@@ -280,9 +287,9 @@
 
 <p>Private addresses are never picked up by such a rule: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, CGNAT and link-local always stay off the tunnel. To send an application into a remote local network, use an address-range rule.</p>
 
-<p>In a full-tunnel list a program is added with the direct role: the tunnel carries the whole machine and the traffic of that program leaves past it. An address the list blocks or sends through the tunnel itself follows the rule of the list for that program too.</p>
+<p>In an earlier “Everything except selected” list a program is added with the direct role: the tunnel carries the whole machine and the traffic of that program leaves past it. An address the list blocks or sends through the tunnel itself follows the rule of the list for that program too.</p>
 
-<p>In an “Only selected” list the tunnel is given to the address the program reached for and the name it looked up, not to the program. While the route of the address lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use, across a reconnect too), every program of the machine reaches it through the tunnel, not only the named one. An address the program looked up by name has its route into the tunnel before the answer reaches the program, even if another program has reached it past the tunnel before: while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client.</p>
+<p>The tunnel is given to the address the program reached for and the name it looked up, not to the program. While the route of the address lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use, across a reconnect too), every program of the machine reaches it through the tunnel, not only the named one. An address the program looked up by name has its route into the tunnel before the answer reaches the program, even if another program has reached it past the tunnel before: while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client.</p>
 
 <p>The way past the tunnel is given to the address the program reached for, not to the program. An address the program looked up by name has its route past the tunnel before the answer reaches the program, so the first attempt goes through; while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client. The first attempt at an address the program reached without a name lookup is refused, and a second or two later the address has a route past the tunnel. While a route lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use) every program of the machine reaches the address past the tunnel. A UDP socket connected to such an address earlier has to be opened again. A program named by its name, package or service, and a child process whose file lies outside a named folder, is not refused the tunnel: an address it reached without a name lookup goes through the tunnel for the first second or two, then that connection is dropped and opens again past the tunnel. An edit of the set of programs applies without a reconnect.</p>
 
@@ -300,7 +307,7 @@
 
 <h3 id="all-udp-through-the-tunnel">All UDP through the tunnel</h3>
 
-<p>Calls and games usually learn their server addresses without DNS, so a domain rule never catches them. The toggle sends every outgoing UDP datagram into the tunnel, except the local network and the VPN server itself. A list set to “Everything except selected” has no toggle: UDP rides the tunnel there without it.</p>
+<p>Calls and games usually learn their server addresses without DNS, so a domain rule never catches them. The toggle sends every outgoing UDP datagram into the tunnel, except the local network and the VPN server itself. An earlier “Everything except selected” list has no toggle: UDP rides the tunnel there without it.</p>
 
 <p>The first datagram to an address nothing decided yet is held back until its route into the tunnel is in place, and the repeat rides the tunnel. A program that keeps sending from a socket it connected to the address before that has to open the socket again.</p>
 

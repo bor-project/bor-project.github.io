@@ -240,7 +240,7 @@
     </tr>
     <tr>
       <td>Всё через VPN</td>
-      <td>всё идёт через туннель, кроме того, что идёт напрямую</td>
+      <td>только у пресета, созданного раньше в этом режиме: выключает режим, см. <a href="#full-mode">Режим «Всё через VPN» убран</a></td>
     </tr>
     <tr>
       <td>Весь UDP через туннель</td>
@@ -250,6 +250,14 @@
 </table>
 
 <p>Записи пишутся так же, как в шаблоне: <code class="language-plaintext highlighter-rouge">geoip:ru</code>, <code class="language-plaintext highlighter-rouge">geosite:youtube</code>, <code class="language-plaintext highlighter-rouge">cidr:10.0.0.0/8</code>, <code class="language-plaintext highlighter-rouge">domain:example.com</code>, до 256 в каждой части. «Через VPN» и «Напрямую» берут ещё программы: <code class="language-plaintext highlighter-rouge">app:&lt;имя&gt;</code>, например <code class="language-plaintext highlighter-rouge">app:Telegram</code>, - приложение клиента само находит программу на устройстве (на Windows - по установленным программам, ярлыкам меню «Пуск» и App Paths, на Linux - по ярлыкам <code class="language-plaintext highlighter-rouge">.desktop</code> и PATH, на Android - по подписи и пакету) и пропускает строку, если не нашло; прежние формы с видом - <code class="language-plaintext highlighter-rouge">app:path=&lt;путь&gt;</code>, <code class="language-plaintext highlighter-rouge">app:dir=&lt;папка&gt;</code>, <code class="language-plaintext highlighter-rouge">app:name=&lt;файл&gt;</code>, <code class="language-plaintext highlighter-rouge">app:svc=&lt;служба&gt;</code>, <code class="language-plaintext highlighter-rouge">app:pkg=&lt;пакет&gt;</code> - тоже. Поле показывает такие записи видом «Программа». Строка программы целиком остаётся одной записью, даже с пробелами; запятая делит её, только когда за ней идёт новая запись: <code class="language-plaintext highlighter-rouge">app:Telegram, app:Zoom</code> - две программы, <code class="language-plaintext highlighter-rouge">app:Telegram, geoip:ru</code> - программа и ключ гео. Программа может стоять и после другой записи: <code class="language-plaintext highlighter-rouge">geoip:us, app:Discord Canary</code> - ключ гео и программа. Hello отдаёт программы как есть, в <code class="language-plaintext highlighter-rouge">AllowedIPs</code> они не идут.</p>
+
+<p><a id="full-mode"></a></p>
+
+<h3 id="режим-всё-через-vpn-убран">Режим «Всё через VPN» убран</h3>
+
+<p>Новый пресет ведёт через VPN только то, что названо в «Через VPN»: переключателя «Всё через VPN» в форме нового пресета нет, и API не заводит пресет с <code class="language-plaintext highlighter-rouge">full: true</code> и не включает этот режим у пресета («Режим «Всё через VPN» убран: пресет ведёт через VPN только выбранное»). Режим раскрывает сервер: в «Напрямую» почти всегда стоит регион <code class="language-plaintext highlighter-rouge">ru</code>, а российские приложения сами проверяют с устройства заблокированные сайты, и эти запросы идут через туннель; список <code class="language-plaintext highlighter-rouge">ru</code> в конфигурацию целиком не помещается, и клиент вынужденно включает динамическую маршрутизацию, которую видят другие приложения. Подробнее - <a href="https://bor-project.github.io/amneziageo/windows/menu/routing.ru.html#full-mode">на сайте клиента</a>.</p>
+
+<p>Пресет, созданный в этом режиме раньше, раздаётся как прежде, но в списке пресетов у его имени значок «!», а в форме над списками предупреждение со ссылкой сюда. Переключатель «Всё через VPN» стоит только у такого пресета: его можно выключить, и клиенты получат новую версию списка в режиме «Только выбранное»; перед этим заполните «Через VPN». «Дублировать» даёт копию без этого режима. Утилита помечает такой пресет в <code class="language-plaintext highlighter-rouge">preset list</code>. Клиент AmneziaGeo показывает у этого списка «Небезопасен».</p>
 
 <h2 id="как-приложение-берёт-пресет">Как приложение берёт пресет</h2>
 
@@ -290,6 +298,10 @@
     <tr>
       <td>Такого пресета маршрутизации нет</td>
       <td>номер, которого панель не знает</td>
+    </tr>
+    <tr>
+      <td>Режим «Всё через VPN» убран: пресет ведёт через VPN только выбранное</td>
+      <td>новый пресет с <code class="language-plaintext highlighter-rouge">full: true</code> или такой режим у пресета без него</td>
     </tr>
   </tbody>
 </table>

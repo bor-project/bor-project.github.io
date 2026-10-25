@@ -140,6 +140,9 @@
         <a href="/amneziageo/linux/recipes/index.ru.html">Рецепты</a>
         <ul>
           <li>
+            <a href="/amneziageo/linux/recipes/browser.ru.html">Браузер через VPN</a>
+          </li>
+          <li>
             <a href="/amneziageo/linux/recipes/discord-udp.ru.html">Discord там, где режут UDP</a>
           </li>
           <li>
@@ -181,8 +184,8 @@
 <p>Подсети за сервером доступны двумя способами:</p>
 
 <ul>
-  <li>полный туннель - всё уходит на ту сторону, включая её внутренние адреса;</li>
-  <li>правило по диапазону адресов в выборочном режиме, например <code class="language-plaintext highlighter-rouge">cidr:10.8.0.0/24</code> - в туннель идёт только эта подсеть.</li>
+  <li>без списка маршрутизации - туннель идёт по <code class="language-plaintext highlighter-rouge">AllowedIPs</code> конфигурации, и при <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> всё уходит на ту сторону, включая её внутренние адреса;</li>
+  <li>правило по диапазону адресов в списке, например <code class="language-plaintext highlighter-rouge">cidr:10.8.0.0/24</code> - в туннель идёт только эта подсеть.</li>
 </ul>
 
 <figure class="shot"><img src="/amneziageo/assets/img/linux/ru/routing-cidr.png" alt="Редактор списка: подсказка cidr:10.8.0.0/24 при вводе диапазона 10.8.0.0/24" width="984" height="752" loading="lazy" /><figcaption>Правило по диапазону адресов.</figcaption></figure>
@@ -191,7 +194,7 @@
 
 <p>Если подсеть на той стороне совпадает с вашей локальной - обе <code class="language-plaintext highlighter-rouge">192.168.1.0/24</code> - маршрут до неё построить нельзя, помогает только смена адресации на одном из концов.</p>
 
-<p>Подробнее: <a href="../menu/routing.ru.html#режимы">Режимы</a>, <a href="../menu/routing.ru.html#списки-правил">Списки правил</a>.</p>
+<p>Подробнее: <a href="../menu/routing.ru.html#как-идёт-трафик">Как идёт трафик</a>, <a href="../menu/routing.ru.html#списки-правил">Списки правил</a>.</p>
 
 
         <footer class="article-footer">
