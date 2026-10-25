@@ -252,6 +252,23 @@
 
 <p>The same settings in the environment of the panel: <code class="language-plaintext highlighter-rouge">Web__Certificate</code> and <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code>; they hold until the panel has written its own path, see <a href="server.html#first-start">First start</a>.</p>
 
+<h2 id="a-certificate-not-every-client-takes">A certificate not every client takes</h2>
+
+<p><span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="The subscription is off" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#F5D9A8"></circle><path fill="#8A4B00" d="M10.75 5.5h2.5l-.45 8.5h-1.6zM12 15.7a1.55 1.55 0 1 1 0 3.1 1.55 1.55 0 0 1 0-3.1z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="The subscription is off" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#F5D9A8"></circle><path fill="#8A4B00" d="M10.75 5.5h2.5l-.45 8.5h-1.6zM12 15.7a1.55 1.55 0 1 1 0 3.1 1.55 1.55 0 0 1 0-3.1z"></path></svg>The subscription is off</span><span>While the certificate is not one every client takes, the subscriptions are off: clients do not read them.</span></span></span>
+ Subscriptions answer only under a certificate every client takes. A certificate is not such a one when:</p>
+
+<ul>
+  <li>there is none: the services port of an interface answers under a certificate the panel made up for itself, and a port of the subscriptions of their own answers plain HTTP;</li>
+  <li>its file does not read or it has run out;</li>
+  <li>it is not issued for the name in the address of the subscription;</li>
+  <li>it is signed by itself;</li>
+  <li>the file lacks the certificate that issued it: <code class="language-plaintext highlighter-rouge">fullchain.pem</code> is needed, not <code class="language-plaintext highlighter-rouge">cert.pem</code>;</li>
+  <li>the chain ends at a root the host does not trust;</li>
+  <li>the chain ends at ISRG Root X2, which Android before version 14 lacks.</li>
+</ul>
+
+<p>Under such a certificate the subscriptions answer 404, and a port of their own without a certificate does not open. Hello works under any certificate and tells the AmneziaGeo app that the subscription is off: the app shows it with the “!” sign and does not read it. On the “Export” tab of a client the “QR: subscription” sheet stays read-only with the “!” sign and a hint naming the reason, and the “Services” card of the <a href="overview.html#services">Overview</a> names the reason in the “Subscriptions” line and in the line of the certificate. The <code class="language-plaintext highlighter-rouge">.conf</code> file and the <code class="language-plaintext highlighter-rouge">vpn://</code> link are handed out under such a certificate of the panel too, with the “!” sign: a server without a domain has no other way to hand them out.</p>
+
 <h2 id="refusals">Refusals</h2>
 
 <table>

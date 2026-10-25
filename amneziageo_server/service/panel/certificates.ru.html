@@ -243,6 +243,23 @@
 
 <p>Те же настройки в окружении панели: <code class="language-plaintext highlighter-rouge">Web__Certificate</code> и <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code>; они действуют, пока панель не записала свой путь, см. <a href="server.ru.html#первый-старт">Первый старт</a>.</p>
 
+<h2 id="сертификат-который-берут-не-все-клиенты">Сертификат, который берут не все клиенты</h2>
+
+<p><span class="ag-mark"><button class="ag-mark-sign" type="button" aria-label="Подписка выключена" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#F5D9A8"></circle><path fill="#8A4B00" d="M10.75 5.5h2.5l-.45 8.5h-1.6zM12 15.7a1.55 1.55 0 1 1 0 3.1 1.55 1.55 0 0 1 0-3.1z"></path></svg></button><span class="ag-mark-card" role="dialog" aria-label="Подписка выключена" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#F5D9A8"></circle><path fill="#8A4B00" d="M10.75 5.5h2.5l-.45 8.5h-1.6zM12 15.7a1.55 1.55 0 1 1 0 3.1 1.55 1.55 0 0 1 0-3.1z"></path></svg>Подписка выключена</span><span>Пока сертификат негоден, подписки выключены: клиенты их не скачают.</span></span></span>
+ Подписки отвечают только под сертификатом, который берут все клиенты. Негодным сертификат считается, когда:</p>
+
+<ul>
+  <li>его нет: порт сервисов интерфейса отвечает под сертификатом, который панель сделала себе сама, а свой порт подписок - открытым HTTP;</li>
+  <li>файл не читается или сертификат истёк;</li>
+  <li>он выдан не на имя из адреса подписки;</li>
+  <li>он подписан сам собой;</li>
+  <li>в файле нет сертификата, который его выдал: нужен <code class="language-plaintext highlighter-rouge">fullchain.pem</code>, а не <code class="language-plaintext highlighter-rouge">cert.pem</code>;</li>
+  <li>цепочка идёт к корню, которому хост не доверяет;</li>
+  <li>цепочка идёт к ISRG Root X2, которого нет в Android до 14-й версии.</li>
+</ul>
+
+<p>С таким сертификатом подписки отвечают 404, а свой порт подписок без сертификата не открывается. Hello работает при любом сертификате и говорит приложению AmneziaGeo, что подписка выключена: приложение показывает её со значком «!» и не читает. На вкладке «Экспорт» клиента лист «QR: подписка» остаётся только для чтения со значком «!» и подсказкой о причине, а карточка «Службы» на <a href="overview.ru.html#службы">Обзоре</a> называет причину в строке «Подписки» и в строке сертификата. Файл <code class="language-plaintext highlighter-rouge">.conf</code> и ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> выдаются и под негодным сертификатом панели, со значком «!»: на сервере без домена другой выдачи нет.</p>
+
 <h2 id="отказы">Отказы</h2>
 
 <table>
