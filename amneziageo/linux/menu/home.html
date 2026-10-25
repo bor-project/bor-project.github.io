@@ -194,6 +194,12 @@
 
 <p>“Server” picks the configuration to connect; while there are no configurations, “Add configuration” stands in its place, see <a href="configurations.html#adding-a-configuration">Adding a configuration</a>. “Routing” shows the name of the selected list or “No list”: a click on the name opens the <a href="routing.html">Routing</a> section, and the switch beside it turns routing on and off. With routing off the addresses of the original configuration, its <code class="language-plaintext highlighter-rouge">AllowedIPs</code>, are used.</p>
 
+<h2 id="update-check-error">Update check error</h2>
+
+<p>When the application did not find its updates on the update server, a mark “!” stands beside the state under the button. A tap opens a window with the reason, the same as under the <a href="connections.html#update-server">“Update server”</a> row; “Hide” takes the mark away until a new error comes.</p>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/en/update-fault.png" alt="Home screen: the mark by the state and the reason does not answer with the Hide button" width="984" height="752" loading="lazy" /><figcaption>The update server does not answer.</figcaption></figure>
+
 <h2 id="holding-traffic-when-the-tunnel-drops">Holding traffic when the tunnel drops</h2>
 
 <p>While the switch “Hold traffic when the tunnel drops” in the settings of a configuration is on, a tunnel whose server stops answering is not taken down: it stays up while it reconnects on its own, what the rules send through it is held back instead of leaving by the physical path, and what the rules send directly keeps going. The state reads “connecting” until the server answers again, however long that takes. The switch is on by default. With it off such a tunnel is taken down and raised again, and while it is down what the rules send through it leaves by the physical path. From the console: <code class="language-plaintext highlighter-rouge">amneziageo config hold &lt;name&gt; on|off</code>; <code class="language-plaintext highlighter-rouge">config list</code> shows it in the HOLD column and <code class="language-plaintext highlighter-rouge">status</code> in the <code class="language-plaintext highlighter-rouge">hold traffic</code> row.</p>

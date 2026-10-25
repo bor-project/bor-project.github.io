@@ -145,6 +145,7 @@
               <li><a href="/amneziageo_server/service/panel/server.ru.html">Сервер</a></li>
               <li><a href="/amneziageo_server/service/panel/certificates.ru.html">Сертификаты</a></li>
               <li><a href="/amneziageo_server/service/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/service/panel/client-updates.ru.html">Обновления клиентов</a></li>
               <li><a href="/amneziageo_server/service/panel/users.ru.html">Пользователи и роли</a></li>
               <li><a href="/amneziageo_server/service/panel/diagnostics.ru.html">Диагностика</a></li>
             </ul>
@@ -174,6 +175,9 @@
           </li>
           <li>
             <a href="/amneziageo_server/service/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/updates-service.ru.html">Отдельный сервер обновлений</a>
           </li>
         </ul>
       </li>
@@ -427,6 +431,10 @@
 
 <p><strong>29 <code class="language-plaintext highlighter-rouge">DNS for Clients</code>.</strong> Печатает настройки DNS-сервера (<code class="language-plaintext highlighter-rouge">dns show</code>) и предлагает выключить его (вопрос называет, сколько клиентов держат файлы с DNS-сервером: они останутся без DNS, пока им не выдадут файлы заново) или, если он выключен, дать ему работать, пока он нужен маршрутизации; если внешние серверы спрашиваются открытым DNS, предлагает заменить их на те, с которых начинает свежая панель, по HTTPS. Включённый DNS-сервер, к которому ufw не пускает клиентов каких-то интерфейсов, пункт предлагает открыть им, как подпункт 13 пункта 23. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server dns on</code>, <code class="language-plaintext highlighter-rouge">dns off</code>, <code class="language-plaintext highlighter-rouge">dns</code> с вопросом, <code class="language-plaintext highlighter-rouge">dns open</code>. Подробнее - <a href="panel/dns.ru.html">DNS</a>.</p>
 
+<h2 id="обновления-клиентов">Обновления клиентов</h2>
+
+<p><strong>30 <code class="language-plaintext highlighter-rouge">Client Updates Service</code>.</strong> Отдельный сервис выпусков клиента в своём контейнере, рядом с панелью или без неё: поставить или перевести на новый образ, новый токен, журнал, снять. Порядок и настройки - в рецепте <a href="recipes/updates-service.ru.html">Отдельный сервер обновлений</a>. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server updates</code>.</p>
+
 <h2 id="команды">Команды</h2>
 
 <table>
@@ -484,6 +492,10 @@
     <tr>
       <td><code class="language-plaintext highlighter-rouge">dns open</code></td>
       <td>пустить к DNS-серверу клиентов интерфейсов, которых ufw к нему не пускает</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">updates</code></td>
+      <td>отдельный сервис выпусков клиента, пункт 30</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">&lt;команда утилиты&gt;</code></td>

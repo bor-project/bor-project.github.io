@@ -202,7 +202,7 @@
 
 <h2 id="update">Update</h2>
 
-<p>“Check for updates” asks the release server; a version found is written beside it, “Download” fetches it, “Install” starts the installation, “Cancel” stops the download. “Check for prerelease versions” adds beta builds to the check. The check also runs by itself: a new version is announced by the “Update available” bar at the top of the window. The downloaded file is checked against the published checksum.</p>
+<p>“Check for updates” asks the update server picked in <a href="connections.html#update-server">“Connections”</a>; a version found is written beside it, “Download” fetches it, “Install” starts the installation, “Cancel” stops the download. “Update channel” is “Stable”, “Beta” or “Test”: “Beta” adds beta builds to the stable releases, “Test” adds test builds as well. GitHub has no test releases, and “Test” checks there the same as “Beta”. In the console the channel is <code class="language-plaintext highlighter-rouge">settings set update-channel stable|beta|test</code>. The check also runs by itself: a new version is announced by the “Update available” bar at the top of the window. The downloaded file is checked against the published checksum.</p>
 
 <p>How the app updates itself: <a href="../install.html#update">Update</a> in the installation.</p>
 

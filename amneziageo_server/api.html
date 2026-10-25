@@ -233,10 +233,90 @@
       <td><a href="/amneziageo_server/service/panel/overview.html#updates">Overview</a></td>
       <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/updates.md">updates.md</a></td>
     </tr>
+    <tr>
+      <td>client updates</td>
+      <td><a href="/amneziageo_server/service/panel/client-updates.html">Client updates</a></td>
+      <td>the <code class="language-plaintext highlighter-rouge">/api/client-updates</code> routes: settings, the check of the address, releases and files as in <a href="#the-service-of-the-client-releases">the service of the releases</a></td>
+    </tr>
   </tbody>
 </table>
 
 <p>The pages of the panel are the same for the service and Docker; the links lead to the service version.</p>
+
+<h2 id="the-service-of-the-client-releases">The service of the client releases</h2>
+
+<p>The update server of the client, both “Own” in the panel and <a href="/amneziageo_server/service/recipes/updates-service.html">the service apart</a>, answers at an address of its own (<code class="language-plaintext highlighter-rouge">&lt;base&gt;</code> below): for “Own”, it is the “Address for clients” of the <a href="/amneziageo_server/service/panel/client-updates.html">Client updates</a> tab, for the service apart, its port and the path <code class="language-plaintext highlighter-rouge">Updates__Path</code>. Reading the releases is open to all. The other routes want the token of the update server in the <code class="language-plaintext highlighter-rouge">Authorization: Bearer</code> header, not a token of the panel; without it - 401 and <code class="language-plaintext highlighter-rouge">unauthorized</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Route</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;base&gt;/stable/update.json</code>, <code class="language-plaintext highlighter-rouge">beta/update.json</code>, <code class="language-plaintext highlighter-rouge">test/update.json</code></td>
+      <td>the manifest of the latest release of the channel in the format of the GitHub releases, never cached; 404 while the channel has no releases</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;base&gt;/&lt;channel&gt;/&lt;file&gt;</code></td>
+      <td>a file of the latest release of the channel, with byte ranges</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;base&gt;/releases/&lt;tag&gt;/update.json</code>, <code class="language-plaintext highlighter-rouge">GET &lt;base&gt;/releases/&lt;tag&gt;/&lt;file&gt;</code></td>
+      <td>the manifest and a file of one release</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;base&gt;/status</code></td>
+      <td>the directory, whether it can be written, free and total bytes, the number of releases and their size</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;base&gt;/releases?page=&amp;size=</code></td>
+      <td>the releases page by page, the newest first: tag, version, channel, description, dates, number of files, size</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">POST &lt;base&gt;/releases</code></td>
+      <td>a new release, the body <code class="language-plaintext highlighter-rouge">{ "version": "1.10.16.0", "channel": "beta", "description": "..." }</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;base&gt;/releases/&lt;tag&gt;</code></td>
+      <td>a release, its files and the names it lacks</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PATCH &lt;base&gt;/releases/&lt;tag&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">{ "channel": ..., "description": ..., "from": { "&lt;name of the patch&gt;": "&lt;version&gt;" } }</code>; <code class="language-plaintext highlighter-rouge">null</code> keeps what was</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PUT &lt;base&gt;/releases/&lt;tag&gt;/files/&lt;name&gt;[?from=&lt;version&gt;]</code></td>
+      <td>a file streamed in the body, up to 2 GB; <code class="language-plaintext highlighter-rouge">from</code> for a patch</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DELETE &lt;base&gt;/releases/&lt;tag&gt;/files/&lt;name&gt;</code></td>
+      <td>take a file away</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">POST &lt;base&gt;/releases/&lt;tag&gt;/archive</code></td>
+      <td>a zip of the release in the body</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DELETE &lt;base&gt;/releases/&lt;tag&gt;</code></td>
+      <td>delete a release with its files, 204</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The tag is <code class="language-plaintext highlighter-rouge">v&lt;version&gt;</code> for a stable release, <code class="language-plaintext highlighter-rouge">v&lt;version&gt;-beta.N</code> for a beta and <code class="language-plaintext highlighter-rouge">v&lt;version&gt;-test.N</code> for a test build, N being the next free number; it is also the name of the folder of the release in the directory. The latest release of a channel: for stable, the highest of the stable releases, for beta, of the stable releases and betas, for test, of all; a stable release wins over a beta of the same version. A refusal comes as <code class="language-plaintext highlighter-rouge">{ "error": "&lt;code&gt;", "message": "&lt;words&gt;" }</code>, and for a file also <code class="language-plaintext highlighter-rouge">file</code> with the reason, what was found and what was wanted. With the serving off, the answer is 503 and <code class="language-plaintext highlighter-rouge">updates-off</code>.</p>
+
+<p>A release with an installer and its patch:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>U=https://updates.example.com:8445
+T="Authorization: Bearer &lt;token&gt;"
+curl -s -H "$T" -H "Content-Type: application/json" -d '{ "version": "1.10.16.0", "channel": "beta" }' "$U/releases"
+curl -s -H "$T" -T AmneziaGeo-1.10.16.0-win-x64-fdd.exe "$U/releases/v1.10.16.0-beta.1/files/AmneziaGeo-1.10.16.0-win-x64-fdd.exe"
+curl -s -H "$T" -T AmneziaGeo-1.10.16.0-win-x64-fdd.patch "$U/releases/v1.10.16.0-beta.1/files/AmneziaGeo-1.10.16.0-win-x64-fdd.patch?from=1.10.15.0"
+curl -s "$U/beta/update.json"
+</code></pre></div></div>
 
 <h2 id="what-stays-in-the-console">What stays in the console</h2>
 

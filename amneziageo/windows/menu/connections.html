@@ -200,10 +200,55 @@
   <li>“Reconnect after reboot” - connect the selected configuration when the computer starts; in the console it is <code class="language-plaintext highlighter-rouge">survive-reboot</code>.</li>
   <li>“Reconnect automatically” and “Retry interval” - keep trying after a drop: at once, in 5, 10 and 20 s, then every interval; the interval is the longest pause between attempts. How a connect is retried: <a href="home.html#reconnecting">Reconnecting</a>.</li>
   <li>“Do not interfere with other VPNs” - an SSTP, L2TP, PPTP or IKEv2 connection of the built-in Windows client (and, by the adapter description, Cisco, Fortinet, OpenVPN, GlobalProtect) works alongside the tunnel as usual: the leak protection lets its adapter through, the networks it leads stay with it, the address of the server of a Windows connection goes past the tunnel, and the names under the connection’s suffix are asked from its DNS. Turn it off when the leak protection must cut everything but the tunnel. It takes effect at the next connect; in the console it is <code class="language-plaintext highlighter-rouge">other-vpn</code>.</li>
+  <li>“Update server” - where to take the new versions of the application from, see <a href="#update-server">Update server</a>.</li>
   <li>“Allow several VPNs” turns on the mode of the <a href="../recipes/multiple-vpn.html">Multiple VPN connections</a> recipe. Under it stand the settings of how rules move between servers: “Check interval” - how often to check whether a rule should move to another server, “Checks before a switch” - after how many checks in a row without an answer the rule moves to another server, “Switch threshold” - how much faster the other server has to answer for the rule to move to it.</li>
 </ul>
 
-<figure class="shot"><img src="/amneziageo/assets/img/windows/en/connections-tunnel.png" alt="Connections, the Tunnel tab: notifications, reconnect after reboot, reconnecting, several VPNs" width="984" height="752" loading="lazy" /><figcaption>The tunnel tab.</figcaption></figure>
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/connections-tunnel.png" alt="Connections, the Tunnel tab: notifications, reconnect after reboot, reconnecting, update server, several VPNs" width="984" height="752" loading="lazy" /><figcaption>The tunnel tab.</figcaption></figure>
+
+<h2 id="update-server">Update server</h2>
+
+<p>On the “Tunnel” tab, the row “Update server”: where the application takes its new versions from. The list holds:</p>
+
+<ul>
+  <li>“Where installed from (&lt;host&gt;)” - where the installed version came from: GitHub or the update server it was installed from;</li>
+  <li>the update servers offered by the servers of the enabled configurations: “&lt;host&gt; “&lt;configuration&gt;””, marked “(recommended)” when the server offers it by default.</li>
+</ul>
+
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/update-source.png" alt="Update server: the open list with Where installed from (GitHub) and the server of a configuration, the reason does not answer under the row" width="984" height="752" loading="lazy" /><figcaption>Picking the update server; under the row, why the check failed.</figcaption></figure>
+
+<p>An update server is offered by an AmneziaGeo server whose panel has <a href="https://bor-project.github.io/amneziageo_server/service/panel/client-updates.html">Client updates</a> on. Until a pick is made by hand, the recommended server is checked, and without one, “Where installed from”. A pick by hand holds while the server is in the list: when it stops handing out updates, the check goes back to “Where installed from”. Only the picked source is checked, on the channel from <a href="general.html#update">“General”</a>; a version below the installed one is never offered. The files of an update server are taken under a certificate the system trusts or the one the server named. Patches are taken only from the source the application was installed from; from another one it downloads the whole installer. After an update from a server, “Where installed from” names that server.</p>
+
+<p>When the check fails, the reason stands under the row, and a mark stands by the state on the <a href="home.html#update-check-error">home screen</a>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The update server &lt;host&gt; does not answer</td>
+      <td>the server is out of reach or broke the connection</td>
+    </tr>
+    <tr>
+      <td>The update server &lt;host&gt; holds no release of the channel</td>
+      <td>the server has no releases on the picked channel</td>
+    </tr>
+    <tr>
+      <td>The certificate of the update server &lt;host&gt; is not the one its server named</td>
+      <td>the system does not trust the certificate, and it is not the one the server named</td>
+    </tr>
+    <tr>
+      <td>The server &lt;host&gt; no longer hands out updates; they come from where the app was installed</td>
+      <td>the server picked by hand left the list</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Failures of GitHub do not reach this row. From the console: <code class="language-plaintext highlighter-rouge">amneziageo settings set update-source origin|auto|&lt;address&gt;</code> (<code class="language-plaintext highlighter-rouge">auto</code> drops the pick by hand), <code class="language-plaintext highlighter-rouge">amneziageo status</code> shows the source, the channel and the error.</p>
 
 <h2 id="proxy">Proxy</h2>
 

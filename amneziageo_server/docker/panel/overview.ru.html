@@ -145,6 +145,7 @@
               <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
               <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
               <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/client-updates.ru.html">Обновления клиентов</a></li>
               <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
               <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
             </ul>
@@ -174,6 +175,9 @@
           </li>
           <li>
             <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/updates-service.ru.html">Отдельный сервер обновлений</a>
           </li>
         </ul>
       </li>
@@ -271,10 +275,11 @@
   <li>«Подписки» - на своём порту или «на портах интерфейсов», пока подписки включены;</li>
   <li>«Интерфейс &lt;имя&gt;» для каждого включённого интерфейса, с частями, которые отдаёт его TCP-порт: hello, скорость, WebSocket, подписка;</li>
   <li>«DNS» - DNS-сервер, пока он работает;</li>
-  <li>«Сертификат &lt;имя&gt;» для каждого файла сертификата, под которым отвечают панель и подписки, с «до &lt;дата&gt;».</li>
+  <li>«Сертификат &lt;имя&gt;» для каждого файла сертификата, под которым отвечают панель и подписки, с «до &lt;дата&gt;»;</li>
+  <li>«Обновления клиентов» - пока раздача выпусков клиента включена: свой порт, порт панели или отдельный сервис по адресу.</li>
 </ul>
 
-<p>Ссылка «Изменить» в строке ведёт туда, где меняются порт и настройки службы: панель - <a href="server.ru.html">Сервер</a>, подписки - <a href="subscriptions.ru.html">Подписки</a>, интерфейс - <a href="interfaces.ru.html">его страница</a>, DNS - <a href="dns.ru.html">DNS</a>, сертификат - <a href="certificates.ru.html">Сертификаты</a>. Её видит пользователь, которому эти настройки можно менять.</p>
+<p>Ссылка «Изменить» в строке ведёт туда, где меняются порт и настройки службы: панель - <a href="server.ru.html">Сервер</a>, подписки - <a href="subscriptions.ru.html">Подписки</a>, интерфейс - <a href="interfaces.ru.html">его страница</a>, DNS - <a href="dns.ru.html">DNS</a>, сертификат - <a href="certificates.ru.html">Сертификаты</a>, обновления клиентов - <a href="client-updates.ru.html">Обновления клиентов</a>. Её видит пользователь, которому эти настройки можно менять.</p>
 
 <p>У неработающей службы стоит «Не работает с &lt;время&gt;: &lt;причина&gt;»:</p>
 
@@ -321,6 +326,10 @@
     <tr>
       <td>Файл не читается, Истёк &lt;дата&gt;</td>
       <td>файл сертификата не читается или сертификат кончился</td>
+    </tr>
+    <tr>
+      <td>директория выпусков не читается или не пишется, сервис обновлений не отвечает</td>
+      <td>директория выпусков «Своего» недоступна панели или отдельный сервис по адресу не ответил на последнюю проверку, см. <a href="client-updates.ru.html">Обновления клиентов</a></td>
     </tr>
     <tr>
       <td>Истекает через N дн.</td>

@@ -190,6 +190,50 @@
 
         <h1 id="connections">Connections</h1>
 
+<h2 id="update-server">Update server</h2>
+
+<p>The row at the top of the page, “Update server”: where the application takes its new versions from. The list holds:</p>
+
+<ul>
+  <li>“Where installed from (&lt;host&gt;)” - where the installed version came from: GitHub or the update server it was installed from;</li>
+  <li>the update servers offered by the servers of the enabled configurations: “&lt;host&gt; “&lt;configuration&gt;””, marked “(recommended)” when the server offers it by default.</li>
+</ul>
+
+<figure class="shot"><img src="/amneziageo/assets/img/linux/en/update-source.png" alt="Update server: the open list with Where installed from (GitHub) and the server of a configuration, the reason does not answer under the row" width="984" height="752" loading="lazy" /><figcaption>Picking the update server; under the row, why the check failed.</figcaption></figure>
+
+<p>An update server is offered by an AmneziaGeo server whose panel has <a href="https://bor-project.github.io/amneziageo_server/service/panel/client-updates.html">Client updates</a> on. Until a pick is made by hand, the recommended server is checked, and without one, “Where installed from”. A pick by hand holds while the server is in the list: when it stops handing out updates, the check goes back to “Where installed from”. Only the picked source is checked, on the channel from <a href="general.html#update">“General”</a>; a version below the installed one is never offered. The files of an update server are taken under a certificate the system trusts or the one the server named. Patches are taken only from the source the application was installed from; from another one it downloads the whole installer. After an update from a server, “Where installed from” names that server.</p>
+
+<p>When the check fails, the reason stands under the row, and a mark stands by the state on the <a href="home.html#update-check-error">home screen</a>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>What it means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The update server &lt;host&gt; does not answer</td>
+      <td>the server is out of reach or broke the connection</td>
+    </tr>
+    <tr>
+      <td>The update server &lt;host&gt; holds no release of the channel</td>
+      <td>the server has no releases on the picked channel</td>
+    </tr>
+    <tr>
+      <td>The certificate of the update server &lt;host&gt; is not the one its server named</td>
+      <td>the system does not trust the certificate, and it is not the one the server named</td>
+    </tr>
+    <tr>
+      <td>The server &lt;host&gt; no longer hands out updates; they come from where the app was installed</td>
+      <td>the server picked by hand left the list</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Failures of GitHub do not reach this row. From the console: <code class="language-plaintext highlighter-rouge">amneziageo settings set update-source origin|auto|&lt;address&gt;</code> (<code class="language-plaintext highlighter-rouge">auto</code> drops the pick by hand), <code class="language-plaintext highlighter-rouge">amneziageo status</code> shows the source, the channel and the error.</p>
+
 <h2 id="proxy">Proxy</h2>
 
 <p>The application runs SOCKS5 and HTTP proxies through which devices without a client of their own reach the tunnel: a TV, a phone, a console.</p>

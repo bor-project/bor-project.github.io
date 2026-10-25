@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Обновления клиентов · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Выпуски клиента с этого сервера: свой или отдельный сервис, каналы, загрузка файлами или архивом.">
+    <link rel="canonical" href="https://bor-project.github.io/amneziageo_server/docker/panel/client-updates.ru.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AmneziaGeo Server">
+    <meta property="og:title" content="Обновления клиентов · Docker · AmneziaGeo Server">
+    <meta property="og:description" content="Выпуски клиента с этого сервера: свой или отдельный сервис, каналы, загрузка файлами или архивом.">
+    <meta property="og:url" content="https://bor-project.github.io/amneziageo_server/docker/panel/client-updates.ru.html">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/panel/client-updates.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/panel/client-updates.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/panel/client-updates.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+    <script>
+      try {
+        var theme = localStorage.getItem('amneziageo-theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      } catch (e) {}
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <button class="theme" type="button" hidden data-auto="Тема: как в системе" data-light="Тема: светлая" data-dark="Тема: тёмная">
+          <svg class="theme-auto" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          <svg class="theme-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <script>
+          (function () {
+            var key = 'amneziageo-theme';
+            var order = ['auto', 'light', 'dark'];
+            var root = document.documentElement;
+            var button = document.currentScript.previousElementSibling;
+            function current() {
+              return root.getAttribute('data-theme') || 'auto';
+            }
+            function label() {
+              var text = button.getAttribute('data-' + current());
+              button.title = text;
+              button.setAttribute('aria-label', text);
+            }
+            button.addEventListener('click', function () {
+              var next = order[(order.indexOf(current()) + 1) % order.length];
+              if (next === 'auto') {
+                root.removeAttribute('data-theme');
+              } else {
+                root.setAttribute('data-theme', next);
+              }
+              try {
+                if (next === 'auto') {
+                  localStorage.removeItem(key);
+                } else {
+                  localStorage.setItem(key, next);
+                }
+              } catch (e) {}
+              label();
+            });
+            label();
+            button.hidden = false;
+          })();
+        </script>
+
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/panel/client-updates.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/panel/client-updates.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/panel/client-updates.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/client-updates.ru.html" aria-current="page">Обновления клиентов</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/updates-service.ru.html">Отдельный сервер обновлений</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+          <a href="/amneziageo_server/TERMS.ru.html">Условия использования</a>
+          <a href="/amneziageo_server/PRIVACY.ru.html">Конфиденциальность</a>
+          <a href="/amneziageo_server/THIRD-PARTY.ru.html">Сторонние компоненты</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a></li>
+    <li><a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a></li>
+  </ol>
+</nav>
+
+        <h1 id="обновления-клиентов">Обновления клиентов <span class="ag-mark ag-mark-large"><button class="ag-mark-sign" type="button" aria-label="Только в приложении AmneziaGeo" aria-expanded="false"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB" /><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" /></svg></button><span class="ag-mark-card" role="dialog" aria-label="Только в приложении AmneziaGeo" hidden=""><span class="ag-mark-title"><svg class="ag-sign" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.6" fill="#2A6FDB" /><path fill="#fff" transform="translate(4.5 4.5) scale(0.625)" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" /></svg>Только в приложении AmneziaGeo</span><span>Обновления с сервера берёт приложение AmneziaGeo: сервер сообщает, где лежат выпуски, и приложение проверяет их там под сертификатом сервера.</span><span class="ag-mark-others">Другие клиенты AmneziaWG этого не получают: им доходит только файл конфигурации.</span><a href="/amneziageo_server/docker/panel/index.ru.html#значок-amneziageo">Подробнее</a></span></span></h1>
+
+<p>Вкладка раздаёт приложениям AmneziaGeo ваши выпуски клиента вместо выпусков проекта на GitHub: например, сборку со своими правками или версию, которую вы проверили сами. Выпуски лежат на сервере обновлений: в самой панели («Свой») или в отдельном сервисе («Адрес», см. <a href="../recipes/updates-service.ru.html">Отдельный сервер обновлений</a>). Вкладку видит роль с правом «Обновления клиентов».</p>
+
+<h2 id="раздача">Раздача</h2>
+
+<p>«Раздавать обновления клиентам» включает раздачу и открывает её настройки, «Источник» выбирает «Свой» или «Адрес». «Сохранить» вступает в силу сразу: панель заново поднимает выпуски, а если хост не дал порт, оставляет прежние настройки и пишет причину под кнопками.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-updates.png" alt="Вкладка «Обновления клиентов»: раздача включена, источник «Свой», директория, порт, путь, токен, адрес для клиентов и таблица выпусков" width="1440" height="1240" loading="lazy" /><figcaption>Свой сервер обновлений в панели.</figcaption></figure>
+
+<h3 id="свой">Свой</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Поле</th>
+      <th>Что задаёт</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Директория</td>
+      <td>где лежат выпуски; пусто - папка <code class="language-plaintext highlighter-rouge">client-updates</code> рядом с базой панели. Под полем свободное место и «чтение и запись», когда панель может туда писать</td>
+    </tr>
+    <tr>
+      <td>Порт</td>
+      <td>пусто - порт панели: выпуски рядом с ней, под её сертификатом; другой порт - свой слушатель под сертификатом панели. Закрытый брандмауэром порт отмечается в «Службах» <a href="overview.ru.html#службы">Обзора</a></td>
+    </tr>
+    <tr>
+      <td>Путь</td>
+      <td>что идёт после порта; по умолчанию случайный, «Новый путь» делает другой. На порту панели путь не может начинаться с <code class="language-plaintext highlighter-rouge">api</code>, <code class="language-plaintext highlighter-rouge">assets</code>, пути панели или пути подписок</td>
+    </tr>
+    <tr>
+      <td>Токен</td>
+      <td>ключ <a href="../../api.ru.html#сервис-выпусков-клиента">API выпусков</a> для скриптов; видны начало и конец, «Копировать» кладёт его в буфер, «Новый токен» делает другой</td>
+    </tr>
+    <tr>
+      <td>Адрес для клиентов</td>
+      <td><code class="language-plaintext highlighter-rouge">https://&lt;хост&gt;:&lt;порт&gt;/&lt;путь&gt;/</code>: здесь приложения читают выпуски</td>
+    </tr>
+    <tr>
+      <td>Включён по умолчанию</td>
+      <td>приложение, в котором сервер обновлений не выбран рукой, берёт этот сервер</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="адрес">Адрес</h3>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-updates-address.png" alt="Источник «Адрес»: адрес и токен отдельного сервиса, кнопка «Проверить» и ответ сервиса" width="1440" height="900" loading="lazy" /><figcaption>Выпуски в отдельном сервисе.</figcaption></figure>
+
+<p>«Адрес» - адрес <code class="language-plaintext highlighter-rouge">https://</code> отдельного сервиса выпусков, «Токен» - его токен: меню печатает его один раз при установке сервиса. «Проверить» спрашивает сервис сейчас и пишет «отвечает: выпусков N, объём» или «не отвечает: причина»; сама панель спрашивает его раз в 5 минут. Сертификат, под которым сервис ответил, панель запоминает и называет приложениям, поэтому сервису годится и его собственный сертификат. Выпуски сервиса в панели создаются и правятся так же, как свои. «Включён по умолчанию» - как у «Своего».</p>
+
+<h2 id="выпуски">Выпуски</h2>
+
+<p>Таблица «Выпуски» идёт постранично: версия, канал, дата, файлы из 20 и объём. В меню строки - «Изменить» и «Удалить»; удаление спрашивает подтверждение и убирает выпуск вместе с файлами. Сами выпуски не устаревают: лежат, пока их не удалят.</p>
+
+<p>Канал задаёт, кому достаётся выпуск. Приложение на канале «Стабильный» берёт стабильные выпуски, на «Бета» - стабильные и беты, на «Тест» - все; канал выбирается в «Общих» приложения. Из выпусков своего канала приложение берёт старший по версии, а стабильный выпуск выигрывает у беты той же версии. Версию ниже установленной приложение не ставит.</p>
+
+<h3 id="новое-обновление">Новое обновление</h3>
+
+<p>«Создать обновление» открывает окно «Новое обновление».</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/client-release.png" alt="Окно «Новое обновление»: версия, канал, описание и файлы выпуска с кнопками выбора и полем «от версии» у патчей" width="1440" height="1500" loading="lazy" /><figcaption>Новый выпуск: два файла выбраны.</figcaption></figure>
+
+<ul>
+  <li>«Версия» - четыре числа, например 1.10.16.0; «Канал» - стабильный, бета или тест; «Описание» - одна строка до 256 знаков.</li>
+  <li>«Файлы выпуска» - 20 имён выпуска с этой версией: установщики Windows x64 и arm64, с .NET внутри и без него (<code class="language-plaintext highlighter-rouge">-fdd</code>), пакеты <code class="language-plaintext highlighter-rouge">amneziageo</code> и <code class="language-plaintext highlighter-rouge">amneziageo-gui</code> для amd64 и arm64, APK Android (общий и по архитектурам), патчи к установщикам и пакетам. У каждого имени «Выбрать файл» и «Очистить», у патча - «от версии»: версия, с которой он обновляет.</li>
+  <li>«Подтвердить» доступна, когда выбран хотя бы один файл и ни у одного нет ошибки. Файлы уходят на сервер по одному, строка файла пишет «отправка N%».</li>
+</ul>
+
+<p>Файл проверяется дважды. Браузер сразу сверяет имя файла с именем строки и «от версии». Сервер при загрузке читает сам файл: установщик - программа Windows нужной архитектуры, пакет - пакет Debian с нужными именем и архитектурой, APK - архив с библиотеками нужных архитектур, патч - патч к установщику или пакету того же имени. Отказ пишется в строку файла, например «собран для x64, не arm64»; файл остаётся выбранным, остальные загружаются. Размер и SHA-256 считает сервер, он же собирает <code class="language-plaintext highlighter-rouge">update.json</code> выпуска: версия, канал, описание, файлы с патчами.</p>
+
+<p>«Изменить» открывает то же окно для выпуска: сменить канал и описание, загрузить или заменить файл, убрать файл (до подтверждения он «будет удалён»), поправить «от версии».</p>
+
+<h3 id="архив">Архив</h3>
+
+<p>«Загрузить архив» открывает то же окно со строкой «Архив zip вместо файлов»: zip с файлами выпуска в корне или в одной папке. <code class="language-plaintext highlighter-rouge">update.json</code> в архиве не обязателен: если он есть, сервер сверяет с ним имена, размеры и SHA-256 файлов, если нет - собирает свой. Версия и канал берутся из окна, и имена файлов должны им отвечать.</p>
+
+<h2 id="как-приложение-находит-выпуски">Как приложение находит выпуски</h2>
+
+<p>Пока раздача включена, ответ сервера приложению (hello) несёт адрес выпусков, отметку «по умолчанию» и SHA-256 сертификата: у «Своего» - сертификата, под которым отвечают выпуски, у «Адреса» - того, под которым ответил сервис. Адрес «Своего» строится от имени, по которому пришло приложение. Приложение читает <code class="language-plaintext highlighter-rouge">&lt;адрес&gt;/&lt;канал&gt;/update.json</code> и файлы рядом с ним под сертификатом, которому верит система, или под названным. В приложении такой сервер виден в «Подключениях» - «Сервер обновлений», см. <a href="https://bor-project.github.io/amneziageo/windows/menu/connections.ru.html#сервер-обновлений">сайт клиента</a>.</p>
+
+<p>Сервер прежних версий в ответе ничего о выпусках не говорит, и его приложения берут обновления с GitHub.</p>
+
+<h2 id="отказы">Отказы</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Сообщение</th>
+      <th>За чем стоит</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Источник: свой или адрес</td>
+      <td>источник</td>
+    </tr>
+    <tr>
+      <td>Директория: полный путь без ..; Директория выпусков не читается или не пишется</td>
+      <td>директория</td>
+    </tr>
+    <tr>
+      <td>Порт вне диапазона 1-65535; Порт занят другой службой; Выпуски не встали на этот порт, причина в журнале</td>
+      <td>порт</td>
+    </tr>
+    <tr>
+      <td>Путь из букв, цифр, -, _, . и /; Этот путь на этом порту уже занят</td>
+      <td>путь</td>
+    </tr>
+    <tr>
+      <td>Адрес https без параметров; Токен до 128 знаков без пробелов; Нужен токен сервиса</td>
+      <td>адрес и токен сервиса</td>
+    </tr>
+    <tr>
+      <td>Сервис обновлений не отвечает; Сервис обновлений не принял токен</td>
+      <td>сервис по адресу</td>
+    </tr>
+    <tr>
+      <td>Версия из четырёх чисел, например 1.10.16.0; Канал: стабильный, бета или тест; Описание в одну строку до 256 знаков; Такой выпуск уже есть; Такого выпуска нет</td>
+      <td>выпуск</td>
+    </tr>
+    <tr>
+      <td>В выпуске нет файла с таким именем; Файл не подходит выпуску; Файл больше 2 ГБ; Такого файла в выпуске нет</td>
+      <td>файл</td>
+    </tr>
+    <tr>
+      <td>Архив не читается как выпуск; update.json в архиве не сходится с файлами</td>
+      <td>архив</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>На «Обзоре» раздачу показывает строка «Обновления клиентов» в «Службах»; её причины - «директория выпусков не читается или не пишется» и «сервис обновлений не отвечает».</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
+    </script>
+  </body>
+</html>

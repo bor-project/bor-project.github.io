@@ -224,10 +224,90 @@
       <td><a href="/amneziageo_server/service/panel/overview.ru.html#обновление">Обзор</a></td>
       <td><a href="https://github.com/bor-project/amneziageo_server/blob/master/docs/updates.md">updates.md</a></td>
     </tr>
+    <tr>
+      <td>обновления клиентов</td>
+      <td><a href="/amneziageo_server/service/panel/client-updates.ru.html">Обновления клиентов</a></td>
+      <td>маршруты <code class="language-plaintext highlighter-rouge">/api/client-updates</code>: настройки, проверка адреса, выпуски и файлы, как в <a href="#сервис-выпусков-клиента">сервисе выпусков</a></td>
+    </tr>
   </tbody>
 </table>
 
 <p>Страницы панели одинаковы для службы и Docker, ссылки ведут на вариант службы.</p>
+
+<h2 id="сервис-выпусков-клиента">Сервис выпусков клиента</h2>
+
+<p>Сервер обновлений клиента, и «Свой» в панели, и <a href="/amneziageo_server/service/recipes/updates-service.ru.html">отдельный сервис</a>, отвечает на своём адресе (дальше <code class="language-plaintext highlighter-rouge">&lt;база&gt;</code>): у «Своего» это «Адрес для клиентов» вкладки <a href="/amneziageo_server/service/panel/client-updates.ru.html">Обновления клиентов</a>, у отдельного сервиса - его порт и путь <code class="language-plaintext highlighter-rouge">Updates__Path</code>. Чтение выпусков открыто всем. Остальные маршруты требуют токен сервера обновлений в заголовке <code class="language-plaintext highlighter-rouge">Authorization: Bearer</code>, а не токен панели; без него - 401 и <code class="language-plaintext highlighter-rouge">unauthorized</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Маршрут</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;база&gt;/stable/update.json</code>, <code class="language-plaintext highlighter-rouge">beta/update.json</code>, <code class="language-plaintext highlighter-rouge">test/update.json</code></td>
+      <td>манифест последнего выпуска канала в формате выпусков GitHub, без кэша; 404, пока в канале нет выпусков</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;база&gt;/&lt;канал&gt;/&lt;файл&gt;</code></td>
+      <td>файл последнего выпуска канала, с диапазонами байт</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;база&gt;/releases/&lt;тег&gt;/update.json</code>, <code class="language-plaintext highlighter-rouge">GET &lt;база&gt;/releases/&lt;тег&gt;/&lt;файл&gt;</code></td>
+      <td>манифест и файл одного выпуска</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;база&gt;/status</code></td>
+      <td>директория, можно ли в неё писать, свободно и всего байт, число выпусков и их объём</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;база&gt;/releases?page=&amp;size=</code></td>
+      <td>выпуски постранично, новые первыми: тег, версия, канал, описание, даты, число файлов, объём</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">POST &lt;база&gt;/releases</code></td>
+      <td>новый выпуск, тело <code class="language-plaintext highlighter-rouge">{ "version": "1.10.16.0", "channel": "beta", "description": "..." }</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET &lt;база&gt;/releases/&lt;тег&gt;</code></td>
+      <td>выпуск, его файлы и имена, которых не хватает</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PATCH &lt;база&gt;/releases/&lt;тег&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">{ "channel": ..., "description": ..., "from": { "&lt;имя патча&gt;": "&lt;версия&gt;" } }</code>; <code class="language-plaintext highlighter-rouge">null</code> оставляет как было</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PUT &lt;база&gt;/releases/&lt;тег&gt;/files/&lt;имя&gt;[?from=&lt;версия&gt;]</code></td>
+      <td>файл потоком в теле, до 2 ГБ; <code class="language-plaintext highlighter-rouge">from</code> - у патча</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DELETE &lt;база&gt;/releases/&lt;тег&gt;/files/&lt;имя&gt;</code></td>
+      <td>убрать файл</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">POST &lt;база&gt;/releases/&lt;тег&gt;/archive</code></td>
+      <td>zip выпуска в теле</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DELETE &lt;база&gt;/releases/&lt;тег&gt;</code></td>
+      <td>удалить выпуск с файлами, 204</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Тег - <code class="language-plaintext highlighter-rouge">v&lt;версия&gt;</code> у стабильного выпуска, <code class="language-plaintext highlighter-rouge">v&lt;версия&gt;-beta.N</code> у беты и <code class="language-plaintext highlighter-rouge">v&lt;версия&gt;-test.N</code> у теста, где N - следующий свободный номер; это же имя папки выпуска в директории. Последний выпуск канала: у стабильного - старший из стабильных, у беты - из стабильных и бет, у теста - из всех; стабильный выигрывает у беты той же версии. Отказ приходит как <code class="language-plaintext highlighter-rouge">{ "error": "&lt;код&gt;", "message": "&lt;слова&gt;" }</code>, а у файла ещё и <code class="language-plaintext highlighter-rouge">file</code> с причиной, найденным и ожидаемым. Выключенная раздача отвечает 503 и <code class="language-plaintext highlighter-rouge">updates-off</code>.</p>
+
+<p>Выпуск с установщиком и патчем к нему:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>U=https://updates.example.com:8445
+T="Authorization: Bearer &lt;токен&gt;"
+curl -s -H "$T" -H "Content-Type: application/json" -d '{ "version": "1.10.16.0", "channel": "beta" }' "$U/releases"
+curl -s -H "$T" -T AmneziaGeo-1.10.16.0-win-x64-fdd.exe "$U/releases/v1.10.16.0-beta.1/files/AmneziaGeo-1.10.16.0-win-x64-fdd.exe"
+curl -s -H "$T" -T AmneziaGeo-1.10.16.0-win-x64-fdd.patch "$U/releases/v1.10.16.0-beta.1/files/AmneziaGeo-1.10.16.0-win-x64-fdd.patch?from=1.10.15.0"
+curl -s "$U/beta/update.json"
+</code></pre></div></div>
 
 <h2 id="что-остаётся-в-консоли">Что остаётся в консоли</h2>
 

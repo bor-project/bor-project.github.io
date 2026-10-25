@@ -154,6 +154,7 @@
               <li><a href="/amneziageo_server/service/panel/server.html">Server</a></li>
               <li><a href="/amneziageo_server/service/panel/certificates.html">Certificates</a></li>
               <li><a href="/amneziageo_server/service/panel/subscriptions.html">Subscriptions</a></li>
+              <li><a href="/amneziageo_server/service/panel/client-updates.html">Client updates</a></li>
               <li><a href="/amneziageo_server/service/panel/users.html">Users and roles</a></li>
               <li><a href="/amneziageo_server/service/panel/diagnostics.html">Diagnostics</a></li>
             </ul>
@@ -183,6 +184,9 @@
           </li>
           <li>
             <a href="/amneziageo_server/service/recipes/move.html">Moving to another server</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/updates-service.html">An update server apart</a>
           </li>
         </ul>
       </li>
@@ -280,10 +284,11 @@
   <li>“Subscriptions”: on their own port or “on the ports of the interfaces”, while subscriptions are on;</li>
   <li>“Interface &lt;name&gt;” for each enabled interface, with the parts its TCP port serves: hello, speed, WebSocket, subscription;</li>
   <li>“DNS”: the DNS server, while it runs;</li>
-  <li>“Certificate &lt;name&gt;” for each certificate file the panel and subscriptions answer under, with “until &lt;date&gt;”.</li>
+  <li>“Certificate &lt;name&gt;” for each certificate file the panel and subscriptions answer under, with “until &lt;date&gt;”;</li>
+  <li>“Client updates”, while the serving of the client releases is on: a port of its own, the port of the panel or a service apart by its address.</li>
 </ul>
 
-<p>The “Change” link in a row leads to where the port and the settings of the service change: the panel - <a href="server.html">Server</a>, the subscriptions - <a href="subscriptions.html">Subscriptions</a>, an interface - <a href="interfaces.html">its page</a>, DNS - <a href="dns.html">DNS</a>, a certificate - <a href="certificates.html">Certificates</a>. A user who may change those settings sees it.</p>
+<p>The “Change” link in a row leads to where the port and the settings of the service change: the panel - <a href="server.html">Server</a>, the subscriptions - <a href="subscriptions.html">Subscriptions</a>, an interface - <a href="interfaces.html">its page</a>, DNS - <a href="dns.html">DNS</a>, a certificate - <a href="certificates.html">Certificates</a>, the client updates - <a href="client-updates.html">Client updates</a>. A user who may change those settings sees it.</p>
 
 <p>A service that is down carries “Down since &lt;time&gt;: &lt;reason&gt;”:</p>
 
@@ -330,6 +335,10 @@
     <tr>
       <td>The file does not read, Ran out on &lt;date&gt;</td>
       <td>the certificate file does not read or the certificate has run out</td>
+    </tr>
+    <tr>
+      <td>the directory of the releases does not read or write, the update service does not answer</td>
+      <td>the panel cannot reach the directory of the releases of “Own”, or the service apart did not answer the latest check, see <a href="client-updates.html">Client updates</a></td>
     </tr>
     <tr>
       <td>Runs out in N d.</td>
