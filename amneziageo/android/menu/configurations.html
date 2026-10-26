@@ -254,7 +254,7 @@
 
 <h3 id="router">Router</h3>
 
-<p>On Android the router stands under a list that is over the threshold (11,000 entries by default) or has “All UDP through the tunnel” on: then every connection is checked against the rules, the application among them, and every application sees the VPN. A smaller list is held by the route table: domains are resolved once at connect, and the applications of the rules are inside the network of the tunnel alone, see <a href="routing.html#who-sees-the-vpn">Who sees the VPN</a>. There is no switch in the window.</p>
+<p>On Android the router stands when a part of the list is decided on the fly - a rule heavier than half the <a href="routing.html#route-table-threshold">threshold</a> (11,000 entries by default) or what no longer fits it - or “All UDP through the tunnel” is on: then connections are checked against the rules, the application among them, and every application sees the VPN. The rest is held by the route table: the addresses of domains are resolved at connect (first from the last time, then again through the tunnel), and the applications of the rules of an “Only selected” list are inside the network of the tunnel alone, see <a href="routing.html#who-sees-the-vpn">Who sees the VPN</a>. There is no switch in the window.</p>
 
 <h2 id="what-the-server-offers">What the server offers</h2>
 

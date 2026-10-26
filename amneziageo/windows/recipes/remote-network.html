@@ -196,8 +196,8 @@
 <p>Subnets behind the server are reachable in two ways:</p>
 
 <ul>
-  <li>without a routing list - the tunnel follows the <code class="language-plaintext highlighter-rouge">AllowedIPs</code> of the configuration, and with <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> everything goes to the other side, including its internal addresses;</li>
-  <li>an address-range rule in a list, for example <code class="language-plaintext highlighter-rouge">cidr:10.8.0.0/24</code> - only that subnet takes the tunnel.</li>
+  <li>the full tunnel - everything goes to the other side, including its internal addresses;</li>
+  <li>an address-range rule in split mode, for example <code class="language-plaintext highlighter-rouge">cidr:10.8.0.0/24</code> - only that subnet takes the tunnel.</li>
 </ul>
 
 <figure class="shot"><img src="/amneziageo/assets/img/windows/en/routing-cidr.png" alt="The list editor: the hint for the cidr:10.8.0.0/24 rule" width="984" height="752" loading="lazy" /><figcaption>A rule by address range.</figcaption></figure>
@@ -206,7 +206,7 @@
 
 <p>If the subnet on the other side matches your local one - both <code class="language-plaintext highlighter-rouge">192.168.1.0/24</code> - no route to it can be built; only re-addressing one of the ends helps.</p>
 
-<p>More: <a href="../menu/routing.html#how-traffic-goes">How traffic goes</a>, <a href="../menu/routing.html#rule-lists">Rule lists</a>.</p>
+<p>More: <a href="../menu/routing.html#modes">Modes</a>, <a href="../menu/routing.html#rule-lists">Rule lists</a>.</p>
 
 
         <footer class="article-footer">

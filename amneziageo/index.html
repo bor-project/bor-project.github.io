@@ -171,7 +171,10 @@
 <p>A list does not have to be built from scratch: creating one starts from a template.</p>
 
 <ul>
+  <li><strong>Unavailable apps</strong> - YouTube, Instagram, WhatsApp, Telegram and the other applications of a ready-made list take the VPN entirely.</li>
   <li><strong>Unavailable sites</strong> - the sites of a ready-made list take the VPN, the rest goes direct.</li>
+  <li><strong>Everything except the chosen region</strong> - everything takes the VPN except the sites and addresses of the countries you mark.</li>
+  <li><strong>Everything through VPN</strong> - all traffic through the tunnel except the home network.</li>
   <li><strong>Block ads</strong> - adds to any template and blocks the ad domains of <code class="language-plaintext highlighter-rouge">geosite:category-ads-all</code>.</li>
 </ul>
 
@@ -180,7 +183,7 @@
 <ul>
   <li><strong>Split tunnel</strong> - traffic goes direct by default, and only connections that match your rules take the VPN.</li>
   <li><strong>Full tunnel</strong> - all traffic through the VPN, with the local network still reachable direct. The kill switch cuts internet access if the tunnel stops working.</li>
-  <li><strong>Application routing</strong> - all traffic of a chosen program and its child processes takes the tunnel, whatever addresses it reaches for; when everything has to go through the VPN, the browser is sent into the tunnel. See Routing: <a href="/amneziageo/windows/menu/routing.html#application-routing">Windows</a>, <a href="/amneziageo/linux/menu/routing.html#application-routing">Linux</a>, <a href="/amneziageo/android/menu/routing.html#application-routing">Android</a>.</li>
+  <li><strong>Application routing</strong> - all traffic of a chosen program and its child processes takes the tunnel, whatever addresses it reaches for; in a full tunnel a program can instead be kept direct. See Routing: <a href="/amneziageo/windows/menu/routing.html#application-routing">Windows</a>, <a href="/amneziageo/linux/menu/routing.html#application-routing">Linux</a>, <a href="/amneziageo/android/menu/routing.html#application-routing">Android</a>.</li>
   <li><strong>Multiple simultaneous VPN connections (Windows)</strong> - keep several tunnels up, choose a main server and reserve servers, and select a server and fallback for each routing rule. See <a href="/amneziageo/windows/recipes/multiple-vpn.html">Multiple VPN connections</a>.</li>
   <li><strong>Holding traffic when the tunnel drops</strong> - while the tunnel reconnects, what the rules send to the VPN waits instead of going direct. See <a href="/amneziageo/windows/menu/home.html#holding-traffic-when-the-tunnel-drops">Windows</a>, <a href="/amneziageo/linux/menu/home.html#holding-traffic-when-the-tunnel-drops">Linux</a>, <a href="/amneziageo/android/menu/home.html#holding-traffic-when-the-tunnel-drops">Android</a>.</li>
   <li><strong>Rules without reconnecting</strong> - domain and country list edits take effect on the fly.</li>

@@ -256,7 +256,7 @@
     </tr>
     <tr>
       <td>Everything through the VPN</td>
-      <td>only at a preset made in that mode before: turns the mode off, see <a href="#full-mode">Everything through the VPN is retired</a></td>
+      <td>everything goes through the tunnel but what goes directly</td>
     </tr>
     <tr>
       <td>All UDP through the tunnel</td>
@@ -269,11 +269,11 @@
 
 <p><a id="full-mode"></a></p>
 
-<h3 id="everything-through-the-vpn-is-retired">Everything through the VPN is retired</h3>
+<h3 id="all-apps-through-the-vpn">All apps through the VPN</h3>
 
-<p>A new preset sends through the VPN only what “Through the VPN” names: the form of a new preset has no “Everything through the VPN” switch, and the API neither adds a preset with <code class="language-plaintext highlighter-rouge">full: true</code> nor turns the mode on at a preset (“Everything through the VPN is retired: a preset tunnels only what it names”). The mode gives the server away: “Directly” nearly always holds the <code class="language-plaintext highlighter-rouge">ru</code> region, while Russian apps check blocked sites from the device themselves and those requests go through the tunnel; the <code class="language-plaintext highlighter-rouge">ru</code> list does not fit into a configuration whole, so the client has to turn on dynamic routing, which other apps see. More <a href="https://bor-project.github.io/amneziageo/windows/menu/routing.html#full-mode">on the site of the client</a>.</p>
+<p>A preset with the “Everything through the VPN” flag carries the “All apps through the VPN” label under its name in the list of presets, a preset with “All UDP through the tunnel” carries “All UDP through the VPN”; the label leads to the form. In the form a note above the flags explains this with a “More” link here. The client sends every application of the device through the server but the entries of “Direct”, or the UDP of every application even when its addresses are not in the lists. Applications that do not need the VPN go through the server as well: some applications may notice the VPN, learn the server address or stop working. Add such applications to “Direct”. The AmneziaGeo client shows the same label at such a list, see <a href="https://bor-project.github.io/amneziageo/windows/menu/routing.html#full-mode">All apps through the VPN</a> on the site of the client.</p>
 
-<p>A preset made in that mode before is handed out as it was, but the list of presets puts the “!” sign at its name, and its form a warning above the lists with a link here. Only such a preset has the “Everything through the VPN” switch: it can be turned off, and the clients get a new version of the list that tunnels only what it names; fill “Through the VPN” first. “Duplicate” makes a copy without the mode. The utility marks such a preset in <code class="language-plaintext highlighter-rouge">preset list</code>. The AmneziaGeo client shows “Unsafe” at the list.</p>
+<p>“All UDP through the tunnel” is off for a new preset.</p>
 
 <h2 id="how-the-app-takes-a-preset">How the app takes a preset</h2>
 
@@ -314,10 +314,6 @@
     <tr>
       <td>There is no such routing preset</td>
       <td>a number the panel does not know</td>
-    </tr>
-    <tr>
-      <td>Everything through the VPN is retired: a preset tunnels only what it names</td>
-      <td>a new preset with <code class="language-plaintext highlighter-rouge">full: true</code> or the mode at a preset without it</td>
     </tr>
   </tbody>
 </table>
