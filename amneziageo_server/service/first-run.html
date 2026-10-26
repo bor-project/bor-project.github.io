@@ -188,6 +188,9 @@
           <li>
             <a href="/amneziageo_server/service/recipes/updates-service.html">An update server apart</a>
           </li>
+          <li>
+            <a href="/amneziageo_server/service/recipes/android-certificate.html">A certificate older Android trusts</a>
+          </li>
         </ul>
       </li>
       <li>
@@ -241,7 +244,7 @@
 
 <ul>
   <li><strong>Through an SSH tunnel, without a certificate.</strong> On your computer <code class="language-plaintext highlighter-rouge">ssh -N -L 8443:127.0.0.1:8443 root@&lt;server address&gt;</code>, in the browser <code class="language-plaintext highlighter-rouge">http://localhost:8443/&lt;path&gt;/</code>.</li>
-  <li><strong>In the network over TLS.</strong> Menu item 22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code> gets a Let’s Encrypt certificate for the name of the server (the name must point at the host, TCP 80 must be free) or takes ready files, puts them on the panel and offers to open it on every address of the host; after that the panel answers at <code class="language-plaintext highlighter-rouge">https://&lt;name&gt;:8443/&lt;path&gt;/</code>. The same by hand: the <a href="panel/certificates.html">Certificates</a> tab, then <a href="panel/server.html">Server</a> &gt; “Listen addresses” &gt; “Every address”; or the lines <code class="language-plaintext highlighter-rouge">Web__Listen__0=*:8443</code>, <code class="language-plaintext highlighter-rouge">Web__Certificate</code> and <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code> in <code class="language-plaintext highlighter-rouge">server.env</code> before the first start.</li>
+  <li><strong>In the network over TLS.</strong> Menu item 22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code> gets a Let’s Encrypt certificate for the name of the server (the name must point at the host, TCP 80 must be free) or takes ready files, puts them on the panel and offers to open it on every address of the host; after that the panel answers at <code class="language-plaintext highlighter-rouge">https://&lt;name&gt;:8443/&lt;path&gt;/</code>. The same by hand: the <a href="panel/certificates.html">Certificates</a> tab, then <a href="panel/server.html">Server</a> &gt; “Listen addresses” &gt; “Every address”; or the lines <code class="language-plaintext highlighter-rouge">Web__Listen__0=*:8443</code>, <code class="language-plaintext highlighter-rouge">Web__Certificate</code> and <code class="language-plaintext highlighter-rouge">Web__CertificateKey</code> in <code class="language-plaintext highlighter-rouge">server.env</code> before the first start. Ready files must chain up to ISRG Root X1, or Android before 14 does not open the panel and the subscription, see <a href="recipes/android-certificate.html">A certificate older Android trusts</a>.</li>
 </ul>
 
 <p>The port of the panel in the firewall of the host is opened by menu item 23 or the “Open” button under the port field on the “Server” tab, see <a href="panel/interfaces.html#ports-in-the-firewall">Ports in the firewall</a>.</p>

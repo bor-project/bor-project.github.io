@@ -188,6 +188,9 @@
           <li>
             <a href="/amneziageo_server/docker/recipes/updates-service.html">An update server apart</a>
           </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/android-certificate.html">A certificate older Android trusts</a>
+          </li>
         </ul>
       </li>
       <li>
@@ -373,7 +376,7 @@
 
 <h2 id="certificates-firewall-ssh">Certificates, firewall, SSH</h2>
 
-<p><strong>22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>.</strong> A submenu: get a Let’s Encrypt certificate; renew the certificates now; certificates; put certificate files on the panel; take the certificate off the panel. Getting one asks for the name of the host, checks that the name resolves and TCP 80 is free (<code class="language-plaintext highlighter-rouge">certbot</code> answers the Let’s Encrypt check on it), installs <code class="language-plaintext highlighter-rouge">certbot</code>, opens 80 in ufw, gets a certificate with an RSA key (a certificate of the same name with an ECDSA key is issued again) and enables the renewal timer <code class="language-plaintext highlighter-rouge">certbot.timer</code>, then puts the certificate on the panel and offers to listen on every address of the host. “Certificates” prints <code class="language-plaintext highlighter-rouge">certbot certificates</code> and what the panel answers with. Getting and renewing run from the host; the menu gives the container the <code class="language-plaintext highlighter-rouge">/etc/letsencrypt</code> directory through <code class="language-plaintext highlighter-rouge">compose.override.yaml</code> and restarts it. More in <a href="panel/certificates.html">Certificates</a>.</p>
+<p><strong>22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>.</strong> A submenu: get a Let’s Encrypt certificate; renew the certificates now; certificates; put certificate files on the panel; take the certificate off the panel. Getting one asks for the name of the host, checks that the name resolves and TCP 80 is free (<code class="language-plaintext highlighter-rouge">certbot</code> answers the Let’s Encrypt check on it), installs <code class="language-plaintext highlighter-rouge">certbot</code>, opens 80 in ufw, gets a certificate with an RSA key (a certificate of the same name with an ECDSA key is issued again) and enables the renewal timer <code class="language-plaintext highlighter-rouge">certbot.timer</code>, then puts the certificate on the panel and offers to listen on every address of the host. “Certificates” prints <code class="language-plaintext highlighter-rouge">certbot certificates</code> and what the panel answers with. If Android before 14 does not open the panel or the subscription, see the recipe <a href="recipes/android-certificate.html">A certificate older Android trusts</a>. Getting and renewing run from the host; the menu gives the container the <code class="language-plaintext highlighter-rouge">/etc/letsencrypt</code> directory through <code class="language-plaintext highlighter-rouge">compose.override.yaml</code> and restarts it. More in <a href="panel/certificates.html">Certificates</a>.</p>
 
 <p><strong>23 <code class="language-plaintext highlighter-rouge">Firewall Management</code>.</strong> A submenu:</p>
 

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сертификат, которому верят старые Android · Docker · AmneziaGeo Server</title>
+    <meta name="description" content="Когда Android до 14 не открывает панель или подписку.">
+    <link rel="canonical" href="https://bor-project.github.io/amneziageo_server/docker/recipes/android-certificate.ru.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AmneziaGeo Server">
+    <meta property="og:title" content="Сертификат, которому верят старые Android · Docker · AmneziaGeo Server">
+    <meta property="og:description" content="Когда Android до 14 не открывает панель или подписку.">
+    <meta property="og:url" content="https://bor-project.github.io/amneziageo_server/docker/recipes/android-certificate.ru.html">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="alternate" hreflang="ru" href="https://bor-project.github.io/amneziageo_server/docker/recipes/android-certificate.ru.html">
+    <link rel="alternate" hreflang="en" href="https://bor-project.github.io/amneziageo_server/docker/recipes/android-certificate.html">
+    <link rel="alternate" hreflang="x-default" href="https://bor-project.github.io/amneziageo_server/docker/recipes/android-certificate.html">
+    <script>
+      (function () {
+        var key = 'amneziageo-language';
+        document.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('a.language');
+          if (link) {
+            try { localStorage.setItem(key, link.lang); } catch (e) {}
+          }
+        });
+      })();
+    </script>
+    <script>
+      try {
+        var theme = localStorage.getItem('amneziageo-theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      } catch (e) {}
+    </script>
+
+    <link rel="stylesheet" href="/amneziageo_server/assets/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержимому</a>
+    <header class="site-header">
+      <a class="brand" href="/amneziageo_server/index.ru.html">AmneziaGeo Server <span>Документация</span></a>
+      <nav class="header-links" aria-label="Ссылки проекта">
+        <a href="https://github.com/bor-project/amneziageo_server/releases">Релизы</a>
+        <a href="https://github.com/bor-project/amneziageo_server">GitHub</a>
+        <a href="/amneziageo/index.ru.html">Клиент</a>
+        <button class="theme" type="button" hidden data-auto="Тема: как в системе" data-light="Тема: светлая" data-dark="Тема: тёмная">
+          <svg class="theme-auto" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          <svg class="theme-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <script>
+          (function () {
+            var key = 'amneziageo-theme';
+            var order = ['auto', 'light', 'dark'];
+            var root = document.documentElement;
+            var button = document.currentScript.previousElementSibling;
+            function current() {
+              return root.getAttribute('data-theme') || 'auto';
+            }
+            function label() {
+              var text = button.getAttribute('data-' + current());
+              button.title = text;
+              button.setAttribute('aria-label', text);
+            }
+            button.addEventListener('click', function () {
+              var next = order[(order.indexOf(current()) + 1) % order.length];
+              if (next === 'auto') {
+                root.removeAttribute('data-theme');
+              } else {
+                root.setAttribute('data-theme', next);
+              }
+              try {
+                if (next === 'auto') {
+                  localStorage.removeItem(key);
+                } else {
+                  localStorage.setItem(key, next);
+                }
+              } catch (e) {}
+              label();
+            });
+            label();
+            button.hidden = false;
+          })();
+        </script>
+
+        <a class="language" lang="en" hreflang="en" href="/amneziageo_server/docker/recipes/android-certificate.html">English</a>
+
+      </nav>
+    </header>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <nav class="kind-switch" aria-label="Способ установки">
+  <a href="/amneziageo_server/service/recipes/android-certificate.ru.html">Служба</a>
+  <a href="/amneziageo_server/docker/recipes/android-certificate.ru.html" aria-current="page">Docker</a>
+</nav>
+
+        <details class="toc-details" open>
+  <summary>Содержание</summary>
+  <nav class="toc" aria-label="Содержание">
+    <ul>
+      <li>
+        <a href="/amneziageo_server/docker/index.ru.html">Начало</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/install.ru.html">Установка</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/first-run.ru.html">Первый запуск</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/menu.ru.html">Консольное меню</a>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/panel/index.ru.html">Панель</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/panel/overview.ru.html">Обзор</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/interfaces.ru.html">Интерфейсы</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/clients.ru.html">Клиенты</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/templates.ru.html">Шаблоны</a></li>
+              <li><a href="/amneziageo_server/docker/panel/presets.ru.html">Пресеты маршрутизации</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/routing.ru.html">Маршрутизация</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/rules.ru.html">Правила</a></li>
+              <li><a href="/amneziageo_server/docker/panel/basic.ru.html">Базовые</a></li>
+              <li><a href="/amneziageo_server/docker/panel/test.ru.html">Проверка</a></li>
+              <li><a href="/amneziageo_server/docker/panel/channels.ru.html">Каналы</a></li>
+              <li><a href="/amneziageo_server/docker/panel/geo.ru.html">Списки Geo</a></li>
+              <li><a href="/amneziageo_server/docker/panel/dns.ru.html">DNS</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/panel/settings.ru.html">Настройки</a>
+            <ul>
+              <li><a href="/amneziageo_server/docker/panel/server.ru.html">Сервер</a></li>
+              <li><a href="/amneziageo_server/docker/panel/certificates.ru.html">Сертификаты</a></li>
+              <li><a href="/amneziageo_server/docker/panel/subscriptions.ru.html">Подписки</a></li>
+              <li><a href="/amneziageo_server/docker/panel/client-updates.ru.html">Обновления клиентов</a></li>
+              <li><a href="/amneziageo_server/docker/panel/users.ru.html">Пользователи и роли</a></li>
+              <li><a href="/amneziageo_server/docker/panel/diagnostics.ru.html">Диагностика</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a>
+        <ul>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/another-server.ru.html">Выход через другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/channel-group.ru.html">Группа каналов с резервом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/websocket.ru.html">Туннель внутри WebSocket</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/family.ru.html">Подписка на несколько устройств</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/reach-client.ru.html">Доступ к устройству за клиентом</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/client-routing.ru.html">Маршрутизация на устройстве клиента</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/move.ru.html">Перенос на другой сервер</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/updates-service.ru.html">Отдельный сервер обновлений</a>
+          </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/android-certificate.ru.html" aria-current="page">Сертификат, которому верят старые Android</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/amneziageo_server/docker/cli.ru.html">Утилита</a>
+      </li>
+    </ul>
+  </nav>
+</details>
+
+        <div class="policy-links">
+          <a href="/amneziageo_server/api.ru.html">HTTP API</a>
+          <a href="/amneziageo_server/build.ru.html">Для разработчика</a>
+          <a href="/amneziageo_server/TERMS.ru.html">Условия использования</a>
+          <a href="/amneziageo_server/PRIVACY.ru.html">Конфиденциальность</a>
+          <a href="/amneziageo_server/THIRD-PARTY.ru.html">Сторонние компоненты</a>
+        </div>
+      </aside>
+      <main id="content" class="article" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+  <ol>
+    <li><a href="/amneziageo_server/index.ru.html">AmneziaGeo Server</a></li>
+    <li><a href="/amneziageo_server/docker/index.ru.html">Docker</a></li>
+    <li><a href="/amneziageo_server/docker/recipes/index.ru.html">Рецепты</a></li>
+  </ol>
+</nav>
+
+        <h1 id="сертификат-которому-верят-старые-android">Сертификат, которому верят старые Android</h1>
+
+<p>Задача: Android до 14-й версии не открывает панель или подписку сервера, хотя с компьютера и с нового телефона всё работает. Почти всегда дело в цепочке сертификата: она кончается на корне ISRG Root X2, которого в этих телефонах нет. Есть в них ISRG Root X1, и цепочка должна доходить до него.</p>
+
+<h2 id="1-признаки">1. Признаки</h2>
+
+<ul>
+  <li>Браузер на Android до 14 пишет, что подключение не защищено, и не открывает панель или страницу подписки.</li>
+  <li>Приложения, которые сами скачивают подписку, отвечают ошибкой соединения.</li>
+  <li>Карточка «Службы» на <a href="../panel/overview.ru.html#службы">Обзоре</a> пишет в строке «Подписки» и в строке сертификата «цепочка до ISRG Root X2: Android до 14 не скачает подписку».</li>
+</ul>
+
+<p>Под такой цепочкой подписки выключены для всех клиентов, а приложение AmneziaGeo показывает подписку со значком «!», см. <a href="../panel/certificates.ru.html#сертификат-который-берут-не-все-клиенты">Сертификат, который берут не все клиенты</a>.</p>
+
+<h2 id="2-проверка-цепочки">2. Проверка цепочки</h2>
+
+<p>Команда проверяет цепочку с любой машины, где есть OpenSSL, и с самого сервера тоже. Вместо <code class="language-plaintext highlighter-rouge">&lt;имя&gt;</code> подставьте имя сервера, вместо <code class="language-plaintext highlighter-rouge">&lt;порт&gt;</code> - порт панели или порт из адреса подписки:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl s_client -connect &lt;имя&gt;:&lt;порт&gt; -servername &lt;имя&gt; &lt; /dev/null 2&gt; /dev/null | grep -E '^ +[0-9]+ s:|^ +i:'
+</code></pre></div></div>
+
+<p>Строки <code class="language-plaintext highlighter-rouge">s:</code> называют сертификаты цепочки, строки <code class="language-plaintext highlighter-rouge">i:</code> - тех, кто их выдал. Смотрите на последнюю строку <code class="language-plaintext highlighter-rouge">i:</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ISRG Root X1</code> - хорошо: этот корень есть во всех Android с 7.1;</li>
+  <li><code class="language-plaintext highlighter-rouge">ISRG Root X2</code> или <code class="language-plaintext highlighter-rouge">Root YE</code> - плохо: Android до 14 такую цепочку не примет.</li>
+</ul>
+
+<p>Хороший ответ, ключ RSA:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0 s:CN=vpn.example.org
+   i:C=US, O=Let's Encrypt, CN=YR1
+ 1 s:C=US, O=Let's Encrypt, CN=YR1
+   i:C=US, O=ISRG, CN=Root YR
+ 2 s:C=US, O=ISRG, CN=Root YR
+   i:C=US, O=Internet Security Research Group, CN=ISRG Root X1
+</code></pre></div></div>
+
+<p>Плохой ответ, ключ ECDSA с короткой цепочкой:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0 s:CN=vpn.example.org
+   i:C=US, O=Let's Encrypt, CN=YE1
+ 1 s:C=US, O=Let's Encrypt, CN=YE1
+   i:C=US, O=ISRG, CN=Root YE
+ 2 s:C=US, O=ISRG, CN=Root YE
+   i:C=US, O=Internet Security Research Group, CN=ISRG Root X2
+</code></pre></div></div>
+
+<p>Цепочка Let’s Encrypt по умолчанию доходит до ISRG Root X1 и у ключа RSA, и у ключа ECDSA. У ECDSA в ней на одно звено больше: за ISRG Root X2 идёт он же, подписанный ISRG Root X1. Плохую цепочку дают короткая цепочка, которую выбрали при выпуске (у <code class="language-plaintext highlighter-rouge">certbot</code> это <code class="language-plaintext highlighter-rouge">--preferred-chain</code>), и программа, которая выбирает цепочку сама. Цепочка ключа RSA обходится без ISRG Root X2, поэтому меню выпускает RSA.</p>
+
+<p>Если на порту отвечает не панель, а nginx, 3x-ui или другой прокси, команда показывает его сертификат, и чинить нужно его.</p>
+
+<p>Тип ключа сертификата на хосте называет строка <code class="language-plaintext highlighter-rouge">Key Type</code> в выводе <code class="language-plaintext highlighter-rouge">certbot certificates</code>. Его же печатает подпункт «Сертификаты» пункта 22 консольного <a href="../menu.ru.html">меню</a>.</p>
+
+<h2 id="3-сертификат-rsa-от-certbot">3. Сертификат RSA от certbot</h2>
+
+<p>Пункт 22 меню <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>, подпункт «получить сертификат Let’s Encrypt», выпускает сертификат с ключом RSA 2048. Если сертификат с тем же именем уже есть и у него ключ ECDSA, меню выпускает его заново. <code class="language-plaintext highlighter-rouge">certbot</code> меню запускает на хосте. Руками на хосте:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>certbot certonly --standalone --preferred-challenges http --key-type rsa --rsa-key-size 2048 --cert-name &lt;имя&gt; -d &lt;имя&gt;
+</code></pre></div></div>
+
+<p>Уже выпущенный сертификат с ключом ECDSA переводит на RSA та же команда с <code class="language-plaintext highlighter-rouge">--force-renewal</code>. Тип ключа <code class="language-plaintext highlighter-rouge">certbot</code> записывает в <code class="language-plaintext highlighter-rouge">/etc/letsencrypt/renewal/&lt;имя&gt;.conf</code> (<code class="language-plaintext highlighter-rouge">key_type = rsa</code>), и продление его сохраняет. <code class="language-plaintext highlighter-rouge">certbot</code> до версии 1.10 ключа <code class="language-plaintext highlighter-rouge">--key-type</code> не знает и выпускает RSA сам.</p>
+
+<p>Перезапуск не нужен: панель перечитывает сертификат, когда файл меняется на диске. Сертификат не из <code class="language-plaintext highlighter-rouge">/etc/letsencrypt/live</code> ставится на вкладке <a href="../panel/certificates.ru.html">Сертификаты</a>.</p>
+
+<h2 id="4-сертификат-от-другой-программы">4. Сертификат от другой программы</h2>
+
+<ul>
+  <li><strong>acme.sh</strong> (через него выпускает сертификат и 3x-ui) по умолчанию выпускает ключ ECDSA <code class="language-plaintext highlighter-rouge">ec-256</code>, ключ RSA - с <code class="language-plaintext highlighter-rouge">--keylength 2048</code>. Сертификат ECDSA лежит в каталоге <code class="language-plaintext highlighter-rouge">&lt;имя&gt;_ecc</code>, сертификат RSA - в каталоге <code class="language-plaintext highlighter-rouge">&lt;имя&gt;</code>. После выпуска заново отдайте серверу новые файлы (<code class="language-plaintext highlighter-rouge">--install-cert</code>).</li>
+  <li><strong>Caddy</strong> по умолчанию выпускает ключ ECDSA P-256, ключ RSA - с <code class="language-plaintext highlighter-rouge">key_type rsa2048</code> в глобальных настройках или в блоке <code class="language-plaintext highlighter-rouge">tls</code>.</li>
+  <li><strong>Другая программа</strong>: выпустите ключ RSA 2048 или проверкой из раздела 2 убедитесь, что последней строкой <code class="language-plaintext highlighter-rouge">i:</code> идёт ISRG Root X1.</li>
+</ul>
+
+<h2 id="5-проверка">5. Проверка</h2>
+
+<p>Команда из раздела 2 на каждом порту, где сервер отвечает по TLS, последней строкой <code class="language-plaintext highlighter-rouge">i:</code> называет ISRG Root X1. Карточка «Службы» на Обзоре больше не называет причину в строке «Подписки» и в строке сертификата.</p>
+
+
+        <footer class="article-footer">
+          <a href="https://github.com/bor-project/amneziageo_server/issues">Сообщить о проблеме</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 800px)').matches) {
+        document.querySelectorAll('.toc-details').forEach(function (toc) { toc.removeAttribute('open'); });
+      }
+      // The window of the AmneziaGeo sign: the mouse resting on the sign opens it, a press holds it.
+      (function () {
+        var marks = document.querySelectorAll('.ag-mark');
+        var open = null;
+        var held = false;
+        var timer = null;
+        function stay() {
+          if (timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        }
+        function close() {
+          stay();
+          if (open === null) {
+            return;
+          }
+          open.querySelector('.ag-mark-card').hidden = true;
+          open.querySelector('.ag-mark-sign').setAttribute('aria-expanded', 'false');
+          open = null;
+          held = false;
+        }
+        function show(mark) {
+          if (open === mark) {
+            return;
+          }
+          close();
+          var sign = mark.querySelector('.ag-mark-sign');
+          var card = mark.querySelector('.ag-mark-card');
+          var box = sign.getBoundingClientRect();
+          var room = Math.min(400, window.innerWidth - 16);
+          card.hidden = false;
+          card.style.left = Math.max(8, Math.min(box.left - 8, window.innerWidth - room - 8)) + 'px';
+          card.style.top = (box.bottom + 4) + 'px';
+          var height = card.getBoundingClientRect().height;
+          if (box.bottom + 4 + height > window.innerHeight - 8 && box.top - 4 - height >= 8) {
+            card.style.top = (box.top - 4 - height) + 'px';
+          }
+          sign.setAttribute('aria-expanded', 'true');
+          open = mark;
+        }
+        if (marks.length === 0) {
+          return;
+        }
+        marks.forEach(function (mark) {
+          var sign = mark.querySelector('.ag-mark-sign');
+          mark.addEventListener('pointerenter', function (event) {
+            stay();
+            if (event.pointerType === 'mouse') {
+              show(mark);
+            }
+          });
+          mark.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && !held && open === mark) {
+              timer = setTimeout(close, 200);
+            }
+          });
+          sign.addEventListener('click', function () {
+            if (held && open === mark) {
+              close();
+              return;
+            }
+            show(mark);
+            held = true;
+          });
+        });
+        document.addEventListener('pointerdown', function (event) {
+          if (open !== null && held && !open.contains(event.target)) {
+            close();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape' || open === null) {
+            return;
+          }
+          var mark = open;
+          close();
+          if (mark.contains(document.activeElement)) {
+            mark.querySelector('.ag-mark-sign').focus();
+          }
+        });
+        document.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      })();
+    </script>
+  </body>
+</html>

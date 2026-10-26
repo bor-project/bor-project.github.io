@@ -179,6 +179,9 @@
           <li>
             <a href="/amneziageo_server/docker/recipes/updates-service.ru.html">Отдельный сервер обновлений</a>
           </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/android-certificate.ru.html">Сертификат, которому верят старые Android</a>
+          </li>
         </ul>
       </li>
       <li>
@@ -241,7 +244,7 @@
 
 <p>Сертификат на имя сервера выпускает пункт 22 консольного <a href="../menu.ru.html">меню</a> <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>: он проверяет, что имя разрешается и TCP 80 свободен, ставит <code class="language-plaintext highlighter-rouge">certbot</code>, открывает 80 в ufw, выпускает сертификат с ключом RSA 2048 проверкой HTTP-01, включает таймер продления <code class="language-plaintext highlighter-rouge">certbot.timer</code>, ставит сертификат панели и предлагает открыть её на всех адресах хоста. То же делает вопрос об имени сервера при установке.</p>
 
-<p>Ключ RSA нужен Android до 14-й версии: цепочка такого сертификата идёт до корня ISRG Root X1. <code class="language-plaintext highlighter-rouge">certbot</code> 2 по умолчанию выпускает ключ ECDSA с цепочкой до ISRG Root X2, этого корня в старых Android нет, и подписка там не скачивается. Сертификат того же имени с ключом ECDSA меню выпускает заново с RSA (<code class="language-plaintext highlighter-rouge">--force-renewal</code>); <code class="language-plaintext highlighter-rouge">certbot</code> старше 1.10 ключа <code class="language-plaintext highlighter-rouge">--key-type</code> не знает и выпускает RSA сам. Руками - <code class="language-plaintext highlighter-rouge">certbot certonly --standalone --preferred-challenges http --key-type rsa --rsa-key-size 2048 --cert-name &lt;имя&gt; -d &lt;имя&gt;</code>. Файлы берутся по путям из <code class="language-plaintext highlighter-rouge">live</code>, не копиями: при продлении <code class="language-plaintext highlighter-rouge">certbot</code> обновляет ссылки в <code class="language-plaintext highlighter-rouge">live</code>, а панель перечитывает файл сама. Для продления имя должно указывать на сервер, а TCP 80 оставаться доступным снаружи: <code class="language-plaintext highlighter-rouge">certbot</code> слушает его только во время проверки.</p>
+<p>Ключ RSA нужен, чтобы цепочка доходила до корня ISRG Root X1, который есть во всех Android с 7.1; как проверить цепочку и перевести сертификат на RSA, см. рецепт <a href="../recipes/android-certificate.ru.html">Сертификат, которому верят старые Android</a>. Файлы берутся по путям из <code class="language-plaintext highlighter-rouge">live</code>, не копиями: при продлении <code class="language-plaintext highlighter-rouge">certbot</code> обновляет ссылки в <code class="language-plaintext highlighter-rouge">live</code>, а панель перечитывает файл сама. Для продления имя должно указывать на сервер, а TCP 80 оставаться доступным снаружи: <code class="language-plaintext highlighter-rouge">certbot</code> слушает его только во время проверки.</p>
 
 <p>Карточка «Службы» на <a href="overview.ru.html#службы">Обзоре</a> показывает каждый файл сертификата с датой окончания и предупреждает за 14 дней: «Истекает через N дн.».</p>
 
@@ -259,7 +262,7 @@
   <li>он подписан сам собой;</li>
   <li>в файле нет сертификата, который его выдал: нужен <code class="language-plaintext highlighter-rouge">fullchain.pem</code>, а не <code class="language-plaintext highlighter-rouge">cert.pem</code>;</li>
   <li>цепочка идёт к корню, которому хост не доверяет;</li>
-  <li>цепочка идёт к ISRG Root X2, которого нет в Android до 14-й версии.</li>
+  <li>цепочка идёт к ISRG Root X2, которого нет в Android до 14-й версии, см. <a href="../recipes/android-certificate.ru.html">Сертификат, которому верят старые Android</a>.</li>
 </ul>
 
 <p>С таким сертификатом подписки отвечают 404, а свой порт подписок без сертификата не открывается. Hello работает при любом сертификате и говорит приложению AmneziaGeo, что подписка выключена: приложение показывает её со значком «!» и не читает. На вкладке «Экспорт» клиента лист «QR: подписка» остаётся только для чтения со значком «!» и подсказкой о причине, а карточка «Службы» на <a href="overview.ru.html#службы">Обзоре</a> называет причину в строке «Подписки» и в строке сертификата. Файл <code class="language-plaintext highlighter-rouge">.conf</code> и ссылка <code class="language-plaintext highlighter-rouge">vpn://</code> выдаются и под негодным сертификатом панели, со значком «!»: на сервере без домена другой выдачи нет.</p>

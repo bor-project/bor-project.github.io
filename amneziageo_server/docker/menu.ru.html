@@ -179,6 +179,9 @@
           <li>
             <a href="/amneziageo_server/docker/recipes/updates-service.ru.html">Отдельный сервер обновлений</a>
           </li>
+          <li>
+            <a href="/amneziageo_server/docker/recipes/android-certificate.ru.html">Сертификат, которому верят старые Android</a>
+          </li>
         </ul>
       </li>
       <li>
@@ -364,7 +367,7 @@
 
 <h2 id="сертификаты-брандмауэр-ssh">Сертификаты, брандмауэр, SSH</h2>
 
-<p><strong>22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>.</strong> Подменю: получить сертификат Let’s Encrypt; продлить сертификаты сейчас; сертификаты; поставить файлы сертификата панели; снять сертификат с панели. Выпуск спрашивает имя хоста, проверяет, что имя разрешается и TCP 80 свободен (на нём <code class="language-plaintext highlighter-rouge">certbot</code> отвечает на проверку Let’s Encrypt), ставит <code class="language-plaintext highlighter-rouge">certbot</code>, открывает 80 в ufw, выпускает сертификат с ключом RSA (сертификат того же имени с ключом ECDSA выпускает заново) и включает таймер продления <code class="language-plaintext highlighter-rouge">certbot.timer</code>, затем ставит сертификат панели и предлагает слушать на всех адресах хоста. «Сертификаты» печатает <code class="language-plaintext highlighter-rouge">certbot certificates</code> и то, чем отвечает панель. Выпуск и продление идут с хоста; меню добавляет контейнеру каталог <code class="language-plaintext highlighter-rouge">/etc/letsencrypt</code> через <code class="language-plaintext highlighter-rouge">compose.override.yaml</code> и перезапускает его. Подробнее - <a href="panel/certificates.ru.html">Сертификаты</a>.</p>
+<p><strong>22 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code>.</strong> Подменю: получить сертификат Let’s Encrypt; продлить сертификаты сейчас; сертификаты; поставить файлы сертификата панели; снять сертификат с панели. Выпуск спрашивает имя хоста, проверяет, что имя разрешается и TCP 80 свободен (на нём <code class="language-plaintext highlighter-rouge">certbot</code> отвечает на проверку Let’s Encrypt), ставит <code class="language-plaintext highlighter-rouge">certbot</code>, открывает 80 в ufw, выпускает сертификат с ключом RSA (сертификат того же имени с ключом ECDSA выпускает заново) и включает таймер продления <code class="language-plaintext highlighter-rouge">certbot.timer</code>, затем ставит сертификат панели и предлагает слушать на всех адресах хоста. «Сертификаты» печатает <code class="language-plaintext highlighter-rouge">certbot certificates</code> и то, чем отвечает панель. Если Android до 14 не открывает панель или подписку, см. рецепт <a href="recipes/android-certificate.ru.html">Сертификат, которому верят старые Android</a>. Выпуск и продление идут с хоста; меню добавляет контейнеру каталог <code class="language-plaintext highlighter-rouge">/etc/letsencrypt</code> через <code class="language-plaintext highlighter-rouge">compose.override.yaml</code> и перезапускает его. Подробнее - <a href="panel/certificates.ru.html">Сертификаты</a>.</p>
 
 <p><strong>23 <code class="language-plaintext highlighter-rouge">Firewall Management</code>.</strong> Подменю:</p>
 
