@@ -283,7 +283,7 @@
   <li>An earlier “Everything except selected” list: every application but the programs with the direct role.</li>
 </ul>
 
-<p>Every address range counts as an entry, the ranges of a <code class="language-plaintext highlighter-rouge">geoip:</code> country among them; every name, your own or one of a <code class="language-plaintext highlighter-rouge">geosite:</code> category, counts as eight. The threshold of 11,000 is the default; the agent setting <code class="language-plaintext highlighter-rouge">split-route-limit</code> moves it.</p>
+<p>Every address range counts as an entry, the ranges of a <code class="language-plaintext highlighter-rouge">geoip:</code> country among them; every name, your own or one of a <code class="language-plaintext highlighter-rouge">geosite:</code> category, counts as eight. The threshold of 11,000 is the default; the <a href="#route-table-threshold">Route table threshold</a> field of “Advanced” or the agent setting <code class="language-plaintext highlighter-rouge">split-route-limit</code> moves it.</p>
 
 <p>Give an application that does not work under a VPN (a bank, a messenger that checks for a VPN) the direct role: it leaves the network of the tunnel and sees no VPN.</p>
 
@@ -304,6 +304,10 @@
 <p>Calls and games usually learn their server addresses without DNS, so a domain rule never catches them. The toggle sends every outgoing UDP datagram into the tunnel, except the local network and the VPN server itself. An earlier “Everything except selected” list has no toggle: UDP rides the tunnel there without it.</p>
 
 <p>With the toggle on, the list is carried by dynamic routing and every application sees the VPN, see <a href="#who-sees-the-vpn">Who sees the VPN</a>. Android 9 and older has no dynamic routing and no toggle: UDP follows the rules of the list.</p>
+
+<h3 id="route-table-threshold">Route table threshold</h3>
+
+<p>“How many entries a list keeps in the route table”. A list no heavier than the threshold is held by the route table, a heavier one by dynamic routing, see <a href="#who-sees-the-vpn">Who sees the VPN</a>. 11,000 by default, the field takes 1000 to 100,000: a number outside these bounds is marked red and not saved. A new threshold takes effect at the next connect, while the line of the editor above the entries is counted again at once. The setting is one for all lists. The field stands under “All UDP through the tunnel” and, like the toggle, is there only on Android 10 and newer and not on an earlier “Everything except selected” list. From the console: <code class="language-plaintext highlighter-rouge">amneziageo settings set split-route-limit &lt;entries&gt;</code>.</p>
 
 <h3 id="route-lifetime">Route lifetime</h3>
 
