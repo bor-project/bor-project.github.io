@@ -211,13 +211,13 @@
 <p>On the “Tunnel” tab, the row “Update server”: where the application takes its new versions from. The list holds:</p>
 
 <ul>
-  <li>“Where installed from (&lt;host&gt;)” - where the installed version came from: GitHub or the update server it was installed from;</li>
-  <li>the update servers offered by the servers of the enabled configurations: “&lt;host&gt; “&lt;configuration&gt;””, marked “(recommended)” when the server offers it by default.</li>
+  <li>“Default” - where the last update came from, and before the first update, where the application was installed from: GitHub or an update server; its address stands under the row;</li>
+  <li>the addresses of the update servers offered by the servers of the enabled configurations.</li>
 </ul>
 
-<figure class="shot"><img src="/amneziageo/assets/img/windows/en/update-source.png" alt="Update server: the open list with Where installed from (GitHub) and the server of a configuration, the reason does not answer under the row" width="984" height="752" loading="lazy" /><figcaption>Picking the update server; under the row, why the check failed.</figcaption></figure>
+<figure class="shot"><img src="/amneziageo/assets/img/windows/en/update-source.png" alt="Update server: the open list with Default, the GitHub address under it and the address of the server of a configuration, the reason does not answer under the row" width="984" height="752" loading="lazy" /><figcaption>Picking the update server; under the row, why the check failed.</figcaption></figure>
 
-<p>An update server is offered by an AmneziaGeo server whose panel has <a href="https://bor-project.github.io/amneziageo_server/service/panel/client-updates.html">Client updates</a> on. Until a pick is made by hand, the recommended server is checked, and without one, “Where installed from”. A pick by hand holds while the server is in the list: when it stops handing out updates, the check goes back to “Where installed from”. Only the picked source is checked, on the channel from <a href="general.html#update">“General”</a>; a version below the installed one is never offered. The files of an update server are taken under a certificate the system trusts or the one the server named. Patches are taken only from the source the application was installed from; from another one it downloads the whole installer. After an update from a server, “Where installed from” names that server.</p>
+<p>An update server is offered by an AmneziaGeo server whose panel has <a href="https://bor-project.github.io/amneziageo_server/service/panel/client-updates.html">Client updates</a> on. Until a pick is made by hand, the server with “On by default” in its panel is checked, and without one, “Default”. A pick by hand holds while the server is in the list: when it stops handing out updates, the check goes back to “Default”. Only the picked source is checked, on the channel from <a href="general.html#update">“General”</a>; a version below the installed one is never offered. The files of an update server are taken under a certificate the system trusts or the one the server named. Patches are taken only from the source the application was installed from; from another one it downloads the whole installer. After an update from a server, that server becomes “Default”.</p>
 
 <p>When the check fails, the reason stands under the row, and a mark stands by the state on the <a href="home.html#update-check-error">home screen</a>:</p>
 
