@@ -369,7 +369,7 @@
   <tbody>
     <tr>
       <td>hello</td>
-      <td>tells the app what the server offers it: WebSocket with its port and path, access from the tunnel, the disconnect signal, the speed test, the subscription address, the geo sources of the panel and the routing presets of the template</td>
+      <td>tells the app what the server offers it: WebSocket with its port and path, access from the tunnel, the disconnect signal, the speed test, where the hello answers inside the tunnel, the subscription address, the geo sources of the panel and the routing presets of the template</td>
     </tr>
     <tr>
       <td>speed</td>
@@ -386,7 +386,7 @@
   </tbody>
 </table>
 
-<p>The port answers over TLS: under the certificate of the panel when there is one, otherwise under a certificate the panel makes itself at the start; the app does not check it, the client is proven by the signature of its keys. If the services port is moved, the file of the client carries the line <code class="language-plaintext highlighter-rouge"># AmneziaGeo Services = &lt;port&gt;</code>, which other apps read as a comment. The panel can answer on this same port itself: it is enough to name it on the <a href="server.html">Server</a> tab, and the server opens one TCP port to the world.</p>
+<p>The port answers over TLS: under the certificate of the panel when there is one, otherwise under a certificate the panel makes itself at the start; the app does not check it, the client is proven by the signature of its keys. Inside the tunnel, at the address of the interface, hello and the speed test go over plain HTTP as well: the hello answer is sealed by the keys of the client, the speed test is let in by its ticket, so a certificate has nothing to prove there. The app learns this address from hello and asks the server there while the tunnel is up. WebSocket, the subscription and everything that comes from outside the tunnel go over TLS only; if the services port is the panel port, there is no plain HTTP inside the tunnel either. If the services port is moved, the file of the client carries the line <code class="language-plaintext highlighter-rouge"># AmneziaGeo Services = &lt;port&gt;</code>, which other apps read as a comment. The panel can answer on this same port itself: it is enough to name it on the <a href="server.html">Server</a> tab, and the server opens one TCP port to the world.</p>
 
 <p>For WebSocket the panel runs one <code class="language-plaintext highlighter-rouge">wstunnel</code> per interface on the loopback, with port <code class="language-plaintext highlighter-rouge">61000 + id % 4000</code>, and the target list of the front lets it only to the UDP port of its interface. The front is the service <code class="language-plaintext highlighter-rouge">amneziageo-proxy@&lt;interface&gt;</code> with its arguments in <code class="language-plaintext highlighter-rouge">/etc/amneziageo-server/proxy-&lt;interface&gt;.env</code> and the target list in <code class="language-plaintext highlighter-rouge">proxy-&lt;interface&gt;.yaml</code>. The WebSocket path cannot be the same as the path of the panel, of subscriptions or of the WebSocket of another interface on the same port: such a save answers “The path is taken on this port”. If the front did not come up or another program holds the services port, the panel clears the “WebSocket proxy” box and names the reason; a front that fell over later and a closed port show in <a href="overview.html#services">Services</a>.</p>
 
