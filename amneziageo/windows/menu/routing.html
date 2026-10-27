@@ -263,6 +263,29 @@
 
 <p>Every rule takes one of three roles: <strong>proxy</strong> - send through the tunnel, <strong>direct</strong> - keep off the tunnel, <strong>block</strong> - refuse. Rules are grouped into lists, and a list is picked for the connection.</p>
 
+<h3 id="rule-order">Rule order</h3>
+
+<p>The rules of a list add up. Where rules of different roles meet on one connection, the narrower one decides:</p>
+
+<ol>
+  <li>The network the device stands in always stays direct.</li>
+  <li>An application of the list: all of its traffic follows its role, through the tunnel or past it, whatever rules name the address or the name; a block holds for it too, see <a href="#application-routing">Application routing</a>.</li>
+  <li>A name: your own domain <code class="language-plaintext highlighter-rouge">domain:</code> wins over an entry of a <code class="language-plaintext highlighter-rouge">geosite:</code> category, an exact name over a suffix, a longer suffix over a shorter one. A rule by name wins over a range its address lies in.</li>
+  <li>An address: a narrow range wins over a wide one (an address over a /24, a /24 over a /16); <code class="language-plaintext highlighter-rouge">geoip:</code> stands for the ranges of the country.</li>
+  <li>The rest follows the mode of the list: direct in “Only selected”, through the tunnel in “Everything except selected”.</li>
+</ol>
+
+<p>Rules of the same width and different roles go block first, then direct, then proxy.</p>
+
+<p>This is how exceptions are made:</p>
+
+<ul>
+  <li>direct <code class="language-plaintext highlighter-rouge">geoip:ru</code> and proxy <code class="language-plaintext highlighter-rouge">cidr:&lt;a network in Russia&gt;</code>: that network takes the tunnel, the rest of Russia goes direct;</li>
+  <li>direct <code class="language-plaintext highlighter-rouge">geosite:&lt;category&gt;</code> and proxy <code class="language-plaintext highlighter-rouge">domain:&lt;a site of that category&gt;</code>: the site takes the tunnel, the rest of the category goes direct;</li>
+  <li>block <code class="language-plaintext highlighter-rouge">domain:example.com</code> and proxy <code class="language-plaintext highlighter-rouge">domain:www.example.com</code>: www.example.com opens through the tunnel, the other names of example.com stay closed;</li>
+  <li>proxy <code class="language-plaintext highlighter-rouge">app:&lt;browser&gt;</code> and direct <code class="language-plaintext highlighter-rouge">geoip:ru</code>: the browser reaches Russia through the tunnel too, other programs go there direct.</li>
+</ul>
+
 <p>Domain and country edits apply on the fly, with no reconnect.</p>
 
 <p>The databases for <code class="language-plaintext highlighter-rouge">geosite:</code> and <code class="language-plaintext highlighter-rouge">geoip:</code> are in <a href="geo-sources.html">Geo sources</a>.</p>
@@ -301,9 +324,9 @@
 
 <p>Private addresses are never picked up by such a rule: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, CGNAT and link-local always stay off the tunnel. To send an application into a remote local network, use an address-range rule.</p>
 
-<p>In an “Everything except selected” list a program is added with the direct role: the tunnel carries the whole machine and the traffic of that program leaves past it. An address the list blocks or sends through the tunnel itself follows the rule of the list for that program too.</p>
+<p>In an “Everything except selected” list a program is added with the direct role: the tunnel carries the whole machine and the traffic of that program leaves past it, to the addresses and names the list sends through the tunnel too. An address the list blocks stays closed to it, see <a href="#rule-order">Rule order</a>.</p>
 
-<p>In an “Only selected” list the tunnel is given to the address the program reached for and the name it looked up, not to the program. While the route of the address lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use, across a reconnect too), every program of the machine reaches it through the tunnel, not only the named one. An address the program looked up by name has its route into the tunnel before the answer reaches the program, even if another program has reached it past the tunnel before: while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client.</p>
+<p>In an “Only selected” list the tunnel is given to the address the program reached for and the name it looked up, not to the program. While the route of the address lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use, across a reconnect too), every program of the machine reaches it through the tunnel, not only the named one. An address the program looked up by name has its route into the tunnel before the answer reaches the program, even if another program has reached it past the tunnel before: while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client. An address the list keeps direct takes the tunnel for such a program too, apart from the networks of the machine itself, and an address the list blocks stays closed to it: the route and the refusal of an address hold for the whole machine.</p>
 
 <p>The way past the tunnel is given to the address the program reached for, not to the program. An address the program looked up by name has its route past the tunnel before the answer reaches the program, so the first attempt goes through; while the list names such a program, the system keeps no answers of the resolver, so every lookup passes the client. The first attempt at an address the program reached without a name lookup is refused, and a second or two later the address has a route past the tunnel. While a route lives (<code class="language-plaintext highlighter-rouge">route-ttl-seconds</code> after its last use) every program of the machine reaches the address past the tunnel. A UDP socket connected to such an address earlier has to be opened again. A program named by its name, package or service, and a child process whose file lies outside a named folder, is not refused the tunnel: an address it reached without a name lookup goes through the tunnel for the first second or two, then that connection is dropped and opens again past the tunnel. An edit of the set of programs applies without a reconnect.</p>
 
