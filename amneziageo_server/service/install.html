@@ -230,7 +230,7 @@ chmod 755 /usr/local/bin/amneziageo-server
 amneziageo-server install
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">install</code> first looks the host over and prints what it carries: the system and the kernel, the upgrades waiting, the <code class="language-plaintext highlighter-rouge">amneziawg</code> module, memory and disk, Docker and its containers, forwarding and BBR, ufw, the ports taken with the services behind them, the AmneziaWG and WireGuard interfaces, the Let’s Encrypt certificates. It stops on what the panel cannot live with: no release for the architecture, a container host without the module. Then it asks all its questions at once, with defaults taken from the look, prints the plan and, once you agree, does everything on the list.</p>
+<p><code class="language-plaintext highlighter-rouge">install</code> first asks what to install: <code class="language-plaintext highlighter-rouge">1. Panel</code>, which hands the releases of the client out itself as well, or <code class="language-plaintext highlighter-rouge">2. Client updates server</code>, the update server of the client alone, without the panel, see <a href="/amneziageo_server/service/recipes/updates-service.html">An update server apart</a>. For the panel it looks the host over and prints what it carries: the system and the kernel, the upgrades waiting, the <code class="language-plaintext highlighter-rouge">amneziawg</code> module, memory and disk, Docker and its containers, forwarding and BBR, ufw, the ports taken with the services behind them, the AmneziaWG and WireGuard interfaces, the Let’s Encrypt certificates. It stops on what the panel cannot live with: no release for the architecture, a container host without the module. Then it asks all its questions at once, with defaults taken from the look, prints the plan and, once you agree, does everything on the list.</p>
 
 <h3 id="questions">Questions</h3>
 
@@ -243,6 +243,11 @@ amneziageo-server install
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">What to install</code>: <code class="language-plaintext highlighter-rouge">1. Panel</code>, <code class="language-plaintext highlighter-rouge">2. Client updates server</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">role</code>: <code class="language-plaintext highlighter-rouge">panel</code> or <code class="language-plaintext highlighter-rouge">updates</code></td>
+    </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Install as</code>: <code class="language-plaintext highlighter-rouge">1. Package</code> (the service), <code class="language-plaintext highlighter-rouge">2. Docker</code></td>
       <td><code class="language-plaintext highlighter-rouge">1</code> when the host has no Docker</td>
@@ -259,8 +264,8 @@ amneziageo-server install
       <td><code class="language-plaintext highlighter-rouge">upgrade</code></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Channel</code>: 1 Stable, 2 Test</td>
-      <td>Stable</td>
+      <td><code class="language-plaintext highlighter-rouge">Channel</code>: <code class="language-plaintext highlighter-rouge">1. Stable</code>, <code class="language-plaintext highlighter-rouge">2. Test</code> (prereleases)</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td><code class="language-plaintext highlighter-rouge">channel</code>: <code class="language-plaintext highlighter-rouge">stable</code> or <code class="language-plaintext highlighter-rouge">test</code></td>
     </tr>
     <tr>
@@ -340,7 +345,7 @@ amneziageo-server install
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Open &lt;ports&gt; in ufw?</code>, or <code class="language-plaintext highlighter-rouge">Turn ufw on, letting in ssh and what listens now?</code></td>
-      <td>yes when ufw is not installed</td>
+      <td>yes; no when ufw is installed and off</td>
       <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
     </tr>
     <tr>

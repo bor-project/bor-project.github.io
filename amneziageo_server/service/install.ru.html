@@ -221,7 +221,7 @@ chmod 755 /usr/local/bin/amneziageo-server
 amneziageo-server install
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">install</code> сначала осматривает хост и печатает, что на нём есть: система и ядро, ждущие обновления, модуль <code class="language-plaintext highlighter-rouge">amneziawg</code>, память и диск, Docker и его контейнеры, пересылка и BBR, ufw, занятые порты со службами за ними, интерфейсы AmneziaWG и WireGuard, сертификаты Let’s Encrypt. На том, с чем панель не уживётся, он останавливается: нет релиза для архитектуры, контейнерный хост без модуля. Потом задаёт все вопросы сразу, с ответами по умолчанию из осмотра, печатает план и после согласия делает всё по списку.</p>
+<p><code class="language-plaintext highlighter-rouge">install</code> сначала спрашивает, что ставить: <code class="language-plaintext highlighter-rouge">1. Panel</code> - панель, она раздаёт выпуски клиента и сама, или <code class="language-plaintext highlighter-rouge">2. Client updates server</code> - один сервер обновлений клиента, без панели, см. <a href="/amneziageo_server/service/recipes/updates-service.ru.html">Отдельный сервер обновлений</a>. Для панели он осматривает хост и печатает, что на нём есть: система и ядро, ждущие обновления, модуль <code class="language-plaintext highlighter-rouge">amneziawg</code>, память и диск, Docker и его контейнеры, пересылка и BBR, ufw, занятые порты со службами за ними, интерфейсы AmneziaWG и WireGuard, сертификаты Let’s Encrypt. На том, с чем панель не уживётся, он останавливается: нет релиза для архитектуры, контейнерный хост без модуля. Потом задаёт все вопросы сразу, с ответами по умолчанию из осмотра, печатает план и после согласия делает всё по списку.</p>
 
 <h3 id="вопросы">Вопросы</h3>
 
@@ -234,6 +234,11 @@ amneziageo-server install
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">What to install</code>: <code class="language-plaintext highlighter-rouge">1. Panel</code>, <code class="language-plaintext highlighter-rouge">2. Client updates server</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">role</code>: <code class="language-plaintext highlighter-rouge">panel</code> или <code class="language-plaintext highlighter-rouge">updates</code></td>
+    </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Install as</code>: <code class="language-plaintext highlighter-rouge">1. Package</code> (служба), <code class="language-plaintext highlighter-rouge">2. Docker</code></td>
       <td><code class="language-plaintext highlighter-rouge">1</code>, если на хосте нет Docker</td>
@@ -250,8 +255,8 @@ amneziageo-server install
       <td><code class="language-plaintext highlighter-rouge">upgrade</code></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Channel</code>: 1 обычные релизы, 2 предварительные</td>
-      <td>обычные</td>
+      <td><code class="language-plaintext highlighter-rouge">Channel</code>: <code class="language-plaintext highlighter-rouge">1. Stable</code>, <code class="language-plaintext highlighter-rouge">2. Test</code> (предварительные выпуски)</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td><code class="language-plaintext highlighter-rouge">channel</code>: <code class="language-plaintext highlighter-rouge">stable</code> или <code class="language-plaintext highlighter-rouge">test</code></td>
     </tr>
     <tr>
@@ -331,7 +336,7 @@ amneziageo-server install
     </tr>
     <tr>
       <td>Открыть порты в ufw, или включить ufw, впустив ssh и то, что уже слушает?</td>
-      <td>да, если ufw не стоит</td>
+      <td>да; нет, если ufw стоит выключенный</td>
       <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
     </tr>
     <tr>

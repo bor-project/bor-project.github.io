@@ -210,20 +210,137 @@
 
         <h1 id="отдельный-сервер-обновлений">Отдельный сервер обновлений</h1>
 
-<p>Выпуски клиента можно держать не в панели, а в отдельном сервисе: на другом хосте, на другом диске или один на несколько панелей. Сервис - тот же сервер обновлений, что «Свой» в панели, только отдельной программой в контейнере: выпуски он отдаёт приложениям без авторизации, а принимает от панели или скрипта по токену. В примере сервис стоит на <code class="language-plaintext highlighter-rouge">updates.example.com</code>, а панель берёт его выпуски по адресу.</p>
+<p>Выпуски клиента можно держать не в панели, а на отдельном сервере обновлений: на другом хосте, на другом диске или один на несколько панелей. Это тот же сервер обновлений, что «Свой» в панели, только отдельной программой: выпуски он отдаёт приложениям без авторизации, а принимает по токену из своего окна, из панели или скриптом. Панель на своём хосте раздаёт выпуски сама, см. <a href="../panel/client-updates.ru.html">Обновления клиентов</a>, поэтому на хосте стоит что-то одно: панель или сервер обновлений. В примере сервер стоит на <code class="language-plaintext highlighter-rouge">updates.example.com</code>, а панель берёт его выпуски по адресу.</p>
 
-<h2 id="поставить-сервис">Поставить сервис</h2>
+<h2 id="поставить-сервер">Поставить сервер</h2>
 
-<p>На хосте с Docker и плагином compose: пункт 30 <code class="language-plaintext highlighter-rouge">Client Updates Service</code> меню <code class="language-plaintext highlighter-rouge">amneziageo-server</code> или команда <code class="language-plaintext highlighter-rouge">amneziageo-server updates</code>. Подпункт 1 <code class="language-plaintext highlighter-rouge">Install or update the service</code>:</p>
+<p>Нужны Debian 12 и новее или Ubuntu на amd64 или arm64, права root и место под выпуски: один выпуск клиента занимает около 800 МБ. Модуль <code class="language-plaintext highlighter-rouge">amneziawg</code> и пересылка пакетов серверу не нужны. От root:</p>
 
-<ol>
-  <li>спрашивает порт сервиса, 8445 по умолчанию; занятый порт не берёт;</li>
-  <li>если на хосте есть сертификаты Let’s Encrypt, называет их и спрашивает, под каким отвечать; пустой ответ - сервис делает свой сертификат;</li>
-  <li>кладёт проект compose в <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code> и поднимает контейнер <code class="language-plaintext highlighter-rouge">amneziageo-updates</code> из образа <code class="language-plaintext highlighter-rouge">ghcr.io/bor-project/amneziageo-updates</code> той версии, что у последнего стабильного выпуска сервера;</li>
-  <li>печатает адрес для панели, <code class="language-plaintext highlighter-rouge">https://&lt;имя сертификата или адрес хоста&gt;:&lt;порт&gt;/</code>, и один раз - токен.</li>
-</ol>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fsSL https://github.com/bor-project/amneziageo_server/releases/latest/download/amneziageo-server \
+  -o /usr/local/bin/amneziageo-server
+chmod 755 /usr/local/bin/amneziageo-server
+amneziageo-server install
+</code></pre></div></div>
 
-<p>Выпуски лежат в <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-updates</code>, токен и свой сертификат сервиса - в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code>. Тот же подпункт позже переводит сервис на новый образ. Подпункт 2 <code class="language-plaintext highlighter-rouge">New token</code> делает новый токен и печатает его один раз, прежний перестаёт действовать; 3 <code class="language-plaintext highlighter-rouge">Logs of the service</code> - журнал сервиса; 4 <code class="language-plaintext highlighter-rouge">Remove the service</code> снимает контейнер, а выпуски и токен остаются на диске.</p>
+<p>На первый вопрос, <code class="language-plaintext highlighter-rouge">What to install</code>, ответьте <code class="language-plaintext highlighter-rouge">2</code> (<code class="language-plaintext highlighter-rouge">Client updates server</code>). Скрипт осматривает хост (система, память и диск, Docker, ufw, занятые порты, сертификаты Let’s Encrypt), задаёт вопросы, печатает план и после согласия делает всё по списку.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Вопрос</th>
+      <th>По умолчанию</th>
+      <th>Ключ файла ответов</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">What to install</code>: <code class="language-plaintext highlighter-rouge">1. Panel</code>, <code class="language-plaintext highlighter-rouge">2. Client updates server</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">role</code>: <code class="language-plaintext highlighter-rouge">panel</code> или <code class="language-plaintext highlighter-rouge">updates</code></td>
+    </tr>
+    <tr>
+      <td>принять условия использования</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">license</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Install as</code>: <code class="language-plaintext highlighter-rouge">1. Package</code> (служба), <code class="language-plaintext highlighter-rouge">2. Docker</code></td>
+      <td><code class="language-plaintext highlighter-rouge">2</code>, если на хосте есть Docker</td>
+      <td><code class="language-plaintext highlighter-rouge">kind</code>: <code class="language-plaintext highlighter-rouge">package</code> или <code class="language-plaintext highlighter-rouge">docker</code></td>
+    </tr>
+    <tr>
+      <td>поставить короткую команду меню, её имя</td>
+      <td>спрашивается только с терминала; <code class="language-plaintext highlighter-rouge">ag-s</code> или первое свободное имя с номером</td>
+      <td><code class="language-plaintext highlighter-rouge">shortcut</code></td>
+    </tr>
+    <tr>
+      <td>обновить систему первой (<code class="language-plaintext highlighter-rouge">apt full-upgrade</code>)</td>
+      <td>да</td>
+      <td><code class="language-plaintext highlighter-rouge">upgrade</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Channel</code>: <code class="language-plaintext highlighter-rouge">1. Stable</code>, <code class="language-plaintext highlighter-rouge">2. Test</code> (предварительные выпуски)</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">channel</code>: <code class="language-plaintext highlighter-rouge">stable</code> или <code class="language-plaintext highlighter-rouge">test</code></td>
+    </tr>
+    <tr>
+      <td>имя сервера для сертификата Let’s Encrypt, пусто без него; почта и согласие с условиями Let’s Encrypt</td>
+      <td>имя, на которое у хоста уже есть сертификат</td>
+      <td><code class="language-plaintext highlighter-rouge">domain</code>, <code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">terms</code></td>
+    </tr>
+    <tr>
+      <td>порт сервера</td>
+      <td>8445 или первый свободный выше</td>
+      <td><code class="language-plaintext highlighter-rouge">port</code></td>
+    </tr>
+    <tr>
+      <td>открыть порт в ufw или включить ufw, впустив ssh и то, что уже слушает</td>
+      <td>да; нет, если ufw стоит выключенный</td>
+      <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
+    </tr>
+    <tr>
+      <td>идти дальше по плану</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">go</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Для Docker нужен Docker с плагином compose и работающей службой: если чего-то нет, скрипт печатает команды, которые это ставят, и выходит, ничего не меняя. Ответы можно заранее положить в файл и дать его командой <code class="language-plaintext highlighter-rouge">amneziageo-server install --answers &lt;файл&gt;</code>, как для панели.</p>
+
+<p>Что делает установка:</p>
+
+<ul>
+  <li>обновляет систему, если согласились; если пришло новое ядро, перезагружает хост, и та же команда после перезагрузки продолжает с теми же ответами;</li>
+  <li>получает сертификат Let’s Encrypt на имя сервера (<code class="language-plaintext highlighter-rouge">certbot</code>, проверка на TCP 80, продление таймером <code class="language-plaintext highlighter-rouge">certbot.timer</code>) или берёт тот, что у хоста уже есть; без имени сервер отвечает под своим сертификатом, а приложения проверяют его по отпечатку, который называет панель;</li>
+  <li>делает токен и случайный путь окна;</li>
+  <li>службой: скачивает архив сервера из последнего релиза канала, сверяет его со списком релиза, подписанным ключом релизов, и ставит службу <code class="language-plaintext highlighter-rouge">amneziageo-updates</code>; в Docker: кладёт проект compose в <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code> и поднимает контейнер <code class="language-plaintext highlighter-rouge">amneziageo-updates</code> из образа <code class="language-plaintext highlighter-rouge">ghcr.io/bor-project/amneziageo-updates</code> того же релиза, на сети хоста;</li>
+  <li>открывает порт в ufw или включает ufw;</li>
+  <li>печатает адрес выпусков для панелей и приложений, <code class="language-plaintext highlighter-rouge">https://&lt;имя или адрес хоста&gt;:&lt;порт&gt;/</code>, адрес окна и один раз токен.</li>
+</ul>
+
+<p>Где что лежит:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Служба</th>
+      <th>Docker</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>программа</td>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates/releases/&lt;выпуск&gt;</code>, ссылки <code class="language-plaintext highlighter-rouge">current</code> и <code class="language-plaintext highlighter-rouge">previous</code></td>
+      <td>образ, проект compose в <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code></td>
+    </tr>
+    <tr>
+      <td>служба</td>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-updates.service</code></td>
+      <td>контейнер <code class="language-plaintext highlighter-rouge">amneziageo-updates</code></td>
+    </tr>
+    <tr>
+      <td>выпуски</td>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-updates</code></td>
+      <td>тот же каталог хоста</td>
+    </tr>
+    <tr>
+      <td>порт и сертификат</td>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates/updates.env</code></td>
+      <td>тот же файл</td>
+    </tr>
+    <tr>
+      <td>токен, путь окна</td>
+      <td><code class="language-plaintext highlighter-rouge">token</code>, <code class="language-plaintext highlighter-rouge">web-path</code> в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code></td>
+      <td>те же файлы</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Дальше сервером управляют из его меню: <code class="language-plaintext highlighter-rouge">amneziageo-server</code> на таком хосте открывает <a href="../menu.ru.html#меню-сервера-обновлений">меню сервера обновлений</a> с обновлением и откатом, новым токеном, новым путём окна, портом, сертификатами и брандмауэром.</p>
+
+<h3 id="без-меню">Без меню</h3>
 
 <p>Образ запускается и без меню, настройки - в переменных <code class="language-plaintext highlighter-rouge">Updates__*</code>:</p>
 
@@ -244,16 +361,20 @@
       <td>путь перед выпусками; пусто - корень</td>
     </tr>
     <tr>
+      <td><code class="language-plaintext highlighter-rouge">Updates__WebPath</code></td>
+      <td>путь окна; не задан - файл <code class="language-plaintext highlighter-rouge">web-path</code> в <code class="language-plaintext highlighter-rouge">Updates__Etc</code>: при первом старте сервер пишет туда случайный путь</td>
+    </tr>
+    <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Directory</code></td>
       <td>директория выпусков, <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-updates</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Etc</code></td>
-      <td>директория токена и сертификата, <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code></td>
+      <td>директория токена, пути окна и своего сертификата, <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Token</code>, <code class="language-plaintext highlighter-rouge">Updates__TokenFile</code></td>
-      <td>токен или файл с ним; не заданы - файл <code class="language-plaintext highlighter-rouge">token</code> в <code class="language-plaintext highlighter-rouge">Updates__Etc</code>: при первом старте сервис пишет туда новый токен и печатает его в журнал</td>
+      <td>токен или файл с ним; не заданы - файл <code class="language-plaintext highlighter-rouge">token</code> в <code class="language-plaintext highlighter-rouge">Updates__Etc</code>: при первом старте сервер пишет туда новый токен</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Certificate</code>, <code class="language-plaintext highlighter-rouge">Updates__CertificateKey</code></td>
@@ -264,27 +385,42 @@
 
 <p><code class="language-plaintext highlighter-rouge">GET /health</code> отвечает 204, на нём стоит проверка здоровья контейнера.</p>
 
+<h2 id="окно-сервера">Окно сервера</h2>
+
+<p>Адрес окна - <code class="language-plaintext highlighter-rouge">https://updates.example.com:8445/&lt;путь&gt;/</code>: путь из 16 букв и цифр печатают установка и пункт 9 меню <code class="language-plaintext highlighter-rouge">View Current Settings</code>, новый путь даёт пункт 7 <code class="language-plaintext highlighter-rouge">Reset UI Path</code>. Вход в окно - по токену сервера.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/updates-window-login.png" alt="Вход в окно сервера обновлений: поле «Токен», кнопка «Войти», версия, язык и тема" width="464" height="374" loading="lazy" /><figcaption>Вход по токену.</figcaption></figure>
+
+<p>После входа окно показывает адрес выпусков для панелей и приложений с кнопкой «Копировать», директорию выпусков со свободным местом и таблицу «Выпуски». Выпуски создаются, правятся и удаляются так же, как во вкладке панели, см. <a href="../panel/client-updates.ru.html#выпуски">Выпуски</a>. Окно, открытое до нового токена из меню, при следующем обращении к серверу возвращается ко входу: войти можно уже с новым токеном.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/ru/updates-window.png" alt="Окно сервера обновлений: адрес для панелей и клиентов, директория, свободное место и таблица выпусков" width="1440" height="572" loading="lazy" /><figcaption>Адрес выпусков, директория и выпуски.</figcaption></figure>
+
 <h2 id="подключить-к-панели">Подключить к панели</h2>
 
 <ol>
   <li>«Настройки» - «Обновления клиентов»: включить «Раздавать обновления клиентам», «Источник» - «Адрес».</li>
-  <li>«Адрес» - <code class="language-plaintext highlighter-rouge">https://updates.example.com:8445/</code>, «Токен» - токен сервиса, «Проверить». Ответ - «отвечает: выпусков 0, 0 Б».</li>
-  <li>«Сохранить». Панель запомнит сертификат сервиса и будет называть его приложениям.</li>
+  <li>«Адрес» - <code class="language-plaintext highlighter-rouge">https://updates.example.com:8445/</code>, «Токен» - токен сервера, «Проверить». Ответ - «отвечает: выпусков 0, 0 Б».</li>
+  <li>«Сохранить». Панель запомнит сертификат сервера и будет называть его приложениям.</li>
 </ol>
 
-<p>Брандмауэр хоста сервиса должен пускать его порт: приложения качают выпуски прямо с сервиса, а не через панель.</p>
+<p>Брандмауэр хоста сервера должен пускать его порт: приложения качают выпуски прямо с сервера, а не через панель.</p>
 
 <h2 id="положить-выпуск">Положить выпуск</h2>
 
-<p>«Создать обновление» на той же вкладке: версия, канал, файлы, «Подтвердить», см. <a href="../panel/client-updates.ru.html#новое-обновление">Новое обновление</a>. Приложение с конфигурацией этой панели видит сервис в «Подключениях» - «Сервер обновлений» по его адресу; если стоит «Включён по умолчанию», приложение берёт его, пока сервер обновлений не выбран рукой, и предлагает выпуск своего канала, когда он новее установленной версии.</p>
+<p>«Создать обновление» в окне сервера или на вкладке панели с «Адресом»: версия, канал, файлы, «Подтвердить», см. <a href="../panel/client-updates.ru.html#новое-обновление">Новое обновление</a>. Приложение с конфигурацией этой панели видит сервер в «Подключениях» - «Сервер обновлений» по его адресу; если стоит «Включён по умолчанию», приложение берёт его, пока сервер обновлений не выбран рукой, и предлагает выпуск своего канала, когда он новее установленной версии.</p>
 
 <h2 id="проверить">Проверить</h2>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">curl -s -o /dev/null -w '%{http_code}\n' https://updates.example.com:8445/health</code> - 204.</li>
-  <li><code class="language-plaintext highlighter-rouge">curl https://updates.example.com:8445/beta/update.json</code> - манифест последней беты; 404, пока в канале нет выпусков.</li>
-  <li>Строка «Обновления клиентов» в «Службах» <a href="../panel/overview.ru.html#службы">Обзора</a> стоит без причины.</li>
+  <li><code class="language-plaintext highlighter-rouge">curl https://updates.example.com:8445/beta/update.json</code> - манифест самого нового стабильного выпуска или беты; 404, пока их нет.</li>
+  <li><code class="language-plaintext highlighter-rouge">amneziageo-server status</code> на хосте сервера: отвечает ли сервер и его окно, сертификат, порт в ufw.</li>
+  <li>Строка «Обновления клиентов» в «Службах» <a href="../panel/overview.ru.html#службы">Обзора</a> панели стоит без причины.</li>
 </ul>
+
+<h2 id="контейнер-рядом-с-панелью-поставленный-пунктом-30">Контейнер рядом с панелью, поставленный пунктом 30</h2>
+
+<p>Раньше сервер обновлений ставился пунктом 30 меню панели в контейнер рядом с ней. Такой контейнер обслуживает тот же пункт 30: он виден в меню панели, пока контейнер стоит, и умеет перевести его на последний образ, сделать новый токен, показать журнал и снять. Первое обновление переводит контейнер на сеть хоста с тем же портом, а порт и сертификат - в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates/updates.env</code>; выпуски и токен остаются прежними.</p>
 
 
         <footer class="article-footer">

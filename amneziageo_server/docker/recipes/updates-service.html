@@ -219,20 +219,137 @@
 
         <h1 id="an-update-server-apart">An update server apart</h1>
 
-<p>The releases of the client can be kept in a service apart rather than in the panel: on another host, on another disk, or one for several panels. The service is the same update server as “Own” in the panel, only as a program of its own in a container: it hands the releases to the apps without authorization and takes them from the panel or a script by a token. In the example, the service stands at <code class="language-plaintext highlighter-rouge">updates.example.com</code>, and the panel takes its releases by the address.</p>
+<p>The releases of the client can be kept on an update server apart rather than in the panel: on another host, on another disk, or one for several panels. It is the same update server as “Own” in the panel, only as a program of its own: it hands the releases to the apps without authorization and takes them by a token from its own window, from the panel or from a script. A panel on its host hands the releases out itself, see <a href="../panel/client-updates.html">Client updates</a>, so a host carries one of the two: the panel or the update server. In the example, the server stands at <code class="language-plaintext highlighter-rouge">updates.example.com</code>, and the panel takes its releases by the address.</p>
 
-<h2 id="install-the-service">Install the service</h2>
+<h2 id="install-the-server">Install the server</h2>
 
-<p>On a host with Docker and the compose plugin: item 30 <code class="language-plaintext highlighter-rouge">Client Updates Service</code> of the <code class="language-plaintext highlighter-rouge">amneziageo-server</code> menu or the command <code class="language-plaintext highlighter-rouge">amneziageo-server updates</code>. The menu inside the container of the panel does not reach the host and refuses: open the item in the menu on the host. Sub-item 1 <code class="language-plaintext highlighter-rouge">Install or update the service</code>:</p>
+<p>It takes Debian 12 or newer or Ubuntu on amd64 or arm64, root and room for the releases: one release of the client takes about 800 MB. The server needs neither the <code class="language-plaintext highlighter-rouge">amneziawg</code> module nor forwarding. As root:</p>
 
-<ol>
-  <li>asks for the port of the service, 8445 by default; a port that is taken is refused;</li>
-  <li>when the host has Let’s Encrypt certificates, names them and asks which one to answer under; an empty answer - the service makes a certificate of its own;</li>
-  <li>puts the compose project in <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code> and starts the <code class="language-plaintext highlighter-rouge">amneziageo-updates</code> container from the image <code class="language-plaintext highlighter-rouge">ghcr.io/bor-project/amneziageo-updates</code> of the version of the latest stable release of the server;</li>
-  <li>prints the address for the panel, <code class="language-plaintext highlighter-rouge">https://&lt;name of the certificate or address of the host&gt;:&lt;port&gt;/</code>, and, once, the token.</li>
-</ol>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fsSL https://github.com/bor-project/amneziageo_server/releases/latest/download/amneziageo-server \
+  -o /usr/local/bin/amneziageo-server
+chmod 755 /usr/local/bin/amneziageo-server
+amneziageo-server install
+</code></pre></div></div>
 
-<p>The releases lie in <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-updates</code>, the token and the own certificate of the service in <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code>. The same sub-item later moves the service to a new image. Sub-item 2 <code class="language-plaintext highlighter-rouge">New token</code> makes a new token and prints it once, the former one stops working; 3 <code class="language-plaintext highlighter-rouge">Logs of the service</code> is the log of the service; 4 <code class="language-plaintext highlighter-rouge">Remove the service</code> takes the container off, and the releases and the token stay on the disk.</p>
+<p>Answer the first question, <code class="language-plaintext highlighter-rouge">What to install</code>, with <code class="language-plaintext highlighter-rouge">2</code> (<code class="language-plaintext highlighter-rouge">Client updates server</code>). The script looks the host over (the system, memory and disk, Docker, ufw, the ports taken, the Let’s Encrypt certificates), asks its questions, prints the plan and, once you agree, does everything on the list.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Default</th>
+      <th>Key of the answers file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">What to install</code>: <code class="language-plaintext highlighter-rouge">1. Panel</code>, <code class="language-plaintext highlighter-rouge">2. Client updates server</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">role</code>: <code class="language-plaintext highlighter-rouge">panel</code> or <code class="language-plaintext highlighter-rouge">updates</code></td>
+    </tr>
+    <tr>
+      <td>accept the terms of use</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">license</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Install as</code>: <code class="language-plaintext highlighter-rouge">1. Package</code> (the service), <code class="language-plaintext highlighter-rouge">2. Docker</code></td>
+      <td><code class="language-plaintext highlighter-rouge">2</code> when the host has Docker</td>
+      <td><code class="language-plaintext highlighter-rouge">kind</code>: <code class="language-plaintext highlighter-rouge">package</code> or <code class="language-plaintext highlighter-rouge">docker</code></td>
+    </tr>
+    <tr>
+      <td>put on a short command of the menu, its name</td>
+      <td>asked on a terminal alone; <code class="language-plaintext highlighter-rouge">ag-s</code> or the first free name with a number</td>
+      <td><code class="language-plaintext highlighter-rouge">shortcut</code></td>
+    </tr>
+    <tr>
+      <td>upgrade the system first (<code class="language-plaintext highlighter-rouge">apt full-upgrade</code>)</td>
+      <td>yes</td>
+      <td><code class="language-plaintext highlighter-rouge">upgrade</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Channel</code>: <code class="language-plaintext highlighter-rouge">1. Stable</code>, <code class="language-plaintext highlighter-rouge">2. Test</code> (prereleases)</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">channel</code>: <code class="language-plaintext highlighter-rouge">stable</code> or <code class="language-plaintext highlighter-rouge">test</code></td>
+    </tr>
+    <tr>
+      <td>the name of the server for a Let’s Encrypt certificate, empty for none; the email and the consent to the terms of Let’s Encrypt</td>
+      <td>the name the host already holds a certificate for</td>
+      <td><code class="language-plaintext highlighter-rouge">domain</code>, <code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">terms</code></td>
+    </tr>
+    <tr>
+      <td>the port of the server</td>
+      <td>8445 or the first free one above it</td>
+      <td><code class="language-plaintext highlighter-rouge">port</code></td>
+    </tr>
+    <tr>
+      <td>open the port in ufw, or turn ufw on letting in ssh and what already listens</td>
+      <td>yes; no when ufw is installed and off</td>
+      <td><code class="language-plaintext highlighter-rouge">ufw</code></td>
+    </tr>
+    <tr>
+      <td>go on with the plan</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">go</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Docker takes Docker with its compose plugin and a running daemon: where something lacks, the script prints the commands that put it on and exits without changing anything. The answers can be put in a file beforehand and given with <code class="language-plaintext highlighter-rouge">amneziageo-server install --answers &lt;file&gt;</code>, as for the panel.</p>
+
+<p>What the installation does:</p>
+
+<ul>
+  <li>upgrades the system when agreed; when a new kernel comes, it reboots the host, and the same command goes on after the reboot with the same answers;</li>
+  <li>gets a Let’s Encrypt certificate for the name of the server (<code class="language-plaintext highlighter-rouge">certbot</code>, the check on TCP 80, renewals by <code class="language-plaintext highlighter-rouge">certbot.timer</code>) or takes the one the host already holds; without a name the server answers under a certificate of its own, and the apps check it by the digest the panel names;</li>
+  <li>makes the token and a random path of the window;</li>
+  <li>as a service: downloads the archive of the server from the latest release of the channel, checks it against the list of the release signed with the key of the releases and puts on the <code class="language-plaintext highlighter-rouge">amneziageo-updates</code> service; in Docker: puts the compose project in <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code> and starts the <code class="language-plaintext highlighter-rouge">amneziageo-updates</code> container from the image <code class="language-plaintext highlighter-rouge">ghcr.io/bor-project/amneziageo-updates</code> of the same release, on the network of the host;</li>
+  <li>opens the port in ufw or turns ufw on;</li>
+  <li>prints the address of the releases for the panels and the apps, <code class="language-plaintext highlighter-rouge">https://&lt;name or address of the host&gt;:&lt;port&gt;/</code>, the address of the window and, once, the token.</li>
+</ul>
+
+<p>Where things lie:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Service</th>
+      <th>Docker</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>the program</td>
+      <td><code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates/releases/&lt;release&gt;</code>, the links <code class="language-plaintext highlighter-rouge">current</code> and <code class="language-plaintext highlighter-rouge">previous</code></td>
+      <td>the image, the compose project in <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code></td>
+    </tr>
+    <tr>
+      <td>the service</td>
+      <td><code class="language-plaintext highlighter-rouge">amneziageo-updates.service</code></td>
+      <td>the <code class="language-plaintext highlighter-rouge">amneziageo-updates</code> container</td>
+    </tr>
+    <tr>
+      <td>the releases</td>
+      <td><code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-updates</code></td>
+      <td>the same directory of the host</td>
+    </tr>
+    <tr>
+      <td>the port and the certificate</td>
+      <td><code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates/updates.env</code></td>
+      <td>the same file</td>
+    </tr>
+    <tr>
+      <td>the token, the path of the window</td>
+      <td><code class="language-plaintext highlighter-rouge">token</code>, <code class="language-plaintext highlighter-rouge">web-path</code> in <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code></td>
+      <td>the same files</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>From then on its menu looks after the server: <code class="language-plaintext highlighter-rouge">amneziageo-server</code> on such a host opens <a href="../menu.html#the-menu-of-the-update-server">the menu of the update server</a> with the update and the rollback, a new token, a new path of the window, the port, the certificates and the firewall.</p>
+
+<h3 id="without-the-menu">Without the menu</h3>
 
 <p>The image runs without the menu as well, its settings are the <code class="language-plaintext highlighter-rouge">Updates__*</code> variables:</p>
 
@@ -253,16 +370,20 @@
       <td>the path before the releases; empty - the root</td>
     </tr>
     <tr>
+      <td><code class="language-plaintext highlighter-rouge">Updates__WebPath</code></td>
+      <td>the path of the window; not set - the file <code class="language-plaintext highlighter-rouge">web-path</code> in <code class="language-plaintext highlighter-rouge">Updates__Etc</code>: on the first start, the server writes a random path there</td>
+    </tr>
+    <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Directory</code></td>
       <td>the directory of the releases, <code class="language-plaintext highlighter-rouge">/var/lib/amneziageo-updates</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Etc</code></td>
-      <td>the directory of the token and the certificate, <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code></td>
+      <td>the directory of the token, the path of the window and the own certificate, <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Token</code>, <code class="language-plaintext highlighter-rouge">Updates__TokenFile</code></td>
-      <td>the token or the file holding it; not set - the file <code class="language-plaintext highlighter-rouge">token</code> in <code class="language-plaintext highlighter-rouge">Updates__Etc</code>: on the first start, the service writes a new token there and prints it to its log</td>
+      <td>the token or the file holding it; not set - the file <code class="language-plaintext highlighter-rouge">token</code> in <code class="language-plaintext highlighter-rouge">Updates__Etc</code>: on the first start, the server writes a new token there</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Updates__Certificate</code>, <code class="language-plaintext highlighter-rouge">Updates__CertificateKey</code></td>
@@ -273,27 +394,42 @@
 
 <p><code class="language-plaintext highlighter-rouge">GET /health</code> answers 204; the health check of the container stands on it.</p>
 
+<h2 id="the-window-of-the-server">The window of the server</h2>
+
+<p>The address of the window is <code class="language-plaintext highlighter-rouge">https://updates.example.com:8445/&lt;path&gt;/</code>: the installation and item 9 <code class="language-plaintext highlighter-rouge">View Current Settings</code> of the menu print the path of 16 letters and digits, item 7 <code class="language-plaintext highlighter-rouge">Reset UI Path</code> gives a new one. The window is signed into with the token of the server.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/updates-window-login.png" alt="Sign-in to the window of the update server: the Token field, the Sign in button, the version, the language and the theme" width="464" height="374" loading="lazy" /><figcaption>Sign-in by the token.</figcaption></figure>
+
+<p>Once signed in, the window shows the address of the releases for the panels and the apps with “Copy”, the directory of the releases with the room left, and the “Releases” table. Releases are created, changed and removed as on the tab of the panel, see <a href="../panel/client-updates.html#releases">Releases</a>. A window opened before a new token from the menu goes back to the sign-in at its next request to the server: sign in with the new token.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/updates-window.png" alt="The window of the update server: the address for panels and clients, the directory, the room left and the table of releases" width="1440" height="572" loading="lazy" /><figcaption>The address of the releases, the directory and the releases.</figcaption></figure>
+
 <h2 id="connect-it-to-the-panel">Connect it to the panel</h2>
 
 <ol>
   <li>“Settings” - “Client updates”: turn on “Hand out updates to clients”, “Source” - “Address”.</li>
-  <li>“Address” - <code class="language-plaintext highlighter-rouge">https://updates.example.com:8445/</code>, “Token” - the token of the service, “Check”. The answer is “answers: releases 0, 0 B”.</li>
-  <li>“Save”. The panel keeps the certificate of the service and names it to the apps.</li>
+  <li>“Address” - <code class="language-plaintext highlighter-rouge">https://updates.example.com:8445/</code>, “Token” - the token of the server, “Check”. The answer is “answers: releases 0, 0 B”.</li>
+  <li>“Save”. The panel keeps the certificate of the server and names it to the apps.</li>
 </ol>
 
-<p>The firewall of the host of the service must let its port in: the apps download the releases straight from the service, not through the panel.</p>
+<p>The firewall of the host of the server must let its port in: the apps download the releases straight from the server, not through the panel.</p>
 
 <h2 id="put-a-release">Put a release</h2>
 
-<p>“Create update” on the same tab: version, channel, files, “Confirm”, see <a href="../panel/client-updates.html#new-update">New update</a>. An app with a configuration of this panel sees the service in “Connections” - “Update server” by its address; with “On by default” set, the app takes it while no update server is picked by hand, and offers the release of its channel when it is newer than the installed version.</p>
+<p>“Create update” in the window of the server or on the tab of the panel with “Address”: version, channel, files, “Confirm”, see <a href="../panel/client-updates.html#new-update">New update</a>. An app with a configuration of this panel sees the server in “Connections” - “Update server” by its address; with “On by default” set, the app takes it while no update server is picked by hand, and offers the release of its channel when it is newer than the installed version.</p>
 
 <h2 id="check">Check</h2>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">curl -s -o /dev/null -w '%{http_code}\n' https://updates.example.com:8445/health</code> - 204.</li>
-  <li><code class="language-plaintext highlighter-rouge">curl https://updates.example.com:8445/beta/update.json</code> - the manifest of the latest beta; 404 while the channel has no releases.</li>
-  <li>The “Client updates” row in the “Services” of the <a href="../panel/overview.html#services">Overview</a> stands without a reason.</li>
+  <li><code class="language-plaintext highlighter-rouge">curl https://updates.example.com:8445/beta/update.json</code> - the manifest of the newest stable release or beta; 404 while there is none.</li>
+  <li><code class="language-plaintext highlighter-rouge">amneziageo-server status</code> on the host of the server: whether the server and its window answer, the certificate, the port in ufw.</li>
+  <li>The “Client updates” row in the “Services” of the <a href="../panel/overview.html#services">Overview</a> of the panel stands without a reason.</li>
 </ul>
+
+<h2 id="a-container-beside-the-panel-from-item-30">A container beside the panel from item 30</h2>
+
+<p>The update server used to go on with item 30 of the menu of the panel, in a container beside it. Such a container is looked after by the same item 30: it shows in the menu of the panel while the container stands, and it moves the container to the latest image, makes a new token, shows the log and takes it off. The first update moves the container to the network of the host on the same port, and the port and the certificate into <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates/updates.env</code>; the releases and the token stay as they were.</p>
 
 
         <footer class="article-footer">

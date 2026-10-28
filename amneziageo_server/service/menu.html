@@ -271,7 +271,7 @@
   <tbody>
     <tr>
       <td>1 <code class="language-plaintext highlighter-rouge">Install</code></td>
-      <td>looks the host over, asks for everything needed and installs the panel, see <a href="install.html">Installation</a>; on a host with a panel it answers that item 2 updates it</td>
+      <td>asks what to install, the panel or the client update server alone, looks the host over, asks for everything needed and installs it, see <a href="install.html">Installation</a> and <a href="recipes/updates-service.html">An update server apart</a>; on a host with a panel it answers that item 2 updates it</td>
     </tr>
     <tr>
       <td>2 <code class="language-plaintext highlighter-rouge">Update</code></td>
@@ -445,7 +445,7 @@
 
 <h2 id="client-updates">Client updates</h2>
 
-<p><strong>30 <code class="language-plaintext highlighter-rouge">Client Updates Service</code>.</strong> The service of the client releases apart, in a container of its own, beside the panel or without it: install it or move it to a new image, a new token, the log, take it off. The steps and the settings are in the recipe <a href="recipes/updates-service.html">An update server apart</a>. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server updates</code>.</p>
+<p><strong>30 <code class="language-plaintext highlighter-rouge">Client Updates Service</code>.</strong> Shows only while a container of the update server that this item put beside the panel before stands there: move it to the latest image, a new token, the log, take it off (the releases and the token stay on the disk). The first update moves the container to the network of the host, and its port and certificate into <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates/updates.env</code>. A new update server goes on with answer 2 of <code class="language-plaintext highlighter-rouge">install</code> on a host of its own, see <a href="recipes/updates-service.html">An update server apart</a>; the panel hands the releases out itself as well, see <a href="panel/client-updates.html">Client updates</a>. As a command: <code class="language-plaintext highlighter-rouge">amneziageo-server updates</code>.</p>
 
 <h2 id="commands">Commands</h2>
 
@@ -463,7 +463,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">install [--restore &lt;file&gt;] [--answers &lt;file&gt;]</code></td>
-      <td>look the host over, ask for what is needed and install the panel; on a database backup from another panel; with answers from a file</td>
+      <td>ask what to install, look the host over, ask for what is needed and install the panel or the update server; the panel on a database backup from another panel; with answers from a file</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">restore &lt;file&gt;</code></td>
@@ -507,7 +507,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">updates</code></td>
-      <td>the service of the client releases apart, item 30</td>
+      <td>the container of the update server put beside the panel by item 30</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">&lt;utility command&gt;</code></td>
@@ -519,6 +519,102 @@
     </tr>
   </tbody>
 </table>
+
+<h2 id="the-menu-of-the-update-server">The menu of the update server</h2>
+
+<p>On a host that carries the <a href="recipes/updates-service.html">client update server</a> alone, <code class="language-plaintext highlighter-rouge">amneziageo-server</code> opens its menu rather than that of the panel. Under the menu, the state:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Row</th>
+      <th>What it shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Updates</code></td>
+      <td>whether the server runs, how it is installed (<code class="language-plaintext highlighter-rouge">package</code> or <code class="language-plaintext highlighter-rouge">docker</code>), the version and the release channel</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Autostart</code></td>
+      <td>whether the server starts with the host</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Releases</code></td>
+      <td>how many releases lie there, their size and the room left</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 <code class="language-plaintext highlighter-rouge">Install</code></td>
+      <td>answers that the server is installed already and item 2 updates it</td>
+    </tr>
+    <tr>
+      <td>2 <code class="language-plaintext highlighter-rouge">Update</code>, 3 <code class="language-plaintext highlighter-rouge">Update Beta</code></td>
+      <td>moves the server to the latest release of its channel or of the test channel and waits until it answers</td>
+    </tr>
+    <tr>
+      <td>4 <code class="language-plaintext highlighter-rouge">Roll Back</code></td>
+      <td>brings the release before back: the release before in <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code> for the service, the image before on the host for Docker</td>
+    </tr>
+    <tr>
+      <td>5 <code class="language-plaintext highlighter-rouge">Uninstall</code></td>
+      <td>takes the server off, with the releases, the token and the settings when asked, in Docker with the images too, and the command of the menu off the host</td>
+    </tr>
+    <tr>
+      <td>6 <code class="language-plaintext highlighter-rouge">New Token</code></td>
+      <td>makes a new token and prints it once; the token before stops working for the window and the panels</td>
+    </tr>
+    <tr>
+      <td>7 <code class="language-plaintext highlighter-rouge">Reset UI Path</code></td>
+      <td>gives the window of the server a new random path and prints its address</td>
+    </tr>
+    <tr>
+      <td>8 <code class="language-plaintext highlighter-rouge">Change Port</code></td>
+      <td>moves the server to another port, offers to open it in ufw</td>
+    </tr>
+    <tr>
+      <td>9 <code class="language-plaintext highlighter-rouge">View Current Settings</code></td>
+      <td>how it is installed, the version, the address of the releases, the address of the window, the port, the certificate, the directory and the room; the token is not printed</td>
+    </tr>
+    <tr>
+      <td>10 <code class="language-plaintext highlighter-rouge">Start</code>, 11 <code class="language-plaintext highlighter-rouge">Stop</code>, 12 <code class="language-plaintext highlighter-rouge">Restart</code></td>
+      <td>the service or the container</td>
+    </tr>
+    <tr>
+      <td>13 <code class="language-plaintext highlighter-rouge">Check Status</code></td>
+      <td>whether the server and its window answer, the certificate, the port in ufw, the autostart</td>
+    </tr>
+    <tr>
+      <td>14 <code class="language-plaintext highlighter-rouge">Logs</code></td>
+      <td>the log: follow it or the last 200 lines</td>
+    </tr>
+    <tr>
+      <td>15 <code class="language-plaintext highlighter-rouge">Enable Autostart</code>, 16 <code class="language-plaintext highlighter-rouge">Disable Autostart</code></td>
+      <td>whether it starts with the host</td>
+    </tr>
+    <tr>
+      <td>17 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code></td>
+      <td>get a Let’s Encrypt certificate, renew, list, answer under a certificate of the host or under its own</td>
+    </tr>
+    <tr>
+      <td>18 <code class="language-plaintext highlighter-rouge">Firewall Management</code></td>
+      <td>ufw: the state and the ports needed, open or close the port of the server or any port, turn it on or off</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The commands on such a host: <code class="language-plaintext highlighter-rouge">update</code>, <code class="language-plaintext highlighter-rouge">update beta</code>, <code class="language-plaintext highlighter-rouge">rollback</code>, <code class="language-plaintext highlighter-rouge">uninstall</code>, <code class="language-plaintext highlighter-rouge">settings</code>, <code class="language-plaintext highlighter-rouge">start</code>, <code class="language-plaintext highlighter-rouge">stop</code>, <code class="language-plaintext highlighter-rouge">restart</code>, <code class="language-plaintext highlighter-rouge">status</code>, <code class="language-plaintext highlighter-rouge">log</code>, <code class="language-plaintext highlighter-rouge">enable</code>, <code class="language-plaintext highlighter-rouge">disable</code>, and <code class="language-plaintext highlighter-rouge">token</code> for a new token and <code class="language-plaintext highlighter-rouge">path</code> for a new path of the window.</p>
 
 
         <footer class="article-footer">

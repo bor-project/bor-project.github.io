@@ -264,7 +264,7 @@
   <tbody>
     <tr>
       <td>1 <code class="language-plaintext highlighter-rouge">Install</code></td>
-      <td>осматривает хост, спрашивает всё нужное и ставит панель, см. <a href="install.ru.html">Установка</a>; на хосте с панелью отвечает, что обновляет её пункт 2</td>
+      <td>спрашивает, что ставить, панель или один сервер обновлений клиента, осматривает хост, спрашивает всё нужное и ставит выбранное, см. <a href="install.ru.html">Установка</a> и <a href="recipes/updates-service.ru.html">Отдельный сервер обновлений</a>; на хосте с панелью отвечает, что обновляет её пункт 2</td>
     </tr>
     <tr>
       <td>2 <code class="language-plaintext highlighter-rouge">Update</code></td>
@@ -438,7 +438,7 @@
 
 <h2 id="обновления-клиентов">Обновления клиентов</h2>
 
-<p><strong>30 <code class="language-plaintext highlighter-rouge">Client Updates Service</code>.</strong> Отдельный сервис выпусков клиента в своём контейнере, рядом с панелью или без неё: поставить или перевести на новый образ, новый токен, журнал, снять. Порядок и настройки - в рецепте <a href="recipes/updates-service.ru.html">Отдельный сервер обновлений</a>. Внутри контейнера панели пункт отвечает, что до хоста не достаёт: его открывают в меню на хосте. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server updates</code>.</p>
+<p><strong>30 <code class="language-plaintext highlighter-rouge">Client Updates Service</code>.</strong> Виден, только пока рядом с панелью стоит контейнер сервера обновлений, поставленный этим пунктом раньше: перевести его на последний образ, новый токен, журнал, снять (выпуски и токен остаются на диске). Первое обновление переводит контейнер на сеть хоста, а его порт и сертификат - в <code class="language-plaintext highlighter-rouge">/etc/amneziageo-updates/updates.env</code>. Новый сервер обновлений ставится выбором 2 в <code class="language-plaintext highlighter-rouge">install</code> на своём хосте, см. <a href="recipes/updates-service.ru.html">Отдельный сервер обновлений</a>; панель раздаёт выпуски и сама, см. <a href="panel/client-updates.ru.html">Обновления клиентов</a>. Внутри контейнера панели пункт отвечает, что до хоста не достаёт: его открывают в меню на хосте. Командой - <code class="language-plaintext highlighter-rouge">amneziageo-server updates</code>.</p>
 
 <h2 id="команды">Команды</h2>
 
@@ -456,7 +456,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">install [--restore &lt;файл&gt;] [--answers &lt;файл&gt;]</code></td>
-      <td>осмотреть хост, спросить нужное и поставить панель; на копии базы с другой панели; с ответами из файла</td>
+      <td>спросить, что ставить, осмотреть хост, спросить нужное и поставить панель или сервер обновлений; панель на копии базы с другой панели; с ответами из файла</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">restore &lt;файл&gt;</code></td>
@@ -500,7 +500,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">updates</code></td>
-      <td>отдельный сервис выпусков клиента, пункт 30</td>
+      <td>контейнер сервера обновлений, поставленный рядом с панелью пунктом 30</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">&lt;команда утилиты&gt;</code></td>
@@ -512,6 +512,102 @@
     </tr>
   </tbody>
 </table>
+
+<h2 id="меню-сервера-обновлений">Меню сервера обновлений</h2>
+
+<p>На хосте, где стоит один <a href="recipes/updates-service.ru.html">сервер обновлений клиента</a>, <code class="language-plaintext highlighter-rouge">amneziageo-server</code> открывает его меню, а не меню панели. Под меню - состояние:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Строка</th>
+      <th>Что показывает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Updates</code></td>
+      <td>работает ли сервер, как поставлен (<code class="language-plaintext highlighter-rouge">package</code> или <code class="language-plaintext highlighter-rouge">docker</code>), версия и канал релизов</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Autostart</code></td>
+      <td>стартует ли сервер с хостом</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Releases</code></td>
+      <td>сколько выпусков лежит, их объём и свободное место</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Пункт</th>
+      <th>Что делает</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 <code class="language-plaintext highlighter-rouge">Install</code></td>
+      <td>отвечает, что сервер уже стоит и обновляет его пункт 2</td>
+    </tr>
+    <tr>
+      <td>2 <code class="language-plaintext highlighter-rouge">Update</code>, 3 <code class="language-plaintext highlighter-rouge">Update Beta</code></td>
+      <td>переводит сервер на последний релиз его канала или тестового канала и ждёт, пока он ответит</td>
+    </tr>
+    <tr>
+      <td>4 <code class="language-plaintext highlighter-rouge">Roll Back</code></td>
+      <td>возвращает прежний релиз: у службы - прежний выпуск в <code class="language-plaintext highlighter-rouge">/opt/amneziageo-updates</code>, у Docker - прежний образ на хосте</td>
+    </tr>
+    <tr>
+      <td>5 <code class="language-plaintext highlighter-rouge">Uninstall</code></td>
+      <td>снимает сервер, по желанию с выпусками, токеном и настройками, у Docker и с образами, и команду меню с хоста</td>
+    </tr>
+    <tr>
+      <td>6 <code class="language-plaintext highlighter-rouge">New Token</code></td>
+      <td>делает новый токен и печатает его один раз; прежний перестаёт действовать для окна и панелей</td>
+    </tr>
+    <tr>
+      <td>7 <code class="language-plaintext highlighter-rouge">Reset UI Path</code></td>
+      <td>даёт окну сервера новый случайный путь и печатает его адрес</td>
+    </tr>
+    <tr>
+      <td>8 <code class="language-plaintext highlighter-rouge">Change Port</code></td>
+      <td>переводит сервер на другой порт, предлагает открыть его в ufw</td>
+    </tr>
+    <tr>
+      <td>9 <code class="language-plaintext highlighter-rouge">View Current Settings</code></td>
+      <td>как поставлен, версия, адрес выпусков, адрес окна, порт, сертификат, директория и место; токен не печатается</td>
+    </tr>
+    <tr>
+      <td>10 <code class="language-plaintext highlighter-rouge">Start</code>, 11 <code class="language-plaintext highlighter-rouge">Stop</code>, 12 <code class="language-plaintext highlighter-rouge">Restart</code></td>
+      <td>служба или контейнер</td>
+    </tr>
+    <tr>
+      <td>13 <code class="language-plaintext highlighter-rouge">Check Status</code></td>
+      <td>отвечает ли сервер и его окно, сертификат, порт в ufw, автозапуск</td>
+    </tr>
+    <tr>
+      <td>14 <code class="language-plaintext highlighter-rouge">Logs</code></td>
+      <td>журнал: следить или последние 200 строк</td>
+    </tr>
+    <tr>
+      <td>15 <code class="language-plaintext highlighter-rouge">Enable Autostart</code>, 16 <code class="language-plaintext highlighter-rouge">Disable Autostart</code></td>
+      <td>стартовать ли с хостом</td>
+    </tr>
+    <tr>
+      <td>17 <code class="language-plaintext highlighter-rouge">SSL Certificate Management</code></td>
+      <td>получить сертификат Let’s Encrypt, продлить, список, отвечать под сертификатом хоста или под своим</td>
+    </tr>
+    <tr>
+      <td>18 <code class="language-plaintext highlighter-rouge">Firewall Management</code></td>
+      <td>ufw: состояние и нужные порты, открыть или закрыть порт сервера или любой, включить или выключить</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Команды на таком хосте: <code class="language-plaintext highlighter-rouge">update</code>, <code class="language-plaintext highlighter-rouge">update beta</code>, <code class="language-plaintext highlighter-rouge">rollback</code>, <code class="language-plaintext highlighter-rouge">uninstall</code>, <code class="language-plaintext highlighter-rouge">settings</code>, <code class="language-plaintext highlighter-rouge">start</code>, <code class="language-plaintext highlighter-rouge">stop</code>, <code class="language-plaintext highlighter-rouge">restart</code>, <code class="language-plaintext highlighter-rouge">status</code>, <code class="language-plaintext highlighter-rouge">log</code>, <code class="language-plaintext highlighter-rouge">enable</code>, <code class="language-plaintext highlighter-rouge">disable</code>, а ещё <code class="language-plaintext highlighter-rouge">token</code> - новый токен и <code class="language-plaintext highlighter-rouge">path</code> - новый путь окна.</p>
 
 
         <footer class="article-footer">
