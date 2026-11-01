@@ -363,44 +363,30 @@
 
 <h2 id="refusals">Refusals</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Message</th>
-      <th>What stands behind it</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>The name is empty or too long</td>
-      <td>the name</td>
-    </tr>
-    <tr>
-      <td>The action is a channel, direct or a block; The rule names no channel</td>
-      <td>the action</td>
-    </tr>
-    <tr>
-      <td>One of the targets is not a geo key, a domain or a range</td>
-      <td>“Where to”</td>
-    </tr>
-    <tr>
-      <td>One of the client names is not a name a client takes; One of the interface names is not a name an interface takes</td>
-      <td>“Clients”, “Interfaces”</td>
-    </tr>
-    <tr>
-      <td>The protocol is any, TCP or UDP; A source port is not a port or a range of ports</td>
-      <td>protocol and ports</td>
-    </tr>
-    <tr>
-      <td>The rule carries too many conditions</td>
-      <td>the rule does not fit into the set</td>
-    </tr>
-    <tr>
-      <td>There is no such rule; There is no such channel</td>
-      <td>a number or name the panel does not know</td>
-    </tr>
-  </tbody>
-</table>
+<p>| Message | What stands behind it |
+|—|—|
+| The name is empty or too long | the name |
+| The action is a channel, direct or a block; The rule names no channel | the action |
+| One of the targets is not a geo key, a domain or a range | “Where to” |
+| One of the client names is not a name a client takes; One of the interface names is not a name an interface takes | “Clients”, “Interfaces” |
+| The protocol is any, TCP or UDP; A source port is not a port or a range of ports | protocol and ports |
+| The rule carries too many conditions | the rule does not fit into the set |
+| There is no such rule; There is no such channel | a number or name the panel does not know |</p>
+<h2 id="exchange-with-another-server">Exchange with another server</h2>
+
+<p>The routing travels to another server in one file: the rules, the basic lists, the routing presets and the addresses of the geo sources. The channels, the groups and the resolver stay on the server they grew on. The button “Export to a file” of the “Exchange with another server” card under the rules takes the file.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/exchange-card.png" alt="The Exchange with another server card under the rules with the buttons Export to a file and Load a file" width="1440" height="900" loading="lazy" /><figcaption>The exchange card under the rules.</figcaption></figure>
+
+<p>The card takes the file of another server through “Load a file” and shows the plan before anything is written: what will be added, what will be replaced under the same name, whether the basic lists will be laid over the current ones, and which rules stay off the host until the channel or the client they name grows on this server. “Import” lays the plan: what the panel holds none under the name of is added, the ones it does are replaced, everything else stays, the ruleset of the host refreshes on its own, and the table reads itself anew.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/exchange-plan.png" alt="The plan of an import: a rule and a preset will be added, a rule, a preset and the geo sources will be replaced, the rule of a foreign channel is marked" width="1440" height="900" loading="lazy" /><figcaption>The plan before anything is applied: the rule of a channel this server does not hold is named apart.</figcaption></figure>
+
+<p>The answer names what was taken in, what was replaced, and what is missing yet.</p>
+
+<figure class="shot"><img src="/amneziageo_server/assets/img/en/exchange-done.png" alt="The answer of an import: a rule and a preset taken in, a rule, a preset and the geo sources replaced, the rule of a foreign channel waits" width="1440" height="900" loading="lazy" /><figcaption>The answer after the import was applied.</figcaption></figure>
+
+<p>The utility of the server does the same: <code class="language-plaintext highlighter-rouge">amneziageo-server routing export &lt;file&gt;</code> writes the file, <code class="language-plaintext highlighter-rouge">amneziageo-server routing import &lt;file&gt;</code> prints the plan, <code class="language-plaintext highlighter-rouge">--apply</code> lays it over.</p>
 
 
         <footer class="article-footer">
